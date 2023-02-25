@@ -1,20 +1,20 @@
 {
   "project_info": {
-    "project_number": "531306259798",
-    "project_id": "sharqia-household",
-    "storage_bucket": "sharqia-household.appspot.com"
+    "project_number": "332636979867",
+    "project_id": "sharqia-survey",
+    "storage_bucket": "sharqia-survey.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:531306259798:android:bc9f1f888c9c59449062f7",
+        "mobilesdk_app_id": "1:332636979867:android:7eab6c1aa8190ae12f3c3e",
         "android_client_info": {
           "package_name": "com.example.sharqia_household_survey"
         }
       },
       "oauth_client": [
         {
-          "client_id": "531306259798-f705092b30i7a3naetdl9rcmt6j08vnq.apps.googleusercontent.com",
+          "client_id": "332636979867-uik82n11malgdi4q3lgldo9e4amtae06.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.sharqia_household_survey",
@@ -22,20 +22,20 @@
           }
         },
         {
-          "client_id": "531306259798-fnuupcuf5kecb64luptrotbrmctcma40.apps.googleusercontent.com",
+          "client_id": "332636979867-13g6pfep9481ab1sk1iavkkt396bmii1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBs13hpK8RVWuIcp1gaf_Wwl3oKsMWVMjQ"
+          "current_key": "AIzaSyD0Rds0qtCSD6Xh9bxTG1fkxbbl_guFrj0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "531306259798-fnuupcuf5kecb64luptrotbrmctcma40.apps.googleusercontent.com",
+              "client_id": "332636979867-13g6pfep9481ab1sk1iavkkt396bmii1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -1,8 +1,8 @@
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/PersonData/person_model_list.dart';
 import 'package:sharqia_household_survey/Models/Vehicles_SurveyModel/vehicles_body_type.dart';
 import 'package:sharqia_household_survey/Providers/survey.dart';
 import 'package:sharqia_household_survey/Providers/survey_hhs.dart';
-import 'package:provider/provider.dart';
 
 import 'TripsData/trip_mode_list.dart';
 import 'VechelisData/veh_model.dart';

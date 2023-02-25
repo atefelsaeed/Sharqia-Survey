@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:sharqia_household_survey/Helper/locale_database/locale_db_querys.dart';
 import 'package:path/path.dart';
+import 'package:sharqia_household_survey/Helper/locale_database/locale_db_querys.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {

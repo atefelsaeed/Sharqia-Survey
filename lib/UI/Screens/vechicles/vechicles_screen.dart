@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/validate_data/vehicles_validation.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/vechicles/components/vechiels_header.dart';
 import 'package:sharqia_household_survey/UI/Screens/vechicles/provider/vechiels_provider.dart';
 import 'package:sharqia_household_survey/UI/Widgets/custom_buttton.dart';
-import 'package:provider/provider.dart';
 
 import '../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
 import '../../../Data/HouseholdPart1/save_data.dart';

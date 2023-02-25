@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/components/headline_trip.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../Models/Trips_SurveyModel/start_beginning_model.dart';
 import '../../../../Providers/survey_hhs.dart';

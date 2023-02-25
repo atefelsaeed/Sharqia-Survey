@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_Q1.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_Q10.dart';
@@ -8,21 +9,18 @@ import 'package:sharqia_household_survey/UI/Screens/Survey/components/action_but
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/house_hold_member.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/qh9.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/editing_controller.dart';
-import 'package:provider/provider.dart';
 
 import '../../../Models/user_serveys_model.dart';
 import '../../Widgets/exit_screen.dart';
 import '../vechicles/components/nearest_transporter.dart';
 import 'Components/hhs_Q5.dart';
 import 'actions/action_survey_screen.dart';
-import 'components/demolished_area.dart';
 import 'components/hhs_Q4.dart';
 import 'components/hhs_Q81.dart';
 import 'components/hhs_Q82.dart';
 import 'components/hhs_Q83.dart';
 import 'components/hhs_q6.dart';
 import 'components/hhs_qh4.dart';
-import 'components/hhs_qh62.dart';
 
 class SurveyScreen extends StatefulWidget {
   const SurveyScreen(

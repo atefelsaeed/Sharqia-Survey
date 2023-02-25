@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sharqia_household_survey/Resources/colors.dart';
-import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
+import 'package:sharqia_household_survey/Resources/colors.dart';
+import 'package:sharqia_household_survey/Resources/sizes.dart';
 
 import '../Screens/trips/provider/trip_provider.dart';
 import 'custom_buttton.dart';
@@ -46,19 +46,14 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
     var position = await validationService.determinePosition();
     placeMarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
-    // initCoordinates=LatLng(position.latitude, position.longitude);
     Constants.location != LatLng(position.latitude, position.longitude);
-
-    // controller!.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
-    //     target: LatLng(position.latitude, position.longitude),
-    //     zoom: initZoom)));
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    controller!.dispose();
+    if (controller != null) controller!.dispose();
   }
 
   @override
@@ -136,7 +131,6 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                   Positioned(
                     left: 0,
                     bottom: 0,
-                    //you can use "right" and "bottom" too
                     child: Padding(
                       padding: EdgeInsets.all(AppSize.padding2(context)),
                       child: DefaultButton(
@@ -163,11 +157,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                     child: Container(
                       color: Colors.transparent,
                       child: InkWell(
-                        onTap: () async {
-                          //  await   placeMarker(value,placeMarks);
-                          /* activeLocation(
-                                    placeMarks, context, value, callBack);*/
-                        },
+                        onTap: () async {},
                         child: const Icon(
                           Icons.pin_drop_outlined,
                           size: 40,

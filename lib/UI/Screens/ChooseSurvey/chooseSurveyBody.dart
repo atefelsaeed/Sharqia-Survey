@@ -2,12 +2,12 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Models/survey.dart';
 import 'package:sharqia_household_survey/Providers/surveys.dart';
 import 'package:sharqia_household_survey/Providers/user_surveys.dart';
 import 'package:sharqia_household_survey/Resources/strings.dart';
 import 'package:sharqia_household_survey/UI/Screens/UserSurveys/userSurveys.dart';
-import 'package:provider/provider.dart';
 
 import '../../../Providers/auth.dart';
 import '../../../Resources/assets_manager.dart';

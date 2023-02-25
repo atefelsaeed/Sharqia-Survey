@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
+import 'package:sharqia_household_survey/Resources/colors.dart';
 
 import '../../../Resources/sizes.dart';
 

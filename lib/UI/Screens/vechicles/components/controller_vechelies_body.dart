@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sharqia_household_survey/UI/Screens/vechicles/provider/vechiels_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/UI/Screens/vechicles/provider/vechiels_provider.dart';
 
 import '../../../../Data/HouseholdPart1/VechelisData/vechelis_data.dart';
 import '../../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
