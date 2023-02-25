@@ -1,0 +1,237 @@
+{
+  "id": "15078",
+  "type": "Pt",
+  "synced": true,
+  "headerDate": "2023-02-09 01:24:55.543413",
+  "vehiclesData": {
+    "numberParcels": "5",
+    "numberFood": "6",
+    "numberGrocery": "6",
+    "numberOtherParcels": "6",
+    "numberParcelsDeliveries": "6",
+    "nearestBusStop": "6-10 دقائق سيرا على الأقدام"
+  },
+  "headerEmpNumber": 264,
+  "headerInterviewNumber": 2640014884,
+  "headerDistrictName": "",
+  "headerZoneNumber": "",
+  "hhsAddressLong": "31.348263",
+  "hhsAddressLat": "30.1264144",
+  "hhsPhone": "0554455888",
+  "hhsDwellingType": "شقة - عائلة واحدة",
+  "hhsIsDwelling": "مستأجر",
+  "hhsNumberBedRooms": "6",
+  "hhsNumberApartments": "5",
+  "hhsNumberFloors": "5",
+  "hhsNumberSeparateFamilies": "3",
+  "hhsNumberAdults": "2",
+  "hhsNumberChildren": "3",
+  "hhsNumberYearsInAddress": "- 3 سنوات",
+  "hhsDemolishedAreas": "مشرفه",
+  "hhsPCTotalBikesNumber": "0",
+  "hhsPCAdultsBikesNumber": "0",
+  "hhsPCChildrenBikesNumber": "0",
+  "hhsECTotalBikesNumber": "0",
+  "hhsECAdultsBikesNumber": "0",
+  "hhsECChildrenBikesNumber": "0",
+  "hhsESTotalBikesNumber": "5",
+  "hhsESAdultsBikesNumber": "6",
+  "hhsESChildrenBikesNumber": "3",
+  "hhsTotalIncome": "8000 - 12000 ريال سعودي",
+  "hhsSeparateFamilies": [
+    {
+      "numberChildren": "3",
+      "numberAdults": "6",
+      "totalNumberVehicles": "2"
+    },
+    {
+      "numberChildren": "3",
+      "numberAdults": "6",
+      "totalNumberVehicles": "2"
+    }
+  ],
+  "vehiclesBodyType": [
+    {
+      "vehicleTypeName": "سيارة صغيرة",
+      "vehicleTypeQuantity": 0,
+      "vehicleTypeDetails": []
+    },
+    {
+      "vehicleTypeName": "شاحنة",
+      "vehicleTypeQuantity": 0,
+      "vehicleTypeDetails": []
+    },
+    {
+      "vehicleTypeName": "سيارة كبيرة",
+      "vehicleTypeQuantity": 1,
+      "vehicleTypeDetails": [
+        {
+          "vehicleFuelType": "المكونات الكهربائية الهجينة (PHEV)",
+          "vehicleParking": "الطرق الوعرة خالية",
+          "vehicleOwnership": "أرباب العمل"
+        }
+      ]
+    },
+    {
+      "vehicleTypeName": "اسكوتر",
+      "vehicleTypeQuantity": 0,
+      "vehicleTypeDetails": []
+    },
+    {
+      "vehicleTypeName": "دراجة نارية",
+      "vehicleTypeQuantity": 0,
+      "vehicleTypeDetails": []
+    },
+    {
+      "vehicleTypeName": "دراجة هوائية",
+      "vehicleTypeQuantity": 0,
+      "vehicleTypeDetails": []
+    },
+    {
+      "vehicleTypeName": "ونيت",
+      "vehicleTypeQuantity": 0,
+      "vehicleTypeDetails": []
+    }
+  ],
+  "personData": [
+    {
+      "personName": "عاطف",
+      "personalHeadData": {
+        "relationshipHeadHHS": "الاباء / الاجداد",
+        "gender": "ذكر",
+        "refuseToTellAge": true,
+        "age": " 25 - 34",
+        "nationalityType": "وافد عربي",
+        "nationality": "مصري",
+        "hhsHavePastTrip": "تالبسا"
+      },
+      "occupationModel": {
+        "occupationSector": "مستشفى طبي- مركز صحي (حكومي)",
+        "isEmployee": "1",
+        "occupationLevelSector": "",
+        "bestWorkspaceLocation": "شاحنة",
+        "commuteWorkDays": 0,
+        "bikeWorkDays": 0,
+        "address": "",
+        "geoCodes": "",
+        "isWorkFromHome": false,
+        "numberWorkFromHome": 0,
+        "startingWoke": "",
+        "endingWoke": "",
+        "flexibleWorkingHours": "",
+        "earliestTimeStartingWork": "",
+        "earliestTimeFinishingWork": "",
+        "mainOccupationAddress": ""
+      },
+      "personalQuestion": {
+        "drivingLicenceType": "مركبات البضائع الخفيفة",
+        "haveBusPass": "نعم",
+        "mainOccupationType": "يعمل بدوام كامل",
+        "haveDisabilityTransportMobility": "ضعف الكلام والعنوان",
+        "availablePersonalCar": "دائما",
+        "haveCarSharing": false,
+        "educationAddress": {
+          "fullAddress": "",
+          "geocodes": ""
+        }
+      }
+    },
+    {
+      "personName": "على",
+      "personalHeadData": {
+        "relationshipHeadHHS": "زوج",
+        "gender": "ذكر",
+        "refuseToTellAge": true,
+        "age": " 6 - 11",
+        "nationalityType": "سعودي",
+        "nationality": "سعودي",
+        "hhsHavePastTrip": "السبب"
+      },
+      "occupationModel": {
+        "occupationSector": "",
+        "isEmployee": "2",
+        "occupationLevelSector": "",
+        "bestWorkspaceLocation": "",
+        "commuteWorkDays": 0,
+        "bikeWorkDays": 0,
+        "address": "",
+        "geoCodes": "",
+        "isWorkFromHome": false,
+        "numberWorkFromHome": 0,
+        "startingWoke": "",
+        "endingWoke": "",
+        "flexibleWorkingHours": "",
+        "earliestTimeStartingWork": "",
+        "earliestTimeFinishingWork": "",
+        "mainOccupationAddress": ""
+      },
+      "personalQuestion": {
+        "drivingLicenceType": "",
+        "haveBusPass": "",
+        "mainOccupationType": "طالب - مدرسة ثانوية",
+        "haveDisabilityTransportMobility": "ضعف الكلام والعنوان",
+        "availablePersonalCar": "",
+        "haveCarSharing": false,
+        "educationAddress": {
+          "fullAddress": "",
+          "geocodes": ""
+        }
+      }
+    }
+  ],
+  "tripsList": [
+    {
+      "startBeginningModel": {
+        "tripAddressLat": "30.12710451853159",
+        "tripAddressLong": "31.34896293282509",
+        "streetName": "",
+        "streetNumber": "",
+        "nearestLandMark": "",
+        "block": "",
+        "area": ""
+      },
+      "endingAddress": {
+        "tripAddressLat": "30.1264144",
+        "tripAddressLong": "31.348263",
+        "streetName": "",
+        "streetNumber": "",
+        "nearestLandMark": "",
+        "block": "",
+        "area": ""
+      },
+      "travelWay": {
+        "mainMode": "باص المدرسة",
+        "accessMode": "تاكسي المدرسة"
+      },
+      "travelWithOtherModel": {
+        "adultsNumber": "6",
+        "childrenNumber": "3"
+      },
+      "travelAloneHouseHold": {
+        "adultsNumber": "5",
+        "childrenNumber": "9"
+      },
+      "arrivalDepartTime": {
+        "departTime": "",
+        "arriveDestinationTime": "2:20 ص",
+        "numberRepeatTrip": "4 أيام في الأسبوع"
+      },
+      "travelTypeModel": {
+        "carParkingPlace": "موقف سيارات عام - مدفوع",
+        "taxiTravelType": "",
+        "travelType ": "دراجة نارية",
+        "passTravelType": "",
+        "taxiFare": "",
+        "publicTransportFare": ""
+      },
+      "purposeTravel": "التسوق",
+      "departureTime": "1:23 ص",
+      "tripReason": "طبى / مستشفى",
+      "isTravelAlone": true,
+      "ownerTripPerson": "محمد",
+      "hhsMembersTraveled": [
+        "على"
+      ]
+    }
+  ]
+}

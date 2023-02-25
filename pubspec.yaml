@@ -1,0 +1,73 @@
+name: sharqia_household_survey
+description: A new Flutter application.
+
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.1+1
+# flutter Version :: 3.3.8
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_localizations:
+    sdk: flutter
+    version: ^0.0.0
+  http: ^0.13.4
+  provider: ^6.0.2
+  shared_preferences: ^2.0.11
+  enum_to_string: ^2.0.1
+  connectivity_plus: ^2.2.0
+  firebase_core: ^2.0.0
+  firebase_messaging: ^14.0.0
+  fluttertoast: 8.0.8
+  url_launcher: ^6.1.6
+  intl: any
+  sqflite: ^2.2.2
+
+  #  Google Maps
+  geolocator: ^9.0.2
+  geocoding: ^2.0.5
+  google_maps_flutter: ^2.2.2
+  flutter_google_places: 0.3.0
+  search_map_place_updated: 0.0.4
+  permission_handler:
+  location: ^4.4.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/fonts/
+
+
+  fonts:
+    - family: Somar
+      fonts:
+        - asset: assets/fonts/somar-bold.otf
+          weight: 700
+        - asset: assets/fonts/somar-semibold.otf
+          weight: 600
+        - asset: assets/fonts/somar-medium.otf
+          weight: 500
+        - asset: assets/fonts/somar-regular.otf
+          weight: 400
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
