@@ -47,7 +47,7 @@ class LoginBody extends StatelessWidget {
                                 fontWeight: FontWeight.w800,
                               ),
                             ),
-                            const Image(image: AssetImage(ImageAssets.logo)),
+                            const Image(image: AssetImage(ImageAssets.researchLogo)),
                           ],
                         ),
                         const SizedBox(height: 30),

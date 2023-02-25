@@ -1,5 +1,5 @@
 class APIRouting {
-  static const baseURL = 'https://research.tkamol.sa/public/api/';
+  static const baseURL = 'http://researchv2.tkamol.sa/public/api/';
   static const getUsers = 'getUsers'; //get
   static const userSurveysStatus = 'status/'; //get +id
   static const getSurveis = 'getSurveis/'; //get +id

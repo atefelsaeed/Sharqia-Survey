@@ -8,7 +8,7 @@ import '../../../Resources/colors.dart';
 import '../../../Resources/sizes.dart';
 
 class SplashView extends StatefulWidget {
-  const  SplashView({Key? key}) : super(key: key);
+  const SplashView({Key? key}) : super(key: key);
 
   @override
   _SplashViewState createState() => _SplashViewState();
@@ -39,19 +39,50 @@ class _SplashViewState extends State<SplashView> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(ImageAssets.homeBackground),
-              fit: BoxFit.fill),
+              image: AssetImage(ImageAssets.homeBackground), fit: BoxFit.fill),
         ),
         child: SizedBox(
           width: width(context),
           height: height(context),
-          child: Center(
-              child: Image(
-            image: const AssetImage(
-              ImageAssets.splashLogo,
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: ColorManager.wight,
+                      ),
+                      child: Image(
+                        image: const AssetImage(
+                          ImageAssets.logo1,
+                        ),
+                        width: width(context) * .4,
+                      ),
+                    ),
+                    AppSize.spaceWidth3(context),
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: ColorManager.wight,
+                      ),
+                      child: Image(
+                        image: const AssetImage(
+                          ImageAssets.logo,
+                        ),
+                        width: width(context) * .4,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
-            width: width(context) * .9,
-          )),
+          ),
         ),
       ),
     );

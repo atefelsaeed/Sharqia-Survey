@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ColorManager {
-  static Color primaryColor = HexColor.fromHex('#EB5E28');
+  static Color primaryColor = HexColor.fromHex('#8A1C1C');
   static Color yellowLiner = HexColor.fromHex('#C59E24');
   static Color grayLiner = HexColor.fromHex('#F2F2F2');
   static Color grayText = HexColor.fromHex('#161F3D');
