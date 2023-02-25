@@ -138,12 +138,15 @@ class UserSurveysProvider with ChangeNotifier {
   Future<bool> fetch(int id) async {
     try {
       loading = true;
-      var response = await APIHelper.getData(
-        url: "${APIRouting.getSurveis}$id",
+      var url= "${APIRouting.getSurveis}$id";
+      print(url);
+      Response response = await APIHelper.getData(
+        url:url,
       );
       print('res');
       debugPrint(response.toString());
       if (response.statusCode == 200) {
+        print(response.body);
         var data = json.decode(response.body);
         if (!data['status']) return false;
         _userSurveysSurveysList = (data['data'] as List)

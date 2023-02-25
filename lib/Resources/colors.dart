@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ColorManager {
   static Color primaryColor = HexColor.fromHex('#8A1C1C');
-  static Color yellowLiner = HexColor.fromHex('#C59E24');
   static Color grayLiner = HexColor.fromHex('#F2F2F2');
   static Color grayText = HexColor.fromHex('#161F3D');
   static Color blackText = HexColor.fromHex('#403D39');
@@ -14,7 +13,7 @@ class ColorManager {
   static Color whiteColor = HexColor.fromHex('#FFFFFF'); //opacity50=>>>80
   static Color blueTxtColor = HexColor.fromHex('#174B80');
   static Color blueTxtColorO40 = HexColor.fromHex('#66174B80'); //opacity40=>>66
-  static Color orangeTxtColor = HexColor.fromHex('#EB5E28');
+  static Color orangeTxtColor = HexColor.fromHex('#8A1C1C');///0range
   static Color blueAccentColor = HexColor.fromHex('#4FC7E4');
   static Color hintBlueAccentColor = HexColor.fromHex('#B4CCD1');
   static Color wight = HexColor.fromHex('#FFFFFF');

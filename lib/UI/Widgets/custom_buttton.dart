@@ -40,7 +40,6 @@ class DefaultButton extends StatelessWidget {
     return Container(
       height: btnHeight ?? height(context) * .06,
       width: btnWidth ?? width(context) * .25,
-
       decoration: BoxDecoration(
           color: background ?? ColorManager.orangeTxtColor,
           borderRadius: BorderRadius.circular(

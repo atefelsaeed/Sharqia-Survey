@@ -104,8 +104,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
                           // ====Question 6====
                           const HHsQ6(),
                           // ====Question 7====
-                          HHSQH62(editingController),
-                          DemolishedArea(editingController),
+                          // HHSQH62(editingController),
+                          // DemolishedArea(editingController),
                           AppSize.spaceHeight5(context),
                           Q81(
                               editingController3:
