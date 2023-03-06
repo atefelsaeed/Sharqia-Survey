@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/components/headline_trip.dart';
 
 import '../../../../Models/Trips_SurveyModel/start_beginning_model.dart';
-import '../../../../Providers/survey_hhs.dart';
 import '../../../../Resources/sizes.dart';
 import '../../../Widgets/text.dart';
 import '../../Survey/widgets/text_form_row.dart';
@@ -28,9 +26,7 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
 
   @override
   Widget build(BuildContext context) {
-    SurveyPTProvider surveyPt =
-        Provider.of<SurveyPTProvider>(context, listen: false);
-    // TODO: implement build
+     // TODO: implement build
     return Column(
       children: [
         AppSize.spaceHeight2(context),
@@ -85,11 +81,13 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextForm(
+              onChanged: (value){},
               controller: widget.tripModel.area,
               text: "الحى",
               label: "الحى",
             ),
             TextForm(
+              onChanged: (value){},
               controller: widget.tripModel.streetNumber,
               text: "رقم الشارع",
               label: "رقم الشارع",
@@ -102,12 +100,12 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextForm(
+            TextForm( onChanged: (value){},
               controller: widget.tripModel.streetName,
               label: "إسم الشارع",
               text: "إسم الشارع",
             ),
-            TextForm(
+            TextForm( onChanged: (value){},
               controller: widget.tripModel.nearestLandMark,
               label: "اقرب معلم",
               text: "اقرب معلم",
@@ -118,7 +116,7 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextForm(
+            TextForm( onChanged: (value){},
               controller: widget.tripModel.block,
               text: "أقرب تقاطع",
               label: "أقرب تقاطع",

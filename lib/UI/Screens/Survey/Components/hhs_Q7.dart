@@ -85,7 +85,8 @@ class ListQ7 extends StatelessWidget {
                       activeColor: ColorManager.orangeTxtColor,
                       value: question[index]["isChick"],
                       onChanged: (bool? value) {
-                       validationService.listQ7(question, index, chosenIndex, value);
+                        validationService.listQ7(
+                            question, index, chosenIndex, value);
                       }),
                 ]),
               )),
@@ -94,6 +95,7 @@ class ListQ7 extends StatelessWidget {
             true && question[chosenIndex]["value"] == true
                 ? TextForm(
                     controller: textEditingController,
+                    onChanged: (value) {},
                     label: 'Name of the demolished area',
                     text: 'Name of the demolished area',
                   )

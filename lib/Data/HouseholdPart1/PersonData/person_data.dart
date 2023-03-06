@@ -10,6 +10,7 @@ class PersonData {
       'زميل فى العمل',
       'خادمة',
       'غير ذى صلة',
+      'أخرى'
     ],
     "title": "mainMade",
     "subTitle": "mainMade",
@@ -27,6 +28,7 @@ class PersonData {
       'زميل فى العمل',
       'سائق',
       'غير ذى صلة',
+      'أخرى'
     ],
     "title": "mainMade",
     "subTitle": "mainMade",
@@ -87,13 +89,21 @@ class PersonData {
 
   static Map<String, dynamic> workplace = {
     "what best describe your workplace location(s)?": [
-      'سيارة',
-      'سيارة كبيرة',
-      'ونيت',
-      'شاحنة',
+      'سيارة كسائق',
+      'سيارة كراكب',
+      'أجرة',
+      'نقل عام',
+      'باص العمل',
+      'باص المدرسة',
+      'اجرة من المدرسة',
       'دراجة نارية',
-      ' دراجة هوائية',
-      'سكوتر الكترونى',
+      'المشي <5 دقائق',
+      'المشي 6-10 دقائق',
+      'المشي 11-15 دقيقة',
+      'المشي 16-20 دقيقة',
+      'مشى +20 دقيقة',
+      'دراجة هوائية',
+      'أخرى'
     ],
     "title": "mainMade",
     "subTitle": "mainMade",
@@ -151,18 +161,6 @@ class PersonData {
     "subTitle": "mainMade",
     "chosenIndex": 0,
   };
-
-  // static Map<String, dynamic> nationality = {
-  //   "QPurposeOfBeingThere": [
-  //     {"value": 'سعودي', "isChick": false},
-  //     {"value": 'وافد عربي', "isChick": false},
-  //     {"value": 'وافد اجنبي', "isChick": false},
-  //   ],
-  //   "title": "nationality",
-  //   "subTitle":
-  //       " A separate family is defined as who share the kitchen expenses and meals",
-  //   "index": 0,
-  // };
 
   static Map<String, dynamic> mainOccupation = {
     "MainOccupation": [
@@ -236,6 +234,11 @@ class PersonData {
       },
       {
         "value": 'طفل ليس فى الحضانة',
+        "isChick": false,
+        "type": "retired",
+      },
+      {
+        "value": 'متقاعد',
         "isChick": false,
         "type": "retired",
       },

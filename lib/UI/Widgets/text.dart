@@ -4,9 +4,9 @@ class TextGlobal extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color color;
-  FontWeight? fontWeight;
+  final FontWeight? fontWeight;
 
-  TextGlobal({
+  const TextGlobal({
     super.key,
     required this.text,
     required this.fontSize,

@@ -114,14 +114,14 @@ abstract class SurveyProvider with ChangeNotifier {
   String? get hhsNumberYearsInAddress;
 
   set hhsNumberYearsInAddress(String? l);
-
+/*
   bool? get hhsIsDemolishedAreas;
 
   set hhsIsDemolishedAreas(bool? l);
 
   String? get hhsDemolishedAreas;
 
-  set hhsDemolishedAreas(String? l);
+  set hhsDemolishedAreas(String? l);*/
 
   ///==============hhsPedalCycles(PC)====================
   String get hhsPCTotalBikesNumber;

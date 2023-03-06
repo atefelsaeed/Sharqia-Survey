@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
+import 'package:sharqia_household_survey/UI/Screens/trips/provider/trip_provider.dart';
 
 import '../../../../Data/HouseholdPart1/TripsData/trip_data.dart';
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
@@ -28,6 +30,7 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
   @override
   Widget build(BuildContext context) {
     var bas = TripModeList.tripModeList[widget.index].travelTypeModel;
+    final provider = Provider.of<TripProvider>(context, listen: false);
     // TODO: implement build
     return Column(
       children: [
@@ -59,10 +62,17 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                         .whereDidYouPark[TripData.whereDidYouPark.keys.first]!
                         .toList(),
                     onChange: (String? p) {
-                      bas.carParkingPlace = p.toString();
-
                       setState(() {
                         bas.carParkingPlace = p.toString();
+                        if (bas.carParkingPlace == "أخر") {
+                          bas.otherWhereDidYouParking.text = ' "أخر"';
+                          bas.carParkingPlace =
+                              bas.otherWhereDidYouParking.text;
+                        } else {
+                          bas.carParkingPlace = p.toString();
+                          bas.otherWhereDidYouParking.text =
+                              bas.carParkingPlace!;
+                        }
                       });
                     })
                 : Container(),
@@ -71,14 +81,12 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                     label: bas.taxiTravelType != ''
                         ? Text(bas.taxiTravelType ?? '')
                         : const Text('إختار'),
-                    hint: "نوع التاكسي الذي استخدمتھ وكم الأجرة التي دفعتھا؟",
+                    hint: "نوع التاكسي الذي استخدمته.و كم الأجرة التي دفعتھا؟",
                     options: TripData
                         .whatTypeOfTaxi[TripData.whatTypeOfTaxi.keys.first]!
                         .toList(),
                     onChange: (String? p) {
-                      setState(() {
-                        bas.taxiTravelType = p.toString();
-                      });
+                      provider.taxiTravelType(widget.index, p);
                     })
                 : Container(),
           ],
@@ -88,13 +96,20 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
           children: [
             ((bas.carParkingPlace == "أخر" && bas.travelType == "سيارة") ||
                     (bas.carParkingPlace == "أخر" &&
-                        bas.travelType == "دراجة نارية"))
+                        bas.travelType == "دراجة نارية") ||
+                    (bas.carParkingPlace!.isNotEmpty &&
+                        !(TripData.whereDidYouPark[
+                                TripData.whereDidYouPark.keys.first]!
+                            .any((element) => element == bas.carParkingPlace))))
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       TextForm(
-                        controller: bas.otherWhereDidYouParking!,
+                        controller: bas.otherWhereDidYouParking,
                         text: "أین أوقفت ${bas.travelType}؟",
+                        onChanged: (val) {
+                          bas.carParkingPlace = val;
+                        },
                         label: "أین أوقفت ${bas.travelType}؟",
                       )
                     ],
@@ -108,13 +123,44 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              bas.travelType == "تاكسي"
+              ((bas.travelType == "تاكسي") ||
+                      (bas.carParkingPlace == 'موقف سيارات عام - مدفوع'))
                   ? TextForm(
                       controller: widget.costTaxi,
-                      text: "كم أجرة التاكسي دفعتھ؟",
-                      label: "كم أجرة التاكسي دفعتھ؟",
+                onChanged: (value){},
+                      text: "ما مقدار الأجرة التي دفعتھا؟",
+                      label: "ما مقدار الأجرة التي دفعتھا؟",
                       keyboardType: TextInputType.number,
                       isNumber: true,
+                    )
+                  : Container(),
+              ((bas.taxiTravelType == "تاكسي") &&
+                      ((bas.taxiTravelType == "أخر") ||
+                          !(TripData.whatTypeOfTaxi[
+                                  TripData.whatTypeOfTaxi.keys.first]!
+                              .any(
+                                  (element) => element == bas.taxiTravelType))))
+                  ? Column(
+                      children: [
+                        AppSize.spaceHeight3(context),
+                        SizedBox(
+                            width: width(context) * .45,
+                            child: TextGlobal(
+                              text: "نوع التاكسي الذي استخدمته",
+                              fontSize: height(context) * .02,
+                              color: ColorManager.black,
+                            )),
+                        AppSize.spaceHeight1(context),
+                        MyTextForm(
+                          controller: bas.taxiTravelTypeOther,
+                          label: "نوع التاكسي الذي استخدمته",
+                          onChanged: (val) {
+                            bas.taxiTravelType = val;
+                          },
+                          onTap: () {  },
+                          keyboardType: TextInputType.text,
+                        ),
+                      ],
                     )
                   : Container(),
             ],
@@ -129,6 +175,7 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                   children: [
                     TextForm(
                       controller: bas.taxiFare,
+                      onChanged: (value){},
                       text: "وسائل النقل العام ، ما مقدار الأجرة التي دفعتھا؟",
                       label: "وسائل النقل العام ، ما مقدار الأجرة التي دفعتھا؟",
                       keyboardType: TextInputType.number,
@@ -152,8 +199,8 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                           onChanged: (val) {
                             bas.taxiTravelType = val;
                           },
+                          onTap: () {  },
                           keyboardType: TextInputType.text,
-                          // isNumber: true,
                         ),
                       ],
                     )

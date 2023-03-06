@@ -40,6 +40,7 @@ class HHSQ5 extends StatelessWidget {
                 MyTextForm(
                   label: "",
                   controller: peopleUnder18,
+                  onTap: () {  },
                   widthForm: width(context) * .1,
                   keyboardType: TextInputType.number,
                   isNumber: true,
@@ -59,6 +60,7 @@ class HHSQ5 extends StatelessWidget {
                   label: "",
                   controller: peopleAdults18,
                   widthForm: width(context) * .1,
+                  onTap: () {  },
                   keyboardType: TextInputType.number,
                   isNumber: true,
                 ),

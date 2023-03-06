@@ -22,13 +22,13 @@ class StartBeginningModel {
   });
 
   StartBeginningModel.fromJson(Map<String, dynamic> json) {
-    tripAddressLat = json['tripAddressLat'];
-    tripAddressLong = json['tripAddressLong'];
-    streetName.text = json['streetName'];
-    streetNumber.text = json['streetNumber'];
-    nearestLandMark.text = json['nearestLandMark'];
-    block.text = json['block'];
-    area.text = json['area'];
+    tripAddressLat = json['tripAddressLat']??'';
+    tripAddressLong = json['tripAddressLong']??'';
+    streetName.text = json['streetName']??'';
+    streetNumber.text = json['streetNumber']??'';
+    nearestLandMark.text = json['nearestLandMark']??'';
+    block.text = json['block']??'';
+    area.text = json['area']??'';
   }
 
   Map<String, dynamic> toJson() {

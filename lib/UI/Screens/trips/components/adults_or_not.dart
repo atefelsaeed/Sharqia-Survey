@@ -17,7 +17,7 @@ class AdultsOrNot extends StatelessWidget {
 
     return Column(
       children: [
-        Row(
+      /*  Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             TextGlobal(
@@ -26,7 +26,7 @@ class AdultsOrNot extends StatelessWidget {
               color: ColorManager.black,
             ),
           ],
-        ),
+        ),*/
         AppSize.spaceHeight2(context),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -36,7 +36,8 @@ class AdultsOrNot extends StatelessWidget {
                 MyTextForm(
                   label: "",
                   controller: adultsModel.childrenNumber,
-                  widthForm: width(context) * .07,
+                  widthForm: width(context) * .1,
+                  onTap: () {  },
                   keyboardType: TextInputType.number,isNumber: true,
                 ),
                 AppSize.spaceWidth1(context),
@@ -53,8 +54,9 @@ class AdultsOrNot extends StatelessWidget {
                 MyTextForm(
                   label: "",
                   controller: adultsModel.adultsNumber,
-                  widthForm: width(context) * .07,
+                  widthForm: width(context) * .1,
                   keyboardType: TextInputType.number,
+                  onTap: () {  },
                   isNumber: true,
                 ),
                 AppSize.spaceWidth1(context),

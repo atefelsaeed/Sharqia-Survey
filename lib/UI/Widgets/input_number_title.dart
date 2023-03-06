@@ -35,7 +35,7 @@ class InputNumberTitle extends StatelessWidget {
             widthForm: width(context) * .15,
 
             keyboardType: TextInputType.number,
-            isNumber: true,
+            isNumber: true, onTap: () {  },
           ),
 
         ],

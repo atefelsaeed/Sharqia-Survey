@@ -53,10 +53,38 @@ class DefaultButton extends StatelessWidget {
           text!,
           style: TextStyle(
             color: textColor ?? ColorManager.whiteColor,
-            fontWeight: FontWeight.bold,
+            fontWeight: FontWeight.w700,
+            fontSize: width(context) * .036,
           ),
         ),
       ),
     );
   }
 }
+
+// class OutLinedButton extends ButtonStyleButton {
+//   const OutLinedButton(
+//       {super.key,
+//       super.style,
+//       super.child,
+//       super.focusNode,
+//       required super.autofocus,
+//       required super.clipBehavior,
+//       super.onFocusChange,
+//       super.onHover,
+//       super.onLongPress,
+//       super.onPressed,
+//       super.statesController});
+//
+//   @override
+//   ButtonStyle defaultStyleOf(BuildContext context) {
+//     // TODO: implement defaultStyleOf
+//     throw UnimplementedError();
+//   }
+//
+//   @override
+//   ButtonStyle? themeStyleOf(BuildContext context) {
+//     // TODO: implement themeStyleOf
+//     throw UnimplementedError();
+//   }
+// }

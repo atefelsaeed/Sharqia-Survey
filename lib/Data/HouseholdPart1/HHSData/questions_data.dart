@@ -22,7 +22,7 @@ class QuestionsData {
       'أخر'
     ]
   };
-  static Map<String,dynamic> qh6_2 = {
+  static Map<String, dynamic> qh6_2 = {
     "Is this dwelling...": [
       'النزهه',
       'السلامه',
@@ -105,6 +105,7 @@ class QuestionsData {
         [],
     "subTitle": "Number of people include servants/maid and live-in drivers"
   };
+
   q6Answer(adults, child, totalNumber) {
     Map<String, dynamic> qh5Answer = {
       "adults (18yrs +)": adults.toString(),
@@ -113,13 +114,14 @@ class QuestionsData {
     };
     return qh5Answer;
   }
+
   static Map<String, dynamic> qh7 = {
     "?How many years have you/your family lived at this particular address": [
-      {"value": 'أقل من 1 سنة', "isChick": false},
-      {"value": '- 3 سنوات', "isChick": false},
-      {"value": '- 5 سنوات', "isChick": false},
-      {"value": '- 10 سنوات', "isChick": false},
-      {"value": '+ 10 سنوات', "isChick": false},
+      {"value": 'أقل من 1.5 سنة', "isChick": false}, //
+      {"value": '1.5 - 3 سنوات', "isChick": false},
+      {"value": '3 - 5 سنوات', "isChick": false},
+      {"value": '5 - 10 سنوات', "isChick": false},
+      {"value": '+10 سنوات', "isChick": false},
     ],
     "index": 0
   };
@@ -168,7 +170,8 @@ class QuestionsData {
       '2000 - 3000 ريال سعودي',
       '3000 - 5000 ريال سعودي',
       '5000 - 8000 ريال سعودي',
-      '8000 - 12000 ريال سعودي',
+      '8000 - 10000 ريال سعودي',
+      '10000 - 12000 ريال سعودي',
       '12000 - 18000 ريال سعودي',
       '18000 - 25000 ريال سعودي',
       'أكثر من 25,000 ريال سعودي',

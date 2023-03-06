@@ -1,53 +1,12 @@
 class TripData {
-  // static Map<String, dynamic> purposeOfBeingThere = {
-  //   "QPurposeOfBeingThere": [
-  //     {"value": ' في المنزل', "isChick": false},
-  //     {"value": 'فى بيت العطلات / الفندق', "isChick": false},
-  //     {"value": 'العمل - فى مكتب / مقر العمل', "isChick": false},
-  //     {"value": 'العمل - خارج مكتب / مقر العمل', "isChick": false},
-  //     {"value": 'مكان تعليمى', "isChick": false},
-  //     {"value": 'التسوق', "isChick": false},
-  //     {"value": 'عمل شخصي', "isChick": false},
-  //     {"value": 'طبى / مستشفى', "isChick": false},
-  //     {"value": 'زیارة الأصدقاء / الأقار', "isChick": false},
-  //     {"value": 'ترفيه / وقت الفراغ', "isChick": false},
-  //     {"value": 'توص الى المدرسة / التعليم', "isChick": false},
-  //     {"value": 'توص الى مكان آخر', "isChick": false},
-  //   ],
-  //   "title": "?What was the purpose of being there",
-  //   "subTitle":
-  //       " A separate family is defined as who share the kitchen expenses and meals",
-  //   "chosenIndex": 0,
-  // };
   static Map<String, dynamic> travelWithOther = {
     'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
-    [
+        [
       {"value": 'مع الأخرين', "isChick": false},
       {"value": 'بمفردك', "isChick": false},
     ],
     "index": 0
   };
-  // static Map<String, dynamic> tripReason = {
-  //   "TripReason": [
-  //     {"value": ' في المنزل', "isChick": false},
-  //     {"value": 'فى بيت العطلات / الفندق', "isChick": false},
-  //     {"value": 'العمل - فى مكتب / مقر العمل', "isChick": false},
-  //     {"value": 'العمل - خارج مكتب / مقر العمل', "isChick": false},
-  //     {"value": 'مكان تعليمى', "isChick": false},
-  //     {"value": 'التسوق', "isChick": false},
-  //     {"value": 'عمل شخصي', "isChick": false},
-  //     {"value": 'طبى / مستشفى', "isChick": false},
-  //     {"value": 'زیارة الأصدقاء / الأقار', "isChick": false},
-  //     {"value": 'ترفيه / وقت الفراغ', "isChick": false},
-  //     {"value": 'توص الى المدرسة / التعليم', "isChick": false},
-  //     {"value": 'توص الى مكان آخر', "isChick": false},
-  //   ],
-  //   "title": "?What was the purpose of being there",
-  //   "subTitle":
-  //       " A separate family is defined as who share the kitchen expenses and meals",
-  //   "chosenIndex": 0,
-  // };
-
   static Map<String, dynamic> mainMade = {
     "mainMade": [
       'سائق سيارة',
@@ -92,7 +51,6 @@ class TripData {
     "subTitle": "mainMade",
     "chosenIndex": 0,
   };
-
   static Map<String, dynamic> memberHouseHoldTravel = {
     "?Which members of the household travelled with you": [
       '1',
@@ -108,7 +66,6 @@ class TripData {
     "subTitle": "mainMade",
     "chosenIndex": 0,
   };
-
   static Map<String, dynamic> whereDidYouPark = {
     "?where did you park": [
       'موقف سيارات خاص - محجوز',
@@ -125,7 +82,6 @@ class TripData {
     "subTitle": "mainMade",
     "chosenIndex": 0,
   };
-
   static Map<String, dynamic> whatTypeOfTravel = {
     "What did you travel to?": [
       'سيارة',
@@ -144,13 +100,13 @@ class TripData {
       'تاكسي',
       'اوبر',
       'كريم',
-      // "أخر"
+      'جينى',
+      "أخر"
     ],
     "title": "?where did you park",
     "subTitle": "mainMade",
     "chosenIndex": 0,
   };
-
   static Map<String, dynamic> howOftenDoYouMakeThisTrip = {
     "?How often do you make this Trip": [
       '5 أيام في الأسبوع',

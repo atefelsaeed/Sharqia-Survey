@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sharqia_household_survey/Data/HouseholdPart1/PersonData/person_data.dart';
 
 class OccupationModel {
   String? occupationSector;
+  TextEditingController occupationSectorController = TextEditingController();
+  TextEditingController bestWorkspaceLocationController = TextEditingController();
   String? isEmployee = "";
   String? occupationLevelSector;
   String? bestWorkspaceLocation;
@@ -21,6 +24,8 @@ class OccupationModel {
   OccupationModel({
     required this.earliestTimeFinishingWork,
     required this.endingWoke,
+    required this.occupationSectorController,
+    required this.bestWorkspaceLocationController,
     required this.startingWoke,
     required this.address,
     required this.geoCodes,
@@ -38,10 +43,13 @@ class OccupationModel {
   });
 
   OccupationModel.fromJson(Map<String, dynamic> json) {
-    occupationSector = json['occupationSector'] ?? "";
+    occupationSector = json['occupationSector'] ??
+        PersonData.occupationSector["what is the Occupation Sector"][0];
     isEmployee = json['isEmployee'] ?? "";
     occupationLevelSector = json['occupationLevelSector'] ?? "";
-    bestWorkspaceLocation = json['bestWorkspaceLocation'] ?? "";
+    bestWorkspaceLocation = json['bestWorkspaceLocation'] ??
+        PersonData.workplace["what best describe your workplace location(s)?"]
+            [0];
     commuteWorkDays = json['commuteWorkDays'] ?? 0;
     bikeWorkDays = json['bikeWorkDays'] ?? 0;
     address.text = json['address'] ?? '';

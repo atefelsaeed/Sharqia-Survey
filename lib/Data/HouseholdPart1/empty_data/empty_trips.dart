@@ -2,7 +2,7 @@ import 'package:sharqia_household_survey/Data/HouseholdPart1/TripsData/trip_mode
 
 class EmptyTrips {
   static emptyTrips() {
-  //  personTrip = [];
+    //  personTrip = [];
     TripModeList.tripModeList[0].purposeOfBeingThere = {
       "QPurposeOfBeingThere": [
         {"value": ' في المنزل', "isChick": false},
@@ -45,6 +45,14 @@ class EmptyTrips {
           " A separate family is defined as who share the kitchen expenses and meals",
       "chosenIndex": 0,
     };
+    TripModeList.tripModeList[0].travelWithOther = {
+      'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
+          [
+        {"value": 'مع الأخرين', "isChick": false},
+        {"value": 'بمفردك', "isChick": false},
+      ],
+      "index": 0
+    };
     for (var element in TripModeList.tripModeList) {
       //==============Reset-List=================
       element.hhsMembersTraveled = [];
@@ -72,8 +80,8 @@ class EmptyTrips {
       element.travelTypeModel.carParkingPlace = '';
       element.travelTypeModel.publicTransportFare = '';
       element.travelTypeModel.passTravelType = '';
-      element.travelTypeModel.otherWhereDidYouParking?.text = '';
-      element.travelTypeModel.taxiTravelTypeOther?.text = '';
+      element.travelTypeModel.otherWhereDidYouParking.text = '';
+      element.travelTypeModel.taxiTravelTypeOther.text = '';
       //================travelWay===============
       element.travelWay?.mainMode = '';
       element.travelWay?.accessMode = '';

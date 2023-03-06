@@ -39,12 +39,17 @@ class _FuelTypeCodeState extends State<FuelTypeCode> {
             });
           },
         ),
-        widget.textEditingController.text == "أخر"
+        ((widget.textEditingController.text == "أخر") ||
+                (widget.textEditingController.text.isNotEmpty &&
+                    !(VehiclesData.fuelTypeCodes[VehiclesData.fuelTypeCodes.keys.first]!
+                        .any((element) =>
+                            element == widget.textEditingController.text))))
             ? Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   TextForm(
                     controller: widget.textEditingController,
+                    onChanged: (value){},
                     text: " نوع الوقود",
                     label: " نوع الوقود",
                   )

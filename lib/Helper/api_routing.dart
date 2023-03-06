@@ -4,4 +4,7 @@ class APIRouting {
   static const userSurveysStatus = 'status/'; //get +id
   static const getSurveis = 'getSurveis/'; //get +id
   static const savePtData = 'savePtData'; //post
+  static const editSurvey = 'edit'; //post
+  static const getSingleSurvay =
+      'getSingleSurvay/'; //get EX.getSingleSurvay/15001
 }

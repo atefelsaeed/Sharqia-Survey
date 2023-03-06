@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sharqia_household_survey/Models/HHS_SurvyModels/survey_hhs.dart';
 
 import '../Helper/api_helper.dart';
 import '../Helper/api_routing.dart';
@@ -22,7 +23,7 @@ class UserSurveysProvider with ChangeNotifier {
     final surveysList = await SurveyPtOperations().getSurveyPtOfflineAllItems();
     debugPrint('Locale Offline DB Survey');
     debugPrint(surveysList.toString());
-    for(var s in surveysList){
+    for (var s in surveysList) {
       list.add(s.toJsonAPI());
     }
     final Response res;
@@ -30,7 +31,7 @@ class UserSurveysProvider with ChangeNotifier {
       // log("Body Data", error: json.encode(list));
       res = await APIHelper.postData(
         url: "multi",
-        body:json.encode(list),
+        body: json.encode(list),
       );
       if (res.statusCode == 200) {
         await SurveyPtOperations().deleteSurveyPTTableOffline();
@@ -64,6 +65,14 @@ class UserSurveysProvider with ChangeNotifier {
 
   UserSurveyStatusData? get userSurveyStatusData {
     return _userSurveyStatusData;
+  }
+
+  String? userSurveyStatus;
+
+  SurveyPT _surveyPT = SurveyPT();
+
+  SurveyPT get surveyPT {
+    return _surveyPT;
   }
 
   List<UserSurveysModelData> get userSurveys {
@@ -134,20 +143,19 @@ class UserSurveysProvider with ChangeNotifier {
   bool loading = false;
   int index = 0;
 
-//============Fetch-All-User-Surveys-on-Search-Screen===============
+  //============Fetch-All-User-Surveys-on-Search-Screen===============
   Future<bool> fetch(int id) async {
     try {
       loading = true;
-      var url= "${APIRouting.getSurveis}$id";
-      print(url);
-      Response response = await APIHelper.getData(
-        url:url,
+      var response = await APIHelper.getData(
+        url: "${APIRouting.getSurveis}$id",
       );
       print('res');
       debugPrint(response.toString());
       if (response.statusCode == 200) {
-        print(response.body);
         var data = json.decode(response.body);
+        print("kkkkkkkkkkkkkkkk");
+        print(data);
         if (!data['status']) return false;
         _userSurveysSurveysList = (data['data'] as List)
             .map((e) => UserSurveysModelData.fromJson(e))
@@ -172,7 +180,7 @@ class UserSurveysProvider with ChangeNotifier {
     }
   }
 
-//==========Fetch-User-Survey-Status-on-Home-Screen=============
+  //==========Fetch-User-Survey-Status-on-Home-Screen=============
   Future<bool> fetchUserSurveysStatus(int id) async {
     try {
       loading = true;
@@ -208,6 +216,58 @@ class UserSurveysProvider with ChangeNotifier {
       loading = false;
       notifyListeners();
       return true;
+    }
+  }
+
+  //============Get-Survey-By-ID================================
+  Future<bool> getSurveyByID(int id) async {
+
+      loading = true;
+      Response response = await APIHelper.getData(
+        url: "${APIRouting.getSingleSurvay}$id",
+      );
+      debugPrint(response.body.toString());
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
+        debugPrint("Success");
+        _surveyPT = SurveyPT.fromJsonAPI(data);
+        print("_surveyPT.hhsSeparateFamilies!.length");
+        print(_surveyPT.hhsSeparateFamilies!.length);
+        debugPrint("Success");
+        loading = false;
+        notifyListeners();
+        return true;
+      } else {
+        debugPrint('error');
+      }
+      loading = false;
+      notifyListeners();
+      return false;
+
+  }
+
+  //============Update-Survey===================================
+  Future<bool> updateSurvey(SurveyPT surveyPT) async {
+    loading = true;
+    final Response res;
+    try {
+      res = await APIHelper.postData(
+        url: APIRouting.editSurvey,
+        body: json.encode(surveyPT.toJsonAPI()),
+      );
+      if (res.statusCode == 200) {
+        loading = false;
+        notifyListeners();
+        return true;
+      } else {
+        loading = false;
+        notifyListeners();
+        return false;
+      }
+    } catch (e) {
+      loading = false;
+      notifyListeners();
+      return Future.error("couldn't reach server");
     }
   }
 }

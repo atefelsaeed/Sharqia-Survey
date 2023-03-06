@@ -7,6 +7,8 @@ import '../../../Widgets/dropdown_form_input.dart';
 import '../actions/action_survey_screen.dart';
 
 class QH9 extends StatelessWidget{
+  const QH9({super.key});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build

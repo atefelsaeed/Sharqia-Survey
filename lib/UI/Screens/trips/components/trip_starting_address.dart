@@ -8,9 +8,9 @@ import 'package:sharqia_household_survey/UI/Screens/trips/components/headline_tr
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
 import '../../../../Providers/survey_hhs.dart';
 import '../../../../Resources/sizes.dart';
-import '../../../Widgets/alert_map.dart';
 import '../../../Widgets/item_text_span.dart';
 import '../../../Widgets/text.dart';
+import '../../GoogleMaps/auto_search_map.dart';
 
 class TripStartingAddress extends StatefulWidget {
   final int index;
@@ -88,25 +88,26 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
                       const Spacer(),
                       IconButton(
                           onPressed: () {
+                            print('google maps navigation');
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) => MapSearchScreen(
                                   callBack: (LatLng latLong) {
-                                    surveyPt.endAddressLatLng = latLong;
+                                    surveyPt.startingAddressLatLng = latLong;
                                     setState(() {
-                                      surveyPt.endingAddressLatLng?.latitude !=
+                                      surveyPt.startingAddressLatLng?.latitude !=
                                           latLong.latitude;
-                                      surveyPt.endingAddressLatLng?.longitude !=
+                                      surveyPt.startingAddressLatLng?.longitude !=
                                           latLong.longitude;
                                     });
                                     setState(() {
                                       startBeginningModel?.tripAddressLong =
                                           surveyPt
-                                              .endingAddressLatLng?.longitude
+                                              .startingAddressLatLng?.longitude
                                               .toString();
                                       startBeginningModel?.tripAddressLat =
-                                          surveyPt.endingAddressLatLng?.latitude
+                                          surveyPt.startingAddressLatLng?.latitude
                                               .toString();
                                     });
                                   },

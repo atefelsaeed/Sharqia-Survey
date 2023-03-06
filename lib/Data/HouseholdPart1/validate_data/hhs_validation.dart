@@ -13,6 +13,7 @@ class CheckHHSValidation {
     // }
     if (HhsStatic.householdQuestions.hhsDwellingType == null ||
         HhsStatic.householdQuestions.hhsDwellingType == "") {
+      print("hhsDwellingType ${ HhsStatic.householdQuestions.hhsDwellingType}");
       return Validator.showSnack(context, " يجب إخيار! 1.وصف المسكن؟ ");
     } else if (HhsStatic.householdQuestions.hhsIsDwelling == null ||
         HhsStatic.householdQuestions.hhsIsDwelling == "") {
@@ -25,11 +26,10 @@ class CheckHHSValidation {
         HhsStatic.householdQuestions.hhsNumberYearsInAddress == '') {
       return Validator.showSnack(context,
           "يجب إخيار! 6.كم سنة عشت أنت / عائلتك في هذا العنوان المحدد؟");
-    }
-    // else if (HhsStatic.householdQuestions.hhsIsDemolishedAreas == null) {
-    //   return Validator.showSnack(context,
-    //       "  يجب إخيار! هل انتقلت إلى هنا من أي منطقة من المناطق المهدومة في جدة ، إذا كانت الإجابة بنعم أي واحدة");
-    // }
+    } /*else if (HhsStatic.householdQuestions.hhsIsDemolishedAreas == null) {
+      return Validator.showSnack(context,
+          "  يجب إخيار! هل انتقلت إلى هنا من أي منطقة من المناطق المهدومة في جدة ، إذا كانت الإجابة بنعم أي واحدة");
+    }*/
     else if (HhsStatic.householdQuestions.hhsTotalIncome == null ||
         HhsStatic.householdQuestions.hhsTotalIncome == "") {
       return Validator.showSnack(context,

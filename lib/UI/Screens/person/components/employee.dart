@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/UI/Screens/person/person_conditions.dart';
+import 'package:sharqia_household_survey/UI/Screens/person/reset_person.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
 
 import '../../../../Data/HouseholdPart1/PersonData/person_data.dart';
@@ -21,7 +24,7 @@ class _EmployeeState extends State<Employee> {
 
   @override
   Widget build(BuildContext context) {
-
+    final provider = Provider.of<PersonProvider>(context, listen: false);
     return Column(
       children: [
         AppSize.spaceHeight3(context),
@@ -41,36 +44,58 @@ class _EmployeeState extends State<Employee> {
                             .mainOccupationType ==
                         "معاق / مريض"
                 ? Container()
-                : DropDownFormInput(
-                    label: PersonModelList.personModelList[widget.i]
-                                .occupationModel!.bestWorkspaceLocation !=
-                            ''
-                        ? Text(PersonModelList.personModelList[widget.i]
-                                .occupationModel!.bestWorkspaceLocation ??
-                            '')
-                        : const Text('إختار'),
-                    hint:
-                        "إذا كنت موظفًا أو طالبًا ، ما هو وضعك المعتاد للذهاب إلى العمل / المدرسة؟ سؤال موجه - قائمة منسدلة للأنماط",
-                    options: PersonData
-                        .workplace[PersonData.workplace.keys.first]!
-                        .toList(),
-                    onChange: (String? p) {
-                      PersonModelList.personModelList[widget.i].occupationModel!
-                          .bestWorkspaceLocation = p.toString();
-                    },
+                : Column(
+                    children: [
+                      DropDownFormInput(
+                        label: PersonModelList.personModelList[widget.i]
+                                    .occupationModel!.bestWorkspaceLocation !=
+                                ''
+                            ? Text(PersonModelList.personModelList[widget.i]
+                                    .occupationModel!.bestWorkspaceLocation ??
+                                '')
+                            : const Text('إختار'),
+                        hint:
+                            "إذا كنت موظفًا أو طالبًا ، ما هو وضعك المعتاد للذهاب إلى العمل / المدرسة؟ سؤال موجه - قائمة منسدلة للأنماط",
+                        options: PersonData
+                            .workplace[PersonData.workplace.keys.first]!
+                            .toList(),
+                        onChange: (String? p) {
+                          provider.bestWorkspaceLocation(widget.i, p);
+                        },
+                      ),
+                      AppSize.spaceHeight1(context),
+                      PersonConditions()
+                                  .checkBestWorkspaceLocationOther(widget.i) ==
+                              true
+                          ? MyTextForm(
+                        onTap: () {  },
+                              controller: PersonModelList
+                                  .personModelList[widget.i]
+                                  .occupationModel!
+                                  .bestWorkspaceLocationController,
+                              label: 'وضعك المعتاد للذهاب إلى العمل / المدرسة',
+                              onChanged: (val) {
+                                PersonModelList
+                                    .personModelList[widget.i]
+                                    .occupationModel!
+                                    .bestWorkspaceLocation = val!;
+                              },
+                            )
+                          : Container(),
+                    ],
                   ),
-            PersonModelList.personModelList[widget.i].personalQuestion!
+            ((PersonModelList.personModelList[widget.i].personalQuestion!
                             .mainOccupationType ==
-                        "طالب - مدرسة ابتدائية" ||
-                    PersonModelList.personModelList[widget.i].personalQuestion!
+                        "طالب - مدرسة ابتدائية") ||
+                    (PersonModelList.personModelList[widget.i].personalQuestion!
                             .mainOccupationType ==
-                        "طالب - مدرسة متوسطة" ||
-                    PersonModelList.personModelList[widget.i].personalQuestion!
+                        "طالب - مدرسة متوسطة") ||
+                    (PersonModelList.personModelList[widget.i].personalQuestion!
                             .mainOccupationType ==
-                        "طالب - مدرسة ثانوية" ||
-                    PersonModelList.personModelList[widget.i].personalQuestion!
+                        "طالب - مدرسة ثانوية") ||
+                    (PersonModelList.personModelList[widget.i].personalQuestion!
                             .mainOccupationType ==
-                        " الطالب - الكلية: بدوام كامل - يعمل بدوام جزئي"
+                        " الطالب - الكلية: بدوام كامل - يعمل بدوام جزئي"))
                 ? Container()
                 : Column(
                     children: [
@@ -88,20 +113,20 @@ class _EmployeeState extends State<Employee> {
                             .licence[PersonData.licence.keys.first]!
                             .toList(),
                         onChange: (String? p) {
-                          setState(() {
-                            PersonModelList
-                                .personModelList[widget.i]
-                                .personalQuestion!
-                                .drivingLicenceType = p.toString();
-                          });
+                          provider.drivingLicenceType(widget.i, p);
                         },
                       ),
-                      PersonModelList.personModelList[widget.i]
-                                  .personalQuestion!.drivingLicenceType ==
-                              "آخر"
+                      AppSize.spaceHeight1(context),
+                      PersonConditions()
+                                  .checkDrivingLicenceTypeOther(widget.i) ==
+                              true
                           ? MyTextForm(
-                              controller: drivingLicenceType,
+                              controller: PersonModelList
+                                  .personModelList[widget.i]
+                                  .personalQuestion!
+                                  .drivingLicenceTypeController,
                               label: " نوع الرخصة",
+                        onTap: () {  },
                               onChanged: (val) {
                                 PersonModelList.personModelList[widget.i]
                                     .personalQuestion!.drivingLicenceType = val;
@@ -112,9 +137,6 @@ class _EmployeeState extends State<Employee> {
                   ),
           ],
         ),
-
-        AppSize.spaceHeight3(context),
-
         AppSize.spaceHeight3(context),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

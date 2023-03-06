@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/list_view_check_box_orange.dart';
 
 import '../../../../Data/HouseholdPart1/TripsData/trip_data.dart';
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
 import '../../../../Resources/sizes.dart';
 import '../../../Widgets/show_dialog_error.dart';
+import '../provider/trip_provider.dart';
 import 'adults_or_not.dart';
 
 class TravelAlone extends StatefulWidget {
@@ -30,17 +32,18 @@ class _TravelAloneState extends State<TravelAlone> {
 
   @override
   Widget build(BuildContext context) {
-    print('is travel a lone');
-    print(TripModeList.tripModeList[widget.index].isTravelAlone);
     // TODO: implement build
+    final validationService = Provider.of<TripProvider>(context, listen: false);
     return Column(
       children: [
         ListViewCheckBoxOrange(
           map: TripModeList.tripModeList[widget.index].travelWithOther,
           onChange: (ChangeBoxResponse r) {
             debugPrint('chosenPerson');
+
+            validationService.isTravelAlone(widget.index, r, context);
             debugPrint(TripModeList.tripModeList[widget.index].chosenPerson);
-            if (TripModeList
+           /* if (TripModeList
                 .tripModeList[widget.index].chosenPerson.isNotEmpty) {
               setState(() {
                 if (r.val == "بمفردك") {
@@ -65,7 +68,7 @@ class _TravelAloneState extends State<TravelAlone> {
 
               debugPrint('no user');
               return false;
-            }
+            }*/
           },
           isListView: true,
           title: "7. هل ذهبت بمفردك أم مع آخرین؟",

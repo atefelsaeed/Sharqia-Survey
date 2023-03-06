@@ -6,7 +6,7 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
   static Database? _db;
-  static String databaseName = 'sharqiaSurvey.db';
+  static String databaseName = 'JaddahSurvey.db';
   static String surveyPTTableName = 'servey_p_t_s';
   static String surveyPTTableOfflineName = 'surveyPtOffline';
   static String usersTableName = 'users';

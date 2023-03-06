@@ -20,12 +20,13 @@ import '../../../Models/Trips_SurveyModel/start_beginning_model.dart';
 import '../../../Models/Trips_SurveyModel/travel_type_model.dart';
 import '../../../Models/Trips_SurveyModel/travel_with_other_model.dart';
 import '../../../Models/Trips_SurveyModel/trips_model.dart';
+import '../../../Providers/user_surveys.dart';
 import '../../../Resources/colors.dart';
 import '../../Widgets/custom_buttton.dart';
 import 'components/headline_trip.dart';
 import 'components/how_did_you_travel.dart';
 import 'components/owner_trip.dart';
-import 'components/purpose_of)being.dart';
+import 'components/purpose_of_being.dart';
 import 'components/time_leave.dart';
 import 'components/trip_starting_address.dart';
 import 'components/where_did_you_go.dart';
@@ -82,8 +83,13 @@ class _TripScreenState extends State<TripScreen> {
     getSystemStatus();
     final validationService = Provider.of<TripProvider>(context, listen: false);
     validationService.initTrip();
+    UserSurveysProvider userSurveysProvider =
+    Provider.of<UserSurveysProvider>(context, listen: false);
+    // if ((userSurveysProvider.userSurveyStatus == 'edit') ) {
+    //   validationService.getAllTripUpdated(context);
+    //   // validationService.initTrip();
+    // }
   }
-
   @override
   Widget build(BuildContext context) {
     SurveyPTProvider surveyPt =
@@ -154,13 +160,11 @@ class _TripScreenState extends State<TripScreen> {
                               const HeadlineText(
                                   text:
                                       "5. ما ھو الغرض من الذھاب إلى ھذا  المكان؟"),
-                            PurposeOfTheBeing(
+                              PurposeOfTheBeing(
                                 indexTripModel: i,
                               ),
                               AppSize.spaceHeight2(context),
-                              HowDidYouTravel(
-                                i: i,
-                              ),
+                              HowDidYouTravel(i: i),
                               AppSize.spaceHeight3(context),
                               TravelAlone(index: i),
                               AppSize.spaceHeight2(context),
@@ -191,7 +195,7 @@ class _TripScreenState extends State<TripScreen> {
                               isTravelAlone: null,
                               purposeOfBeingThere2: {
                                 "TripReason": [
-                                  {"value": ' في المنزل', "isChick": false},
+                                  {"value": 'في المنزل', "isChick": false},
                                   {
                                     "value": 'فى بيت العطلات / الفندق',
                                     "isChick": false
@@ -209,7 +213,7 @@ class _TripScreenState extends State<TripScreen> {
                                   {"value": 'عمل شخصي', "isChick": false},
                                   {"value": 'طبى / مستشفى', "isChick": false},
                                   {
-                                    "value": 'زیارة الأصدقاء / الأقار',
+                                    "value": 'زیارة الأصدقاء / الأقارب',
                                     "isChick": false
                                   },
                                   {
@@ -217,13 +221,22 @@ class _TripScreenState extends State<TripScreen> {
                                     "isChick": false
                                   },
                                   {
-                                    "value": 'توص الى المدرسة / التعليم',
+                                    "value": 'توصيل الى المدرسة / التعليم',
                                     "isChick": false
                                   },
+                                  // {
+                                  //   "value": 'توص الى المدرسة / التعليم',
+                                  //   "isChick": false
+                                  // },
+                                  // {
+                                  //   "value": 'توص الى مكان آخر',
+                                  //   "isChick": false
+                                  // },
                                   {
-                                    "value": 'توص الى مكان آخر',
+                                    "value": 'توصيل الى مكان آخر',
                                     "isChick": false
                                   },
+                                  {"value": 'آخرى', "isChick": false},
                                 ],
                                 "title": "?What was the purpose of being there",
                                 "subTitle":
@@ -249,6 +262,14 @@ class _TripScreenState extends State<TripScreen> {
                                   {"value": 'التسوق', "isChick": false},
                                   {"value": 'عمل شخصي', "isChick": false},
                                   {"value": 'طبى / مستشفى', "isChick": false},
+                                  // {
+                                  //   "value": 'توص الى المدرسة / التعليم',
+                                  //   "isChick": false
+                                  // },
+                                  // {
+                                  //   "value": 'توص الى مكان آخر',
+                                  //   "isChick": false
+                                  // },
                                   {
                                     "value": 'زیارة الأصدقاء / الأقار',
                                     "isChick": false
@@ -257,14 +278,14 @@ class _TripScreenState extends State<TripScreen> {
                                     "value": 'ترفيه / وقت الفراغ',
                                     "isChick": false
                                   },
-                                  {
-                                    "value": 'توص الى المدرسة / التعليم',
-                                    "isChick": false
-                                  },
-                                  {
-                                    "value": 'توص الى مكان آخر',
-                                    "isChick": false
-                                  },
+                                  // {
+                                  //   "value": 'توص الى المدرسة / التعليم',
+                                  //   "isChick": false
+                                  // },
+                                  // {
+                                  //   "value": 'توص الى مكان آخر',
+                                  //   "isChick": false
+                                  // },
                                 ],
                                 "title": "?What was the purpose of being there",
                                 "subTitle":
@@ -398,5 +419,3 @@ class _TripScreenState extends State<TripScreen> {
     ));
   }
 }
-
-

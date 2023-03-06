@@ -6,7 +6,7 @@ const String IMAGE_PATH = 'assets/images';
 class ImageAssets {
   static const String researchLogo = '$IMAGE_PATH/logo.png';
   static const String logo = '$IMAGE_PATH/logo21.png';
-  static const String logo1 = '$IMAGE_PATH/logo1.jpeg';
+  static const String logo1 = '$IMAGE_PATH/logo1.png';
   static const String logo2 = '$IMAGE_PATH/logo2.jpeg';
   static const String splashLogo = '$IMAGE_PATH/splashLogo.png';
   static const String homeBackground = '$IMAGE_PATH/home_background.png';

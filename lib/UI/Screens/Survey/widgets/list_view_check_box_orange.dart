@@ -79,6 +79,9 @@ class _ListViewCheckBoxOrangeState extends State<ListViewCheckBoxOrange> {
                       activeColor: ColorManager.orangeTxtColor,
                       value: widget.question[index]["isChick"],
                       onChanged: (bool? value) {
+                        for(int i=0;i<widget.question.length;i++){
+                          widget.question[i]["isChick"]=false;
+                        }
                         setState(() {
                           widget.question[chosenIndex]["isChick"] = false;
                           chosenIndex = index;

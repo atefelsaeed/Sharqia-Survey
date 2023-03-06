@@ -50,14 +50,8 @@ class ActionButton extends StatelessWidget {
             );
           }
 
-          if (HhsStatic.householdQuestions.hhsDwellingType == "أخر") {
-            HhsStatic.householdQuestions.hhsDwellingType =
-                HhsStatic.householdQuestions.hhsDwellingTypeOther!.text;
-          }
-          if (HhsStatic.householdQuestions.hhsIsDwelling == "أخر") {
-            HhsStatic.householdQuestions.hhsIsDwelling =
-                HhsStatic.householdQuestions.hhsIsDwellingOther!.text;
-          }
+
+
 
           surveyPt.id = id;
 
@@ -125,7 +119,7 @@ class ActionButton extends StatelessWidget {
               editingController.editingController3Q83.totalNumber.text;
           surveyPt.hhsESAdultsBikesNumber =
               editingController.editingController3Q83.peopleAdults18.text;
-          surveyPt.hhsDemolishedAreas = editingController.yes.text;
+          // surveyPt.hhsDemolishedAreas = editingController.yes.text;
           surveyPt.headerDistrictName = '';
           surveyPt.headerZoneNumber = '';
           RegExp regex = RegExp(
@@ -135,7 +129,8 @@ class ActionButton extends StatelessWidget {
             return Validator.showSnack(context, 'رقم الهاتف غير صحيح..!');
           }
 
-          await validationService.determinePosition().then((value) {
+          await validationService.determinePosition(context).then((value) {
+
             surveyPt.hhsAddressLat = value.latitude.toString();
             surveyPt.hhsAddressLong = value.longitude.toString();
           }).onError(

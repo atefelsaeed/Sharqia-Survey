@@ -15,7 +15,7 @@ class LoginBody extends StatelessWidget {
       height: height(context),
       decoration: const BoxDecoration(
         image: DecorationImage(
-          image: AssetImage(ImageAssets.homeBackground),fit: BoxFit.fill
+            image: AssetImage(ImageAssets.homeBackground),fit: BoxFit.fill
         ),
       ),
       child: ConstrainedBox(

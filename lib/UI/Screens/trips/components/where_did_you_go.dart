@@ -62,6 +62,9 @@ class _WhyDidYouGoState extends State<WhyDidYouGo> {
                   value: TripModeList.tripModeList[widget.indexTripModel]
                       .purposeOfBeingThere2["TripReason"][index]["isChick"],
                   onChanged: (bool? value) {
+
+
+
                     setState(() {
                       TripModeList.tripModeList[widget.indexTripModel]
                               .purposeOfBeingThere2["TripReason"][chosenindex]
@@ -92,6 +95,7 @@ class _WhyDidYouGoState extends State<WhyDidYouGo> {
                   TripModeList.tripModeList[widget.indexTripModel].tripReason =
                       val;
                 },
+          onTap: () {  },
                 title: "أدخل الغرض",
                 label: "أدخل الغرض",
                 isNumber: false,

@@ -3,39 +3,39 @@ import 'package:flutter/cupertino.dart';
 class VehiclesData {
   static List<VecModel> vecModel = [
     VecModel(
-        title: "سيارة صغيرة",
+        title: "سيارة صغيرة",//0
         isChosen: false,
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
         title: "سيارة كبيرة",
-        isChosen: false,
+        isChosen: false,//1
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
         title: "ونيت",
-        isChosen: false,
+        isChosen: false,//2
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
-        title: "شاحنة",
+        title: "شاحنة",//3
         isChosen: false,
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
         title: "دراجة نارية",
-        isChosen: false,
+        isChosen: false,//4
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
         title: "دراجة هوائية",
         isChosen: false,
-        number: 0,
+        number: 0,//5
         textEditingController: TextEditingController()),
     VecModel(
         title: " اسكوتر",
         isChosen: false,
-        number: 0,
+        number: 0,//6
         textEditingController: TextEditingController()),
   ];
 
@@ -61,8 +61,18 @@ class VehiclesData {
       'أخر',
     ]
   };
+  static Map<String, List<dynamic>> largeCar = {
+    "LargeCar": [
+      'عربية بضائع خفيفة',
+      'عربية بضائع ثقيلة',
+      'مينى باص',
+      'كوستر',
+      'اوتوبيس',
+      'أخرى',
+    ]
+  };
   static Map<String, List<dynamic>> parkThisCar = {
-    "Ownership codes- V3-O": [
+    /*"Ownership codes- V3-O": [
       'المرأب الشخصى (المنزل)',
       'على جانب الطريق خالية',
       'على جانب الطريق مشحونة',
@@ -71,6 +81,17 @@ class VehiclesData {
       'خارج الطريق مشحونة',
       'فى الموقع سكنى مجانى',
       'على الموقع الدقة المشحونة'
+    ]*/
+    "Ownership codes- V3-O": [
+      'كراج (داخل المنزل)',
+      'الشارع - مجانى',
+      'الشارع - مدفوع',
+      'خارج الطريق - غير منظم',
+      'خارج الطريق منظم - مجانى',
+      'خارج الطريق منظم - مدفوع',
+      'فى الموقع سكنى مجانى',
+      'فى الموقع سكنى مدفوع',
+      'أخرى'
     ]
   };
 
@@ -81,8 +102,8 @@ class VehiclesData {
       {"value": '6-10 دقائق سيرا على الأقدام', "isChick": false},
       {"value": '11 - 15 دقيقة مشي', "isChick": false},
       {"value": ' أكثر من 15 دقيقة', "isChick": false},
-      {"value": ' لا اعرف', "isChick": false},
-      {"value": ' لا يوجد محطة', "isChick": false},
+      {"value": 'لا اعرف', "isChick": false},
+      {"value": 'لا يوجد محطة', "isChick": false},
     ],
     "index":0
   };

@@ -36,17 +36,17 @@ Future<bool> syncall() async {
   prefs.setBool('dontsync', true);
   if (!prefs.containsKey("surveys")) return false;
   var surveysList = prefs.getStringList("surveys")!;
-  final _surveys = [];
+  final surveys = [];
   for (Map<String, dynamic> s in surveysList.map(json.decode).toList()) {
     switch (EnumToString.fromString(SurveyType.values, s['type'],
         camelCase: true)!) {
       case SurveyType.pt:
-        _surveys.add(SurveyPT.fromJson(s));
+        surveys.add(SurveyPT.fromJson(s));
         break;
       default:
     }
   }
-  for (var e in _surveys) {
+  for (var e in surveys) {
     debugPrint('main');
     debugPrint(e.synced);
   }
@@ -56,14 +56,14 @@ Future<bool> syncall() async {
   //   debugPrint(i.header.interviewNumber);
   //   await i.provider.sync(force: true);
   // }
-  for (var e in _surveys) {
+  for (var e in surveys) {
     debugPrint(e.synced);
   }
 
   prefs
       .setStringList(
         "surveys",
-        _surveys.map((v) => json.encode(v.toJson())).toList(),
+        surveys.map((v) => json.encode(v.toJson())).toList(),
       )
       .then((value) => debugPrint("done"))
       .onError(
@@ -73,13 +73,14 @@ Future<bool> syncall() async {
     },
   );
   prefs.setBool('dontsync', false);
-  debugPrint(_surveys.map((v) => json.encode(v.toJson())).toList().toString());
+  debugPrint(surveys.map((v) => json.encode(v.toJson())).toList().toString());
   return true;
 }
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   debugPrint("something");
+
   Firebase.initializeApp().then((value) async {
     FirebaseMessaging.instance.subscribeToTopic('sync');
     final prefs = await SharedPreferences.getInstance();
@@ -139,13 +140,13 @@ class _MyAppState extends State<MyApp> {
             create: (ctx) => UserSurveysProvider()),
         ChangeNotifierProxyProvider<Auth, SurveysProvider>(
           create: (ctx) => SurveysProvider(),
-          update: (ctx, _auth, _old) =>
-              SurveysProvider.auth(_auth.authHeader, _auth.uid, _old!),
+          update: (ctx, auth, old) =>
+              SurveysProvider.auth(auth.authHeader, auth.uid, old!),
         ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Sharqia Household Survey',
+        title: 'Jaddah Household Survey',
         navigatorKey: navigatorKey,
         theme: ThemeData(
             primaryColor: ColorManager.primaryColor, fontFamily: 'Somar'),

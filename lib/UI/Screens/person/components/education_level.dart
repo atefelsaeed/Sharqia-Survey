@@ -32,6 +32,9 @@ class EducationLevel extends StatelessWidget {
             ),
             TextForm(
               controller: base.occupationModel!.earliestTimeStartingWork,
+              onChanged: (value){
+
+              },
               text: "Education address -full details and get geocode",
               label: "Education address -full details and get geocode",
             )

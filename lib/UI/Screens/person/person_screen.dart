@@ -13,6 +13,7 @@ import '../../../Data/HouseholdPart1/PersonData/person_data.dart';
 import '../../../Data/HouseholdPart1/PersonData/person_model_list.dart';
 import '../../../Data/HouseholdPart1/save_data.dart';
 import '../../../Models/HHS_SurvyModels/hhs_models.dart';
+import '../../../Providers/user_surveys.dart';
 import '../../../Resources/colors.dart';
 import '../../Widgets/custom_buttton.dart';
 import '../../Widgets/dropdown_form_input.dart';
@@ -25,6 +26,7 @@ import '../Survey/widgets/text_form_row.dart';
 import 'components/employee.dart';
 import 'components/nationality.dart';
 import 'components/transporter_moblity.dart';
+import 'person_conditions.dart';
 
 class PersonScreen extends StatefulWidget {
   const PersonScreen({super.key});
@@ -38,7 +40,7 @@ class _PersonScreenState extends State<PersonScreen> {
   bool typeAlone = true;
   bool hasPasTrip = false;
   var mainOccupationKey = PersonData.mainOccupation.keys.first;
-  TextEditingController occupationSectorController = TextEditingController();
+
   var occupationSectorKey = PersonData.occupationSector.keys.first;
   final GlobalKey<FormState> _key = GlobalKey();
   late EditingController3 editingController3 = EditingController3(
@@ -51,8 +53,13 @@ class _PersonScreenState extends State<PersonScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    //   final validationService = Provider.of<PersonProvider>(context, listen: false);
-    // validationService.getAllPeronUpdated(context);
+    final validationService =
+        Provider.of<PersonProvider>(context, listen: false);
+    UserSurveysProvider userSurveysProvider =
+        Provider.of<UserSurveysProvider>(context, listen: false);
+    // if ((userSurveysProvider.userSurveyStatus == 'edit')) {
+    //   validationService.getAllPeronUpdated(context);
+    // }
   }
 
   void showError() => showDialog<void>(
@@ -69,8 +76,6 @@ class _PersonScreenState extends State<PersonScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final validationService =
-        Provider.of<PersonProvider>(context, listen: false);
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(child:
@@ -168,6 +173,7 @@ class _PersonScreenState extends State<PersonScreen> {
                                                   true
                                               ? MyTextForm(
                                                   isNumber: true,
+                                            onTap: () {  },
                                                   onChanged: (d) {
                                                     provider.isEmployee(
                                                         d.toString(), i);
@@ -251,33 +257,21 @@ class _PersonScreenState extends State<PersonScreen> {
                                   AppSize.spaceHeight1(context),
                                   //=============HHS-HavePastTrip==================
                                   ListViewCheckBoxOrange(
-                                    map: base[i].travelWithOther,
+                                    map: PersonModelList
+                                        .personModelList[i].travelWithOther,
                                     onChange: (ChangeBoxResponse r) {
-                                      setState(() {
-                                        if (r.val == "لا" && r.check == true) {
-                                          base[i].personalHeadData!.hasPasTrip =
-                                              true;
-                                          base[i]
-                                              .personalHeadData!
-                                              .hhsHavePastTrip
-                                              .text = '';
-                                        } else {
-                                          base[i].personalHeadData!.hasPasTrip =
-                                              false;
-
-                                          base[i]
-                                              .personalHeadData!
-                                              .hhsHavePastTrip
-                                              .text = 'نعم';
-                                        }
-                                      });
+                                      provider.travelWithOther(i, r);
                                       //provider.nationality(r, i);
                                     },
                                     isListView: true,
                                     title: "هل قمت برحلة فى الأيام السابقة",
-                                    question: base[i]
-                                        .travelWithOther[
-                                            base[i].travelWithOther.keys.first]!
+                                    question: PersonModelList
+                                        .personModelList[i]
+                                        .travelWithOther[PersonModelList
+                                            .personModelList[i]
+                                            .travelWithOther
+                                            .keys
+                                            .first]!
                                         .toList(),
                                     subTitle: "",
                                   ),
@@ -287,7 +281,9 @@ class _PersonScreenState extends State<PersonScreen> {
                                       ? TextForm(
                                           label: 'إذكر السبب',
                                           text: 'إذكر السبب',
-                                          controller: base[i]
+                                    onChanged: (value){},
+                                          controller: PersonModelList
+                                              .personModelList[i]
                                               .personalHeadData!
                                               .hhsHavePastTrip,
                                         )
@@ -425,25 +421,24 @@ class _PersonScreenState extends State<PersonScreen> {
                                                               .toList(),
                                                           onChange:
                                                               (String? p) {
-                                                            setState(() {
-                                                              PersonModelList
-                                                                      .personModelList[
-                                                                          i]
-                                                                      .occupationModel!
-                                                                      .occupationSector =
-                                                                  p.toString();
-                                                            });
+                                                            provider
+                                                                .occupationSector(
+                                                                    i, p);
                                                           },
                                                         ),
-                                                        PersonModelList
+                                                        AppSize.spaceHeight2(
+                                                            context),
+                                                        PersonConditions()
+                                                                    .checkOccupationSectorOther(
+                                                                        i) ==
+                                                                true
+                                                            ? MyTextForm(
+                                                          onTap: () {  },
+                                                                controller: PersonModelList
                                                                     .personModelList[
                                                                         i]
                                                                     .occupationModel!
-                                                                    .occupationSector ==
-                                                                " حدد أخرى"
-                                                            ? MyTextForm(
-                                                                controller:
-                                                                    occupationSectorController,
+                                                                    .occupationSectorController,
                                                                 label:
                                                                     " قطاع العمل",
                                                                 onChanged:
@@ -548,6 +543,7 @@ class _PersonScreenState extends State<PersonScreen> {
                                         personName: TextEditingController(),
                                         personalHeadData: PersonalHeadData(
                                           age: TextEditingController(),
+                                          relationshipHeadHHSController: TextEditingController(),
                                           nationality: TextEditingController(),
                                           hhsHavePastTrip:
                                               TextEditingController(),
@@ -573,10 +569,16 @@ class _PersonScreenState extends State<PersonScreen> {
                                                 TextEditingController(),
                                             geocodes: TextEditingController(),
                                           ),
+                                          drivingLicenceTypeController:
+                                              TextEditingController(),
+                                          haveDisabilityTransportMobilityController:
+                                              TextEditingController(),
                                         ),
                                         //==occupationModel==
                                         occupationModel: OccupationModel(
                                           earliestTimeFinishingWork:
+                                              TextEditingController(),
+                                          occupationSectorController:
                                               TextEditingController(),
                                           earliestTimeStartingWork:
                                               TextEditingController(),
@@ -595,6 +597,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                           numberWorkFromHome: 0,
                                           occupationLevelSector: '',
                                           occupationSector: '',
+                                          bestWorkspaceLocationController:
+                                              TextEditingController(),
                                         ),
                                       ),
                                     );

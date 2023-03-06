@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../Data/HouseholdPart1/VechelisData/vechelis_data.dart';
+
 class VehiclesBodyType {
   String? vehicleTypeName;
   int? vehicleTypeQuantity;
@@ -33,17 +35,22 @@ class VehicleBodyDetails {
   TextEditingController vehicleFuelType = TextEditingController();
   TextEditingController vehicleParking = TextEditingController();
   TextEditingController vehicleOwnership = TextEditingController();
+  TextEditingController largeItemCar = TextEditingController();
 
   VehicleBodyDetails({
     required this.vehicleFuelType,
     required this.vehicleParking,
     required this.vehicleOwnership,
+    required this.largeItemCar,
   });
 
   VehicleBodyDetails.fromJson(Map<String, dynamic> json) {
-    vehicleFuelType.text = json['vehicleFuelType'];
-    vehicleParking.text = json['vehicleParking'];
-    vehicleOwnership.text = json['vehicleOwnership'] ?? '';
+    vehicleFuelType.text = json['vehicleFuelType'] ??
+        VehiclesData.fuelTypeCodes['Fuel type codes- V2-F']![0];
+    vehicleParking.text = json['vehicleParking'] ??
+        VehiclesData.parkThisCar['Ownership codes- V3-O']![0];
+    vehicleOwnership.text = json['vehicleOwnership'] ??
+        VehiclesData.ownership['Ownership codes- V3-O']![0];
   }
 
   Map<String, dynamic> toJson() {

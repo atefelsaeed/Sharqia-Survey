@@ -4,7 +4,7 @@ import '../../Helper/validator.dart';
 import '../../Resources/colors.dart';
 import '../../Resources/sizes.dart';
 
-class MyTextForm extends StatelessWidget {
+class MyTextForm extends StatefulWidget {
   final String label;
   TextInputType? keyboardType;
   final TextEditingController? controller;
@@ -16,7 +16,7 @@ class MyTextForm extends StatelessWidget {
   bool? isNumber = false;
   final Function? suffixPressed;
   String? Function(String?)? validator;
-  Function()? onTap;
+ final Function()onTap;
   Function(String?)? onChanged;
   Iterable<String>? autofillHints;
   String? errorText;
@@ -36,12 +36,17 @@ class MyTextForm extends StatelessWidget {
       this.isPassword,
       this.suffix,
       this.prefixIcon,
-      this.onTap,
+     required this.onTap,
       this.onChanged,
       this.autofillHints,
       required this.label})
       : super(key: key);
 
+  @override
+  State<MyTextForm> createState() => _MyTextFormState();
+}
+
+class _MyTextFormState extends State<MyTextForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,18 +54,29 @@ class MyTextForm extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: widthForm ?? width(context) * .45,
+          width: widget.widthForm ?? width(context) * .45,
           child: TextFormField(
-            controller: controller,
-            readOnly: readOnly ?? false,
-            onTap: onTap,
+            controller: widget.controller,
+            readOnly: widget.readOnly ?? false,
+            onTap: () {
+              if (widget.controller!.selection ==
+                  TextSelection.fromPosition(
+                      TextPosition(offset: widget.controller!.text.length - 1))) {
+                setState(() {
+                  widget.controller!.selection = TextSelection.fromPosition(
+                      TextPosition(offset: widget.controller!.text.length));
+                });
+              }
+              widget.onTap();
+            },
+            textAlign: TextAlign.right,
             textInputAction: TextInputAction.next,
             onEditingComplete: () => FocusScope.of(context).nextFocus(),
             style: TextStyle(
                 fontWeight: FontWeight.w400,
                 color: ColorManager.black,
                 fontSize: height(context) * .015),
-          validator: (String? val) => isNumber ?? false
+            validator: (String? val) => widget.isNumber ?? false
                 ? Validator.validateEmpty(
                     value: val,
                     message: 'يجب يجب إعطاء إجابة!',
@@ -70,19 +86,19 @@ class MyTextForm extends StatelessWidget {
                     message: 'يجب يجب إعطاء إجابة صحيحة!',
                   ),
             decoration: InputDecoration(
-              labelText: label,
-              suffixIcon: suffix != null
+              labelText: widget.label,
+              suffixIcon: widget.suffix != null
                   ? IconButton(
                       onPressed: () {
-                        suffixPressed!();
+                        widget.suffixPressed!();
                       },
                       icon: Icon(
-                        suffix,
+                        widget.suffix,
                         color: ColorManager.gray2Color,
                         size: width(context) * .06,
                       ))
                   : null,
-              prefixIcon: prefixIcon,
+              prefixIcon: widget.prefixIcon,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),
@@ -100,9 +116,9 @@ class MyTextForm extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
               ),
             ),
-            textDirection: TextDirection.ltr,
-            keyboardType: keyboardType ?? TextInputType.text,
-            onChanged: onChanged,
+            textDirection: TextDirection.rtl,
+            keyboardType: widget.keyboardType ?? TextInputType.text,
+            onChanged: widget.onChanged,
           ),
         ),
         ClipRRect(

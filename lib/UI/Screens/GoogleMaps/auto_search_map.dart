@@ -9,8 +9,8 @@ import 'package:search_map_place_updated/search_map_place_updated.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 
-import '../Screens/trips/provider/trip_provider.dart';
-import 'custom_buttton.dart';
+import '../../Widgets/custom_buttton.dart';
+import '../trips/provider/trip_provider.dart';
 
 class Constants {
   static LatLng location = const LatLng(21.492500, 39.177570);
@@ -80,15 +80,15 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                         value = newPosition.target;
                       },
                       mapType: MapType.normal,
-                      myLocationButtonEnabled: true,
-                      myLocationEnabled: true,
+                      myLocationButtonEnabled: false,//
+                      myLocationEnabled: false,//
                       zoomGesturesEnabled: true,
                       padding: const EdgeInsets.all(0),
                       buildingsEnabled: true,
                       cameraTargetBounds: CameraTargetBounds.unbounded,
-                      compassEnabled: true,
+                      compassEnabled: false,//
                       indoorViewEnabled: false,
-                      mapToolbarEnabled: true,
+                      mapToolbarEnabled: false,
                       minMaxZoomPreference: MinMaxZoomPreference.unbounded,
                       rotateGesturesEnabled: true,
                       scrollGesturesEnabled: true,
@@ -112,13 +112,28 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                           placeholder: 'بحث',
                           apiKey: 'AIzaSyAMIcLjXga58HVN5RkLX5NGf1zh-Qkk4fg',
                           onSelected: (Place place) async {
+                            print('selected');
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (_) => SizedBox(
+                            //         width: 20,
+                            //         height: 20,
+                            //         child:
+                            //         const CircularProgressIndicator())));
+                            // await Future.delayed(
+                            //     const Duration(milliseconds: 500));
+                            // Navigator.of(context).pop();
                             if (mounted) {
+
                               Geolocation? geolocation =
                                   await place.geolocation;
+
                               controller = await completer.future;
+                              await Future.delayed(
+                                  const Duration(milliseconds: 500));
                               controller!.animateCamera(CameraUpdate.newLatLng(
                                   geolocation!.coordinates));
-
+                              await Future.delayed(
+                                  const Duration(milliseconds: 500));
                               controller!.animateCamera(
                                   CameraUpdate.newLatLngBounds(
                                       geolocation.bounds, 0));
@@ -131,6 +146,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                   Positioned(
                     left: 0,
                     bottom: 0,
+                    //you can use "right" and "bottom" too
                     child: Padding(
                       padding: EdgeInsets.all(AppSize.padding2(context)),
                       child: DefaultButton(
@@ -157,7 +173,11 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                     child: Container(
                       color: Colors.transparent,
                       child: InkWell(
-                        onTap: () async {},
+                        onTap: () async {
+                          //  await   placeMarker(value,placeMarks);
+                          /* activeLocation(
+                                    placeMarks, context, value, callBack);*/
+                        },
                         child: const Icon(
                           Icons.pin_drop_outlined,
                           size: 40,

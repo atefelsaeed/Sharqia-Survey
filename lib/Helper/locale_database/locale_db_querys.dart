@@ -120,6 +120,7 @@ class LocaleDBQueries {
   Y varchar(255)  DEFAULT NULL,
   X varchar(255)  DEFAULT NULL,
   status varchar(255)  DEFAULT 'not filled',
+  note varchar(255)  DEFAULT 'not filled',
   created_at timestamp NULL DEFAULT NULL,
   updated_at timestamp NULL DEFAULT NULL)''';
 }

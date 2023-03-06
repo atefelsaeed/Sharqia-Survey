@@ -35,6 +35,7 @@ class UserSurveysModelData {
   String? x;
   String? y;
   String? status;
+  String? note;
   String? createdAt;
   String? updatedAt;
 
@@ -49,6 +50,7 @@ class UserSurveysModelData {
     this.y,
     this.x,
     this.status,
+    this.note,
     this.createdAt,
     this.updatedAt,
   });
@@ -64,6 +66,7 @@ class UserSurveysModelData {
     y = json['Y'].toString();
     x = json['X'].toString();
     status = json['status'];
+    note = json['note'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
@@ -80,6 +83,7 @@ class UserSurveysModelData {
     data['Y'] = y;
     data['X'] = x;
     data['status'] = status;
+    data['note'] = note;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
     return data;

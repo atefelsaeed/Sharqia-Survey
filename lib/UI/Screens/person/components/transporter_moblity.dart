@@ -1,25 +1,22 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/PersonData/person_model_list.dart';
+import 'package:sharqia_household_survey/UI/Screens/person/person_conditions.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
 
 import '../../../../Data/HouseholdPart1/PersonData/person_data.dart';
 import '../../../../Resources/sizes.dart';
 import '../../../Widgets/dropdown_form_input.dart';
+import '../reset_person.dart';
 
-class TransporterMobilty extends StatefulWidget {
+class TransporterMobilty extends StatelessWidget {
   final int index;
 
   const TransporterMobilty({super.key, required this.index});
 
   @override
-  State<TransporterMobilty> createState() => _TransporterMobiltyState();
-}
-
-class _TransporterMobiltyState extends State<TransporterMobilty> {
-  TextEditingController textEditingController = TextEditingController();
-
-  @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<PersonProvider>(context, listen: false);
     // TODO: implement build
     return Column(
       children: [
@@ -28,10 +25,10 @@ class _TransporterMobiltyState extends State<TransporterMobilty> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DropDownFormInput(
-              label: PersonModelList.personModelList[widget.index]
+              label: PersonModelList.personModelList[index]
                           .personalQuestion!.haveDisabilityTransportMobility !=
                       ''
-                  ? Text(PersonModelList.personModelList[widget.index]
+                  ? Text(PersonModelList.personModelList[index]
                           .personalQuestion!.haveDisabilityTransportMobility ??
                       '')
                   : const Text('إختار'),
@@ -40,24 +37,23 @@ class _TransporterMobiltyState extends State<TransporterMobilty> {
                   .transporterMoblity[PersonData.transporterMoblity.keys.first]!
                   .toList(),
               onChange: (String? p) {
-                setState(() {
-                  PersonModelList
-                      .personModelList[widget.index]
-                      .personalQuestion!
-                      .haveDisabilityTransportMobility = p.toString();
-                });
+                provider.haveDisabilityTransportMobility(index, p);
               },
             ),
-            PersonModelList.personModelList[widget.index].personalQuestion!
-                        .haveDisabilityTransportMobility ==
-                    'أخرى .. حدد'
+            PersonConditions().checkHaveDisabilityTransportMobilityOther(
+                        index) ==
+                    true
                 ? MyTextForm(
                     label: 'إذكر الإعاقة / احتياجات خاصة',
-                    controller: textEditingController,
+              onTap: () {  },
+                    controller: PersonModelList
+                        .personModelList[index]
+                        .personalQuestion!
+                        .haveDisabilityTransportMobilityController,
                     isNumber: false,
                     onChanged: (value) {
                       PersonModelList
-                          .personModelList[widget.index]
+                          .personModelList[index]
                           .personalQuestion!
                           .haveDisabilityTransportMobility = value;
                     },

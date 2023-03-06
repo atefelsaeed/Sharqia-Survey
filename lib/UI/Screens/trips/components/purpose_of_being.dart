@@ -96,6 +96,7 @@ class _PurposeOfTheBeing extends State<PurposeOfTheBeing> {
                 title: "أدخل الغرض",
                 label: "أدخل الغرض",
                 isNumber: false,
+          onTap: () {  },
               )
             : Container(),
       ],

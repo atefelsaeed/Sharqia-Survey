@@ -4,6 +4,7 @@ import '../../../../Data/HouseholdPart1/VechelisData/vechelis_data.dart';
 import '../../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
 import '../../../../Models/HHS_SurvyModels/hhs_models.dart';
 import '../../../../Models/Vehicles_SurveyModel/vehicles_body_type.dart';
+import '../reset_values.dart';
 
 class VecProvider extends ChangeNotifier {
   changeVec(index, bool value) {
@@ -56,14 +57,26 @@ class VecProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  largeItemCar(String p, TextEditingController textEditingController) {
+    VehModel.largeItemCar = p.toString();
+    if (VehModel.largeItemCar != "أخر") {
+      textEditingController.text = VehModel.largeItemCar;
+      notifyListeners();
+    } else {
+      textEditingController.text = "أخر";
+      notifyListeners();
+    }
+  }
+
   ownerChipCar(String p, TextEditingController textEditingController) {
     VehModel.ownerShipCode = p.toString();
     if (VehModel.ownerShipCode != "أخر") {
       textEditingController.text = VehModel.ownerShipCode;
+      notifyListeners();
     } else {
       textEditingController.text = 'أخر';
+      notifyListeners();
     }
-    notifyListeners();
   }
 
   vecCar(Function showVechError, String d, Function showError) {
@@ -90,6 +103,7 @@ class VecProvider extends ChangeNotifier {
               vehicleParking: TextEditingController(),
               vehicleOwnership: TextEditingController(),
               vehicleFuelType: TextEditingController(),
+              largeItemCar: TextEditingController(),
             ),
           );
         } else {
@@ -125,6 +139,7 @@ class VecProvider extends ChangeNotifier {
               vehicleParking: TextEditingController(),
               vehicleOwnership: TextEditingController(),
               vehicleFuelType: TextEditingController(),
+              largeItemCar: TextEditingController(),
             ),
           );
         } else {
@@ -160,6 +175,7 @@ class VecProvider extends ChangeNotifier {
               vehicleParking: TextEditingController(),
               vehicleOwnership: TextEditingController(),
               vehicleFuelType: TextEditingController(),
+              largeItemCar: TextEditingController(),
             ),
           );
         } else {
@@ -195,6 +211,7 @@ class VecProvider extends ChangeNotifier {
               vehicleParking: TextEditingController(),
               vehicleOwnership: TextEditingController(),
               vehicleFuelType: TextEditingController(),
+              largeItemCar: TextEditingController(),
             ),
           );
         } else {
@@ -257,6 +274,7 @@ class VecProvider extends ChangeNotifier {
               vehicleParking: TextEditingController(),
               vehicleOwnership: TextEditingController(),
               vehicleFuelType: TextEditingController(),
+              largeItemCar: TextEditingController(),
             ),
           );
         } else {
@@ -294,6 +312,7 @@ class VecProvider extends ChangeNotifier {
               vehicleParking: TextEditingController(),
               vehicleOwnership: TextEditingController(),
               vehicleFuelType: TextEditingController(),
+              largeItemCar: TextEditingController(),
             ),
           );
         } else {
@@ -328,6 +347,7 @@ class VecProvider extends ChangeNotifier {
               vehicleParking: TextEditingController(),
               vehicleOwnership: TextEditingController(),
               vehicleFuelType: TextEditingController(),
+              largeItemCar: TextEditingController(),
             ),
           );
         } else {
@@ -337,5 +357,11 @@ class VecProvider extends ChangeNotifier {
       }
       notifyListeners();
     }
+  }
+
+  ///resetVechValues
+  resetVechValues(context) async {
+    await ResetVechilesValues.resetVechValues(context);
+    notifyListeners();
   }
 }

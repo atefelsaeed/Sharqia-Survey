@@ -3,16 +3,12 @@ import 'package:sharqia_household_survey/Models/Trips_SurveyModel/start_beginnin
 import 'package:sharqia_household_survey/Models/Trips_SurveyModel/travel_type_model.dart';
 import 'package:sharqia_household_survey/Models/Trips_SurveyModel/travel_with_other_model.dart';
 
-
-
-class PersonModelFirends{
+class PersonModelFirends {
   String value;
   int id;
 
-  PersonModelFirends(this.value,this.id);
-
+  PersonModelFirends(this.value, this.id);
 }
-
 
 class TripsModel {
   bool? type;
@@ -24,7 +20,7 @@ class TripsModel {
       TextEditingController();
   TextEditingController taxiTravelTypeEditingControl = TextEditingController();
   List<String> person = [];
-  List<String> chosenFriendPerson = [];
+  List<dynamic> chosenFriendPerson = [];
   String chosenPerson = "";
   Map friendPerson = {
     "friendPerson": [
@@ -46,7 +42,7 @@ class TripsModel {
   };
   Map<String, dynamic> purposeOfBeingThere = {
     "QPurposeOfBeingThere": [
-      {"value": ' في المنزل', "isChick": false},
+      {"value": 'في المنزل', "isChick": false},
       {"value": 'فى بيت العطلات / الفندق', "isChick": false},
       {"value": 'العمل - فى مكتب / مقر العمل', "isChick": false},
       {"value": 'العمل - خارج مكتب / مقر العمل', "isChick": false},
@@ -95,14 +91,22 @@ class TripsModel {
 
   bool? isTravelAlone;
 
-  TravelWithOtherModel? travelWithOtherModel;
-  TravelWithOtherModel? travelAloneHouseHold;
-  List<String>? hhsMembersTraveled;
+  TravelWithOtherModel? travelWithOtherModel = TravelWithOtherModel(
+      adultsNumber: TextEditingController(),
+      childrenNumber: TextEditingController());
+  TravelWithOtherModel? travelAloneHouseHold = TravelWithOtherModel(
+      adultsNumber: TextEditingController(),
+      childrenNumber: TextEditingController());
+  List<dynamic>? hhsMembersTraveled;
   ArrivalDepartTime arrivalDepartTime = ArrivalDepartTime(
       departTime: TextEditingController(),
       arriveDestinationTime: TextEditingController());
   TravelTypeModel travelTypeModel = TravelTypeModel(
-      taxiFare: TextEditingController(), ticketSub: TextEditingController());
+    taxiFare: TextEditingController(),
+    ticketSub: TextEditingController(),
+    taxiTravelTypeOther: TextEditingController(),
+    otherWhereDidYouParking: TextEditingController(),
+  );
   bool isHome = false;
   bool isHomeEnding = false;
 
@@ -145,13 +149,17 @@ class TripsModel {
         TravelWithOtherModel.fromJson(json['travelAloneHouseHold']);
     arrivalDepartTime = ArrivalDepartTime.fromJson(json['arrivalDepartTime']);
     travelTypeModel = TravelTypeModel.fromJson(json['travelTypeModel']);
-    purposeTravel = json['purposeTravel'];
-    chosenPerson = json['ownerTripPerson'];
-    departureTime.text = json['departureTime'];
-    tripReason = json['tripReason'];
+    purposeTravel = json['purposeTravel'] ??
+        purposeOfBeingThere["QPurposeOfBeingThere"][0]["value"];
+    chosenPerson = json['ownerTripPerson'] ?? '';
+    departureTime.text = json['departureTime'] ?? '';
+    tripReason =
+        json['tripReason'] ?? purposeOfBeingThere2["TripReason"][0]["value"];
     isTravelAlone = json['isTravelAlone'];
-    chosenFriendPerson =
-        List<String>.from(json["hhsMembersTraveled"].map((x) => x));
+    print(json["hhsMembersTraveled"]);
+
+    chosenFriendPerson = List.from(json["hhsMembersTraveled"]);
+    //  List<String>.from(json["hhsMembersTraveled"].map((x) => x));
   }
 
   Map<String, dynamic> toJson() {

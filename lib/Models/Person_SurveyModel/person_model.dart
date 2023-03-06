@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sharqia_household_survey/Data/HouseholdPart1/PersonData/person_data.dart';
 
 import 'occupation_model.dart';
 import 'personal_question.dart';
@@ -8,9 +9,9 @@ class PersonModel {
   OccupationModel? occupationModel;
   PersonalQuestion? personalQuestion;
   TextEditingController personName = TextEditingController();
-  Map<String, dynamic> travelWithOther =  {
+  Map<String, dynamic> travelWithOther = {
     'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
-    [
+        [
       {"value": 'نعم', "isChick": false},
       {"value": 'لا', "isChick": false},
     ],
@@ -62,6 +63,7 @@ class PersonalHeadData {
   bool? refuseToTellAge;
   bool hasPasTrip = false;
   TextEditingController hhsHavePastTrip = TextEditingController();
+  TextEditingController relationshipHeadHHSController = TextEditingController();
   TextEditingController age = TextEditingController();
   String? nationalityType;
   TextEditingController nationality =
@@ -70,6 +72,7 @@ class PersonalHeadData {
 
   PersonalHeadData({
     required this.age,
+    required this.relationshipHeadHHSController,
     this.nationalityType,
     required this.hasPasTrip,
     required this.showText,
@@ -82,13 +85,15 @@ class PersonalHeadData {
   });
 
   PersonalHeadData.fromJson(Map<String, dynamic> json) {
-    relationshipHeadHHS = json['relationshipHeadHHS'] ?? "";
+    relationshipHeadHHS = json['relationshipHeadHHS'] ??
+        PersonData.relationshipToTheHeadOfHouseholdMan[
+            " Relationship to the Head of Household"][0];
     gender = json['gender'] ?? "";
     // checkAge = json['checkAge'];
     refuseToTellAge = json['refuseToTellAge'];
     age.text = json['age'] ?? "";
     nationalityType = json['nationalityType'] ?? "";
-    nationality.text = json['nationality'] ;
+    nationality.text = json['nationality'];
     hhsHavePastTrip.text = json['hhsHavePastTrip'] ?? "";
   }
 

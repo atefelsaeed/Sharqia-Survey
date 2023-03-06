@@ -13,6 +13,7 @@ class HHSEmptyData {
     EmptyVehicles.emptyVehicles();
     EmptyTrips.emptyTrips();
     //============HHS===========>
+
     QuestionsData.qh3[QuestionsData.qh3.keys.first]!
         .toList()[QuestionsData.qh3["index"]]["isChick"] = false;
     QuestionsData.qh4[QuestionsData.qh4.keys.first]!
@@ -26,6 +27,7 @@ class HHSEmptyData {
     //=============Vehicles===================
     VehiclesData.q3VecData[VehiclesData.q3VecData.keys.first]!
         .toList()[VehiclesData.q3VecData["index"]]["isChick"] = false;
+
     //================Personal========================================
     // PersonData.nationality[PersonData.nationality.keys.first]!
     //     .toList()[PersonData.nationality["index"]]["isChick"] = false;

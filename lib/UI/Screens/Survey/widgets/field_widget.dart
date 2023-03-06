@@ -60,6 +60,7 @@ class Field extends StatelessWidget {
                         MyTextForm(
                           label: "",
                           controller: peopleUnder18,
+                          onTap: () {  },
                           widthForm: width(context) * .1,
                           keyboardType: TextInputType.number,
                           isNumber: true,
@@ -87,6 +88,7 @@ class Field extends StatelessWidget {
                             widthForm: width(context) * .1,
                             keyboardType: TextInputType.number,
                             isNumber: true,
+                            onTap: () {  },
                           ),
                           AppSize.spaceWidth1(context),
                           Expanded(
@@ -108,6 +110,7 @@ class Field extends StatelessWidget {
                           label: "",
                           controller: totalNumberOfVec,
                           widthForm: width(context) * .1,
+                          onTap: () {  },
                           keyboardType: TextInputType.number,
                           isNumber: true,
                         ),

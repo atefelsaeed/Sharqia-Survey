@@ -124,28 +124,7 @@ class _ItemHomeSurveyState extends State<ItemHomeSurvey> {
                         ),
                       ],
                     ),
-                    // Row(
-                    //   children: [
-                    //     const Image(
-                    //         image: AssetImage(
-                    //           ImageAssets.iconLambGray,
-                    //         )),
-                    //     AppSize.spaceWidth2(context),
-                    //     Text('عدد الاستبيانات',
-                    //         style: TextStyle(
-                    //           fontWeight: FontWeight.w800,
-                    //           color: ColorManager.grayColor,
-                    //         )),
-                    //     const Spacer(),
-                    //     Text(
-                    //       count.toString(),
-                    //       style: TextStyle(
-                    //         fontWeight: FontWeight.w800,
-                    //         color: ColorManager.primaryColor,
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
+
                   ],
                 ),
               ),

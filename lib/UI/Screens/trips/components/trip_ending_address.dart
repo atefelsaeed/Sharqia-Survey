@@ -8,9 +8,9 @@ import 'package:sharqia_household_survey/UI/Screens/trips/components/headline_tr
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
 import '../../../../Providers/survey_hhs.dart';
 import '../../../../Resources/sizes.dart';
-import '../../../Widgets/alert_map.dart';
 import '../../../Widgets/item_text_span.dart';
 import '../../../Widgets/text.dart';
+import '../../GoogleMaps/auto_search_map.dart';
 
 class TripEndingAddress extends StatefulWidget {
   final int index;

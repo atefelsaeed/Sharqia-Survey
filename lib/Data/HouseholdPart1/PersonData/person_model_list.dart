@@ -1,21 +1,12 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sharqia_household_survey/Models/Person_SurveyModel/occupation_model.dart';
+import 'package:sharqia_household_survey/Models/Person_SurveyModel/personal_question.dart';
 
-import '../../../Models/Person_SurveyModel/occupation_model.dart';
 import '../../../Models/Person_SurveyModel/person_model.dart';
-import '../../../Models/Person_SurveyModel/personal_question.dart';
 
 class PersonModelList {
   static List<PersonModel> personModelList = [
     PersonModel(
-      personName: TextEditingController(),
-      travelWithOther:  {
-        'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
-        [
-          {"value": 'نعم', "isChick": false},
-          {"value": 'لا', "isChick": false},
-        ],
-        "index": 0
-      },
       nationality: {
         "QPurposeOfBeingThere": [
           {"value": 'سعودي', "isChick": false},
@@ -27,9 +18,20 @@ class PersonModelList {
             " A separate family is defined as who share the kitchen expenses and meals",
         "index": 0,
       },
+      personName: TextEditingController(),
+      travelWithOther: {
+        'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
+            [
+          {"value": 'نعم', "isChick": false},
+          {"value": 'لا', "isChick": false},
+        ],
+        "index": 0
+      },
+
       //==personalHeadData==
       personalHeadData: PersonalHeadData(
         age: TextEditingController(),
+        relationshipHeadHHSController: TextEditingController(),
         nationality: TextEditingController(),
         hhsHavePastTrip: TextEditingController(),
         nationalityType: '',
@@ -53,10 +55,13 @@ class PersonModelList {
           fullAddress: TextEditingController(),
           geocodes: TextEditingController(),
         ),
+        drivingLicenceTypeController: TextEditingController(),
+        haveDisabilityTransportMobilityController: TextEditingController(),
       ),
       //==occupationModel==
       occupationModel: OccupationModel(
         earliestTimeFinishingWork: TextEditingController(),
+        occupationSectorController: TextEditingController(),
         earliestTimeStartingWork: TextEditingController(),
         endingWoke: TextEditingController(),
         startingWoke: TextEditingController(),
@@ -72,6 +77,7 @@ class PersonModelList {
         numberWorkFromHome: 0,
         occupationLevelSector: '',
         occupationSector: '',
+        bestWorkspaceLocationController: TextEditingController(),
       ),
     ),
   ];

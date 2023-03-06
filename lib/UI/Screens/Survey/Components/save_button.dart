@@ -53,17 +53,17 @@ class _SaveButtonState extends State<SaveButton> {
     SurveyProvider survey = Provider.of<SurveyProvider>(context, listen: true);
     SurveysProvider surveys =
         Provider.of<SurveysProvider>(context, listen: false);
-    GlobalKey<FormState> _key = GlobalKey();
+    GlobalKey<FormState> keyForm = GlobalKey();
     return IconButton(
       icon: const Icon(Icons.save),
       onPressed: clicked
           ? null
           : () {
-              if (_key.currentState!.validate()) {
+              if (keyForm.currentState!.validate()) {
                 setState(() {
                   clicked = true;
                 });
-                _key.currentState!.save();
+                keyForm.currentState!.save();
                 getLocation().then(
                   (value) {
 

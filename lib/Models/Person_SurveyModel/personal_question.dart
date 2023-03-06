@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:sharqia_household_survey/Data/HouseholdPart1/PersonData/person_data.dart';
 
 class PersonalQuestion {
   String? haveBusPass;
   String? haveDisabilityTransportMobility;
   String? drivingLicenceType; //if age>17
+  TextEditingController drivingLicenceTypeController = TextEditingController();
+  TextEditingController haveDisabilityTransportMobilityController =
+      TextEditingController();
   String? mainOccupationType; //if age>15
   String? availablePersonalCar; //if user have driving licence
   String? asPassenger; //if user do not have driving licence
@@ -12,6 +16,8 @@ class PersonalQuestion {
 
   PersonalQuestion({
     this.mainOccupationType,
+    required this.drivingLicenceTypeController,
+    required this.haveDisabilityTransportMobilityController,
     this.educationAddress,
     this.asPassenger,
     this.availablePersonalCar,
@@ -22,12 +28,17 @@ class PersonalQuestion {
   });
 
   PersonalQuestion.fromJson(Map<String, dynamic> json) {
-    drivingLicenceType = json['drivingLicenceType'] ?? "";
-    haveDisabilityTransportMobility =
-        json['haveDisabilityTransportMobility'] ?? "";
+    drivingLicenceType = json['drivingLicenceType'] ??
+        PersonData.licence[" ? What type of driving licence do you have"][0];
+    haveDisabilityTransportMobility = json['haveDisabilityTransportMobility'] ??
+        PersonData.transporterMoblity[
+            "?Do you have any disability/Special Needs for Transport Mobility"][0];
     haveBusPass = json['haveBusPass'] ?? "";
-    mainOccupationType = json['mainOccupationType'] ?? "";
-    availablePersonalCar = json['availablePersonalCar'] ?? "";
+    mainOccupationType = json['mainOccupationType'] ??
+        PersonData.mainOccupation["MainOccupation"][0];
+    availablePersonalCar = json['availablePersonalCar'] ??
+        PersonData.drivingLiences["?What type of driving licence do you have"]
+            [0];
     haveCarSharing = json['haveCarSharing'] ?? "";
     educationAddress = (EducationAddress.fromJson(json['educationAddress']));
   }

@@ -70,6 +70,7 @@ class _NationalityState extends State<Nationality> {
                   MyTextForm(
                     label: "أدخل جنسيتك",
                     isNumber: false,
+                    onTap: () {  },
                     controller: base.personalHeadData!.nationality,
                     onChanged: (String? val) {
                       // base.personalHeadData!.nationality.text = val!;

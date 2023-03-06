@@ -7,7 +7,7 @@ import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
 
 import '../../../Models/user_serveys_model.dart';
-import 'itemUserSurvey.dart';
+import 'item_user_survey.dart';
 
 class UserSurveysScreen extends StatefulWidget {
   const UserSurveysScreen({Key? key, required this.id}) : super(key: key);
@@ -23,6 +23,7 @@ class _UserSurveysScreenState extends State<UserSurveysScreen> {
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
     userSurveysProvider.fetch(widget.id);
+
     userSurveysProvider.isSearching = false;
     super.initState();
   }
@@ -95,6 +96,7 @@ class _UserSurveysScreenState extends State<UserSurveysScreen> {
                                 AppSize.spaceHeight1(context),
                                 MyTextForm(
                                   controller: hayController,
+                                  onTap: () {  },
                                   onChanged: (value) {
                                     userSurveysProvider.searchHAY(value!);
                                   },
@@ -140,6 +142,7 @@ class _UserSurveysScreenState extends State<UserSurveysScreen> {
                                 AppSize.spaceHeight1(context),
                                 MyTextForm(
                                   controller: blocController,
+                                  onTap: () {  },
                                   onChanged: (value) {
                                     userSurveysProvider.searchBLOK(value!);
                                   },
