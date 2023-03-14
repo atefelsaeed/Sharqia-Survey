@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Screens/Settings/settings_screen.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Providers/auth.dart';
 import '../../../Providers/surveys.dart';

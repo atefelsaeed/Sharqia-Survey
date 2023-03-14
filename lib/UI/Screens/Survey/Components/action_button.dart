@@ -1,8 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/editing_controller.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
 import '../../../../Data/HouseholdPart1/validate_data/hhs_validation.dart';
@@ -12,6 +12,7 @@ import '../../../../Providers/auth.dart';
 import '../../../../Providers/survey_hhs.dart';
 import '../../../Widgets/custom_buttton.dart';
 import '../actions/action_survey_screen.dart';
+import '../survey_conditions.dart';
 
 class ActionButton extends StatelessWidget {
   EditingController editingController;
@@ -49,9 +50,6 @@ class ActionButton extends StatelessWidget {
               ),
             );
           }
-
-
-
 
           surveyPt.id = id;
 
@@ -99,29 +97,46 @@ class ActionButton extends StatelessWidget {
               editingController.peopleUnder18.text; //solve
           surveyPt.hhsSeparateFamilies = HhsStatic.houseHold;
           surveyPt.hhsTotalIncome = HhsStatic.householdQuestions.hhsTotalIncome;
+
+          ///
           surveyPt.hhsPCChildrenBikesNumber =
               editingController.editingController3Q81.peopleUnder18.text;
           surveyPt.hhsPCTotalBikesNumber =
               editingController.editingController3Q81.totalNumber.text;
           surveyPt.hhsPCAdultsBikesNumber =
               editingController.editingController3Q81.peopleAdults18.text;
+
+          ///
           HhsStatic.peopleUnder18 = editingController.peopleUnder18.text;
           HhsStatic.peopleAdults18 = editingController.peopleAdults18.text;
+
+          ///
           surveyPt.hhsECChildrenBikesNumber =
               editingController.editingController3Q82.peopleUnder18.text;
           surveyPt.hhsECTotalBikesNumber =
               editingController.editingController3Q82.totalNumber.text;
           surveyPt.hhsECAdultsBikesNumber =
               editingController.editingController3Q82.peopleAdults18.text;
+
+          ///
           surveyPt.hhsESChildrenBikesNumber =
               editingController.editingController3Q83.peopleUnder18.text;
           surveyPt.hhsESTotalBikesNumber =
               editingController.editingController3Q83.totalNumber.text;
           surveyPt.hhsESAdultsBikesNumber =
               editingController.editingController3Q83.peopleAdults18.text;
+
+          ///HHS_QH11
+          // surveyPt.hhsNumberShoppingTrip.text =
+          //     HhsStatic.householdQuestions.hhsNumberShoppingTrip.text;
+          // surveyPt.hhsNumberHealthTrip.text =
+          //     HhsStatic.householdQuestions.hhsNumberHealthTrip.text;
+
+          ///
           // surveyPt.hhsDemolishedAreas = editingController.yes.text;
           surveyPt.headerDistrictName = '';
           surveyPt.headerZoneNumber = '';
+
           RegExp regex = RegExp(
               r'^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$');
           if (!regex
@@ -129,23 +144,34 @@ class ActionButton extends StatelessWidget {
             return Validator.showSnack(context, 'رقم الهاتف غير صحيح..!');
           }
 
-          await validationService.determinePosition(context).then((value) {
+          ///
+          if (!SurveyCondition()
+              .conditionHHSQ5NumUnder18(editingController, context)) {
+          } else if (!SurveyCondition()
+              .conditionHHSQ5NumAdults(editingController, context)) {
+          } else if (!SurveyCondition().validateHHSQ81(context)) {
+          } else if (!SurveyCondition().validateHHSQ82(context)) {
+          } else if (!SurveyCondition().validateHHSQ83(context)) {
+          } else if (!SurveyCondition().numberParcelsDeliveries(context)) {
+          } else {
+            await validationService.determinePosition(context).then((value) {
+              surveyPt.hhsAddressLat = value.latitude.toString();
+              surveyPt.hhsAddressLong = value.longitude.toString();
+            }).onError(
+              (error, stackTrace) {
+                debugPrint(error.toString());
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("يجب تشغيل خدمة تحديد الموقع"),
+                    duration: Duration(seconds: 3),
+                    elevation: 1,
+                  ),
+                );
+              },
+            );
 
-            surveyPt.hhsAddressLat = value.latitude.toString();
-            surveyPt.hhsAddressLong = value.longitude.toString();
-          }).onError(
-            (error, stackTrace) {
-              debugPrint(error.toString());
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("يجب تشغيل خدمة تحديد الموقع"),
-                  duration: Duration(seconds: 3),
-                  elevation: 1,
-                ),
-              );
-            },
-          );
-          CheckHHSValidation.validate(context);
+            CheckHHSValidation.validate(context);
+          }
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(

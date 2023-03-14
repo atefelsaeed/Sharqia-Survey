@@ -40,6 +40,7 @@ class ShowErrorDialog extends StatelessWidget {
             background: ColorManager.primaryColor,
           ),
         )),
+
       ],
     );
   }

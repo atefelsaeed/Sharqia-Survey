@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/editing_controler3.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Data/HouseholdPart1/HHSData/questions_data.dart';
 import '../../../Data/HouseholdPart1/VechelisData/vechelis_data.dart';
@@ -14,6 +14,7 @@ class EditingController {
 
   final TextEditingController peopleAdults18 = TextEditingController();
   final TextEditingController peopleUnder18 = TextEditingController();
+
   List<TextEditingController> q6peopleAdults18 = <TextEditingController>[
     TextEditingController()
   ];
@@ -45,8 +46,17 @@ class EditingController {
 c(EditingController editingController, BuildContext context, int id) async {
   UserSurveysProvider surveyPt =
       Provider.of<UserSurveysProvider>(context, listen: false);
+
   final validationService =
       Provider.of<ActionSurveyProvider>(context, listen: false);
+  // final prefs = await SharedPreferences.getInstance();
+  // bool? isFilled = prefs.getBool(AppConstants.isFilled);
+  // if (isFilled != null && isFilled == true) {
+  //   await surveyPt.getNotFilledSurvey();
+  // } else if (surveyPt.userSurveyStatus == 'edit' &&
+  //     AppConstants.isResetHHS == true) {
+  //   await surveyPt.getSurveyByID(id);
+  // }
   await surveyPt.getSurveyByID(id);
   QuestionsData.qh4 = {
     "? How many separate families live at this address": [
@@ -88,7 +98,7 @@ c(EditingController editingController, BuildContext context, int id) async {
 
   ///HHSQ2
   HhsStatic.householdQuestions.hhsIsDwellingOther!.text =
-      surveyPt.surveyPT.householdQuestions.hhsIsDwelling!;
+      surveyPt.surveyPT.householdQuestions.hhsIsDwelling ?? '';
   HhsStatic.householdQuestions.hhsIsDwelling =
       surveyPt.surveyPT.householdQuestions.hhsIsDwelling; //solve
 //HhsStatic.householdQuestions.hhsNumberApartments=surveyPt.surveyPT!.householdQuestions.hhsNumberApartments.text;
@@ -100,9 +110,11 @@ c(EditingController editingController, BuildContext context, int id) async {
   HhsStatic.householdAddress.hhsPhone =
       surveyPt.surveyPT.header.householdAddress.hhsPhone;
   VehModel.nearestPublicTransporter =
-      surveyPt.surveyPT.vehiclesData.nearestBusStop!;
-
+      surveyPt.surveyPT.vehiclesData.nearestBusStop ?? '';
+  debugPrint('nearestPublicTransporter');
+  debugPrint(surveyPt.surveyPT.vehiclesData.nearestBusStop);
   print("hhsNumberSeparateFamilies");
+
   print(surveyPt.surveyPT.householdQuestions.hhsNumberSeparateFamilies);
   for (int i = 1;
       i < QuestionsData.qh4[QuestionsData.qh4.keys.first]!.toList().length;
@@ -158,23 +170,22 @@ c(EditingController editingController, BuildContext context, int id) async {
   }
 
   ///hhsDemolishedAreas
-/*
-  if (surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas
-      .toString()
-      .isNotEmpty) {
-    if (surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas.toString() ==
-        "نعم") {
-      QuestionsData.qh7_2[QuestionsData.qh7_2.keys.first][0]["isChick"] = true;
-      HhsStatic.householdQuestions.hhsIsDemolishedAreas = true;
-    } else if (surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas
-            .toString() ==
-        'لا') {
-      QuestionsData.qh7_2[QuestionsData.qh7_2.keys.first][1]["isChick"] = true;
-      HhsStatic.householdQuestions.hhsIsDemolishedAreas = false;
-    }
-    HhsStatic.householdQuestions.hhsDemolishedAreas =
-        surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas.toString();
-  }*/
+
+  // if (surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas
+  //     .toString()
+  //     .isNotEmpty) {
+  //   if (surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas.toString() ==
+  //       'لا') {
+  //     QuestionsData.qh7_2[QuestionsData.qh7_2.keys.first][1]["isChick"] = true;
+  //     HhsStatic.householdQuestions.hhsIsDemolishedAreas = false;
+  //   } else if (surveyPt
+  //       .surveyPT.householdQuestions.hhsDemolishedAreas!.isNotEmpty) {
+  //     QuestionsData.qh7_2[QuestionsData.qh7_2.keys.first][0]["isChick"] = true;
+  //     HhsStatic.householdQuestions.hhsIsDemolishedAreas = true;
+  //   }
+  //   HhsStatic.householdQuestions.hhsDemolishedAreas =
+  //       surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas.toString();
+  // }
 
   ///Q7_1 hhsPedalCycles
   editingController.editingController3Q81 = EditingController3(
@@ -256,6 +267,14 @@ c(EditingController editingController, BuildContext context, int id) async {
       surveyPt.surveyPT.vehiclesData.numberGrocery.text;
   VehModel.vehiclesModel.numberFood.text =
       surveyPt.surveyPT.vehiclesData.numberFood.text;
+
+  ///HHS_QH11
+
+  // HhsStatic.householdQuestions.hhsNumberShoppingTrip.text =
+  //     surveyPt.surveyPT.householdQuestions.hhsNumberShoppingTrip.text;
+  //
+  // HhsStatic.householdQuestions.hhsNumberHealthTrip.text =
+  //     surveyPt.surveyPT.householdQuestions.hhsNumberHealthTrip.text;
 
   ///
   validationService.cc();

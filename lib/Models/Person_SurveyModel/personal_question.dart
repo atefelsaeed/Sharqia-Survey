@@ -8,7 +8,9 @@ class PersonalQuestion {
   TextEditingController drivingLicenceTypeController = TextEditingController();
   TextEditingController haveDisabilityTransportMobilityController =
       TextEditingController();
-  String? mainOccupationType; //if age>15
+  String? mainOccupationType;
+
+  //if age>15
   String? availablePersonalCar; //if user have driving licence
   String? asPassenger; //if user do not have driving licence
   bool? haveCarSharing;

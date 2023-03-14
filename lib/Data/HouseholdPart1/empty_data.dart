@@ -8,10 +8,11 @@ import 'empty_data/empty_vechels.dart';
 
 class HHSEmptyData {
   static emptyData() {
-    EmptyPerson.emptyPerson();
+
     EmptyHHS.emptyHSS();
     EmptyVehicles.emptyVehicles();
     EmptyTrips.emptyTrips();
+    EmptyPerson.emptyPerson();
     //============HHS===========>
 
     QuestionsData.qh3[QuestionsData.qh3.keys.first]!

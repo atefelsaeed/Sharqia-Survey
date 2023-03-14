@@ -7,14 +7,20 @@ import '../VechelisData/veh_model.dart';
 
 class EmptyVehicles {
   static emptyVehicles() {
-    VehModel.vecVan = [];
     VehModel.hasVehicles = false;
+
+    VehModel.vecVan = [];
     VehModel.vecWanet = [];
     VehModel.vecCar = [];
     VehModel.pickUp = [];
     VehModel.bicycle = [];
     VehModel.eScooter = [];
     VehModel.largeCar = [];
+    // VehModel.vecBus = [];
+    // VehModel.vecCoaster = [];
+    // VehModel.vecHeavyCargo = [];
+    // VehModel.vecLightCargo = [];
+    // VehModel.vecMinibus = [];
     for (var element in VehiclesData.vecModel) {
       element.textEditingController.text = '';
       element.isChosen = false;

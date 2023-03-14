@@ -6,12 +6,12 @@ mixin SelectTimeData {
     int h = int.parse(time.split(":").first);
     int m = int.parse(time.split(":").last.split(" ").first);
     String meridium = time.split(":").last.split(" ").last.toLowerCase();
-    if (meridium == "pm") {
+    if (meridium == "pm"||meridium == "م") {
       if (h != 12) {
         h = h + 12;
       }
     }
-    if (meridium == "am") {
+    if (meridium == "am"||meridium == "ص") {
       if (h == 12) {
         h = 00;
       }

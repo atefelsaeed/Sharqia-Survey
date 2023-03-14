@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Data/HouseholdPart1/TripsData/trip_data.dart';
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
@@ -42,15 +42,15 @@ class HowDidYouTravel extends StatelessWidget {
                 ((TripModeList.tripModeList[i].travelWay!.mainMode == "أخر") ||
                         (TripModeList.tripModeList[i].travelWay!.mainMode!
                                 .isNotEmpty &&
-                            !(TripData.mainMade[TripData.mainMade.keys.first]!.any(
-                                (element) =>
+                            !(TripData.mainMade[TripData.mainMade.keys.first]!
+                                .any((element) =>
                                     element ==
-                                    TripModeList.tripModeList[i].travelWay!
-                                        .mainMode))))
+                                    TripModeList
+                                        .tripModeList[i].travelWay!.mainMode))))
                     ? MyTextForm(
                         controller: provider.mainModeController,
                         isNumber: false,
-                  onTap: () {  },
+                        onTap: () {},
                         onChanged: (value) {
                           TripModeList.tripModeList[i].travelWay!.mainMode =
                               value;
@@ -93,7 +93,7 @@ class HowDidYouTravel extends StatelessWidget {
                           TripModeList.tripModeList[i].travelWay!.accessMode =
                               value;
                         },
-                  onTap: () {  },
+                        onTap: () {},
                         label: 'الوضع الرئیسي',
                       )
                     : Container(),

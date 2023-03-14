@@ -46,7 +46,7 @@ class PersonData {
 
   static Map<String, dynamic> groupAge = {
     "group Age": [
-      {"value": '< 6', "isChick": false, "type": "2"},
+      {"value": '< 6', "isChick": false, "type": "0"},
       {"value": ' 6 - 11', "isChick": false, "type": "2"},
       {"value": '12 - 15', "isChick": false, "type": "2"},
       {"value": '16 - 18', "isChick": false, "type": "1"},
@@ -86,7 +86,25 @@ class PersonData {
     "subTitle": "mainMade",
     "chosenIndex": 0,
   };
+  static Map<String, dynamic> occupationSectorUnveristy = {
+    "what is the Occupation Sector": [
 
+      'التعليم - الجامعة',
+
+
+    ],
+    "title": "mainMade",
+    "subTitle": "mainMade",
+    "chosenIndex": 0,
+  };
+  static Map<String, dynamic> occupationSectorSchool = {
+    "what is the Occupation Sector": [
+      'تعليم- مدرسة',
+    ],
+    "title": "mainMade",
+    "subTitle": "mainMade",
+    "chosenIndex": 0,
+  };
   static Map<String, dynamic> workplace = {
     "what best describe your workplace location(s)?": [
       'سيارة كسائق',
@@ -192,6 +210,7 @@ class PersonData {
       {
         "value": 'طالب - مدرسة متوسطة',
         "isChick": false,
+
         "type": "student",
       },
       {"value": 'طالب - مدرسة ثانوية', "isChick": false, "type": "student"},
@@ -201,7 +220,7 @@ class PersonData {
         "isChick": false
       },
       {
-        "value": ' الطالب - الكلية: بدوام كامل - يعمل بدوام جزئي',
+        "value": 'الطالب - الكلية: بدوام كامل - يعمل بدوام جزئي',
         "isChick": false,
         "type": "student"
       },
@@ -216,12 +235,12 @@ class PersonData {
         "type": "student"
       },
       {
-        "value": 'طالب - جامعي: دوام كامل - يعمل بدوام جزئي ',
+        "value": 'طالب - جامعي: دوام كامل - يعمل بدوام جزئي',
         "isChick": false,
         "type": "student"
       },
       {
-        "value": 'طالب - جامعي: دوام جزئي - يعمل بدوام جزئي ',
+        "value": 'طالب - جامعي: دوام جزئي - يعمل بدوام جزئي',
         "isChick": false,
         "type": "student"
       },
@@ -251,6 +270,25 @@ class PersonData {
     "title": "MainOccupation",
     "subTitle":
         " A separate family is defined as who share the kitchen expenses and meals",
+    "chosenIndex": 0,
+  };
+  static Map<String, dynamic> mainOccupationUnder5 = {
+    "MainOccupation": [
+         {
+        "value": 'طفل فى الحضانة',
+        "isChick": false,
+        "type": "retired",
+      },
+      {
+        "value": 'طفل ليس فى الحضانة',
+        "isChick": false,
+        "type": "retired",
+      },
+
+    ],
+    "title": "MainOccupation",
+    "subTitle":
+    " A separate family is defined as who share the kitchen expenses and meals",
     "chosenIndex": 0,
   };
 }

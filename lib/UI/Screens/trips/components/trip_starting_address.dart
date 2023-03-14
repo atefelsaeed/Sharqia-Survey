@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Resources/assets_manager.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/components/headline_trip.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
 import '../../../../Providers/survey_hhs.dart';
@@ -65,6 +65,7 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
                   if (TripModeList.tripModeList[widget.index].isHome == true) {
                     startBeginningModel?.tripAddressLong =
                         surveyPt.hhsAddressLong;
+
                     startBeginningModel?.tripAddressLat =
                         surveyPt.hhsAddressLat;
                   } else {

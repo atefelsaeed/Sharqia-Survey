@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:sharqia_household_survey/Data/app_constants.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/editing_controller.dart';
 
 import '../../../../Data/HouseholdPart1/VechelisData/vechelis_data.dart';
@@ -7,6 +8,7 @@ import '../../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
 import '../../../../Helper/validator.dart';
 import '../../../../Models/HHS_SurvyModels/hhs_models.dart';
 import '../../../../Models/HHS_SurvyModels/survey_hhs.dart';
+import '../widgets/editing_controler3.dart';
 import '../widgets/list_view_check_box_orange.dart';
 
 class ActionSurveyProvider extends ChangeNotifier {
@@ -34,7 +36,23 @@ class ActionSurveyProvider extends ChangeNotifier {
   }
 
   resetHHSValues(editingController, context, int id) async {
+    // UserSurveysProvider surveyPt =
+    //     Provider.of<UserSurveysProvider>(context, listen: false);
+    //
+    // final prefs = await SharedPreferences.getInstance();
+    // bool? isFilled = prefs.getBool(AppConstants.isFilled);
+    // if (isFilled != null && isFilled == true) {
+    //   debugPrint('Not Filled Survey');
+    //   await c(editingController, context, id);
+    // } else if (surveyPt.userSurveyStatus == 'edit' &&
+    //     AppConstants.isResetHHS == true) {
+    //   debugPrint('Update Survey');
+    //   await c(editingController, context, id);
+    // } else {
+    //   debugPrint('New Survey');
+    // }
     await c(editingController, context, id);
+    AppConstants.isResetHHS = false;
     notifyListeners();
   }
 
@@ -54,28 +72,28 @@ class ActionSurveyProvider extends ChangeNotifier {
     notifyListeners();
   }
 
- /* q72(ChangeBoxResponse r, TextEditingController yes) {
-    if (r.val == "نعم" && r.check == true) {
-      HhsStatic.householdQuestions.hhsIsDemolishedAreas = true;
-      yes.text = '';
-    } else {
-      HhsStatic.householdQuestions.hhsIsDemolishedAreas = false;
-      yes.text = 'لا';
-    }
-    notifyListeners();
-  }*/
+  // q72(ChangeBoxResponse r, TextEditingController yes) {
+  //   if (r.val == "نعم" && r.check == true) {
+  //     HhsStatic.householdQuestions.hhsIsDemolishedAreas = true;
+  //     yes.text = '';
+  //   } else {
+  //     HhsStatic.householdQuestions.hhsIsDemolishedAreas = false;
+  //     yes.text = 'لا';
+  //   }
+  //   notifyListeners();
+  // }
 
   qh9(String p) {
     HhsStatic.householdQuestions.hhsTotalIncome = p;
   }
-/*
-  qDArea(EditingController editingController, String p) {
-    HhsStatic.householdQuestions.hhsDemolishedAreas = p;
-    editingController.yes.text =
-        HhsStatic.householdQuestions.hhsDemolishedAreas!;
-    notifyListeners();
-  }
-*/
+
+  // qDArea(EditingController editingController, String p) {
+  //   HhsStatic.householdQuestions.hhsDemolishedAreas = p;
+  //   editingController.yes.text =
+  //       HhsStatic.householdQuestions.hhsDemolishedAreas!;
+  //   notifyListeners();
+  // }
+
   Future<Position> determinePosition(context) async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -132,6 +150,57 @@ class ActionSurveyProvider extends ChangeNotifier {
           HhsStatic.householdQuestions.hhsIsDwelling!;
       notifyListeners();
     }
+  }
+
+  ///HHSQ81
+  bool hasBicycle = false;
+
+  hhsQ81(EditingController3 editingController3, bool val) {
+    hasBicycle = val;
+    if (hasBicycle == true) {
+      editingController3.peopleAdults18.text = '0';
+      editingController3.peopleUnder18.text = '0';
+      editingController3.totalNumber.text = '0';
+    } else {
+      editingController3.peopleAdults18.text = '';
+      editingController3.peopleUnder18.text = '';
+      editingController3.totalNumber.text = '';
+    }
+    notifyListeners();
+  }
+
+  ///HHSQ82
+  bool hasBicycleQ82 = false;
+
+  hhsQ82(EditingController3 editingController3, bool val) {
+    hasBicycleQ82 = val;
+    if (hasBicycleQ82 == true) {
+      editingController3.peopleAdults18.text = '0';
+      editingController3.peopleUnder18.text = '0';
+      editingController3.totalNumber.text = '0';
+    } else {
+      editingController3.peopleAdults18.text = '';
+      editingController3.peopleUnder18.text = '';
+      editingController3.totalNumber.text = '';
+    }
+    notifyListeners();
+  }
+
+  ///HHSQ83
+  bool hasBicycleQ83 = false;
+
+  hhsQ83(EditingController3 editingController3, bool val) {
+    hasBicycleQ83 = val;
+    if (hasBicycleQ83 == true) {
+      editingController3.peopleAdults18.text = '0';
+      editingController3.peopleUnder18.text = '0';
+      editingController3.totalNumber.text = '0';
+    } else {
+      editingController3.peopleAdults18.text = '';
+      editingController3.peopleUnder18.text = '';
+      editingController3.totalNumber.text = '';
+    }
+    notifyListeners();
   }
 
   listQ7(List<dynamic> question, index, chosenIndex, value) {

@@ -13,12 +13,12 @@ class NearestTransporter extends StatelessWidget {
     // TODO: implement build
 
     final validationService =
-    Provider.of<ActionSurveyProvider>(context, listen: false);
+        Provider.of<ActionSurveyProvider>(context, listen: false);
     return ListViewCheckBoxOrange(
       map: VehiclesData.q3VecData,
       onChange: (ChangeBoxResponse r) {
         validationService.nearestTransporter(r);
-       // VehModel.nearestPublicTransporter = r.val.toString();
+        // VehModel.nearestPublicTransporter = r.val.toString();
       },
       title: "9.كم تبعد اقرب محطة حافلات نقل عام عن منزلك سيرا على الاقدام ؟",
       question:

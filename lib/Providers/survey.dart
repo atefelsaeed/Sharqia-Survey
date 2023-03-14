@@ -23,7 +23,6 @@ abstract class SurveyProvider with ChangeNotifier {
     _authHeader = authHeader;
   }
 
-
   String get id;
 
   set id(String id);
@@ -90,7 +89,15 @@ abstract class SurveyProvider with ChangeNotifier {
   TextEditingController get hhsNumberBedRooms;
 
   set hhsNumberBedRooms(TextEditingController l);
+/*
+  TextEditingController get hhsNumberHealthTrip;
 
+  set hhsNumberHealthTrip(TextEditingController l);
+
+  TextEditingController get hhsNumberShoppingTrip;
+
+  set hhsNumberShoppingTrip(TextEditingController l);
+*/
   TextEditingController get hhsNumberApartments;
 
   set hhsNumberApartments(TextEditingController l);
@@ -114,14 +121,14 @@ abstract class SurveyProvider with ChangeNotifier {
   String? get hhsNumberYearsInAddress;
 
   set hhsNumberYearsInAddress(String? l);
-/*
-  bool? get hhsIsDemolishedAreas;
 
-  set hhsIsDemolishedAreas(bool? l);
-
-  String? get hhsDemolishedAreas;
-
-  set hhsDemolishedAreas(String? l);*/
+  // bool? get hhsIsDemolishedAreas;
+  //
+  // set hhsIsDemolishedAreas(bool? l);
+  //
+  // String? get hhsDemolishedAreas;
+  //
+  // set hhsDemolishedAreas(String? l);
 
   ///==============hhsPedalCycles(PC)====================
   String get hhsPCTotalBikesNumber;

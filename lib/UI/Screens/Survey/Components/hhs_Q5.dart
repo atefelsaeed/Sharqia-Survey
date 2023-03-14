@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
+import 'package:sharqia_household_survey/UI/Screens/Survey/editing_controller.dart';
 
 import '../../../../Resources/colors.dart';
 import '../../../Widgets/text.dart';
@@ -10,11 +11,12 @@ class HHSQ5 extends StatelessWidget {
   const HHSQ5({
     super.key,
     required this.peopleAdults18,
+    required this.editingController,
     required this.peopleUnder18,
   });
 
   final TextEditingController peopleAdults18;
-
+  final EditingController editingController;
   final TextEditingController peopleUnder18;
 
   @override
@@ -40,7 +42,12 @@ class HHSQ5 extends StatelessWidget {
                 MyTextForm(
                   label: "",
                   controller: peopleUnder18,
-                  onTap: () {  },
+                  onTap: () {},
+                  onChanged: (val) {
+                    // SurveyCondition()
+                    //     .conditionHHSQ5NumUnder18(editingController, context);
+                    // int newVal=int.parse(val!);
+                  },
                   widthForm: width(context) * .1,
                   keyboardType: TextInputType.number,
                   isNumber: true,
@@ -57,10 +64,15 @@ class HHSQ5 extends StatelessWidget {
                 ),
                 AppSize.spaceWidth1(context),
                 MyTextForm(
+                  onChanged: (d) {
+                    print(d);
+                    // SurveyCondition()
+                    //     .conditionHHSQ5NumAdults(editingController, context);
+                  },
                   label: "",
                   controller: peopleAdults18,
                   widthForm: width(context) * .1,
-                  onTap: () {  },
+                  onTap: () {},
                   keyboardType: TextInputType.number,
                   isNumber: true,
                 ),

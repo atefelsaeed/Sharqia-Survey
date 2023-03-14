@@ -20,6 +20,8 @@ class HouseholdQuestions {
   TextEditingController? hhsDwellingTypeOther = TextEditingController();
   TextEditingController? hhsIsDwellingOther = TextEditingController();
   TextEditingController hhsNumberBedRooms = TextEditingController();
+  // TextEditingController hhsNumberShoppingTrip = TextEditingController();
+  // TextEditingController hhsNumberHealthTrip = TextEditingController();
   TextEditingController hhsNumberApartments = TextEditingController();
   TextEditingController hhsNumberFloors = TextEditingController();
   String? hhsNumberSeparateFamilies;
@@ -42,6 +44,8 @@ class HouseholdQuestions {
     this.hhsIsDwelling,
     required this.hhsNumberBedRooms,
     required this.hhsNumberApartments,
+    // required this.hhsNumberHealthTrip,
+    // required this.hhsNumberShoppingTrip,
     required this.hhsNumberFloors,
     this.hhsNumberSeparateFamilies,
     this.hhsTotalIncome,
@@ -107,6 +111,8 @@ class HhsStatic {
     hhsPedalCycles: BikesType("", "", ""),
     hhsDwellingTypeOther: TextEditingController(),
     hhsNumberBedRooms: TextEditingController(),
+    // hhsNumberShoppingTrip: TextEditingController(),
+    // hhsNumberHealthTrip: TextEditingController(),
     hhsNumberApartments: TextEditingController(),
     hhsNumberFloors: TextEditingController(),
     hhsIsDwellingOther: TextEditingController(),

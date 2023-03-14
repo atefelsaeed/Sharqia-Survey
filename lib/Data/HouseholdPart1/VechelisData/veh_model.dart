@@ -20,22 +20,30 @@ class VehModel {
     totalNumber: TextEditingController(),
     peopleAdults18: TextEditingController(),
   );
+
+  ///
   static List<VehicleBodyDetails> vecCar = [];
   static List<VehicleBodyDetails> vecVan = [];
   static List<VehicleBodyDetails> largeCar = [];
   static List<VehicleBodyDetails> eScooter = [];
   static List<VehicleBodyDetails> pickUp = [];
-
   static List<VehicleBodyDetails> bicycle = [];
   static List<VehicleBodyDetails> vecWanet = [];
+
+  // static List<VehicleBodyDetails> vecLightCargo = [];
+  // static List<VehicleBodyDetails> vecHeavyCargo = [];
+  // static List<VehicleBodyDetails> vecMinibus = [];
+  // static List<VehicleBodyDetails> vecBus = [];
+  // static List<VehicleBodyDetails> vecCoaster = [];
+
+  ///
   static String fuelTypeCode = "";
   static String ownerShipCode = "";
   static String parkThisCar = "";
-  static bool parkThisCarFlag=false;
+  static bool parkThisCarFlag = false;
   static String largeItemCar = "";
 
   static String nearestPublicTransporter = "";
-
 }
 
 class VehicleBodyDetailsData {

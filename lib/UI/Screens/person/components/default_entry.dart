@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Data/HouseholdPart1/PersonData/person_data.dart';
 import '../../../../Data/HouseholdPart1/PersonData/person_model_list.dart';
 import '../../../../Resources/colors.dart';
 import '../../../../Resources/sizes.dart';
 import '../../../Widgets/dropdown_form_input.dart';
+import '../../../Widgets/show_dialog_error.dart';
 import '../../../Widgets/text.dart';
 import '../../Survey/widgets/text_form_row.dart';
 import '../reset_person.dart';
@@ -61,7 +62,26 @@ class _DefaultEntryState extends State<DefaultEntry> {
           children: [
             TextForm(
               controller: PersonModelList.personModelList[widget.i].personName,
-              onChanged: (value){},
+              onChanged: (value) {
+                for (int i = 0;
+                    i < PersonModelList.personModelList.length;
+                    i++) {
+                  if (value ==
+                          PersonModelList.personModelList[i].personName.text &&
+                      i != widget.i) {
+                    showError(
+                      context,
+                      ShowErrorDialog(
+                        title: "يجب اختيار اسم اخر",
+                        content: "يجب اختيار اسم اخر",
+                      ),
+                    );
+                    PersonModelList.personModelList[widget.i].personName.text =
+                        "";
+                    return;
+                  }
+                }
+              },
               text: "اسم الشخص",
               label: "اسم الشخص",
             )
@@ -125,7 +145,7 @@ class _DefaultEntryState extends State<DefaultEntry> {
                                       .personalHeadData!.relationshipHeadHHS ==
                                   'أخرى')
                               ? MyTextForm(
-                            onTap: () {  },
+                                  onTap: () {},
                                   controller: PersonModelList
                                       .personModelList[widget.i]
                                       .personalHeadData!
@@ -179,7 +199,7 @@ class _DefaultEntryState extends State<DefaultEntry> {
                                   'أخرى')
                               ? MyTextForm(
                                   label: 'القرابة برب الأسرة ',
-                            onTap: () {  },
+                                  onTap: () {},
                                   onChanged: (val) {
                                     PersonModelList
                                         .personModelList[widget.i]
@@ -199,3 +219,10 @@ class _DefaultEntryState extends State<DefaultEntry> {
     );
   }
 }
+
+void showError(context, Widget widget) => showDialog<void>(
+    barrierDismissible: false,
+    context: context,
+    builder: (BuildContext context) {
+      return widget;
+    });

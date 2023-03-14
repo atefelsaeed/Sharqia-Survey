@@ -18,7 +18,7 @@
 //     return ListViewCheckBoxOrange(
 //       map: QuestionsData.qh7_2,
 //       onChange: (ChangeBoxResponse r) {
-//         validationService.q72(r, controller.yes);
+//         // validationService.q72(r, controller.yes);
 //
 //         /* setState(() {
 //                             if (r.val == "نعم" && r.check == true) {

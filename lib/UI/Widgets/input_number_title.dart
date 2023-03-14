@@ -18,8 +18,8 @@ class InputNumberTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: height(context)*.02),
-      width: width(context)*.25,
+      margin: EdgeInsets.only(bottom: height(context) * .02),
+      width: width(context) * .25,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -33,11 +33,13 @@ class InputNumberTitle extends StatelessWidget {
             label: "",
             controller: controller,
             widthForm: width(context) * .15,
+            onChanged: (value) {
 
+            },
             keyboardType: TextInputType.number,
-            isNumber: true, onTap: () {  },
+            isNumber: true,
+            onTap: () {},
           ),
-
         ],
       ),
     );

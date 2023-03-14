@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/Resources/font_manager.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 enum SystemStatus { Online, Offline }
 

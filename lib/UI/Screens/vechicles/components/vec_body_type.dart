@@ -6,7 +6,6 @@ import '../../../../Resources/colors.dart';
 import '../../../../Resources/sizes.dart';
 import '../../../Widgets/text.dart';
 import 'fuel_type_code.dart';
-import 'large_car_selection.dart';
 import 'park_this_car.dart';
 
 class BodyTypeVehicles extends StatefulWidget {
@@ -83,7 +82,7 @@ class _BodyTypeVehiclesState extends State<BodyTypeVehicles> {
                 textEditingController: widget.vecBodyType.vehicleParking,
               ),
               AppSize.spaceWidth2(context),
-              widget.title == "شاحنة"
+            /*  widget.title == "شاحنة"
                   ?
 
               /*LargeItemCar(
@@ -92,10 +91,9 @@ class _BodyTypeVehiclesState extends State<BodyTypeVehicles> {
               Largexx(
                 textEditingController: widget.vecBodyType.largeItemCar,
               )
-                  : Container()
+                  : Container()*/
             ],
           ),
-          AppSize.spaceHeight1(context),
           AppSize.spaceHeight1(context),
         ],
       ),

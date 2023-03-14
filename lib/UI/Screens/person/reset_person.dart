@@ -1,16 +1,39 @@
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/occupation_model.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/person_model.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/list_view_check_box_orange.dart';
 import 'package:sharqia_household_survey/UI/Screens/person/person_conditions.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Data/HouseholdPart1/PersonData/person_data.dart';
 import '../../../Data/HouseholdPart1/PersonData/person_model_list.dart';
+import '../../../Data/app_constants.dart';
 import '../../../Models/Person_SurveyModel/personal_question.dart';
 import '../../../Providers/user_surveys.dart';
 
 class PersonProvider extends ChangeNotifier {
+  getPersonUpdatedData(context) async {
+    UserSurveysProvider userSurveysProvider =
+        Provider.of<UserSurveysProvider>(context, listen: false);
+
+    final prefs = await SharedPreferences.getInstance();
+    bool? isFilled = prefs.getBool(AppConstants.isFilled);
+
+    if (isFilled != null && isFilled == true) {
+      debugPrint('Not Filled Survey');
+      getAllPeronUpdated(context);
+    } else if ((userSurveysProvider.userSurveyStatus == 'edit' &&
+        AppConstants.isResetPerson == true)) {
+      debugPrint('Edit Survey');
+      getAllPeronUpdated(context);
+      AppConstants.isResetPerson = false;
+    } else {
+      debugPrint('New Survey');
+    }
+    notifyListeners();
+  }
+
   getAllPeronUpdated(BuildContext context) async {
     UserSurveysProvider surveyPt =
         Provider.of<UserSurveysProvider>(context, listen: false);
@@ -18,6 +41,7 @@ class PersonProvider extends ChangeNotifier {
     // await surveyPt.getAllLocalData();
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
+
     PersonModelList.personModelList = [];
     for (int i = 0; i < surveyPt.surveyPT.personData!.length; i++) {
       //for (int ii = 1; ii < QuestionsData.hhsHavePastTrip[QuestionsData.hhsHavePastTrip.keys.first]!.toList().length; ii++) {
@@ -281,8 +305,7 @@ class PersonProvider extends ChangeNotifier {
   }
 
   isEmployeeEdit(String d, int i) {
-    print("Ddddd");
-    print(d);
+
     if (d.isNotEmpty) {
       if (int.parse(d.toString()) > 18) {
         PersonModelList.personModelList[i].occupationModel!.isEmployee = "1";
@@ -296,13 +319,13 @@ class PersonProvider extends ChangeNotifier {
   }
 
   isEmployee(String d, int i) {
-    print("Ddddd");
-    print(d);
     if (d.isNotEmpty) {
       if (int.parse(d.toString()) > 18) {
         PersonModelList.personModelList[i].occupationModel!.isEmployee = "1";
-      } else {
+      } else if (int.parse(d.toString()) > 0 && int.parse(d.toString()) < 5) {
         PersonModelList.personModelList[i].occupationModel!.isEmployee = "0";
+      } else {
+        PersonModelList.personModelList[i].occupationModel!.isEmployee = "2";
       }
     } else {
       PersonModelList.personModelList[i].occupationModel!.isEmployee = "";

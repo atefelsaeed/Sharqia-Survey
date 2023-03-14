@@ -5,14 +5,9 @@ import 'package:sharqia_household_survey/UI/Widgets/input_number_title.dart';
 import '../../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
 import '../../../../Resources/sizes.dart';
 
-class HHSQ10 extends StatefulWidget {
+class HHSQ10 extends StatelessWidget {
   const HHSQ10({Key? key}) : super(key: key);
 
-  @override
-  _HHSQ10State createState() => _HHSQ10State();
-}
-
-class _HHSQ10State extends State<HHSQ10> {
   @override
   Widget build(BuildContext context) {
     return Container(

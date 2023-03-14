@@ -4,10 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
-import 'package:search_map_place_updated/search_map_place_updated.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
+import 'package:provider/provider.dart';
+import 'package:search_map_place_updated/search_map_place_updated.dart';
 
 import '../../Widgets/custom_buttton.dart';
 import '../trips/provider/trip_provider.dart';

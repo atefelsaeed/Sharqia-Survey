@@ -35,13 +35,11 @@ class VehicleBodyDetails {
   TextEditingController vehicleFuelType = TextEditingController();
   TextEditingController vehicleParking = TextEditingController();
   TextEditingController vehicleOwnership = TextEditingController();
-  TextEditingController largeItemCar = TextEditingController();
 
   VehicleBodyDetails({
     required this.vehicleFuelType,
     required this.vehicleParking,
     required this.vehicleOwnership,
-    required this.largeItemCar,
   });
 
   VehicleBodyDetails.fromJson(Map<String, dynamic> json) {

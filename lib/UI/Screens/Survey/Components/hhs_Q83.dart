@@ -3,22 +3,20 @@ import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/field_widget.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text.dart';
+import 'package:provider/provider.dart';
 
+import '../actions/action_survey_screen.dart';
 import '../widgets/editing_controler3.dart';
 
-class Q83 extends StatefulWidget {
+class HHSQ83 extends StatelessWidget {
   EditingController3 editingController3;
 
-  Q83({super.key, required this.editingController3});
+  HHSQ83({super.key, required this.editingController3});
 
-  @override
-  State<Q83> createState() => _Q83State();
-}
-
-class _Q83State extends State<Q83> {
-  bool hasBycle=false;
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ActionSurveyProvider>(context, listen: false);
+
     // TODO: implement build
     return Column(
       children: [
@@ -53,33 +51,22 @@ class _Q83State extends State<Q83> {
               checkColor: ColorManager.whiteColor,
               focusColor: ColorManager.orangeTxtColor,
               activeColor: ColorManager.orangeTxtColor,
-              value: hasBycle,
+              value: provider.hasBicycleQ83,
               onChanged: (bool? value) {
-                setState(() {
-                  hasBycle = value!;
-                  if (hasBycle == true) {
-                    widget.editingController3.peopleAdults18.text = '0';
-                    widget.editingController3.peopleUnder18.text = '0';
-                    widget.editingController3.totalNumber.text = '0';
-                  }else{
-                    widget.editingController3.peopleAdults18.text = '';
-                    widget.editingController3.peopleUnder18.text = '';
-                    widget.editingController3.totalNumber.text = '';
-                  }
-                });
+                provider.hhsQ83(editingController3, value!);
               })
         ]),
         AppSize.spaceHeight2(context),
         Field(
           function: () {},
           showDeleteIcon: false,
-          peopleAdults18: widget.editingController3.peopleAdults18,
-          peopleUnder18: widget.editingController3.peopleUnder18,
+          peopleAdults18: editingController3.peopleAdults18,
+          peopleUnder18: editingController3.peopleUnder18,
           totalNumberOfVecText: "إجمالي عدد الدراجات الإلكترونية(إسكوتر)",
-          totalNumberOfVec: widget.editingController3.totalNumber,
+          totalNumberOfVec: editingController3.totalNumber,
           peopleAdults18Text: "عدد الدرجات للبالغين + 18 ",
           peopleUnder18Text: "عدد الدرجات للأطفال اقل من 18",
-          isHome: hasBycle,
+          isHome: provider.hasBicycleQ83,
         )
       ],
     );

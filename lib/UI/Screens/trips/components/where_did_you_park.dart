@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/provider/trip_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Data/HouseholdPart1/TripsData/trip_data.dart';
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
@@ -43,15 +43,17 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                   ? Text(bas.travelType ?? '')
                   : const Text('إختار'),
               hint: "بماذا ذهبت ؟",
-              options: TripData
-                  .whatTypeOfTravel[TripData.whatTypeOfTravel.keys.first]!
-                  .toList(),
+              options:  TripData
+                      .whatTypeOfTravel[TripData.whatTypeOfTravel.keys.first]!
+                      .toList(),
               onChange: (String? p) {
+
                 setState(() {
                   bas.travelType = p.toString();
                 });
               },
             ),
+
             (bas.travelType == "سيارة") || (bas.travelType == "دراجة نارية")
                 ? DropDownFormInput(
                     label: bas.carParkingPlace != ''
@@ -76,6 +78,7 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                       });
                     })
                 : Container(),
+
             bas.travelType == "تاكسي"
                 ? DropDownFormInput(
                     label: bas.taxiTravelType != ''
@@ -127,7 +130,7 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                       (bas.carParkingPlace == 'موقف سيارات عام - مدفوع'))
                   ? TextForm(
                       controller: widget.costTaxi,
-                onChanged: (value){},
+                      onChanged: (value) {},
                       text: "ما مقدار الأجرة التي دفعتھا؟",
                       label: "ما مقدار الأجرة التي دفعتھا؟",
                       keyboardType: TextInputType.number,
@@ -157,7 +160,7 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                           onChanged: (val) {
                             bas.taxiTravelType = val;
                           },
-                          onTap: () {  },
+                          onTap: () {},
                           keyboardType: TextInputType.text,
                         ),
                       ],
@@ -175,7 +178,7 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                   children: [
                     TextForm(
                       controller: bas.taxiFare,
-                      onChanged: (value){},
+                      onChanged: (value) {},
                       text: "وسائل النقل العام ، ما مقدار الأجرة التي دفعتھا؟",
                       label: "وسائل النقل العام ، ما مقدار الأجرة التي دفعتھا؟",
                       keyboardType: TextInputType.number,
@@ -199,7 +202,7 @@ class _WhereDidYouParkState extends State<WhereDidYouPark> {
                           onChanged: (val) {
                             bas.taxiTravelType = val;
                           },
-                          onTap: () {  },
+                          onTap: () {},
                           keyboardType: TextInputType.text,
                         ),
                       ],

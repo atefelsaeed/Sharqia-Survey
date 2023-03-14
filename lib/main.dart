@@ -6,14 +6,14 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Models/HHS_SurvyModels/survey_hhs.dart';
 import 'package:sharqia_household_survey/Providers/survey_hhs.dart';
 import 'package:sharqia_household_survey/UI/Screens/SplashScreen/splashScreen.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/actions/action_survey_screen.dart';
 import 'package:sharqia_household_survey/UI/Screens/person/reset_person.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/provider/trip_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Data/Enums/hhs_enums.dart';
 import 'Helper/LifecycleEventHandlerClass.dart';
@@ -146,7 +146,7 @@ class _MyAppState extends State<MyApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Jaddah Household Survey',
+        title: 'Sharqia Household Survey',
         navigatorKey: navigatorKey,
         theme: ThemeData(
             primaryColor: ColorManager.primaryColor, fontFamily: 'Somar'),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/list_view_check_box_orange.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../Data/HouseholdPart1/TripsData/trip_data.dart';
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
@@ -43,32 +43,6 @@ class _TravelAloneState extends State<TravelAlone> {
 
             validationService.isTravelAlone(widget.index, r, context);
             debugPrint(TripModeList.tripModeList[widget.index].chosenPerson);
-           /* if (TripModeList
-                .tripModeList[widget.index].chosenPerson.isNotEmpty) {
-              setState(() {
-                if (r.val == "بمفردك") {
-                  TripModeList.tripModeList[widget.index].isTravelAlone = false;
-                } else if (r.val == "مع الأخرين" && r.check == true) {
-                  TripModeList.tripModeList[widget.index].isTravelAlone = true;
-                } else {
-                  TripModeList.tripModeList[widget.index].isTravelAlone = null;
-                }
-              });
-            } else {
-              showError();
-              setState(() {
-                TripModeList
-                        .tripModeList[widget.index]
-                        .travelWithOther[TripModeList.tripModeList[widget.index]
-                            .travelWithOther.keys.first]!
-                        .toList()[
-                    TripModeList.tripModeList[widget.index]
-                        .travelWithOther['index']]["isChick"] = false;
-              });
-
-              debugPrint('no user');
-              return false;
-            }*/
           },
           isListView: true,
           title: "7. هل ذهبت بمفردك أم مع آخرین؟",
@@ -77,18 +51,23 @@ class _TravelAloneState extends State<TravelAlone> {
               .toList(),
           subTitle: "",
         ),
-        // const Divider(),
         AppSize.spaceHeight2(context),
         TripModeList.tripModeList[widget.index].isTravelAlone == true
-            ? AdultsOrNot(
-                adultsModel: TripModeList
-                    .tripModeList[widget.index].travelWithOtherModel!)
-            : Container(),
-        AppSize.spaceHeight2(context),
-        TripModeList.tripModeList[widget.index].isTravelAlone == true
-            ? AdultsOrNot(
-                adultsModel: TripModeList
-                    .tripModeList[widget.index].travelAloneHouseHold!)
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text('إذا كان مع الآخرین كم أعمارھم؟'),
+                  AdultsOrNot(
+                      adultsModel: TripModeList
+                          .tripModeList[widget.index].travelWithOtherModel!),
+                  AppSize.spaceHeight2(context),
+                  const Text('لأشخاص من غیر أفراد الأسرة؟'),
+                  AdultsOrNot(
+                      adultsModel: TripModeList
+                          .tripModeList[widget.index].travelAloneHouseHold!),
+                  AppSize.spaceHeight2(context),
+                ],
+              )
             : Container(),
         AppSize.spaceHeight2(context),
         TripModeList.tripModeList[widget.index].isTravelAlone == true

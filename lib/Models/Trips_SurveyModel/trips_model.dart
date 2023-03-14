@@ -20,6 +20,7 @@ class TripsModel {
       TextEditingController();
   TextEditingController taxiTravelTypeEditingControl = TextEditingController();
   List<String> person = [];
+  List<String> mainPerson = [];
   List<dynamic> chosenFriendPerson = [];
   String chosenPerson = "";
   Map friendPerson = {
@@ -63,7 +64,7 @@ class TripsModel {
   };
   Map<String, dynamic> purposeOfBeingThere2 = {
     "TripReason": [
-      {"value": ' في المنزل', "isChick": false},
+      {"value": 'في المنزل', "isChick": false},
       {"value": 'فى بيت العطلات / الفندق', "isChick": false},
       {"value": 'العمل - فى مكتب / مقر العمل', "isChick": false},
       {"value": 'العمل - خارج مكتب / مقر العمل', "isChick": false},
@@ -112,6 +113,7 @@ class TripsModel {
 
   TripsModel({
     required this.person,
+    required this.mainPerson,
     required this.isHome,
     required this.isHomeEnding,
     required this.chosenFriendPerson,

@@ -47,24 +47,7 @@ class ParkThisCar extends StatelessWidget {
                     text: "رموز نوع وقوف السيارات",
                     label: "رموز نوع وقوف السيارات",
                   )
-                  // Column(
-                  //     children: [
-                  //       SizedBox(
-                  //           width: width(context) * .45,
-                  //           child: TextGlobal(
-                  //             text: "رموز نوع وقوف السيارات",
-                  //             fontSize: height(context) * .02,
-                  //             color: ColorManager.black,
-                  //           )),
-                  //       AppSize.spaceHeight1(context),
-                  //       MyTextForm(
-                  //         controller: textEditingController,
-                  //         label: "رموز نوع وقوف السيارات",
-                  //         onChanged: (val) {
-                  //           textEditingController.text = val!;
-                  //         },
-                  //       ),
-                  //     ])
+
                 ],
               )
             : Container(),

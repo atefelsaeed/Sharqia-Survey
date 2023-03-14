@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:sharqia_household_survey/UI/Screens/Home/homeScreen.dart';
 
 import '../../../Resources/assets_manager.dart';
 import '../../../Resources/colors.dart';
 import '../../../Resources/sizes.dart';
+import '../Home/home_screen.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({Key? key}) : super(key: key);

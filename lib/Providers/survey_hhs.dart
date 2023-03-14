@@ -4,7 +4,6 @@ import 'package:sharqia_household_survey/Models/Vehicles_SurveyModel/vehicles_bo
 import 'package:sharqia_household_survey/Models/Vehicles_SurveyModel/vehicles_model.dart';
 
 import '../Data/Enums/hhs_enums.dart';
-import '../Helper/locale_database/operations/survey_pt_operations.dart';
 import '../Models/HHS_SurvyModels/hhs_models.dart';
 import '../Models/HHS_SurvyModels/survey_hhs.dart';
 import '../Models/Person_SurveyModel/person_model.dart';
@@ -41,13 +40,14 @@ class SurveyPTProvider extends SurveyProvider {
 
   Future getAllLocalData() async {
     try {
-      surveyAllData = await SurveyPtOperations().getSurveyPtAllItems();
+      // surveyAllData = await SurveyPtOperations().getSurveyPtAllItems();
       print(surveyAllData!.length);
       notifyListeners();
     } catch (ex) {
       rethrow;
     }
   }
+
   LatLng? startingAddressLatLng;
   LatLng? endingAddressLatLng;
 
@@ -185,7 +185,25 @@ class SurveyPTProvider extends SurveyProvider {
     _data.householdQuestions.hhsNumberBedRooms = i;
     // notifyListeners();
   }
+ /* @override
+  TextEditingController get hhsNumberHealthTrip =>
+      _data.householdQuestions.hhsNumberHealthTrip;
 
+  @override
+  set hhsNumberHealthTrip(TextEditingController i) {
+    _data.householdQuestions.hhsNumberHealthTrip = i;
+    // notifyListeners();
+  }
+  @override
+  TextEditingController get hhsNumberShoppingTrip =>
+      _data.householdQuestions.hhsNumberShoppingTrip;
+
+  @override
+  set hhsNumberShoppingTrip(TextEditingController i) {
+    _data.householdQuestions.hhsNumberShoppingTrip = i;
+    // notifyListeners();
+  }
+*/
   @override
   TextEditingController get hhsNumberApartments =>
       _data.householdQuestions.hhsNumberApartments;
@@ -235,24 +253,24 @@ class SurveyPTProvider extends SurveyProvider {
     // notifyListeners();
   }
 
-/*  @override
-  bool? get hhsIsDemolishedAreas =>
-      _data.householdQuestions.hhsIsDemolishedAreas;
+  // @override
+  // bool? get hhsIsDemolishedAreas =>
+  //     _data.householdQuestions.hhsIsDemolishedAreas;
+  //
+  // @override
+  // set hhsIsDemolishedAreas(bool? i) {
+  //   _data.householdQuestions.hhsIsDemolishedAreas = i;
+  //   // notifyListeners();
+  // }
 
-  @override
-  set hhsIsDemolishedAreas(bool? i) {
-    _data.householdQuestions.hhsIsDemolishedAreas = i;
-    // notifyListeners();
-  }
-
-  @override
-  String? get hhsDemolishedAreas => _data.householdQuestions.hhsDemolishedAreas;
-
-  @override
-  set hhsDemolishedAreas(String? i) {
-    _data.householdQuestions.hhsDemolishedAreas = i;
-    // notifyListeners();
-  }*/
+  // @override
+  // String? get hhsDemolishedAreas => _data.householdQuestions.hhsDemolishedAreas;
+  //
+  // @override
+  // set hhsDemolishedAreas(String? i) {
+  //   _data.householdQuestions.hhsDemolishedAreas = i;
+  //   // notifyListeners();
+  // }
 
   ///==============hhsPedalCycles(PC)====================
   @override

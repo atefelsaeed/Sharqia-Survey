@@ -2,18 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Models/Trips_SurveyModel/travel_type_model.dart';
 import 'package:sharqia_household_survey/Models/Trips_SurveyModel/trips_model.dart';
 import 'package:sharqia_household_survey/Providers/user_surveys.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/list_view_check_box_orange.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../Data/HouseholdPart1/PersonData/person_model_list.dart';
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
+import '../../../../Data/app_constants.dart';
 import '../../../Widgets/show_dialog_error.dart';
 
 class TripProvider extends ChangeNotifier {
   List<String> personTrip = [];
+
+  getTripsDataUpdated(context) async {
+    UserSurveysProvider userSurveysProvider =
+        Provider.of<UserSurveysProvider>(context, listen: false);
+
+    final prefs = await SharedPreferences.getInstance();
+    bool? isFilled = prefs.getBool(AppConstants.isFilled);
+
+    if (isFilled != null && isFilled == true) {
+      debugPrint('Not Filled Survey');
+    } else if ((userSurveysProvider.userSurveyStatus == 'edit' &&
+        AppConstants.isResetTrip == true)) {
+      getAllTripUpdated(context);
+      AppConstants.isResetTrip = false;
+      debugPrint('Edit Survey');
+    } else {
+      debugPrint('New Survey');
+    }
+  }
 
   ///
   getAllTripUpdated(BuildContext context) async {
@@ -31,8 +52,6 @@ class TripProvider extends ChangeNotifier {
         ],
         "index": 0
       };
-      print("12344444");
-      print(surveyPt.surveyPT.tripsList![i].isTravelAlone);
 
       Map<String, dynamic> purposeOfBeingThere2 = {
         "TripReason": [
@@ -47,9 +66,7 @@ class TripProvider extends ChangeNotifier {
           {"value": 'زیارة الأصدقاء / الأقارب', "isChick": false},
           {"value": 'ترفيه / وقت الفراغ', "isChick": false},
           {"value": 'توصيل الى المدرسة / التعليم', "isChick": false},
-          // {"value": 'توص الى المدرسة / التعليم', "isChick": false},
           {"value": 'توصيل الى مكان آخر', "isChick": false},
-          // {"value": 'توص الى مكان آخر', "isChick": false},
           {"value": 'آخرى', "isChick": false},
         ],
         "title": "?What was the purpose of being there",
@@ -71,8 +88,6 @@ class TripProvider extends ChangeNotifier {
           {"value": 'ترفيه / وقت الفراغ', "isChick": false},
           {"value": 'توصيل الى المدرسة / التعليم', "isChick": false},
           {"value": 'توصيل الى مكان آخر', "isChick": false},
-          // {"value": 'توص الى المدرسة / التعليم', "isChick": false},
-          // {"value": 'توص الى مكان آخر', "isChick": false},
           {"value": 'آخرى', "isChick": false},
         ],
         "title": "?What was the purpose of being there",
@@ -115,15 +130,16 @@ class TripProvider extends ChangeNotifier {
               ["isChick"] = false;
         }
       }
+
       print('chossen');
       surveyPt.surveyPT.tripsList![i].chosenPerson;
       var chosenPerson = surveyPt.surveyPT.tripsList![i].chosenPerson;
       var reason = surveyPt.surveyPT.tripsList![i].tripReason!
           .replaceAll('توص', 'توصيل');
-      print('chossen person');
-      print(list);
+
       TripModeList.tripModeList.add(TripsModel(
           person: list,
+          mainPerson: mainPersonList,
           isHome: surveyPt.surveyPT.tripsList![i].isHome,
           isHomeEnding: surveyPt.surveyPT.tripsList![i].isHomeEnding,
           chosenFriendPerson:
@@ -197,7 +213,7 @@ class TripProvider extends ChangeNotifier {
           purposeOfBeingThere2: purposeOfBeingThere2,
           departureTime: surveyPt.surveyPT.tripsList![i].departureTime));
 
-      TripModeList.tripModeList[0].person.clear();
+      // TripModeList.tripModeList[0].person.clear();
 
       /* for (int i = 0; i < PersonModelList.personModelList.length; i++) {
         TripModeList.tripModeList[0].person
@@ -228,7 +244,7 @@ class TripProvider extends ChangeNotifier {
       }
     }
 
-    // notifyListeners();
+    notifyListeners();
   }
 
   removeTrip(int i) {
@@ -237,40 +253,85 @@ class TripProvider extends ChangeNotifier {
   }
 
   List<String> list = [];
+  List<String> mainPersonList = [];
 
   initTrip() {
     TripModeList.tripModeList[0].person.clear();
+    TripModeList.tripModeList[0].mainPerson.clear();
+
     list.clear();
-    print("2222222rrrr222222");
+    mainPersonList.clear();
 
     var personlist = PersonModelList.personModelList.length;
-    print(personlist);
-    print(PersonModelList.personModelList);
+
     for (int i = 0; i < personlist; i++) {
-      print('person');
-      print(PersonModelList.personModelList[i].personName.text);
-      TripModeList.tripModeList[0].person
-          .add(PersonModelList.personModelList[i].personName.text);
+      if (PersonModelList.personModelList[i].personalHeadData!.hasPasTrip ==
+          false) {
+        if (PersonModelList
+                .personModelList[i].personalHeadData?.refuseToTellAge ==
+            false) {
+          int age = int.parse(
+              PersonModelList.personModelList[i].personalHeadData!.age.text);
+          if (age >= 5) {
+            TripModeList.tripModeList[0].person
+                .add(PersonModelList.personModelList[i].personName.text);
+            mainPersonList
+                .add(PersonModelList.personModelList[i].personName.text);
+            // TripModeList.tripModeList[0].mainPerson
+            //     .add(PersonModelList.personModelList[i].personName.text);
+            // notifyListeners();
+          } else if ((age <= 5)) {
+            // TripModeList.tripModeList[0].person
+            //     .add(PersonModelList.personModelList[i].personName.text);
+            // TripModeList.tripModeList[0].mainPerson
+            //     .add(PersonModelList.personModelList[i].personName.text);
+            mainPersonList
+                .add(PersonModelList.personModelList[i].personName.text);
+            // notifyListeners();
+          }
+        } else if (PersonModelList
+                .personModelList[i].personalHeadData!.age.text !=
+            '< 6') {
+          TripModeList.tripModeList[0].person
+              .add(PersonModelList.personModelList[i].personName.text);
+          mainPersonList
+              .add(PersonModelList.personModelList[i].personName.text);
+          // TripModeList.tripModeList[0].mainPerson
+          //     .add(PersonModelList.personModelList[i].personName.text);
+          // notifyListeners();
+        }
+      }
     }
+
     list = TripModeList.tripModeList[0].person;
-    print(TripModeList.tripModeList[0].person);
-    // notifyListeners();
+
+    print('list');
+    print(list.toString());
+    print('list2');
+    print(mainPersonList.toString());
+
+    notifyListeners();
   }
 
   ///
   addOwnerTrip(int i, String p) {
+    List xc = TripModeList.tripModeList[i].friendPerson["friendPerson"] ?? [];
     TripModeList.tripModeList[i].friendPerson["friendPerson"] = [];
-    for (int x = 0; x < TripModeList.tripModeList[i].person.length; x++) {
-      if (TripModeList.tripModeList[i].person[x].toString() != p) {
-        TripModeList.tripModeList[i].friendPerson["friendPerson"].add({
-          "value": TripModeList.tripModeList[i].person[x],
-          "isChick": false
-        });
+
+    for (int x = 0; x < mainPersonList.length; x++) {
+      if (mainPersonList[x].toString() != p) {
+        for (int f = 0; f < xc.length; f++) {
+          if (xc[f] == mainPersonList[x]) {
+            TripModeList.tripModeList[i].friendPerson["friendPerson"]
+                .add({"value": mainPersonList[x], "isChick": true});
+          } else {
+            TripModeList.tripModeList[i].friendPerson["friendPerson"]
+                .add({"value": mainPersonList[x], "isChick": false});
+          }
+        }
       }
     }
-
     TripModeList.tripModeList[i].chosenPerson = p;
-
     notifyListeners();
   }
 
@@ -324,6 +385,15 @@ class TripProvider extends ChangeNotifier {
         for (int x = 0;
             x < TripModeList.tripModeList[index].person.length;
             x++) {
+          // debugPrint('mainPerson');
+          // debugPrint(
+          //     TripModeList.tripModeList[index].mainPerson.length.toString());
+          // debugPrint(TripModeList.tripModeList[index].mainPerson[x].toString());
+          // debugPrint('person');
+          // debugPrint(TripModeList.tripModeList[index].person.length.toString());
+          //
+          // debugPrint(TripModeList.tripModeList[index].person[x].toString());
+
           if (TripModeList.tripModeList[index].person[x].toString() !=
               TripModeList.tripModeList[index].chosenPerson) {
             TripModeList.tripModeList[index].friendPerson["friendPerson"].add({
@@ -374,8 +444,11 @@ class TripProvider extends ChangeNotifier {
       mainModeController.text =
           TripModeList.tripModeList[index].travelWay!.mainMode!;
     }
+    // TripConditions().setIsCarDriver(index);
     notifyListeners();
   }
+
+  bool checkIsCarDriver = false;
 
   ///Set-AccessMode
   TextEditingController acModeController = TextEditingController();
@@ -391,6 +464,8 @@ class TripProvider extends ChangeNotifier {
       acModeController.text =
           TripModeList.tripModeList[index].travelWay!.accessMode!;
     }
+    // TripConditions().setIsCarDriver(index);
+
     notifyListeners();
   }
 

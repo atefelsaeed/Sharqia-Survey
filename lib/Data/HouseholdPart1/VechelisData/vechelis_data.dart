@@ -3,40 +3,65 @@ import 'package:flutter/cupertino.dart';
 class VehiclesData {
   static List<VecModel> vecModel = [
     VecModel(
-        title: "سيارة صغيرة",//0
+        title: "سيارة صغيرة", //0
         isChosen: false,
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
         title: "سيارة كبيرة",
-        isChosen: false,//1
+        isChosen: false, //1
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
         title: "ونيت",
-        isChosen: false,//2
+        isChosen: false, //2
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
-        title: "شاحنة",//3
+        title: "شاحنة", //3
         isChosen: false,
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
         title: "دراجة نارية",
-        isChosen: false,//4
+        isChosen: false, //4
         number: 0,
         textEditingController: TextEditingController()),
     VecModel(
         title: "دراجة هوائية",
         isChosen: false,
-        number: 0,//5
+        number: 0, //5
         textEditingController: TextEditingController()),
     VecModel(
         title: " اسكوتر",
         isChosen: false,
-        number: 0,//6
+        number: 0, //6
         textEditingController: TextEditingController()),
+   /* VecModel(
+        title: "عربية بضائع خفيفة",
+        isChosen: false,
+        number: 0, //7
+        textEditingController: TextEditingController()),
+    VecModel(
+        title: "عربية بضائع ثقيلة",
+        isChosen: false,
+        number: 0, //8
+        textEditingController: TextEditingController()),
+    VecModel(
+        title: "مينى باص",
+        isChosen: false,
+        number: 0, //9
+        textEditingController: TextEditingController()),
+    VecModel(
+        title: "كوستر",
+        isChosen: false,
+        number: 0, //10
+        textEditingController: TextEditingController()),
+    VecModel(
+        title: "اوتوبيس",
+        isChosen: false,
+        number: 0, //11
+        textEditingController: TextEditingController()),*/
   ];
 
   static Map<String, List<dynamic>> fuelTypeCodes = {
@@ -61,27 +86,7 @@ class VehiclesData {
       'أخر',
     ]
   };
-  static Map<String, List<dynamic>> largeCar = {
-    "LargeCar": [
-      'عربية بضائع خفيفة',
-      'عربية بضائع ثقيلة',
-      'مينى باص',
-      'كوستر',
-      'اوتوبيس',
-      'أخرى',
-    ]
-  };
   static Map<String, List<dynamic>> parkThisCar = {
-    /*"Ownership codes- V3-O": [
-      'المرأب الشخصى (المنزل)',
-      'على جانب الطريق خالية',
-      'على جانب الطريق مشحونة',
-      'خارج الطريق / شاعرة',
-      'الطرق الوعرة خالية',
-      'خارج الطريق مشحونة',
-      'فى الموقع سكنى مجانى',
-      'على الموقع الدقة المشحونة'
-    ]*/
     "Ownership codes- V3-O": [
       'كراج (داخل المنزل)',
       'الشارع - مجانى',
@@ -105,7 +110,7 @@ class VehiclesData {
       {"value": 'لا اعرف', "isChick": false},
       {"value": 'لا يوجد محطة', "isChick": false},
     ],
-    "index":0
+    "index": 0
   };
 }
 

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/validate_data/vehicles_validation.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/vechicles/components/vechiels_header.dart';
 import 'package:sharqia_household_survey/UI/Screens/vechicles/provider/vechiels_provider.dart';
 import 'package:sharqia_household_survey/UI/Widgets/custom_buttton.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
 import '../../../Data/HouseholdPart1/save_data.dart';
+import '../../../Data/app_constants.dart';
 import '../../../Models/HHS_SurvyModels/hhs_models.dart';
 import '../../../Providers/user_surveys.dart';
 import '../../../Resources/colors.dart';
@@ -28,12 +29,20 @@ class _VehiclesScreenState extends State<VehiclesScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    // final validationService = Provider.of<VecProvider>(context, listen: false);
+    //
+    // validationService.resetVechValues(context);
+
+    // if ((userSurveysProvider.userSurveyStatus == 'edit' &&
+    //     AppConstants.isResetVec == true)) {
+    // }
     final validationService = Provider.of<VecProvider>(context, listen: false);
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
-    // if ((userSurveysProvider.userSurveyStatus == 'edit') ) {
-    //   validationService.resetVechValues(context);
-    // }
+    if ((userSurveysProvider.userSurveyStatus == 'edit' &&
+        AppConstants.isResetVec == true)) {
+      validationService.resetVechValues(context);
+    }
   }
 
   @override

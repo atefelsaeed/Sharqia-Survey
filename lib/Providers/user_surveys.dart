@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Models/HHS_SurvyModels/survey_hhs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Helper/api_helper.dart';
 import '../Helper/api_routing.dart';
@@ -28,7 +29,7 @@ class UserSurveysProvider with ChangeNotifier {
     }
     final Response res;
     try {
-      // log("Body Data", error: json.encode(list));
+      log("Body Data", error: json.encode(list));
       res = await APIHelper.postData(
         url: "multi",
         body: json.encode(list),
@@ -39,7 +40,7 @@ class UserSurveysProvider with ChangeNotifier {
       }
       iSSyncing = false;
       notifyListeners();
-      // log("res", error: res.body);
+      log("res", error: res.body);
     } catch (e) {
       iSSyncing = false;
       notifyListeners();
@@ -141,6 +142,7 @@ class UserSurveysProvider with ChangeNotifier {
   }
 
   bool loading = false;
+
   int index = 0;
 
   //============Fetch-All-User-Surveys-on-Search-Screen===============
@@ -219,31 +221,45 @@ class UserSurveysProvider with ChangeNotifier {
     }
   }
 
+  Future<bool> getNotFilledSurvey() async {
+    _surveyPT = await SurveyPtOperations().getSurveyPtAllItems();
+    log(_surveyPT.toJson().toString());
+
+    debugPrint('set value');
+    return true;
+  }
+
   //============Get-Survey-By-ID================================
   Future<bool> getSurveyByID(int id) async {
-
-      loading = true;
-      Response response = await APIHelper.getData(
-        url: "${APIRouting.getSingleSurvay}$id",
-      );
-      debugPrint(response.body.toString());
-      if (response.statusCode == 200) {
-        Map<String, dynamic> data = json.decode(response.body);
-        debugPrint("Success");
-        _surveyPT = SurveyPT.fromJsonAPI(data);
-        print("_surveyPT.hhsSeparateFamilies!.length");
-        print(_surveyPT.hhsSeparateFamilies!.length);
-        debugPrint("Success");
-        loading = false;
-        notifyListeners();
-        return true;
-      } else {
-        debugPrint('error');
-      }
+    loading = true;
+    Response response = await APIHelper.getData(
+      url: "${APIRouting.getSingleSurvay}$id",
+    );
+    debugPrint(response.body.toString());
+    if (response.statusCode == 200) {
+      Map<String, dynamic> data = json.decode(response.body);
+      debugPrint("Success");
+      _surveyPT = SurveyPT.fromJsonAPI(data);
+      print("_surveyPT.hhsSeparateFamilies!.length");
+      print(_surveyPT.hhsSeparateFamilies!.length);
+      debugPrint("Success");
       loading = false;
       notifyListeners();
-      return false;
+      return true;
+    } else {
+      debugPrint('error');
+    }
+    loading = false;
+    notifyListeners();
+    return false;
+  }
 
+  saveUpdateUser(UserSurveysModelData userSurveysModelData) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(
+      "UserSurveysModelData",
+      json.encode(userSurveysModelData),
+    );
   }
 
   //============Update-Survey===================================
@@ -268,6 +284,24 @@ class UserSurveysProvider with ChangeNotifier {
       loading = false;
       notifyListeners();
       return Future.error("couldn't reach server");
+    }
+  }
+
+  saveUpdateOffline() async {
+    final prefs = await SharedPreferences.getInstance();
+
+    prefs.getString("UserSurveysModelData");
+    String? data = prefs.getString("UserSurveysModelData");
+
+    Map<String, dynamic> valueMap = json.decode(data!);
+    UserSurveysModelData userSurveysModelData =
+        UserSurveysModelData.fromJson(valueMap);
+    for (var element in userSurveys) {
+      if (element.id == userSurveysModelData.id) {
+        // userSurvey.userSurveys[userSurvey.index].status = 'filled';
+        element.status = 'filled';
+      }
+      await HHSUserSurveysOperations().addItemToDatabase(element);
     }
   }
 }

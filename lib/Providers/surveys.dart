@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Models/survey.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Data/Enums/hhs_enums.dart';
 import '../Helper/locale_database/operations/survey_pt_operations.dart';
@@ -68,6 +68,31 @@ class SurveysProvider with ChangeNotifier {
       _surveys.add(s);
       await SurveyPtOperations().addItemToSurveyPtOfflineDatabase(s);
       // await save();
+      notifyListeners();
+      return true;
+    } catch (er) {
+      debugPrint(er.toString());
+      rethrow;
+    }
+  }
+
+  Future<bool> addNotFilledSurvey(Survey s) async {
+    try {
+      // _surveys.removeWhere((e) => e.id == s.id);
+      // _surveys.add(s);
+      await SurveyPtOperations().addItemToSurveyPtDatabase(s);
+      // await save();
+      notifyListeners();
+      return true;
+    } catch (er) {
+      debugPrint(er.toString());
+      rethrow;
+    }
+  }
+
+  Future<bool> updateNotFilledSurvey(Survey s) async {
+    try {
+      await SurveyPtOperations().update(s);
       notifyListeners();
       return true;
     } catch (er) {
