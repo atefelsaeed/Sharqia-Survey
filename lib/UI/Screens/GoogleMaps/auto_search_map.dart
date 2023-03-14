@@ -13,7 +13,7 @@ import '../../Widgets/custom_buttton.dart';
 import '../trips/provider/trip_provider.dart';
 
 class Constants {
-  static LatLng location = const LatLng(21.492500, 39.177570);
+  static LatLng location = const LatLng(26.396790, 50.140400);//26.396790, 50.140400
   LatLng? location2;
 
   static double defaultZoom = 19.151926040649414;
