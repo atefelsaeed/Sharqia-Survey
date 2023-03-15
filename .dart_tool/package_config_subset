@@ -50,6 +50,10 @@ connectivity_plus_windows
 2.12
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus_windows-1.2.2/
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/connectivity_plus_windows-1.2.2/lib/
+crypto
+2.14
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.2/
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.2/lib/
 cupertino_icons
 2.12
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.5/
@@ -298,6 +302,14 @@ search_map_place_updated
 2.12
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/search_map_place_updated-0.0.4/
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/search_map_place_updated-0.0.4/lib/
+sentry
+2.17
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/sentry-7.0.0/
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/sentry-7.0.0/lib/
+sentry_flutter
+2.17
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/sentry_flutter-7.0.0/
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/sentry_flutter-7.0.0/lib/
 shared_preferences
 2.14
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/shared_preferences-2.0.18/
@@ -402,6 +414,10 @@ url_launcher_windows
 2.12
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-3.0.4/
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-3.0.4/lib/
+uuid
+2.12
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/uuid-3.0.7/
+file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/uuid-3.0.7/lib/
 vector_math
 2.14
 file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/vector_math-2.1.2/

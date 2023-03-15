@@ -6,6 +6,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:sharqia_household_survey/Models/HHS_SurvyModels/survey_hhs.dart';
 import 'package:sharqia_household_survey/Providers/survey_hhs.dart';
 import 'package:sharqia_household_survey/UI/Screens/SplashScreen/splashScreen.dart';
@@ -77,7 +78,7 @@ Future<bool> syncall() async {
   return true;
 }
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   debugPrint("something");
 
@@ -91,7 +92,19 @@ void main() {
   debugPrint("second thing");
 
   Intl.defaultLocale = 'ar_EG';
-  runApp(const MyApp());
+
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://c333eada722f449eadcf891288f881c6@o4504843865030656.ingest.sentry.io/4504843868700672';
+      // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+      // We recommend adjusting this value in production.
+      options.tracesSampleRate = 1.0;
+    },
+
+    appRunner: () => runApp(const MyApp()),
+  );
+
 }
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey();

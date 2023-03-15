@@ -138,10 +138,10 @@ class DropDownFormInput<T> extends StatelessWidget {
               width: width(context) * .45 - 10,
               child: Row(
                 children: [
-                  const ItemPoint(),
+                  // const ItemPoint(),
                   TextGlobal(
                     text: hint.toString(),
-                    fontSize: width(context) * .04,
+                    fontSize: width(context) * .03,
                     color: ColorManager.black,
                     fontWeight: FontWeight.w800,
                   ),

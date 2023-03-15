@@ -21,7 +21,7 @@ class HeadlinePerson extends StatelessWidget {
           flex: 1,
           child: TextGlobal(
             text: text,
-            fontSize: width(context) * .045,
+            fontSize: width(context) * .025,
             fontWeight: FontWeight.w600,
             color: ColorManager.orangeTxtColor,
           ),
