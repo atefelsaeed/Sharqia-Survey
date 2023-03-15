@@ -20,6 +20,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../Models/user_serveys_model.dart';
 import '../../../Providers/user_surveys.dart';
 import '../../Widgets/exit_screen.dart';
+import '../../Widgets/item_text_span.dart';
 import '../vechicles/components/nearest_transporter.dart';
 import 'Components/hhs_Q5.dart';
 import 'Components/hhs_Q81.dart';
@@ -152,7 +153,11 @@ class _SurveyScreenState extends State<SurveyScreen> {
                                     AppSize.spaceHeight3(context),
                                     const HouseHoldMember(),
                                     // ====Question 1====
+                                    const MyDivider(),
+
                                     const HHSQ1(),
+                                    const MyDivider(),
+
                                     // ====Question 2====
                                     const HHSQ2(),
                                     // ====Question 3====
@@ -198,6 +203,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
                                         editingController3: editingController
                                             .editingController3Q83),
                                     AppSize.spaceHeight2(context),
+                                    const MyDivider(),
+
                                     const QH9(),
                                     AppSize.spaceHeight3(context),
                                     //========HHSQ9=================

@@ -46,8 +46,9 @@ class MyDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Divider(
+    return  Divider(
       thickness: 2,
+      height: height(context)*.06,
     );
   }
 }

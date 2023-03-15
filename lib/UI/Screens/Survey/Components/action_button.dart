@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/editing_controller.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/UI/Screens/person/components/default_entry.dart';
+import 'package:sharqia_household_survey/UI/Widgets/show_dialog_error.dart';
 
 import '../../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
 import '../../../../Data/HouseholdPart1/validate_data/hhs_validation.dart';
@@ -151,6 +153,16 @@ class ActionButton extends StatelessWidget {
               .conditionHHSQ5NumAdults(editingController, context)) {
           } else if (!SurveyCondition().validateHHSQ81(context)) {
           } else if (!SurveyCondition().validateHHSQ82(context)) {
+          } else if (HhsStatic.householdQuestions.hhsNumberSeparateFamilies !=
+              editingController.q6peopleUnder18.length.toString()) {
+            var num=HhsStatic.householdQuestions.hhsNumberSeparateFamilies;
+            showError(
+              context,
+              ShowErrorDialog(
+                title: "سؤال 4 !! يجب إضافة باقى الاسر المنفصلة",
+                content: "سؤال 4 .يجب إضافة كافة الاسر المنفصلة المختارة فى سؤال رقم 3 .\n عدد الاسر المنفصلة هو $num",
+              ),
+            );
           } else if (!SurveyCondition().validateHHSQ83(context)) {
           } else if (!SurveyCondition().numberParcelsDeliveries(context)) {
           } else {
