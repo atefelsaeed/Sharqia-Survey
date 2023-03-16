@@ -129,10 +129,10 @@ class ActionButton extends StatelessWidget {
               editingController.editingController3Q83.peopleAdults18.text;
 
           ///HHS_QH11
-          // surveyPt.hhsNumberShoppingTrip.text =
-          //     HhsStatic.householdQuestions.hhsNumberShoppingTrip.text;
-          // surveyPt.hhsNumberHealthTrip.text =
-          //     HhsStatic.householdQuestions.hhsNumberHealthTrip.text;
+          surveyPt.hhsNumberShoppingTrip.text =
+              HhsStatic.householdQuestions.hhsNumberShoppingTrip.text;
+          surveyPt.hhsNumberHealthTrip.text =
+              HhsStatic.householdQuestions.hhsNumberHealthTrip.text;
 
           ///
           // surveyPt.hhsDemolishedAreas = editingController.yes.text;

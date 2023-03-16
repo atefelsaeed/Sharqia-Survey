@@ -89,7 +89,7 @@ abstract class SurveyProvider with ChangeNotifier {
   TextEditingController get hhsNumberBedRooms;
 
   set hhsNumberBedRooms(TextEditingController l);
-/*
+
   TextEditingController get hhsNumberHealthTrip;
 
   set hhsNumberHealthTrip(TextEditingController l);
@@ -97,7 +97,7 @@ abstract class SurveyProvider with ChangeNotifier {
   TextEditingController get hhsNumberShoppingTrip;
 
   set hhsNumberShoppingTrip(TextEditingController l);
-*/
+
   TextEditingController get hhsNumberApartments;
 
   set hhsNumberApartments(TextEditingController l);

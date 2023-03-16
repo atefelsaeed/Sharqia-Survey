@@ -19,8 +19,8 @@ class SurveyPT extends Survey {
     hhsElectricCycles: BikesType("", "", ""),
     hhsElectricScooter: BikesType("", "", ""),
     hhsNumberBedRooms: TextEditingController(),
-    // hhsNumberHealthTrip: TextEditingController(),
-    // hhsNumberShoppingTrip: TextEditingController(),
+    hhsNumberHealthTrip: TextEditingController(),
+    hhsNumberShoppingTrip: TextEditingController(),
     hhsNumberFloors: TextEditingController(),
     hhsNumberApartments: TextEditingController(),
   );
@@ -60,8 +60,8 @@ class SurveyPT extends Survey {
     data['hhsDwellingType'] = householdQuestions.hhsDwellingType;
     data['hhsIsDwelling'] = householdQuestions.hhsIsDwelling;
     data['hhsNumberBedRooms'] = householdQuestions.hhsNumberBedRooms.text;
-    // data['hhsNumberHealthTrip'] = householdQuestions.hhsNumberHealthTrip.text;
-    // data['hhsNumberShoppingTrip'] = householdQuestions.hhsNumberShoppingTrip.text;
+    data['hhsNumberHealthTrip'] = householdQuestions.hhsNumberHealthTrip.text;
+    data['hhsNumberShoppingTrip'] = householdQuestions.hhsNumberShoppingTrip.text;
     data['hhsNumberApartments'] = householdQuestions.hhsNumberApartments.text;
     data['hhsNumberFloors'] = householdQuestions.hhsNumberFloors.text;
     data['hhsNumberSeparateFamilies'] =
@@ -134,8 +134,8 @@ class SurveyPT extends Survey {
     data['hhsDwellingType'] = householdQuestions.hhsDwellingType;
     data['hhsIsDwelling'] = householdQuestions.hhsIsDwelling;
     data['hhsNumberBedRooms'] = householdQuestions.hhsNumberBedRooms.text;
-    // data['hhsNumberHealthTrip'] = householdQuestions.hhsNumberHealthTrip.text;
-    // data['hhsNumberShoppingTrip'] = householdQuestions.hhsNumberShoppingTrip.text;
+    data['hhsNumberHealthTrip'] = householdQuestions.hhsNumberHealthTrip.text;
+    data['hhsNumberShoppingTrip'] = householdQuestions.hhsNumberShoppingTrip.text;
     data['hhsNumberApartments'] = householdQuestions.hhsNumberApartments.text;
     data['hhsNumberFloors'] = householdQuestions.hhsNumberFloors.text;
     data['hhsNumberSeparateFamilies'] =
@@ -205,8 +205,8 @@ class SurveyPT extends Survey {
     householdQuestions.hhsDwellingType = json['hhsDwellingType'];
     householdQuestions.hhsIsDwelling = json['hhsIsDwelling'];
     householdQuestions.hhsNumberBedRooms.text = json['hhsNumberBedRooms'];
-    // householdQuestions.hhsNumberShoppingTrip.text = json['hhsNumberShoppingTrip'];
-    // householdQuestions.hhsNumberHealthTrip.text = json['hhsNumberHealthTrip'];
+    householdQuestions.hhsNumberShoppingTrip.text = json['hhsNumberShoppingTrip'];
+    householdQuestions.hhsNumberHealthTrip.text = json['hhsNumberHealthTrip'];
     householdQuestions.hhsNumberApartments.text = json['hhsNumberApartments'];
     householdQuestions.hhsNumberFloors.text = json['hhsNumberFloors'];
     householdQuestions.hhsNumberSeparateFamilies =
@@ -281,8 +281,8 @@ class SurveyPT extends Survey {
     householdQuestions.hhsDwellingType = json['hhsDwellingType'];
     householdQuestions.hhsIsDwelling = json['hhsIsDwelling'];
     householdQuestions.hhsNumberBedRooms.text = json['hhsNumberBedRooms'];
-    // householdQuestions.hhsNumberShoppingTrip.text = json['hhsNumberShoppingTrip'];
-    // householdQuestions.hhsNumberHealthTrip.text = json['hhsNumberHealthTrip'];
+    householdQuestions.hhsNumberShoppingTrip.text = json['hhsNumberShoppingTrip'];
+    householdQuestions.hhsNumberHealthTrip.text = json['hhsNumberHealthTrip'];
     householdQuestions.hhsNumberApartments.text =
         json['hhsNumberApartments'] ?? "";
     householdQuestions.hhsNumberFloors.text = json['hhsNumberFloors'];
@@ -354,8 +354,8 @@ class SurveyPT extends Survey {
     householdQuestions.hhsDwellingType = json['hhsDwellingType'];
     householdQuestions.hhsIsDwelling = json['hhsIsDwelling'];
     householdQuestions.hhsNumberBedRooms.text = json['hhsNumberBedRooms'];
-    // householdQuestions.hhsNumberShoppingTrip.text = json['hhsNumberShoppingTrip'];
-    // householdQuestions.hhsNumberHealthTrip.text = json['hhsNumberHealthTrip'];
+    householdQuestions.hhsNumberShoppingTrip.text = json['hhsNumberShoppingTrip'];
+    householdQuestions.hhsNumberHealthTrip.text = json['hhsNumberHealthTrip'];
     householdQuestions.hhsNumberApartments.text = json['hhsNumberApartments'];
     householdQuestions.hhsNumberFloors.text = json['hhsNumberFloors'];
     householdQuestions.hhsNumberSeparateFamilies =

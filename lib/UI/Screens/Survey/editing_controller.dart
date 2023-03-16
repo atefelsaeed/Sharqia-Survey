@@ -270,11 +270,11 @@ c(EditingController editingController, BuildContext context, int id) async {
 
   ///HHS_QH11
 
-  // HhsStatic.householdQuestions.hhsNumberShoppingTrip.text =
-  //     surveyPt.surveyPT.householdQuestions.hhsNumberShoppingTrip.text;
-  //
-  // HhsStatic.householdQuestions.hhsNumberHealthTrip.text =
-  //     surveyPt.surveyPT.householdQuestions.hhsNumberHealthTrip.text;
+  HhsStatic.householdQuestions.hhsNumberShoppingTrip.text =
+      surveyPt.surveyPT.householdQuestions.hhsNumberShoppingTrip.text;
+
+  HhsStatic.householdQuestions.hhsNumberHealthTrip.text =
+      surveyPt.surveyPT.householdQuestions.hhsNumberHealthTrip.text;
 
   ///
   validationService.cc();

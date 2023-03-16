@@ -72,8 +72,8 @@ class EmptyHHS {
       hhsNumberSeparateFamilies: "",
       hhsNumberYearsInAddress: "",
       hhsNumberBedRooms: TextEditingController(),
-      // hhsNumberShoppingTrip: TextEditingController(),
-      // hhsNumberHealthTrip: TextEditingController(),
+      hhsNumberShoppingTrip: TextEditingController(),
+      hhsNumberHealthTrip: TextEditingController(),
       hhsNumberFloors: TextEditingController(),
     );
     HhsStatic.householdQuestions.hhsNumberSeparateFamilies = '';

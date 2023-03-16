@@ -185,7 +185,7 @@ class SurveyPTProvider extends SurveyProvider {
     _data.householdQuestions.hhsNumberBedRooms = i;
     // notifyListeners();
   }
- /* @override
+  @override
   TextEditingController get hhsNumberHealthTrip =>
       _data.householdQuestions.hhsNumberHealthTrip;
 
@@ -203,7 +203,7 @@ class SurveyPTProvider extends SurveyProvider {
     _data.householdQuestions.hhsNumberShoppingTrip = i;
     // notifyListeners();
   }
-*/
+
   @override
   TextEditingController get hhsNumberApartments =>
       _data.householdQuestions.hhsNumberApartments;

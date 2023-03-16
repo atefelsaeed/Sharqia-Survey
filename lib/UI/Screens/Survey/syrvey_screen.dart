@@ -10,6 +10,7 @@ import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_Q1.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_Q10.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_Q2.dart';
+import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_qh11.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/house_hold_address.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/action_button.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/house_hold_member.dart';
@@ -208,12 +209,12 @@ class _SurveyScreenState extends State<SurveyScreen> {
                                     const NearestTransporter(),
                                     //========HHSQ10=================
                                     const HHSQ10(),
-                                    // const Divider(
-                                    //   thickness: 2,
-                                    // ),
-                                    // AppSize.spaceHeight2(context),
-                                    // //========HHSQ11=================
-                                    // const HhsQH11(),
+                                    const Divider(
+                                      thickness: 2,
+                                    ),
+                                    AppSize.spaceHeight2(context),
+                                    //========HHSQ11=================
+                                    const HhsQH11(),
                                     AppSize.spaceHeight6(context),
                                     //===========ActionButton==============
                                     ActionButton(
