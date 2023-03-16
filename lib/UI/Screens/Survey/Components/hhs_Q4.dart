@@ -30,7 +30,6 @@ class HHSQ4 extends StatefulWidget {
 }
 
 class _HHSQ4State extends State<HHSQ4> {
-
   void showError() => showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -84,12 +83,17 @@ class _HHSQ4State extends State<HHSQ4> {
                   DefaultButton(
                     function: () {
                       setState(() {
-                        int x = int.parse(HhsStatic
-                            .householdQuestions.hhsNumberSeparateFamilies
-                            .toString());
-                        debugPrint(HhsStatic
-                            .householdQuestions.hhsNumberSeparateFamilies
-                            .toString());
+
+                        int x = 0;
+                        if (HhsStatic.householdQuestions
+                            .hhsNumberSeparateFamilies!.isNotEmpty) {
+                          x = int.parse(HhsStatic.householdQuestions
+                                  .hhsNumberSeparateFamilies ??
+                              '0');
+                        } else {
+                          x = 0;
+                        }
+
                         if (widget.q6peopleUnder18.length < x) {
                           widget.q6peopleAdults18.add(TextEditingController());
                           widget.q6peopleUnder18.add(TextEditingController());

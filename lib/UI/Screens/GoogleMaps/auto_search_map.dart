@@ -29,7 +29,7 @@ class MapSearchScreen extends StatefulWidget {
 }
 
 class _MapSearchScreenState extends State<MapSearchScreen> {
-  final Completer<GoogleMapController> completer = Completer();
+  Completer<GoogleMapController> completer = Completer();
 
   late double initZoom = Constants.defaultZoom;
 
@@ -55,6 +55,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
     // TODO: implement dispose
     super.dispose();
     if (controller != null) controller!.dispose();
+    completer = Completer();
   }
 
   @override
@@ -75,7 +76,9 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                         zoom: initZoom,
                       ),
                       onMapCreated: (GoogleMapController controller) {
-                        completer.complete(controller);
+                        if (!completer.isCompleted) {
+                          completer.complete(controller);
+                        }
                       },
                       onCameraMove: (CameraPosition newPosition) {
                         value = newPosition.target;
@@ -129,10 +132,11 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
 
                               await Future.delayed(
                                   const Duration(milliseconds: 500));
-
-                              controller!.animateCamera(
-                                  CameraUpdate.newLatLngBounds(
-                                      geolocation.bounds, 0));
+                              if (!completer.isCompleted) {
+                                controller!.animateCamera(
+                                    CameraUpdate.newLatLngBounds(
+                                        geolocation.bounds, 0));
+                              }
                             }
                           },
                         ),
