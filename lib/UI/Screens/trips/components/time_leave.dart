@@ -23,7 +23,7 @@ class _TimeLeaveState extends State<TimeLeave> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const HeadlineText(text:"3. في أي وقت غادرت؟"),
+        const HeadlineText(text: "3. في أي وقت غادرت؟"),
         SizedBox(
             width: width(context) * .45,
             child: TextGlobal(
@@ -50,10 +50,12 @@ class _TimeLeaveState extends State<TimeLeave> {
                 );
 
                 if (pickedTime != null) {
-                  setState(() {
-                    widget.expectedDeparture.text = pickedTime
-                        .format(context); //set the value of text field.
-                  });
+                  if (mounted) {
+                    setState(() {
+                      widget.expectedDeparture.text = pickedTime
+                          .format(context); //set the value of text field.
+                    });
+                  }
                 } else {
                   debugPrint("Time is not selected");
                 }

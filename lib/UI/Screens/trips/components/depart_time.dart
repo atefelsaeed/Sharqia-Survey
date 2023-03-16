@@ -125,7 +125,7 @@ class _DepartTimeState extends State<DepartTime> with SelectTimeData {
                     debugPrint("Time is not selected");
                   }
                 }
-                FocusScope.of(context).requestFocus(FocusNode());
+                // FocusScope.of(context).requestFocus(FocusNode());
               },
             ),
           ],

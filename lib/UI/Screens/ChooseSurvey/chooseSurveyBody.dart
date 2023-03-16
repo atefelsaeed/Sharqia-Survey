@@ -69,25 +69,25 @@ class _ChooseSurveyBodyState extends State<ChooseSurveyBody> {
     Auth auth = Provider.of<Auth>(context, listen: false);
     List<Survey> surveyList = p.surveys;
     debugPrint("Survey List length: ${surveyList.length}");
-
-    FirebaseMessaging.onMessage.listen((e) async {
-      UserSurveysProvider userSurveysProvider =
-          Provider.of<UserSurveysProvider>(context, listen: false);
-      if (userSurveysProvider.userSurveyStatus == "not filled") {
-        userSurveysProvider.multiSync();
-      }
-      debugPrint('sync message');
-      Fluttertoast.showToast(
-        msg: "Syncing",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.green,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-      // _messageHandler(e);
-    });
+    //
+    // FirebaseMessaging.onMessage.listen((e) async {
+    //   UserSurveysProvider userSurveysProvider =
+    //       Provider.of<UserSurveysProvider>(context, listen: false);
+    //   if (userSurveysProvider.userSurveyStatus == "not filled") {
+    //     userSurveysProvider.multiSync();
+    //   }
+    //   debugPrint('sync message');
+    //   Fluttertoast.showToast(
+    //     msg: "Syncing",
+    //     toastLength: Toast.LENGTH_SHORT,
+    //     gravity: ToastGravity.BOTTOM,
+    //     timeInSecForIosWeb: 1,
+    //     backgroundColor: Colors.green,
+    //     textColor: Colors.white,
+    //     fontSize: 16.0,
+    //   );
+    //   // _messageHandler(e);
+    // });
 
     return Consumer<UserSurveysProvider>(
       builder: (context, model, _) => model.iSSyncing == true

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/validate_data/trips_validation.dart';
@@ -42,31 +41,6 @@ class TripScreen extends StatefulWidget {
 class _TripScreenState extends State<TripScreen> {
   final GlobalKey<FormState> _key = GlobalKey();
 
-  Future<LocationData> getLocation() async {
-    Location location = Location();
-
-    bool _serviceEnabled;
-    PermissionStatus _permissionGranted;
-
-    _serviceEnabled = await location.serviceEnabled();
-    if (!_serviceEnabled) {
-      _serviceEnabled = await location.requestService();
-      if (!_serviceEnabled) {
-        return Future.error(0);
-      }
-    }
-
-    _permissionGranted = await location.hasPermission();
-    if (_permissionGranted == PermissionStatus.denied) {
-      _permissionGranted = await location.requestPermission();
-      if (_permissionGranted != PermissionStatus.granted) {
-        return Future.error(1);
-      }
-    }
-
-    return await location.getLocation();
-  }
-
   String status = '';
 
   getSystemStatus() async {
@@ -97,8 +71,8 @@ class _TripScreenState extends State<TripScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
+    // TripDisposeControllers.dispose();
     super.dispose();
-    TripDisposeControllers.dispose();
   }
 
   @override

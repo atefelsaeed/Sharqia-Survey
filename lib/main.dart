@@ -27,57 +27,57 @@ import 'UI/Screens/Login/login_screen.dart';
 import 'UI/Screens/Splash/splash_screen.dart';
 import 'UI/Screens/vechicles/provider/vechiels_provider.dart';
 
-Future<void> _messageHandler(RemoteMessage message) async {
-  debugPrint('will sync');
-  syncall();
-}
-
-Future<bool> syncall() async {
-  final prefs = await SharedPreferences.getInstance();
-  await prefs.reload();
-  prefs.setBool('dontsync', true);
-  if (!prefs.containsKey("surveys")) return false;
-  var surveysList = prefs.getStringList("surveys")!;
-  final surveys = [];
-  for (Map<String, dynamic> s in surveysList.map(json.decode).toList()) {
-    switch (EnumToString.fromString(SurveyType.values, s['type'],
-        camelCase: true)!) {
-      case SurveyType.pt:
-        surveys.add(SurveyPT.fromJson(s));
-        break;
-      default:
-    }
-  }
-  for (var e in surveys) {
-    debugPrint('main');
-    debugPrint(e.synced);
-  }
-  // Survey ?i;
-  // await i!.provider.multiSync(force: true);
-  // for (Survey i in _surveys) {
-  //   debugPrint(i.header.interviewNumber);
-  //   await i.provider.sync(force: true);
-  // }
-  for (var e in surveys) {
-    debugPrint(e.synced);
-  }
-
-  prefs
-      .setStringList(
-        "surveys",
-        surveys.map((v) => json.encode(v.toJson())).toList(),
-      )
-      .then((value) => debugPrint("done"))
-      .onError(
-    (error, stackTrace) {
-      debugPrint(error.toString());
-      return false;
-    },
-  );
-  prefs.setBool('dontsync', false);
-  debugPrint(surveys.map((v) => json.encode(v.toJson())).toList().toString());
-  return true;
-}
+// Future<void> _messageHandler(RemoteMessage message) async {
+//   debugPrint('will sync');
+//   syncall();
+// }
+//
+// Future<bool> syncall() async {
+//   final prefs = await SharedPreferences.getInstance();
+//   await prefs.reload();
+//   prefs.setBool('dontsync', true);
+//   if (!prefs.containsKey("surveys")) return false;
+//   var surveysList = prefs.getStringList("surveys")!;
+//   final surveys = [];
+//   for (Map<String, dynamic> s in surveysList.map(json.decode).toList()) {
+//     switch (EnumToString.fromString(SurveyType.values, s['type'],
+//         camelCase: true)!) {
+//       case SurveyType.pt:
+//         surveys.add(SurveyPT.fromJson(s));
+//         break;
+//       default:
+//     }
+//   }
+//   for (var e in surveys) {
+//     debugPrint('main');
+//     debugPrint(e.synced);
+//   }
+//   // Survey ?i;
+//   // await i!.provider.multiSync(force: true);
+//   // for (Survey i in _surveys) {
+//   //   debugPrint(i.header.interviewNumber);
+//   //   await i.provider.sync(force: true);
+//   // }
+//   for (var e in surveys) {
+//     debugPrint(e.synced);
+//   }
+//
+//   prefs
+//       .setStringList(
+//         "surveys",
+//         surveys.map((v) => json.encode(v.toJson())).toList(),
+//       )
+//       .then((value) => debugPrint("done"))
+//       .onError(
+//     (error, stackTrace) {
+//       debugPrint(error.toString());
+//       return false;
+//     },
+//   );
+//   prefs.setBool('dontsync', false);
+//   debugPrint(surveys.map((v) => json.encode(v.toJson())).toList().toString());
+//   return true;
+// }
 
 void main() {
   runZonedGuarded(() async {
@@ -89,7 +89,7 @@ void main() {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('SystemStatus', 'Online');
       prefs.setBool('dontsync', false);
-      FirebaseMessaging.onBackgroundMessage(_messageHandler);
+      // FirebaseMessaging.onBackgroundMessage(_messageHandler);
     });
     debugPrint("second thing");
 
