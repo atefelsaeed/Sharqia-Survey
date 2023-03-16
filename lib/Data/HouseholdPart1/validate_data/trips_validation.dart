@@ -1,6 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/TripsData/trip_mode_list.dart';
 import 'package:sharqia_household_survey/Helper/validator.dart';
 import 'package:sharqia_household_survey/Providers/survey_hhs.dart';
@@ -9,8 +11,6 @@ import 'package:sharqia_household_survey/Providers/user_surveys.dart';
 import 'package:sharqia_household_survey/UI/Screens/ChooseSurvey/chooseSurveyScreen.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/trip_conditions.dart';
 import 'package:sharqia_household_survey/UI/Widgets/show_dialog_error.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Helper/locale_database/operations/hhs_user_surveys_operations.dart';
 

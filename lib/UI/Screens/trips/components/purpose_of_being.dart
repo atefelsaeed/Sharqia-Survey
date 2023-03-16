@@ -64,13 +64,17 @@ class _PurposeOfTheBeing extends State<PurposeOfTheBeing> {
                   onChanged: (bool? value) {
                     debugPrint(value.toString());
                     setState(() {
+
+
                       TripModeList.tripModeList[widget.indexTripModel]
                               .purposeOfBeingThere["QPurposeOfBeingThere"]
                           [chosenIndex]["isChick"] = false;
                       chosenIndex = index;
+
                       TripModeList.tripModeList[widget.indexTripModel]
                               .purposeOfBeingThere["QPurposeOfBeingThere"]
                           [chosenIndex]["isChick"] = value;
+
                       TripModeList.tripModeList[widget.indexTripModel]
                           .purposeTravel = TripModeList
                               .tripModeList[widget.indexTripModel]
@@ -93,10 +97,9 @@ class _PurposeOfTheBeing extends State<PurposeOfTheBeing> {
                   TripModeList
                       .tripModeList[widget.indexTripModel].purposeTravel = val;
                 },
-                title: "أدخل الغرض",
                 label: "أدخل الغرض",
                 isNumber: false,
-          onTap: () {  },
+                onTap: () {},
               )
             : Container(),
       ],

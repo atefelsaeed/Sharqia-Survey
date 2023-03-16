@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/validate_data/trips_validation.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/components/delete_trip.dart';
@@ -8,10 +11,8 @@ import 'package:sharqia_household_survey/UI/Screens/trips/components/trip_ending
 import 'package:sharqia_household_survey/UI/Screens/trips/components/trip_hold_address.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/components/where_did_you_park.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/provider/trip_provider.dart';
+import 'package:sharqia_household_survey/UI/Screens/trips/trip_dispose_controllers.dart';
 import 'package:sharqia_household_survey/UI/Widgets/headline.dart';
-import 'package:location/location.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
 import '../../../Data/HouseholdPart1/save_data.dart';
@@ -91,6 +92,13 @@ class _TripScreenState extends State<TripScreen> {
       validationService.getAllTripUpdated(context);
       AppConstants.isResetTrip = false;
     }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    TripDisposeControllers.dispose();
   }
 
   @override

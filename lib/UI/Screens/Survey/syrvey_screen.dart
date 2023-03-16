@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/empty_data/empty_hhs.dart';
 import 'package:sharqia_household_survey/Data/app_constants.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
@@ -8,14 +10,11 @@ import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_Q1.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_Q10.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_Q2.dart';
-import 'package:sharqia_household_survey/UI/Screens/Survey/Components/hhs_qh11.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/Components/house_hold_address.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/action_button.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/house_hold_member.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/qh9.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/editing_controller.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Models/user_serveys_model.dart';
 import '../../../Providers/user_surveys.dart';
@@ -28,11 +27,9 @@ import 'Components/hhs_Q82.dart';
 import 'Components/hhs_Q83.dart';
 import 'Components/hhs_header.dart';
 import 'actions/action_survey_screen.dart';
-import 'components/demolished_area.dart';
 import 'components/hhs_Q4.dart';
 import 'components/hhs_q6.dart';
 import 'components/hhs_qh4.dart';
-import 'components/hhs_qh62.dart';
 
 class SurveyScreen extends StatefulWidget {
   SurveyScreen({

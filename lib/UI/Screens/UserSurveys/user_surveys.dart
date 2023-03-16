@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Helper/validator.dart';
 import 'package:sharqia_household_survey/Providers/user_surveys.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
-import 'package:provider/provider.dart';
 
 import '../../../Models/user_serveys_model.dart';
 import 'item_user_survey.dart';
@@ -104,7 +104,6 @@ class _UserSurveysScreenState extends State<UserSurveysScreen> {
                                 widthForm: width(context) * .2,
                                 keyboardType: TextInputType.number,
                                 isNumber: true,
-                                isPassword: false,
                               ),
                             ],
                           ),
@@ -126,7 +125,6 @@ class _UserSurveysScreenState extends State<UserSurveysScreen> {
                                 widthForm: width(context) * .2,
                                 keyboardType: TextInputType.number,
                                 isNumber: true,
-                                isPassword: false,
                                 readOnly:
                                     hayController.text.isEmpty ? true : false,
                               ),
@@ -150,7 +148,6 @@ class _UserSurveysScreenState extends State<UserSurveysScreen> {
                                 widthForm: width(context) * .2,
                                 keyboardType: TextInputType.number,
                                 isNumber: true,
-                                isPassword: false,
                                 readOnly:
                                     qtaController.text.isEmpty ? true : false,
                               ),

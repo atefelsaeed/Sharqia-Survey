@@ -12,8 +12,7 @@ class OwnerTrip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('khfbg $index');
-    print(TripModeList.tripModeList[index].chosenPerson);
+
     final validationService = Provider.of<TripProvider>(context, listen: false);
     // TODO: implement build
     return Row(
@@ -28,7 +27,6 @@ class OwnerTrip extends StatelessWidget {
           onChange: (String? p) {
             debugPrint("p");
             validationService.addOwnerTrip(index, p.toString());
-            //personTrip.add(p!);
           },
         )
       ],

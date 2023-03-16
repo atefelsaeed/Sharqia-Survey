@@ -4,41 +4,75 @@ import '../../Helper/validator.dart';
 import '../../Resources/colors.dart';
 import '../../Resources/sizes.dart';
 
+extension DoubleExtensions on double {
+  double orDefault(double defaultValue) {
+    return this ?? defaultValue;
+  }
+}
+
+extension IntExtensions on int {
+  int orDefault(int defaultValue) {
+    return this ?? defaultValue;
+  }
+}
+
+extension StringExtensions on String {
+  String orDefault(String defaultValue) {
+    return this ?? defaultValue;
+  }
+}
+
+extension BoolExtensions on bool {
+  bool orDefault(bool defaultValue) {
+    return this ?? defaultValue;
+  }
+}
+
+extension TextEditingControllerExtensions on TextEditingController {
+  TextEditingController orDefault(TextEditingController defaultValue) {
+    return this ?? defaultValue;
+  }
+}
+
+extension FunctionExtensions on Function {
+  Function orDefault(Function defaultValue) {
+    return this ?? defaultValue;
+  }
+}
+
+extension IconDataExtensions on IconData {
+  IconData orDefault(IconData defaultValue) {
+    return this ?? defaultValue;
+  }
+}
+
 class MyTextForm extends StatefulWidget {
   final String label;
   TextInputType? keyboardType;
   final TextEditingController? controller;
-  final String? title;
   final double? widthForm;
-  bool? isPassword;
   bool? readOnly;
   IconData? suffix;
   bool? isNumber = false;
   final Function? suffixPressed;
   String? Function(String?)? validator;
- final Function()onTap;
+  final Function() onTap;
   Function(String?)? onChanged;
-  Iterable<String>? autofillHints;
-  String? errorText;
   final Widget? prefixIcon;
 
   MyTextForm(
       {this.controller,
       Key? key,
-      this.errorText,
       this.validator,
       this.readOnly,
       this.isNumber,
       this.keyboardType,
-      this.title,
       this.widthForm,
       this.suffixPressed,
-      this.isPassword,
       this.suffix,
       this.prefixIcon,
-     required this.onTap,
+      required this.onTap,
       this.onChanged,
-      this.autofillHints,
       required this.label})
       : super(key: key);
 
@@ -54,14 +88,16 @@ class _MyTextFormState extends State<MyTextForm> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          width: widget.widthForm ?? width(context) * .45,
+          width: widget.widthForm?.orDefault(width(context) * .45) ??
+              width(context) * .45,
           child: TextFormField(
-            controller: widget.controller,
-            readOnly: widget.readOnly ?? false,
+            controller: widget.controller?.orDefault(TextEditingController()) ??
+                TextEditingController(),
+            readOnly: widget.readOnly?.orDefault(false) ?? false,
             onTap: () {
               if (widget.controller!.selection ==
-                  TextSelection.fromPosition(
-                      TextPosition(offset: widget.controller!.text.length - 1))) {
+                  TextSelection.fromPosition(TextPosition(
+                      offset: widget.controller!.text.length - 1))) {
                 setState(() {
                   widget.controller!.selection = TextSelection.fromPosition(
                       TextPosition(offset: widget.controller!.text.length));
@@ -71,26 +107,30 @@ class _MyTextFormState extends State<MyTextForm> {
             },
             textAlign: TextAlign.right,
             textInputAction: TextInputAction.next,
-            onEditingComplete: () => FocusScope.of(context).nextFocus(),
+            onEditingComplete: () {
+              FocusScope.of(context).nextFocus();
+            },
+            // autofocus: true,
             style: TextStyle(
                 fontWeight: FontWeight.w400,
                 color: ColorManager.black,
                 fontSize: height(context) * .015),
-            validator: (String? val) => widget.isNumber ?? false
-                ? Validator.validateEmpty(
-                    value: val,
-                    message: 'يجب يجب إعطاء إجابة!',
-                  )
-                : Validator.validateName(
-                    value: val!,
-                    message: 'يجب يجب إعطاء إجابة صحيحة!',
-                  ),
+            validator: (String? val) =>
+                widget.isNumber?.orDefault(false) ?? false
+                    ? Validator.validateEmpty(
+                        value: val?.orDefault(''),
+                        message: 'يجب يجب إعطاء إجابة!',
+                      )
+                    : Validator.validateName(
+                        value: val?.orDefault('') ?? '',
+                        message: 'يجب يجب إعطاء إجابة صحيحة!',
+                      ),
             decoration: InputDecoration(
-              labelText: widget.label,
+              labelText: widget.label.orDefault(''),
               suffixIcon: widget.suffix != null
                   ? IconButton(
                       onPressed: () {
-                        widget.suffixPressed!();
+                        widget.suffixPressed!() ?? () {};
                       },
                       icon: Icon(
                         widget.suffix,
@@ -118,7 +158,7 @@ class _MyTextFormState extends State<MyTextForm> {
             ),
             textDirection: TextDirection.rtl,
             keyboardType: widget.keyboardType ?? TextInputType.text,
-            onChanged: widget.onChanged,
+            onChanged: widget.onChanged ?? (val) {},
           ),
         ),
         ClipRRect(

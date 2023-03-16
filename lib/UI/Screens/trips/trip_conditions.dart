@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/TripsData/trip_mode_list.dart';
 import 'package:sharqia_household_survey/Providers/survey_hhs.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/components/save_finish.dart';
 import 'package:sharqia_household_survey/UI/Widgets/show_dialog_error.dart';
-import 'package:provider/provider.dart';
 
 class TripConditions {
   void showError(context, Widget widget) => showDialog<void>(

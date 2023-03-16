@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
 
 import '../../../../Data/HouseholdPart1/TripsData/trip_data.dart';
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';

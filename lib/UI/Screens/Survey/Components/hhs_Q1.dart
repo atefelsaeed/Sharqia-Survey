@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/Resources/sizes.dart';
 
 import '../../../../Data/HouseholdPart1/HHSData/questions_data.dart';
 import '../../../../Models/HHS_SurvyModels/hhs_models.dart';

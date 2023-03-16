@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sharqia_household_survey/UI/Screens/vechicles/provider/vechiels_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/UI/Screens/vechicles/provider/vechiels_provider.dart';
 
 import '../../../../Data/HouseholdPart1/VechelisData/vechelis_data.dart';
 import '../../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
@@ -130,26 +130,26 @@ class _ControllerVehiclesBodyState extends State<ControllerVehiclesBody> {
                                     validationService.vecEScooter(
                                         showVechError, d, showError);
                                     break;
-                                  // case "عربية بضائع خفيفة":
-                                  //   validationService.vecLightCargo(
-                                  //       showVechError, d, showError);
-                                  //   break;
-                                  // case "عربية بضائع ثقيلة":
-                                  //   validationService.vecHeavyCargo(
-                                  //       showVechError, d, showError);
-                                  //   break;
-                                  // case "مينى باص":
-                                  //   validationService.vecMinibus(
-                                  //       showVechError, d, showError);
-                                  //   break;
-                                  // case "كوستر":
-                                  //   validationService.vecCoaster(
-                                  //       showVechError, d, showError);
-                                  //   break;
-                                  // case "اوتوبيس":
-                                  //   validationService.vecBus(
-                                  //       showVechError, d, showError);
-                                  //   break;
+                                  case "عربية بضائع خفيفة":
+                                    validationService.vecLightCargo(
+                                        showVechError, d, showError);
+                                    break;
+                                  case "عربية بضائع ثقيلة":
+                                    validationService.vecHeavyCargo(
+                                        showVechError, d, showError);
+                                    break;
+                                  case "مينى باص":
+                                    validationService.vecMinibus(
+                                        showVechError, d, showError);
+                                    break;
+                                  case "كوستر":
+                                    validationService.vecCoaster(
+                                        showVechError, d, showError);
+                                    break;
+                                  case "اوتوبيس":
+                                    validationService.vecBus(
+                                        showVechError, d, showError);
+                                    break;
                                 }
                               } else {
                                 provider.vecClear(index);
@@ -183,24 +183,24 @@ class _ControllerVehiclesBodyState extends State<ControllerVehiclesBody> {
                   title: ConstantsVec.escooter,
                   listVec: VehModel.eScooter,
                   x: 6),
-              // ListBodyTypeVec(
-              //     title: ConstantsVec.vecLightCargo,
-              //     listVec: VehModel.vecLightCargo,
-              //     x: 7),
-              // ListBodyTypeVec(
-              //     title: ConstantsVec.vecHeavyCargo,
-              //     listVec: VehModel.vecHeavyCargo,
-              //     x: 8),
-              // ListBodyTypeVec(
-              //     title: ConstantsVec.vecMinibus,
-              //     listVec: VehModel.vecMinibus,
-              //     x: 9),
-              // ListBodyTypeVec(
-              //     title: ConstantsVec.vecCoaster,
-              //     listVec: VehModel.vecCoaster,
-              //     x: 10),
-              // ListBodyTypeVec(
-              //     title: ConstantsVec.vecBus, listVec: VehModel.vecBus, x: 11),
+              ListBodyTypeVec(
+                  title: ConstantsVec.vecLightCargo,
+                  listVec: VehModel.vecLightCargo,
+                  x: 7),
+              ListBodyTypeVec(
+                  title: ConstantsVec.vecHeavyCargo,
+                  listVec: VehModel.vecHeavyCargo,
+                  x: 8),
+              ListBodyTypeVec(
+                  title: ConstantsVec.vecMinibus,
+                  listVec: VehModel.vecMinibus,
+                  x: 9),
+              ListBodyTypeVec(
+                  title: ConstantsVec.vecCoaster,
+                  listVec: VehModel.vecCoaster,
+                  x: 10),
+              ListBodyTypeVec(
+                  title: ConstantsVec.vecBus, listVec: VehModel.vecBus, x: 11),
 
               AppSize.spaceHeight3(context),
             ],

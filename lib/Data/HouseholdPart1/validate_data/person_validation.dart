@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:sharqia_household_survey/Helper/validator.dart';
 
-import '../../../UI/Screens/trips/trip_screen.dart';
 import '../PersonData/person_model_list.dart';
 
 class CheckPersonValidation {

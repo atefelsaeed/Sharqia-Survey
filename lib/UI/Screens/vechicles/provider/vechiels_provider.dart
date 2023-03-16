@@ -39,21 +39,21 @@ class VecProvider extends ChangeNotifier {
         case "دراجة هوائية":
           VehModel.bicycle.clear();
           break;
-        // case "عربية بضائع خفيفة":
-        //   VehModel.vecLightCargo.clear();
-        //   break;
-        // case "عربية بضائع ثقيلة":
-        //   VehModel.eScooter.clear();
-        //   break;
-        // case "مينى باص":
-        //   VehModel.eScooter.clear();
-        //   break;
-        // case "كوستر":
-        //   VehModel.vecCoaster.clear();
-        //   break;
-        // case "اوتوبيس":
-        //   VehModel.vecBus.clear();
-        //   break;
+        case "عربية بضائع خفيفة":
+          VehModel.vecLightCargo.clear();
+          break;
+        case "عربية بضائع ثقيلة":
+          VehModel.eScooter.clear();
+          break;
+        case "مينى باص":
+          VehModel.eScooter.clear();
+          break;
+        case "كوستر":
+          VehModel.vecCoaster.clear();
+          break;
+        case "اوتوبيس":
+          VehModel.vecBus.clear();
+          break;
       }
     }
     notifyListeners();
@@ -117,7 +117,12 @@ class VecProvider extends ChangeNotifier {
             VehModel.vecWanet.length +
             VehModel.vecVan.length +
             VehModel.pickUp.length +
-            VehModel.eScooter.length;
+            VehModel.eScooter.length +
+            VehModel.vecLightCargo.length +
+            VehModel.vecHeavyCargo.length +
+            VehModel.vecCoaster.length +
+            VehModel.vecBus.length +
+            VehModel.vecMinibus.length;
 
         vecTotal = total;
         if (x > total) {
@@ -154,7 +159,12 @@ class VecProvider extends ChangeNotifier {
             VehModel.vecWanet.length +
             VehModel.vecVan.length +
             VehModel.pickUp.length +
-            VehModel.eScooter.length;
+            VehModel.eScooter.length +
+            VehModel.vecLightCargo.length +
+            VehModel.vecHeavyCargo.length +
+            VehModel.vecCoaster.length +
+            VehModel.vecBus.length +
+            VehModel.vecMinibus.length;
 
         vecTotal = total;
         if (x > total) {
@@ -191,7 +201,12 @@ class VecProvider extends ChangeNotifier {
             VehModel.vecWanet.length +
             VehModel.vecVan.length +
             VehModel.pickUp.length +
-            VehModel.eScooter.length;
+            VehModel.eScooter.length +
+            VehModel.vecLightCargo.length +
+            VehModel.vecHeavyCargo.length +
+            VehModel.vecCoaster.length +
+            VehModel.vecBus.length +
+            VehModel.vecMinibus.length;
 
         vecTotal = total;
         if (x > total) {
@@ -228,7 +243,12 @@ class VecProvider extends ChangeNotifier {
             VehModel.vecWanet.length +
             VehModel.vecVan.length +
             VehModel.pickUp.length +
-            VehModel.eScooter.length;
+            VehModel.eScooter.length +
+            VehModel.vecLightCargo.length +
+            VehModel.vecHeavyCargo.length +
+            VehModel.vecCoaster.length +
+            VehModel.vecBus.length +
+            VehModel.vecMinibus.length;
 
         vecTotal = total;
         if (x > total) {
@@ -265,7 +285,12 @@ class VecProvider extends ChangeNotifier {
             VehModel.vecWanet.length +
             VehModel.vecVan.length +
             VehModel.pickUp.length +
-            VehModel.eScooter.length;
+            VehModel.eScooter.length +
+            VehModel.vecLightCargo.length +
+            VehModel.vecHeavyCargo.length +
+            VehModel.vecCoaster.length +
+            VehModel.vecBus.length +
+            VehModel.vecMinibus.length;
 
         vecTotal = total;
         if (x > total) {
@@ -302,7 +327,12 @@ class VecProvider extends ChangeNotifier {
             VehModel.vecWanet.length +
             VehModel.vecVan.length +
             VehModel.pickUp.length +
-            VehModel.eScooter.length;
+            VehModel.eScooter.length +
+            VehModel.vecLightCargo.length +
+            VehModel.vecHeavyCargo.length +
+            VehModel.vecCoaster.length +
+            VehModel.vecBus.length +
+            VehModel.vecMinibus.length;
 
         vecTotal = total;
         if (x > total) {
@@ -338,7 +368,12 @@ class VecProvider extends ChangeNotifier {
             VehModel.vecWanet.length +
             VehModel.vecVan.length +
             VehModel.pickUp.length +
-            VehModel.eScooter.length;
+            VehModel.eScooter.length +
+            VehModel.vecLightCargo.length +
+            VehModel.vecHeavyCargo.length +
+            VehModel.vecCoaster.length +
+            VehModel.vecBus.length +
+            VehModel.vecMinibus.length;
 
         vecTotal = total;
         if (x > total) {
@@ -358,7 +393,7 @@ class VecProvider extends ChangeNotifier {
     }
   }
 
-  /* ///vecLightCargo
+  ///vecLightCargo
   vecLightCargo(Function showVechError, String d, Function showError) {
     VehModel.vecLightCargo = [];
     if (HhsStatic.houseHold[0].totalNumberVehicles.toString().isEmpty ||
@@ -537,13 +572,12 @@ class VecProvider extends ChangeNotifier {
             VehModel.vecWanet.length +
             VehModel.vecVan.length +
             VehModel.pickUp.length +
-            VehModel.eScooter.length
-          ;
-/*  VehModel.vecLightCargo.length +
+            VehModel.eScooter.length +
+            VehModel.vecLightCargo.length +
             VehModel.vecHeavyCargo.length +
             VehModel.vecCoaster.length +
             VehModel.vecBus.length +
-            VehModel.vecMinibus.length*/
+            VehModel.vecMinibus.length;
         vecTotal = total;
         if (x > total) {
           VehModel.vecCoaster.add(
@@ -560,7 +594,7 @@ class VecProvider extends ChangeNotifier {
       }
       notifyListeners();
     }
-  }*/
+  }
 
   ///vecClear
   vecClear(index) {
@@ -586,21 +620,21 @@ class VecProvider extends ChangeNotifier {
       case " اسكوتر":
         VehModel.eScooter.clear();
         break;
-      // case "عربية بضائع خفيفة":
-      //   VehModel.vecLightCargo.clear();
-      //   break;
-      // case "عربية بضائع ثقيلة":
-      //   VehModel.eScooter.clear();
-      //   break;
-      // case "مينى باص":
-      //   VehModel.eScooter.clear();
-      //   break;
-      // case "كوستر":
-      //   VehModel.vecCoaster.clear();
-      //   break;
-      // case "اوتوبيس":
-      //   VehModel.vecBus.clear();
-      //   break;
+      case "عربية بضائع خفيفة":
+        VehModel.vecLightCargo.clear();
+        break;
+      case "عربية بضائع ثقيلة":
+        VehModel.eScooter.clear();
+        break;
+      case "مينى باص":
+        VehModel.eScooter.clear();
+        break;
+      case "كوستر":
+        VehModel.vecCoaster.clear();
+        break;
+      case "اوتوبيس":
+        VehModel.vecBus.clear();
+        break;
     }
     notifyListeners();
   }

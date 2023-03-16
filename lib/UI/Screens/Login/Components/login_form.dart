@@ -1,7 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
-import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/Resources/sizes.dart';
 
 import '../../../../Helper/validator.dart';
 import '../../../../Providers/auth.dart';

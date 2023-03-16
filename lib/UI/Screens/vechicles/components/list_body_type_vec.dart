@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:sharqia_household_survey/UI/Screens/vechicles/components/vec_body_type.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/UI/Screens/vechicles/components/vec_body_type.dart';
 
 import '../../../../Models/Vehicles_SurveyModel/vehicles_body_type.dart';
 import '../provider/vechiels_provider.dart';

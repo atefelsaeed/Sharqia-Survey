@@ -95,13 +95,17 @@ class TripsModel {
   TravelWithOtherModel? travelWithOtherModel = TravelWithOtherModel(
       adultsNumber: TextEditingController(),
       childrenNumber: TextEditingController());
+
   TravelWithOtherModel? travelAloneHouseHold = TravelWithOtherModel(
       adultsNumber: TextEditingController(),
       childrenNumber: TextEditingController());
+
   List<dynamic>? hhsMembersTraveled;
+
   ArrivalDepartTime arrivalDepartTime = ArrivalDepartTime(
       departTime: TextEditingController(),
       arriveDestinationTime: TextEditingController());
+
   TravelTypeModel travelTypeModel = TravelTypeModel(
     taxiFare: TextEditingController(),
     ticketSub: TextEditingController(),

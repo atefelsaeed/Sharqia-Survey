@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Screens/person/person_conditions.dart';
 import 'package:sharqia_household_survey/UI/Screens/person/reset_person.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../Data/HouseholdPart1/PersonData/person_data.dart';
 import '../../../../Data/HouseholdPart1/PersonData/person_model_list.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Providers/survey_hhs.dart';
 import 'package:sharqia_household_survey/Providers/surveys.dart';
-import 'package:provider/provider.dart';
 
 import '../../../Helper/validator.dart';
 import '../../../Models/HHS_SurvyModels/hhs_models.dart';

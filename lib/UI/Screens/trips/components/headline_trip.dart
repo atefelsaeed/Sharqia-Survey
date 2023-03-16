@@ -38,18 +38,18 @@ class HeadlineText extends StatelessWidget {
             ),
             AppSize.spaceWidth1(context),
             SizedBox(
-              width: width(context)*.8,
+              width: width(context) * .75,
               child: TextGlobal(
                 text: text,
-                fontSize:width(context) * .04,
+                fontSize: width(context) * .03,
                 color: ColorManager.black,
                 fontWeight: FontWeight.w800,
               ),
             ),
-
           ],
         ),
         AppSize.spaceHeight2(context),
       ],
-    );}
+    );
+  }
 }

@@ -4,16 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:sharqia_household_survey/Resources/colors.dart';
-import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:provider/provider.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
+import 'package:sharqia_household_survey/Resources/colors.dart';
+import 'package:sharqia_household_survey/Resources/sizes.dart';
 
 import '../../Widgets/custom_buttton.dart';
 import '../trips/provider/trip_provider.dart';
 
 class Constants {
-  static LatLng location = const LatLng(26.396790, 50.140400);//26.396790, 50.140400
+  static LatLng location =
+      const LatLng(26.396790, 50.140400); //26.396790, 50.140400
   LatLng? location2;
 
   static double defaultZoom = 19.151926040649414;
@@ -80,16 +81,19 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                         value = newPosition.target;
                       },
                       mapType: MapType.normal,
-                      myLocationButtonEnabled: false,//
-                      myLocationEnabled: false,//
+                      myLocationButtonEnabled: false,
+                      //
+                      myLocationEnabled: false,
+                      //
                       zoomGesturesEnabled: true,
                       padding: const EdgeInsets.all(0),
                       buildingsEnabled: true,
                       cameraTargetBounds: CameraTargetBounds.unbounded,
-                      compassEnabled: false,//
+                      compassEnabled: false,
+                      //
                       indoorViewEnabled: false,
                       mapToolbarEnabled: false,
-                      minMaxZoomPreference: MinMaxZoomPreference.unbounded,
+                      minMaxZoomPreference: const MinMaxZoomPreference(0, 16),
                       rotateGesturesEnabled: true,
                       scrollGesturesEnabled: true,
                       tiltGesturesEnabled: true,
@@ -112,28 +116,20 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                           placeholder: 'بحث',
                           apiKey: 'AIzaSyAMIcLjXga58HVN5RkLX5NGf1zh-Qkk4fg',
                           onSelected: (Place place) async {
-                            print('selected');
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (_) => SizedBox(
-                            //         width: 20,
-                            //         height: 20,
-                            //         child:
-                            //         const CircularProgressIndicator())));
-                            // await Future.delayed(
-                            //     const Duration(milliseconds: 500));
-                            // Navigator.of(context).pop();
                             if (mounted) {
-
                               Geolocation? geolocation =
                                   await place.geolocation;
 
                               controller = await completer.future;
                               await Future.delayed(
                                   const Duration(milliseconds: 500));
+
                               controller!.animateCamera(CameraUpdate.newLatLng(
                                   geolocation!.coordinates));
+
                               await Future.delayed(
                                   const Duration(milliseconds: 500));
+
                               controller!.animateCamera(
                                   CameraUpdate.newLatLngBounds(
                                       geolocation.bounds, 0));
@@ -172,17 +168,10 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                     right: width(context) / 2,
                     child: Container(
                       color: Colors.transparent,
-                      child: InkWell(
-                        onTap: () async {
-                          //  await   placeMarker(value,placeMarks);
-                          /* activeLocation(
-                                    placeMarks, context, value, callBack);*/
-                        },
-                        child: const Icon(
-                          Icons.pin_drop_outlined,
-                          size: 40,
-                          color: Colors.red,
-                        ),
+                      child: const Icon(
+                        Icons.pin_drop_outlined,
+                        size: 40,
+                        color: Colors.red,
                       ),
                     ),
                   ),

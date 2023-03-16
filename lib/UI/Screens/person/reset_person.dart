@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/occupation_model.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/person_model.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/list_view_check_box_orange.dart';
 import 'package:sharqia_household_survey/UI/Screens/person/person_conditions.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../Data/HouseholdPart1/PersonData/person_data.dart';
 import '../../../Data/HouseholdPart1/PersonData/person_model_list.dart';

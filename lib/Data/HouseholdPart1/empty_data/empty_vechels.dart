@@ -16,11 +16,11 @@ class EmptyVehicles {
     VehModel.bicycle = [];
     VehModel.eScooter = [];
     VehModel.largeCar = [];
-    // VehModel.vecBus = [];
-    // VehModel.vecCoaster = [];
-    // VehModel.vecHeavyCargo = [];
-    // VehModel.vecLightCargo = [];
-    // VehModel.vecMinibus = [];
+    VehModel.vecBus = [];
+    VehModel.vecCoaster = [];
+    VehModel.vecHeavyCargo = [];
+    VehModel.vecLightCargo = [];
+    VehModel.vecMinibus = [];
     for (var element in VehiclesData.vecModel) {
       element.textEditingController.text = '';
       element.isChosen = false;

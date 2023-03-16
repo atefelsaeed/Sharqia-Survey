@@ -30,11 +30,11 @@ class VehModel {
   static List<VehicleBodyDetails> bicycle = [];
   static List<VehicleBodyDetails> vecWanet = [];
 
-  // static List<VehicleBodyDetails> vecLightCargo = [];
-  // static List<VehicleBodyDetails> vecHeavyCargo = [];
-  // static List<VehicleBodyDetails> vecMinibus = [];
-  // static List<VehicleBodyDetails> vecBus = [];
-  // static List<VehicleBodyDetails> vecCoaster = [];
+  static List<VehicleBodyDetails> vecLightCargo = [];
+  static List<VehicleBodyDetails> vecHeavyCargo = [];
+  static List<VehicleBodyDetails> vecMinibus = [];
+  static List<VehicleBodyDetails> vecBus = [];
+  static List<VehicleBodyDetails> vecCoaster = [];
 
   ///
   static String fuelTypeCode = "";

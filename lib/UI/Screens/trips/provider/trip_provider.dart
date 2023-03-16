@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Models/Trips_SurveyModel/travel_type_model.dart';
 import 'package:sharqia_household_survey/Models/Trips_SurveyModel/trips_model.dart';
 import 'package:sharqia_household_survey/Providers/user_surveys.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/list_view_check_box_orange.dart';
-import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../Data/HouseholdPart1/PersonData/person_model_list.dart';
 import '../../../../Data/HouseholdPart1/TripsData/trip_mode_list.dart';
@@ -305,12 +305,7 @@ class TripProvider extends ChangeNotifier {
 
     list = TripModeList.tripModeList[0].person;
 
-    print('list');
-    print(list.toString());
-    print('list2');
-    print(mainPersonList.toString());
-
-    notifyListeners();
+    // notifyListeners();
   }
 
   ///

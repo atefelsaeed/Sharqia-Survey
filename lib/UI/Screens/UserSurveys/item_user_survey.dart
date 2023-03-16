@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Resources/assets_manager.dart';
 import 'package:sharqia_household_survey/Resources/colors.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Screens/UserSurveys/components/editd_button.dart';
 import 'package:sharqia_household_survey/UI/Widgets/item_text_span.dart';
-import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../Models/user_serveys_model.dart';

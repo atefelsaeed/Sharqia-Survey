@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/UI/Widgets/text_form_field.dart';
 
 import '../../../../Data/HouseholdPart1/PersonData/person_data.dart';
 import '../../../../Data/HouseholdPart1/PersonData/person_model_list.dart';
@@ -71,7 +71,7 @@ class _DefaultEntryState extends State<DefaultEntry> {
                       i != widget.i) {
                     showError(
                       context,
-                      ShowErrorDialog(
+                      const ShowErrorDialog(
                         title: "يجب اختيار اسم اخر",
                         content: "يجب اختيار اسم اخر",
                       ),

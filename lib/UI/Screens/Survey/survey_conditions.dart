@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/editing_controller.dart';
 import 'package:sharqia_household_survey/UI/Widgets/show_dialog_error.dart';
-import 'package:provider/provider.dart';
 
 import '../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
 import '../../../Providers/survey_hhs.dart';

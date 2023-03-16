@@ -137,7 +137,7 @@ class ResetVechilesValues {
       VehModel.vecWanet[i].vehicleParking.text = surveyPt.surveyPT
           .vehiclesBodyType![6].vehicleTypeDetails![i].vehicleParking.text;
     }
-/*
+
     ///vecLightCargo
     VehModel.vecLightCargo =
         surveyPt.surveyPT.vehiclesBodyType![7].vehicleTypeDetails!;
@@ -226,6 +226,6 @@ class ResetVechilesValues {
           .vehiclesBodyType![11].vehicleTypeDetails![i].vehicleOwnership.text;
       VehModel.vecBus[i].vehicleParking.text = surveyPt.surveyPT
           .vehiclesBodyType![11].vehicleTypeDetails![i].vehicleParking.text;
-    }*/
+    }
   }
 }

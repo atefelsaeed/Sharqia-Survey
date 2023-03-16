@@ -54,14 +54,16 @@ class _DepartTimeState extends State<DepartTime> with SelectTimeData {
             AppSize.spaceHeight1(context),
             MyTextForm(
               label: "وقت الوصول",
-              controller:
-                  widget.tripModel.arrivalDepartTime.arriveDestinationTime,
+              controller: widget
+                  .tripModel.arrivalDepartTime.arriveDestinationTime
+                  .orDefault(TextEditingController()),
 
               readOnly: true,
               // set it true, so that user will not able to edit text
               onTap: () async {
                 if (TripModeList
-                    .tripModeList[widget.i].departureTime.text.isEmpty) {
+                    .tripModeList[widget.i].departureTime.text.isEmpty
+                    .orDefault(false)) {
                   showDialog<void>(
                       context: context,
                       builder: (BuildContext context) {
@@ -75,35 +77,37 @@ class _DepartTimeState extends State<DepartTime> with SelectTimeData {
                     initialTime:
                         TimeOfDay.fromDateTime(DateTime.now().roundDown()),
                     builder: (context, child) {
-                      return StyleManager.selectTime(context, child);
+                      return StyleManager.selectTime(
+                          context, child ?? Container());
                     },
                     context: context,
                   );
-                  String arrival =
-                      TripModeList.tripModeList[widget.i].departureTime.text;
+                  String arrival = TripModeList
+                      .tripModeList[widget.i].departureTime.text
+                      .orDefault('');
                   int newFromTimeHour = int.parse(
-                      time12to24Format(arrival.toString()).split(":").first);
+                      time12to24Format(arrival.toString()).split(":").first.orDefault(''));
                   int newFromTimeM = int.parse(
-                      time12to24Format(arrival.toString()).split(":").last);
+                      time12to24Format(arrival.toString()).split(":").last.orDefault(''));
 
-                  int pickedHour = int.parse(
-                      time12to24Format(pickedTime!.format(context).toString())
-                          .split(":")
-                          .first);
-                  int pickedM = int.parse(
-                      time12to24Format(pickedTime.format(context).toString())
-                          .split(":")
-                          .last);
+                  int pickedHour = int.parse(time12to24Format(
+                          pickedTime!.format(context).toString())
+                      .split(":")
+                      .first.orDefault(''));
+                  int pickedM = int.parse(time12to24Format(
+                          pickedTime.format(context).toString())
+                      .split(":")
+                      .last.orDefault(''));
 
                   if (pickedHour == newFromTimeHour && newFromTimeM < pickedM) {
                     setState(() {
                       widget.tripModel.arrivalDepartTime.arriveDestinationTime
-                          .text = pickedTime.format(context); //s
+                          .text = pickedTime.format(context).orDefault(''); //s
                     });
                   } else if (pickedHour > newFromTimeHour) {
                     setState(() {
                       widget.tripModel.arrivalDepartTime.arriveDestinationTime
-                          .text = pickedTime.format(context); //s
+                          .text = pickedTime.format(context).orDefault(''); //s
                     });
                   } else {
                     showDialog<void>(
@@ -132,10 +136,12 @@ class _DepartTimeState extends State<DepartTime> with SelectTimeData {
           children: [
             DropDownFormInput(
               label: TripModeList.tripModeList[widget.i].arrivalDepartTime
-                          .numberRepeatTrip !=
+                          .numberRepeatTrip!
+                          .orDefault('') !=
                       ''
                   ? Text(TripModeList.tripModeList[widget.i].arrivalDepartTime
-                          .numberRepeatTrip ??
+                          .numberRepeatTrip!
+                          .orDefault('') ??
                       '')
                   : const Text('إختار'),
               hint: "كم مرة تقوم بهذە الرحلة؟",
@@ -145,7 +151,7 @@ class _DepartTimeState extends State<DepartTime> with SelectTimeData {
               onChange: (String? p) {
                 setState(() {
                   TripModeList.tripModeList[widget.i].arrivalDepartTime
-                      .numberRepeatTrip = p;
+                      .numberRepeatTrip = p!.orDefault('');
                 });
               },
             ),

@@ -8,9 +8,9 @@ class ConstantsVec {
   static String van = "شاحنة";
 
   //
-  // static String vecLightCargo = "عربية بضائع خفيفة";
-  // static String vecHeavyCargo = "عربية بضائع ثقيلة";
-  // static String vecMinibus = "مينى باص";
-  // static String vecBus = "اوتوبيس";
-  // static String vecCoaster = "كوستر";
+  static String vecLightCargo = "عربية بضائع خفيفة";
+  static String vecHeavyCargo = "عربية بضائع ثقيلة";
+  static String vecMinibus = "مينى باص";
+  static String vecBus = "اوتوبيس";
+  static String vecCoaster = "كوستر";
 }
