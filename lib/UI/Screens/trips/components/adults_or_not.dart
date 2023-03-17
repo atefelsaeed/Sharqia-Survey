@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-
 import '../../../../Models/Trips_SurveyModel/travel_with_other_model.dart';
 import '../../../../Resources/colors.dart';
 import '../../../../Resources/sizes.dart';
@@ -7,26 +6,17 @@ import '../../../Widgets/text.dart';
 import '../../../Widgets/text_form_field.dart';
 
 class AdultsOrNot extends StatelessWidget {
-  const AdultsOrNot({super.key, required this.adultsModel});
+  const AdultsOrNot({required this.adultsModel, Key? key}) : super(key: key);
 
   final TravelWithOtherModel adultsModel;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    final childrenNumber = adultsModel.childrenNumber;
+    final adultsNumber = adultsModel.adultsNumber;
 
     return Column(
       children: [
-      /*  Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            TextGlobal(
-              text: adultsModel.text!,
-              fontSize: height(context) * .02,
-              color: ColorManager.black,
-            ),
-          ],
-        ),*/
         AppSize.spaceHeight2(context),
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -35,15 +25,15 @@ class AdultsOrNot extends StatelessWidget {
               children: [
                 MyTextForm(
                   label: "",
-                  controller: adultsModel.childrenNumber,
-                  widthForm: width(context) * .1,
-                  onTap: () {  },
-                  keyboardType: TextInputType.number,isNumber: true,
+                  widthForm: width(context) * .15,
+                  keyboardType: TextInputType.number,
+                  isNumber: true,
+                  onTap: () {},
                 ),
                 AppSize.spaceWidth1(context),
                 TextGlobal(
                   text: "الأطفال اقل من 18",
-                  fontSize: height(context) * .015,
+                  fontSize: 14,
                   color: ColorManager.black,
                 ),
               ],
@@ -53,16 +43,19 @@ class AdultsOrNot extends StatelessWidget {
               children: [
                 MyTextForm(
                   label: "",
-                  controller: adultsModel.adultsNumber,
-                  widthForm: width(context) * .1,
+                  controller: adultsNumber,
+                  widthForm: width(context) * .15,
                   keyboardType: TextInputType.number,
-                  onTap: () {  },
                   isNumber: true,
+                  onChanged: (value) {
+                    adultsModel.adultsNumber.text = value ?? '';
+                  },
+                  onTap: () {},
                 ),
                 AppSize.spaceWidth1(context),
                 TextGlobal(
                   text: "البالغين + 18 ",
-                  fontSize: height(context) * .017,
+                  fontSize: 14,
                   color: ColorManager.grayColor,
                 ),
               ],

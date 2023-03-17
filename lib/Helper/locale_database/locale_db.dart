@@ -21,6 +21,8 @@ class DatabaseHelper {
     }
   }
 
+  // Future close() async => _db?.close();
+
   Future<Database> initializedDB() async {
     String dataBasePath = await getDatabasesPath();
     String path = join(dataBasePath, databaseName);

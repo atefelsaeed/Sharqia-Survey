@@ -17,127 +17,136 @@ class TripStartingAddress extends StatefulWidget {
   final String title;
 
   const TripStartingAddress({
-    super.key,
+    Key? key,
     required this.index,
     required this.title,
-  });
+  }) : super(key: key);
 
   @override
-  State<TripStartingAddress> createState() => _TripStartingAddressState();
+  _TripStartingAddressState createState() => _TripStartingAddressState();
 }
 
 class _TripStartingAddressState extends State<TripStartingAddress> {
-  // bool isHome = false;
+  void _onHomeCheckboxChanged(bool? value) {
+    final surveyPt = Provider.of<SurveyPTProvider>(context, listen: false);
+    final startBeginningModel =
+        TripModeList.tripModeList[widget.index].startBeginningModel;
+    setState(() {
+      TripModeList.tripModeList[widget.index].isHome = value ?? false;
+      if (TripModeList.tripModeList[widget.index].isHome) {
+        startBeginningModel?.tripAddressLong = surveyPt.hhsAddressLong;
+        startBeginningModel?.tripAddressLat = surveyPt.hhsAddressLat;
+      } else {
+        surveyPt.startingAddressLatLng = null;
+        startBeginningModel?.tripAddressLong = null;
+        startBeginningModel?.tripAddressLat = null;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    SurveyPTProvider surveyPt =
-        Provider.of<SurveyPTProvider>(context, listen: false);
-    var startBeginningModel =
+    final surveyPt = Provider.of<SurveyPTProvider>(context);
+    final isHome = TripModeList.tripModeList[widget.index].isHome;
+    final startBeginningModel =
         TripModeList.tripModeList[widget.index].startBeginningModel;
 
-    // TODO: implement build
-    return Column(
-      children: [
-        AppSize.spaceHeight2(context),
-        HeadlineText(text: widget.title),
-        Row(children: [
-          TextGlobal(
-            text: "المنزل",
-            fontSize: width(context) * .03,
-            color: ColorManager.grayColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          HeadlineText(text: widget.title),
+          Row(
+            children: [
+              TextGlobal(
+                text: 'المنزل',
+                fontSize: width(context) * 0.03,
+                color: ColorManager.grayColor,
+              ),
+              Checkbox(
+                side:
+                    BorderSide(color: ColorManager.orangeTxtColor, width: 1.5),
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5))),
+                checkColor: ColorManager.whiteColor,
+                focusColor: ColorManager.orangeTxtColor,
+                activeColor: ColorManager.orangeTxtColor,
+                value: isHome,
+                onChanged: _onHomeCheckboxChanged,
+              ),
+            ],
           ),
-          Checkbox(
-              side: BorderSide(
-                color: ColorManager.orangeTxtColor,
-                width: 1.5,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0),
-              ),
-              checkColor: ColorManager.whiteColor,
-              focusColor: ColorManager.orangeTxtColor,
-              activeColor: ColorManager.orangeTxtColor,
-              value: TripModeList.tripModeList[widget.index].isHome,
-              onChanged: (bool? value) {
-                setState(() {
-                  TripModeList.tripModeList[widget.index].isHome = value!;
-                  if (TripModeList.tripModeList[widget.index].isHome == true) {
-                    startBeginningModel?.tripAddressLong =
-                        surveyPt.hhsAddressLong;
-
-                    startBeginningModel?.tripAddressLat =
-                        surveyPt.hhsAddressLat;
-                  } else {
-                    startBeginningModel?.tripAddressLong =
-                        surveyPt.startingAddressLatLng?.longitude.toString();
-                    startBeginningModel?.tripAddressLat =
-                        surveyPt.startingAddressLatLng?.latitude.toString();
-                  }
-                });
-              })
-        ]),
-        Column(
-          children: [
-            TripModeList.tripModeList[widget.index].isHome == true
-                ? Container()
-                : Row(
-                    children: [
-                      const Image(image: AssetImage(ImageAssets.locationIcon)),
-                      AppSize.spaceWidth2(context),
-                      const Text('الإحداثيات'),
-                      const Spacer(),
-                      IconButton(
-                          onPressed: () {
-                            print('google maps navigation');
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => MapSearchScreen(
-                                  callBack: (LatLng latLong) {
-                                    surveyPt.startingAddressLatLng = latLong;
-                                    setState(() {
-                                      surveyPt.startingAddressLatLng?.latitude !=
-                                          latLong.latitude;
-                                      surveyPt.startingAddressLatLng?.longitude !=
-                                          latLong.longitude;
-                                    });
-                                    setState(() {
-                                      startBeginningModel?.tripAddressLong =
-                                          surveyPt
-                                              .startingAddressLatLng?.longitude
-                                              .toString();
-                                      startBeginningModel?.tripAddressLat =
-                                          surveyPt.startingAddressLatLng?.latitude
-                                              .toString();
-                                    });
-                                  },
-                                ),
-                              ),
-                            );
-                          },
-                          icon: Icon(
-                            Icons.pin_drop,
-                            color: ColorManager.primaryColor,
-                            size: width(context) * .1,
-                          )),
-                    ],
-                  ),
+          if (!isHome) ...[
+            const SizedBox(height: 16),
             Row(
               children: [
-                ItemTextSpan(
-                    title: "Lat",
-                    subTitle: startBeginningModel?.tripAddressLat ?? ""),
-                AppSize.spaceWidth3(context),
-                ItemTextSpan(
-                    title: "Long",
-                    subTitle: startBeginningModel?.tripAddressLong ?? ""),
+                Image.asset(
+                  ImageAssets.locationIcon,
+                  height: 24,
+                  width: 24,
+                ),
+                const SizedBox(width: 8),
+                const Text('الإحداثيات'),
+                const Spacer(),
+                IconButton(
+                  onPressed: () async {
+                    final latLong = await Navigator.push<LatLng?>(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MapSearchScreen(
+                          callBack: (LatLng latLong) {
+                            // Update the ending address coordinates on the survey provider object
+                            surveyPt.endAddressLatLng = latLong;
+
+                            // Update the ending address coordinates in the trip mode list
+                            setState(() {
+                              startBeginningModel?.tripAddressLong = surveyPt
+                                  .endingAddressLatLng?.longitude
+                                  .toString();
+                              startBeginningModel?.tripAddressLat = surveyPt
+                                  .endingAddressLatLng?.latitude
+                                  .toString();
+                            });
+                          },
+                        ),
+                      ),
+                    );
+                    if (latLong != null) {
+                      surveyPt.startingAddressLatLng = latLong;
+                      setState(() {
+                        startBeginningModel?.tripAddressLong =
+                            latLong.longitude.toString();
+                        startBeginningModel?.tripAddressLat =
+                            latLong.latitude.toString();
+                      });
+                    }
+                  },
+                  icon: Icon(
+                    Icons.pin_drop,
+                    color: ColorManager.primaryColor,
+                    size: width(context) * 0.1,
+                  ),
+                ),
               ],
             ),
-          ],
-        ),
-        AppSize.spaceHeight2(context),
-      ],
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ItemTextSpan(
+                  title: 'Lat',
+                  subTitle: startBeginningModel?.tripAddressLat ?? '',
+                ),
+                ItemTextSpan(
+                  title: 'Long',
+                  subTitle: startBeginningModel?.tripAddressLong ?? '',
+                ),
+              ],
+            )
+          ]
+        ],
+      ),
     );
   }
 }

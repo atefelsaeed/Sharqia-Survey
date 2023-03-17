@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sharqia_household_survey/Helper/locale_database/locale_db.dart';
 import 'package:sharqia_household_survey/Models/survey.dart';
 
 import '../Data/Enums/hhs_enums.dart';
@@ -29,6 +30,7 @@ class SurveysProvider with ChangeNotifier {
       debugPrint("fetching");
       final surveysList2 =
           await SurveyPtOperations().getSurveyPtOfflineAllItems();
+      // await DatabaseHelper().close();
       _surveys = [];
       for (var s in surveysList2) {
         switch (s.type) {
@@ -67,6 +69,7 @@ class SurveysProvider with ChangeNotifier {
       _surveys.removeWhere((e) => e.id == s.id);
       _surveys.add(s);
       await SurveyPtOperations().addItemToSurveyPtOfflineDatabase(s);
+      // await DatabaseHelper().close();
       // await save();
       notifyListeners();
       return true;
@@ -81,6 +84,8 @@ class SurveysProvider with ChangeNotifier {
       // _surveys.removeWhere((e) => e.id == s.id);
       // _surveys.add(s);
       await SurveyPtOperations().addItemToSurveyPtDatabase(s);
+
+      // await DatabaseHelper().close();
       // await save();
       notifyListeners();
       return true;

@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:sharqia_household_survey/UI/Widgets/item_point.dart';
-
-import '../../../../Resources/colors.dart';
-import '../../../../Resources/sizes.dart';
-import '../../../Widgets/item_text_span.dart';
-import '../../../Widgets/text.dart';
+import 'package:sharqia_household_survey/UI/Widgets/item_text_span.dart';
+import 'package:sharqia_household_survey/UI/Widgets/text.dart';
+import 'package:sharqia_household_survey/Resources/colors.dart';
+import 'package:sharqia_household_survey/Resources/sizes.dart';
 
 class HeadlineText extends StatelessWidget {
   final String text;
 
-  const HeadlineText({super.key, required this.text});
+  const HeadlineText({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Column(
       children: [
         const MyDivider(),
@@ -24,24 +22,14 @@ class HeadlineText extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: const [
-                // CircleAvatar(
-                //     backgroundColor: ColorManager.black,
-                //     radius: width(context) * .010),
                 ItemPoint(),
-                // AppSize.spaceHeight05(context),
-                // Container(
-                //   color: ColorManager.black,
-                //   width: width(context) * .03,
-                //   height: height(context) * .003,
-                // )
               ],
             ),
             AppSize.spaceWidth1(context),
-            SizedBox(
-              width: width(context) * .75,
+            Expanded(
               child: TextGlobal(
                 text: text,
-                fontSize: width(context) * .03,
+                fontSize: width(context) * 0.03,
                 color: ColorManager.black,
                 fontWeight: FontWeight.w800,
               ),

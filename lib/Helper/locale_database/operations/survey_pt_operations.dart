@@ -14,7 +14,7 @@ class SurveyPtOperations {
   Future<int?> addItemToSurveyPtDatabase(Survey survey) async {
     Database? myDB = await db.db;
     SurveyPT list = await getSurveyPtAllItems();
-
+    // await DatabaseHelper().close();
     int? raw;
     print("${list.id} && ${survey.id}");
     if (list.id != survey.id) {
@@ -25,6 +25,7 @@ class SurveyPtOperations {
       );
     } else {
       raw = await update(survey);
+
       log(survey.toJson().toString());
     }
 
@@ -43,6 +44,7 @@ class SurveyPtOperations {
       whereArgs: [survey.id],
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+
   }
 
   //Get all survey PT Table from the database

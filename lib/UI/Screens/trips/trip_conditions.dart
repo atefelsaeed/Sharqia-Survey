@@ -213,7 +213,7 @@ class TripConditions {
     List newList = tripOwner.toSet().toList();
     if (tripPersons.length != newList.length) {
       print('personsWithoutTrip.isNotEmpty$personsWithoutTrip');
-      SaveAndFinish.saveAndFinish(context, personsWithoutTrip, function);
+      SaveAndFinish.showSaveAndFinishDialog(context, personsWithoutTrip, function());
       return false;
     } else {
       return true;

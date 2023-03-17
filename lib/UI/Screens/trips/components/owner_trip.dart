@@ -8,27 +8,27 @@ import '../provider/trip_provider.dart';
 class OwnerTrip extends StatelessWidget {
   final int index;
 
-  const OwnerTrip({super.key, required this.index});
+  const OwnerTrip({Key? key, required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TripProvider>(context, listen: false);
+    final chosenPerson = TripModeList.tripModeList[index].chosenPerson;
 
-    final validationService = Provider.of<TripProvider>(context, listen: false);
-    // TODO: implement build
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        DropDownFormInput(
-          hint: "صاحب الرحلة",
-          label: TripModeList.tripModeList[index].chosenPerson != ''
-              ? Text(TripModeList.tripModeList[index].chosenPerson)
-              : const Text('إختار'),
-          options: TripModeList.tripModeList[index].person,
-          onChange: (String? p) {
-            debugPrint("p");
-            validationService.addOwnerTrip(index, p.toString());
-          },
-        )
+        Expanded(
+          child: DropDownFormInput(
+            hint: 'صاحب الرحلة',
+            label: chosenPerson.isNotEmpty
+                ? Text(chosenPerson)
+                : const Text('إختار'),
+            options: TripModeList.tripModeList[index].person,
+            onChange: (String? value) {
+              provider.addOwnerTrip(index, value!);
+            },
+          ),
+        ),
       ],
     );
   }

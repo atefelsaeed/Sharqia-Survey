@@ -110,7 +110,7 @@ class _TripScreenState extends State<TripScreen> {
                                   ? TripHoldAddress(
                                       tripModel: TripModeList
                                           .tripModeList[i].startBeginningModel!,
-                                      titel: "1. من أین بدأت الیوم؟")
+                                      title: "1. من أین بدأت الیوم؟")
                                   : TripStartingAddress(
                                       index: i,
                                       title: "1. من أین بدأت الیوم؟",
@@ -132,7 +132,7 @@ class _TripScreenState extends State<TripScreen> {
                                   ? TripHoldAddress(
                                       tripModel: TripModeList
                                           .tripModeList[i].endingAddress!,
-                                      titel: "4. الى أي عنوان ذھبت؟",
+                                      title: "4. الى أي عنوان ذھبت؟",
                                     )
                                   : TripEndingAddress(
                                       title: "4. الى أي عنوان ذھبت؟",
@@ -142,7 +142,7 @@ class _TripScreenState extends State<TripScreen> {
                               const HeadlineText(
                                   text:
                                       "5. ما ھو الغرض من الذھاب إلى ھذا  المكان؟"),
-                              PurposeOfTheBeing(
+                              PurposeOfBeing(
                                 indexTripModel: i,
                               ),
                               AppSize.spaceHeight2(context),
@@ -158,7 +158,7 @@ class _TripScreenState extends State<TripScreen> {
                               AppSize.spaceHeight2(context),
                               DepartTime(
                                 tripModel: TripModeList.tripModeList[i],
-                                index: i,
+                                i: i,
                               ),
                             ],
                           ),

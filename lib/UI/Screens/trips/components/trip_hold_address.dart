@@ -9,16 +9,16 @@ import '../../Survey/widgets/text_form_row.dart';
 
 class TripHoldAddress extends StatefulWidget {
   final StartBeginningModel tripModel;
-  final String titel;
+  final String title;
 
   const TripHoldAddress({
-    super.key,
+    Key? key,
     required this.tripModel,
-    required this.titel,
-  });
+    required this.title,
+  }) : super(key: key);
 
   @override
-  State<TripHoldAddress> createState() => _TripHoldAddressState();
+  _TripHoldAddressState createState() => _TripHoldAddressState();
 }
 
 class _TripHoldAddressState extends State<TripHoldAddress> {
@@ -26,104 +26,78 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
 
   @override
   Widget build(BuildContext context) {
-     // TODO: implement build
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        AppSize.spaceHeight2(context),
-        HeadlineText(text: widget.titel),
-        AppSize.spaceHeight1(context),
-        const Divider(
-          thickness: 1,
-        ),
-        Row(children: [
-          TextGlobal(
-            text: "المنزل",
-            //[index].title,
-            fontSize: height(context) * .02,
-            color: ColorManager.grayColor,
-          ),
-          // Checkbox(
-          //     side: BorderSide(
-          //       color: ColorManager.orangeTxtColor,
-          //       width: 1.5,
-          //     ),
-          //     shape: RoundedRectangleBorder(
-          //       borderRadius: BorderRadius.circular(5.0),
-          //     ),
-          //     checkColor: ColorManager.whiteColor,
-          //     focusColor: ColorManager.orangeTxtColor,
-          //     activeColor: ColorManager.orangeTxtColor,
-          //     value: isHome,
-          //     onChanged: (bool? value) {
-          //       setState(() {
-          //         isHome = value!;
-          //         if (isHome == true) {
-          //           widget.tripModel.area.text = surveyPt.hhsAreaSuburb!;
-          //           widget.tripModel.streetNumber.text =
-          //               surveyPt.hhsStreetNumber!;
-          //           widget.tripModel.streetName.text = surveyPt.hhsStreetName!;
-          //           widget.tripModel.nearestLandMark.text =
-          //               surveyPt.hhsNearestLandMark!;
-          //           widget.tripModel.block.text =
-          //               surveyPt.hhsBlockNearestCrossStreets!;
-          //         } else {
-          //           widget.tripModel.area.text = "";
-          //           widget.tripModel.streetNumber.text = "";
-          //           widget.tripModel.streetName.text = "";
-          //           widget.tripModel.nearestLandMark.text = "";
-          //           widget.tripModel.block.text = "";
-          //         }
-          //       });
-          //     })
-        ]),
-        AppSize.spaceHeight2(context),
+        SizedBox(height: AppSize.spaceHeight2(context)),
+        HeadlineText(text: widget.title),
+        const Divider(thickness: 1),
+        SizedBox(height: AppSize.spaceHeight1(context)),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextForm(
-              onChanged: (value){},
-              controller: widget.tripModel.area,
-              text: "الحى",
-              label: "الحى",
-            ),
-            TextForm(
-              onChanged: (value){},
-              controller: widget.tripModel.streetNumber,
-              text: "رقم الشارع",
-              label: "رقم الشارع",
-              keyboardType: TextInputType.number,
-              isNumber: true,
-            )
-          ],
-        ),
-        AppSize.spaceHeight2(context),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextForm( onChanged: (value){},
-              controller: widget.tripModel.streetName,
-              label: "إسم الشارع",
-              text: "إسم الشارع",
-            ),
-            TextForm( onChanged: (value){},
-              controller: widget.tripModel.nearestLandMark,
-              label: "اقرب معلم",
-              text: "اقرب معلم",
-            )
-          ],
-        ),
-        AppSize.spaceHeight2(context),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextForm( onChanged: (value){},
-              controller: widget.tripModel.block,
-              text: "أقرب تقاطع",
-              label: "أقرب تقاطع",
+            TextGlobal(
+              text: 'المنزل',
+              fontSize: height(context) * 0.02,
+              color: ColorManager.grayColor,
             ),
           ],
         ),
-        AppSize.spaceHeight2(context),
+        SizedBox(height: AppSize.spaceHeight2(context)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: TextForm(
+                controller: widget.tripModel.area,
+                label: 'الحى',
+                text: 'ادخل اسم الحى',
+                onChanged: (value) {},
+              ),
+            ),
+            SizedBox(width: AppSize.spaceHeight2(context)),
+            Expanded(
+              child: TextForm(
+                controller: widget.tripModel.streetNumber,
+                label: 'رقم الشارع',
+                text: 'ادخل رقم الشارع',
+                keyboardType: TextInputType.number,
+                isNumber: true,
+                onChanged: (value) {},
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: AppSize.spaceHeight2(context)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: TextForm(
+                controller: widget.tripModel.streetName,
+                label: 'اسم الشارع',
+                text: 'ادخل اسم الشارع',
+                onChanged: (value) {},
+              ),
+            ),
+            SizedBox(width: AppSize.spaceHeight2(context)),
+            Expanded(
+              child: TextForm(
+                controller: widget.tripModel.nearestLandMark,
+                label: 'اقرب معلم',
+                text: 'ادخل اسم اقرب معلم',
+                onChanged: (value) {},
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: AppSize.spaceHeight2(context)),
+        TextForm(
+          controller: widget.tripModel.block,
+          label: 'أقرب تقاطع',
+          text: 'ادخل اسم أقرب تقاطع',
+          onChanged: (value) {},
+        ),
+        SizedBox(height: AppSize.spaceHeight2(context)),
       ],
     );
   }

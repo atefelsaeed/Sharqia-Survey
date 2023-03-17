@@ -8,6 +8,7 @@ import 'package:sharqia_household_survey/Models/HHS_SurvyModels/survey_hhs.dart'
 
 import '../Helper/api_helper.dart';
 import '../Helper/api_routing.dart';
+import '../Helper/locale_database/locale_db.dart';
 import '../Helper/locale_database/operations/hhs_user_surveys_operations.dart';
 import '../Helper/locale_database/operations/survey_pt_operations.dart';
 import '../Models/user_serveys_model.dart';
@@ -22,6 +23,7 @@ class UserSurveysProvider with ChangeNotifier {
   Future<bool> multiSync({callback, bool force = false}) async {
     iSSyncing = true;
     final surveysList = await SurveyPtOperations().getSurveyPtOfflineAllItems();
+    // await DatabaseHelper().close();
     debugPrint('Locale Offline DB Survey');
     debugPrint(surveysList.toString());
     for (var s in surveysList) {
@@ -36,6 +38,7 @@ class UserSurveysProvider with ChangeNotifier {
       );
       if (res.statusCode == 200) {
         await SurveyPtOperations().deleteSurveyPTTableOffline();
+        // await DatabaseHelper().close();
         debugPrint('Delete Survey Pt Offline All Items Done!');
       }
       iSSyncing = false;
@@ -223,6 +226,7 @@ class UserSurveysProvider with ChangeNotifier {
 
   Future<bool> getNotFilledSurvey() async {
     _surveyPT = await SurveyPtOperations().getSurveyPtAllItems();
+    // await DatabaseHelper().close();
     log(_surveyPT.toJson().toString());
 
     debugPrint('set value');

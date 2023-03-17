@@ -9,18 +9,20 @@ import '../../../Widgets/text.dart';
 class WhyDidYouGo extends StatefulWidget {
   final int indexTripModel;
 
-  const WhyDidYouGo({super.key, required this.indexTripModel});
+  const WhyDidYouGo({
+    Key? key,
+    required this.indexTripModel,
+  }) : super(key: key);
 
   @override
   State<WhyDidYouGo> createState() => _WhyDidYouGoState();
 }
 
 class _WhyDidYouGoState extends State<WhyDidYouGo> {
-  int chosenindex = 0;
+  int chosenIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Column(
       children: [
         GridView.builder(
@@ -35,69 +37,74 @@ class _WhyDidYouGoState extends State<WhyDidYouGo> {
             crossAxisCount: 3,
             childAspectRatio: 4,
           ),
-          itemBuilder: (context, index) => SizedBox(
-            width: width(context) / 2,
-            child: Row(children: [
-              SizedBox(
-                width: width(context) * .2,
-                child: TextGlobal(
-                  text: TripModeList.tripModeList[widget.indexTripModel]
-                      .purposeOfBeingThere2["TripReason"][index]["value"],
-                  //[index].title,
-                  fontSize: width(context) * .02,
-                  color: ColorManager.grayColor,
-                ),
-              ),
-              Checkbox(
-                  side: BorderSide(
-                    color: ColorManager.orangeTxtColor,
-                    width: 1.5,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  checkColor: ColorManager.whiteColor,
-                  focusColor: ColorManager.orangeTxtColor,
-                  activeColor: ColorManager.orangeTxtColor,
-                  value: TripModeList.tripModeList[widget.indexTripModel]
-                      .purposeOfBeingThere2["TripReason"][index]["isChick"],
-                  onChanged: (bool? value) {
-                    setState(() {
-                      TripModeList.tripModeList[widget.indexTripModel]
-                              .purposeOfBeingThere2["TripReason"][chosenindex]
-                          ["isChick"] = false;
-                      chosenindex = index;
-                      TripModeList.tripModeList[widget.indexTripModel]
-                              .purposeOfBeingThere2["TripReason"][chosenindex]
-                          ["isChick"] = value;
-                      TripModeList.tripModeList[widget.indexTripModel]
-                          .tripReason = TripModeList
-                              .tripModeList[widget.indexTripModel]
-                              .purposeOfBeingThere2["TripReason"][chosenindex]
-                          ["value"];
-                    });
-                  }),
-            ]),
-          ),
-        ),
-        AppSize.spaceHeight1(context),
-        (TripModeList.tripModeList[widget.indexTripModel].tripReason ==
-                    "آخرى" &&
-                TripModeList.tripModeList[widget.indexTripModel]
-                            .purposeOfBeingThere2["TripReason"][chosenindex]
-                        ["isChick"] ==
-                    true)
-            ? MyTextForm(
-                onChanged: (val) {
-                  TripModeList.tripModeList[widget.indexTripModel].tripReason =
-                      val;
-                },
-                onTap: () {},
+          itemBuilder: (context, index) {
+            final tripReason = TripModeList.tripModeList[widget.indexTripModel]
+                .purposeOfBeingThere2["TripReason"][index]["value"];
 
-                label: "أدخل الغرض",
-                isNumber: false,
-              )
-            : Container(),
+            return SizedBox(
+              width: width(context) / 2,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: width(context) * .2,
+                    child: TextGlobal(
+                      text: tripReason,
+                      fontSize: width(context) * .02,
+                      color: ColorManager.grayColor,
+                    ),
+                  ),
+                  Checkbox(
+                    side: BorderSide(
+                      color: ColorManager.orangeTxtColor,
+                      width: 1.5,
+                    ),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(5.0)),
+                    ),
+                    checkColor: ColorManager.whiteColor,
+                    focusColor: ColorManager.orangeTxtColor,
+                    activeColor: ColorManager.orangeTxtColor,
+                    value: TripModeList.tripModeList[widget.indexTripModel]
+                        .purposeOfBeingThere2["TripReason"][index]["isChick"],
+                    onChanged: (bool? value) {
+                      setState(() {
+                        TripModeList.tripModeList[widget.indexTripModel]
+                                .purposeOfBeingThere2["TripReason"][chosenIndex]
+                            ["isChick"] = false;
+
+                        chosenIndex = index;
+
+                        TripModeList.tripModeList[widget.indexTripModel]
+                                .purposeOfBeingThere2["TripReason"][chosenIndex]
+                            ["isChick"] = value;
+
+                        TripModeList.tripModeList[widget.indexTripModel]
+                            .tripReason = tripReason;
+                      });
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+        const SizedBox(height: 8),
+        if (TripModeList.tripModeList[widget.indexTripModel].tripReason ==
+                "آخرى" &&
+            TripModeList.tripModeList[widget.indexTripModel]
+                        .purposeOfBeingThere2["TripReason"][chosenIndex]
+                    ["isChick"] ==
+                true)
+          MyTextForm(
+            onChanged: (val) {
+              TripModeList.tripModeList[widget.indexTripModel].tripReason = val;
+            },
+            onTap: () {},
+            label: "أدخل الغرض",
+            isNumber: false,
+          )
+        else
+          const SizedBox.shrink(),
       ],
     );
   }
