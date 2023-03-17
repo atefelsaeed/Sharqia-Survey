@@ -1,7 +1,5 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Models/survey.dart';
 import 'package:sharqia_household_survey/Providers/surveys.dart';
@@ -30,6 +28,7 @@ class _ChooseSurveyBodyState extends State<ChooseSurveyBody> {
     super.initState();
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
+
     subscription = Connectivity().onConnectivityChanged.listen(
       (ConnectivityResult result) {
         if (result == ConnectivityResult.mobile ||

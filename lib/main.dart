@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:convert';
 
-import 'package:enum_to_string/enum_to_string.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,6 @@ import 'package:sharqia_household_survey/UI/Screens/Survey/actions/action_survey
 import 'package:sharqia_household_survey/UI/Screens/person/reset_person.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/provider/trip_provider.dart';
 
-import 'Data/Enums/hhs_enums.dart';
 import 'Helper/LifecycleEventHandlerClass.dart';
 import 'Providers/auth.dart';
 import 'Providers/surveys.dart';

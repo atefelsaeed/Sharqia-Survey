@@ -8,7 +8,6 @@ import 'package:sharqia_household_survey/Models/HHS_SurvyModels/survey_hhs.dart'
 
 import '../Helper/api_helper.dart';
 import '../Helper/api_routing.dart';
-import '../Helper/locale_database/locale_db.dart';
 import '../Helper/locale_database/operations/hhs_user_surveys_operations.dart';
 import '../Helper/locale_database/operations/survey_pt_operations.dart';
 import '../Models/user_serveys_model.dart';

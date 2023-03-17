@@ -24,7 +24,9 @@ class _ItemHomeSurveyState extends State<ItemHomeSurvey> {
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
     Auth auth = Provider.of<Auth>(context, listen: false);
+
     debugPrint('first');
+
     userSurveysProvider.fetchUserSurveysStatus(auth.user!.id);
   }
 

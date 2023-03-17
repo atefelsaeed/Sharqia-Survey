@@ -96,7 +96,7 @@ class _MyTextFormState extends State<MyTextForm> {
             readOnly: widget.readOnly?.orDefault(false) ?? false,
             onTap: () {
               widget.onTap();
-              if (widget.controller!.text.isNotEmpty &&
+              if (
                   widget.controller?.text != null) {
                 if (widget.controller!.selection ==
                     TextSelection.fromPosition(TextPosition(

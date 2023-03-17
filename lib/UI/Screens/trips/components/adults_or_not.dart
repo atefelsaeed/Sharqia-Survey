@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+
 import '../../../../Models/Trips_SurveyModel/travel_with_other_model.dart';
 import '../../../../Resources/colors.dart';
 import '../../../../Resources/sizes.dart';
@@ -12,9 +13,6 @@ class AdultsOrNot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final childrenNumber = adultsModel.childrenNumber;
-    final adultsNumber = adultsModel.adultsNumber;
-
     return Column(
       children: [
         AppSize.spaceHeight2(context),
@@ -24,11 +22,15 @@ class AdultsOrNot extends StatelessWidget {
             Row(
               children: [
                 MyTextForm(
+                  controller: adultsModel.childrenNumber,
                   label: "",
                   widthForm: width(context) * .15,
                   keyboardType: TextInputType.number,
                   isNumber: true,
                   onTap: () {},
+                  onChanged: (value) {
+                    adultsModel.childrenNumber.text = value ?? '';
+                  },
                 ),
                 AppSize.spaceWidth1(context),
                 TextGlobal(
@@ -43,7 +45,7 @@ class AdultsOrNot extends StatelessWidget {
               children: [
                 MyTextForm(
                   label: "",
-                  controller: adultsNumber,
+                  controller: adultsModel.adultsNumber,
                   widthForm: width(context) * .15,
                   keyboardType: TextInputType.number,
                   isNumber: true,

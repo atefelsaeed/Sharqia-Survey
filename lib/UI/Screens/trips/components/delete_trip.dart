@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/UI/Screens/trips/provider/trip_provider.dart';
+
 import '../../../../Resources/colors.dart';
 import 'text_trip.dart';
 

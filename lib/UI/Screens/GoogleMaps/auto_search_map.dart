@@ -242,8 +242,8 @@ class MapSearchScreen extends StatefulWidget {
 
 class _MapSearchScreenState extends State<MapSearchScreen> {
   Completer<GoogleMapController> _completer = Completer();
-  late double _initZoom = Constants.defaultZoom;
-  late LatLng _initCoordinates = Constants.location;
+  late final double _initZoom = Constants.defaultZoom;
+  late final LatLng _initCoordinates = Constants.location;
   List<Placemark> _placeMarks = [];
   LatLng? _value;
   GoogleMapController? _controller;

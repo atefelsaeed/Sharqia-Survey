@@ -335,7 +335,7 @@ class TripProvider extends ChangeNotifier {
     await Geolocator.requestPermission().then((value){
     }).onError((error, stackTrace) async {
       await Geolocator.requestPermission();
-      print("ERROR"+error.toString());
+      print("ERROR$error");
     });
     return await Geolocator.getCurrentPosition();
   }

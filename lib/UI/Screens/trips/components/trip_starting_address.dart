@@ -77,74 +77,72 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
               ),
             ],
           ),
-          if (!isHome) ...[
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                Image.asset(
-                  ImageAssets.locationIcon,
-                  height: 24,
-                  width: 24,
-                ),
-                const SizedBox(width: 8),
-                const Text('الإحداثيات'),
-                const Spacer(),
-                IconButton(
-                  onPressed: () async {
-                    final latLong = await Navigator.push<LatLng?>(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MapSearchScreen(
-                          callBack: (LatLng latLong) {
-                            // Update the ending address coordinates on the survey provider object
-                            surveyPt.endAddressLatLng = latLong;
+          isHome == false
+              ? Row(
+                  children: [
+                    Image.asset(
+                      ImageAssets.locationIcon,
+                      height: 24,
+                      width: 24,
+                    ),
+                    const SizedBox(width: 8),
+                    const Text('الإحداثيات'),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () async {
+                        final latLong = await Navigator.push<LatLng?>(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => MapSearchScreen(
+                              callBack: (LatLng latLong) {
+                                // Update the ending address coordinates on the survey provider object
+                                surveyPt.endAddressLatLng = latLong;
 
-                            // Update the ending address coordinates in the trip mode list
-                            setState(() {
-                              startBeginningModel?.tripAddressLong = surveyPt
-                                  .endingAddressLatLng?.longitude
-                                  .toString();
-                              startBeginningModel?.tripAddressLat = surveyPt
-                                  .endingAddressLatLng?.latitude
-                                  .toString();
-                            });
-                          },
-                        ),
+                                // Update the ending address coordinates in the trip mode list
+                                setState(() {
+                                  startBeginningModel?.tripAddressLong =
+                                      surveyPt.endingAddressLatLng?.longitude
+                                          .toString();
+                                  startBeginningModel?.tripAddressLat = surveyPt
+                                      .endingAddressLatLng?.latitude
+                                      .toString();
+                                });
+                              },
+                            ),
+                          ),
+                        );
+                        if (latLong != null) {
+                          surveyPt.startingAddressLatLng = latLong;
+                          setState(() {
+                            startBeginningModel?.tripAddressLong =
+                                latLong.longitude.toString();
+                            startBeginningModel?.tripAddressLat =
+                                latLong.latitude.toString();
+                          });
+                        }
+                      },
+                      icon: Icon(
+                        Icons.pin_drop,
+                        color: ColorManager.primaryColor,
+                        size: width(context) * 0.1,
                       ),
-                    );
-                    if (latLong != null) {
-                      surveyPt.startingAddressLatLng = latLong;
-                      setState(() {
-                        startBeginningModel?.tripAddressLong =
-                            latLong.longitude.toString();
-                        startBeginningModel?.tripAddressLat =
-                            latLong.latitude.toString();
-                      });
-                    }
-                  },
-                  icon: Icon(
-                    Icons.pin_drop,
-                    color: ColorManager.primaryColor,
-                    size: width(context) * 0.1,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ItemTextSpan(
-                  title: 'Lat',
-                  subTitle: startBeginningModel?.tripAddressLat ?? '',
-                ),
-                ItemTextSpan(
-                  title: 'Long',
-                  subTitle: startBeginningModel?.tripAddressLong ?? '',
-                ),
-              ],
-            )
-          ]
+                    ),
+                  ],
+                )
+              : Container(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              ItemTextSpan(
+                title: 'Lat',
+                subTitle: startBeginningModel?.tripAddressLat ?? '',
+              ),
+              ItemTextSpan(
+                title: 'Long',
+                subTitle: startBeginningModel?.tripAddressLong ?? '',
+              ),
+            ],
+          )
         ],
       ),
     );

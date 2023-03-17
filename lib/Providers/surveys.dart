@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sharqia_household_survey/Helper/locale_database/locale_db.dart';
 import 'package:sharqia_household_survey/Models/survey.dart';
 
 import '../Data/Enums/hhs_enums.dart';

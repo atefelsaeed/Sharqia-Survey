@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sharqia_household_survey/Resources/colors.dart';
+import 'package:sharqia_household_survey/Resources/sizes.dart';
 import 'package:sharqia_household_survey/UI/Widgets/item_point.dart';
 import 'package:sharqia_household_survey/UI/Widgets/item_text_span.dart';
 import 'package:sharqia_household_survey/UI/Widgets/text.dart';
-import 'package:sharqia_household_survey/Resources/colors.dart';
-import 'package:sharqia_household_survey/Resources/sizes.dart';
 
 class HeadlineText extends StatelessWidget {
   final String text;
