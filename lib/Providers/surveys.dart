@@ -68,8 +68,6 @@ class SurveysProvider with ChangeNotifier {
       _surveys.removeWhere((e) => e.id == s.id);
       _surveys.add(s);
       await SurveyPtOperations().addItemToSurveyPtOfflineDatabase(s);
-      // await DatabaseHelper().close();
-      // await save();
       notifyListeners();
       return true;
     } catch (er) {
@@ -80,12 +78,7 @@ class SurveysProvider with ChangeNotifier {
 
   Future<bool> addNotFilledSurvey(Survey s) async {
     try {
-      // _surveys.removeWhere((e) => e.id == s.id);
-      // _surveys.add(s);
       await SurveyPtOperations().addItemToSurveyPtDatabase(s);
-
-      // await DatabaseHelper().close();
-      // await save();
       notifyListeners();
       return true;
     } catch (er) {

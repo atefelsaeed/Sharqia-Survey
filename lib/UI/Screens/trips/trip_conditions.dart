@@ -17,15 +17,15 @@ class TripConditions {
   bool checkIsCarDriver(int i, context) {
     var bas = TripModeList.tripModeList[i].travelTypeModel;
     if (((TripModeList.tripModeList[i].travelWay!.mainMode == 'سائق سيارة') ||
-        (TripModeList.tripModeList[i].travelWay!.accessMode ==
-            'سائق سيارة')) &&
+            (TripModeList.tripModeList[i].travelWay!.accessMode ==
+                'سائق سيارة')) &&
         (bas.travelType != 'سيارة')) {
       showError(
           context,
           ShowErrorDialog(
               title: ' بماذا ذهبت ؟ رحلة ${i + 1}',
               content:
-              'في سؤال 6 "الوضع الرئيسي" او "وضع الوصول" اذا كان الاختيار سائق سيارة يجب أن يكون الجواب في سؤال 8 بماذا ذهبت ؟ الجواب "سيارة"'));
+                  'في سؤال 6 "الوضع الرئيسي" او "وضع الوصول" اذا كان الاختيار سائق سيارة يجب أن يكون الجواب في سؤال 8 بماذا ذهبت ؟ الجواب "سيارة"'));
       return false;
     } else {
       return true;
@@ -48,7 +48,7 @@ class TripConditions {
         ShowErrorDialog(
           title: ' هل ذهبت بمفردك ام مع آخرين ؟ رحلة ${i + 1}',
           content:
-          "''  عدد البالغين اكبر من او يساوي عدد البالغين في سؤال ( أي من افراد الاسرة ذهب معك ؟ ) عدد المرافقين يجب أن يكون اكبر من أو يساوي المرافقين من الاسرة''",
+              "''  عدد البالغين اكبر من او يساوي عدد البالغين في سؤال ( أي من افراد الاسرة ذهب معك ؟ ) عدد المرافقين يجب أن يكون اكبر من أو يساوي المرافقين من الاسرة''",
         ),
       );
       return false;
@@ -73,7 +73,7 @@ class TripConditions {
         ShowErrorDialog(
           title: ' هل ذهبت بمفردك ام مع آخرين ؟ رحلة ${i + 1}',
           content:
-          "''  عدد الأطفال اكبر من او يساوي عدد الأطفال في سؤال ( أي من افراد الاسرة ذهب معك ؟ ) عدد المرافقين يجب أن يكون اكبر من أو يساوي المرافقين من الاسرة''",
+              "''  عدد الأطفال اكبر من او يساوي عدد الأطفال في سؤال ( أي من افراد الاسرة ذهب معك ؟ ) عدد المرافقين يجب أن يكون اكبر من أو يساوي المرافقين من الاسرة''",
         ),
       );
       return false;
@@ -83,10 +83,9 @@ class TripConditions {
   }
 
   ///
-
   bool checkIsTravelAloneAdultsNumberQ4HHS(int i, context) {
     SurveyPTProvider surveyPt =
-    Provider.of<SurveyPTProvider>(context, listen: false);
+        Provider.of<SurveyPTProvider>(context, listen: false);
 
     var bas = TripModeList.tripModeList[i];
     debugPrint('ssss');
@@ -130,7 +129,7 @@ class TripConditions {
   ///
   bool checkIsTravelAloneChildrenNumberQ4HHS(int i, context) {
     SurveyPTProvider surveyPt =
-    Provider.of<SurveyPTProvider>(context, listen: false);
+        Provider.of<SurveyPTProvider>(context, listen: false);
 
     var bas = TripModeList.tripModeList[i];
 
@@ -183,37 +182,14 @@ class TripConditions {
     for (int i = 0; i < length; i++) {
       var bas = TripModeList.tripModeList[i];
       tripPersons = bas.person;
-      // if (tripOwner.isEmpty) {
-      //   tripOwner.add(bas.chosenPerson);
-      // } else if (bas.chosenPerson != tripOwner[i]) {
-      //   tripOwner.add(bas.chosenPerson);
-      // }
       tripOwner.add(bas.chosenPerson);
       debugPrint(tripPersons.toString());
       debugPrint(tripOwner.toSet().toString());
-
-      // int tripLength = tripPersons.length;
-      // for (int e = 0; e < tripLength; e++) {
-      //   debugPrint('trinp person :::');
-      //   if (i > 0) {
-      //     debugPrint('tripPersons_list');
-      //     if (tripPersons[e] != tripOwner[i]) {
-      //       debugPrint('personsWithoutTrip');
-      //       personsWithoutTrip.add(tripPersons[e]);
-      //     }}
-      // }
     }
-    // if (personsWithoutTrip.isNotEmpty) {
-    //   debugPrint('personsWithoutTrip.isNotEmpty$personsWithoutTrip');
-    //   SaveAndFinish.saveAndFinish(context, personsWithoutTrip, function);
-    //   return false;
-    // } else {
-    //   return true;
-    // }
     List newList = tripOwner.toSet().toList();
     if (tripPersons.length != newList.length) {
-      debugPrint('personsWithoutTrip.isNotEmpty$personsWithoutTrip');
-      SaveAndFinish.showSaveAndFinishDialog(context, personsWithoutTrip, function());
+      SaveAndFinish.showSaveAndFinishDialog(
+          context, personsWithoutTrip, function());
       return false;
     } else {
       return true;
