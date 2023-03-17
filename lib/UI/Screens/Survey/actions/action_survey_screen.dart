@@ -60,7 +60,7 @@ class ActionSurveyProvider extends ChangeNotifier {
     VehModel.nearestPublicTransporter = r.val.toString();
     notifyListeners();
 
-    print("d");
+    debugPrint("d");
   }
 
   cc() {

@@ -49,10 +49,10 @@ class CheckVehiclesValidation {
 
     ///largeCar
     for (int i = 0; i <= VehModel.largeCar.length; i++) {
-      print('ser');
+      debugPrint('ser');
 
       if (i < VehModel.largeCar.length) {
-        print('ser');
+        debugPrint('ser');
 
         if (VehModel.largeCar[i].vehicleFuelType.text.isEmpty) {
           return Validator.showSnack(context, " يجب إخيار ! أكواد نوع الوقود؟");

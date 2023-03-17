@@ -67,7 +67,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
     // // check-if-edit-or-new-survey
     //  if ((widget.itemSurveyModel.status == 'edit' &&
     //      AppConstants.isResetHHS == true)) {
-    //    print('first edit');
+    //    debugPrint('first edit');
     //  }
     //Reset-to-empty-data
     EmptyHHS.resetHHS(context);
@@ -78,7 +78,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
     //check-if-edit-or-new-survey
     if ((widget.itemSurveyModel.status == 'edit' &&
         AppConstants.isResetHHS == true)) {
-      print('first edit');
+      debugPrint('first edit');
       int id = widget.itemSurveyModel.id!;
       validationService.resetHHSValues(editingController, context, id);
     }
@@ -93,18 +93,18 @@ class _SurveyScreenState extends State<SurveyScreen> {
     prefs.getString(
       "UserSurveysModelData",
     );
-    print(prefs.get("UserSurveysModelData"));
+    debugPrint(prefs.get("UserSurveysModelData").toString());
     String? data = prefs.getString("UserSurveysModelData");
 
     Map<String, dynamic> valueMap = json.decode(data!);
-    print(valueMap);
+    debugPrint(valueMap.toString());
     widget.itemSurveyModel = UserSurveysModelData.fromJson(valueMap);
-    print(UserSurveysModelData.fromJson(valueMap));
-    print(widget.itemSurveyModel.id);
+    debugPrint(UserSurveysModelData.fromJson(valueMap).toString());
+    debugPrint(widget.itemSurveyModel.id.toString());
     final validationService =
         Provider.of<ActionSurveyProvider>(context, listen: false);
     int? id = widget.itemSurveyModel.id;
-    print(id);
+    debugPrint(id.toString());
     //validationService.resetHHSValues(editingController, context, id!);
   }
 

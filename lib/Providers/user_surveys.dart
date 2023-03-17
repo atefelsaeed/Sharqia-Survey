@@ -154,12 +154,12 @@ class UserSurveysProvider with ChangeNotifier {
       var response = await APIHelper.getData(
         url: "${APIRouting.getSurveis}$id",
       );
-      print('res');
+      debugPrint('res');
       debugPrint(response.toString());
       if (response.statusCode == 200) {
         var data = json.decode(response.body);
-        print("kkkkkkkkkkkkkkkk");
-        print(data);
+        debugPrint("kkkkkkkkkkkkkkkk");
+        debugPrint(data);
         if (!data['status']) return false;
         _userSurveysSurveysList = (data['data'] as List)
             .map((e) => UserSurveysModelData.fromJson(e))
@@ -243,8 +243,8 @@ class UserSurveysProvider with ChangeNotifier {
       Map<String, dynamic> data = json.decode(response.body);
       debugPrint("Success");
       _surveyPT = SurveyPT.fromJsonAPI(data);
-      print("_surveyPT.hhsSeparateFamilies!.length");
-      print(_surveyPT.hhsSeparateFamilies!.length);
+      debugPrint("_surveyPT.hhsSeparateFamilies!.length");
+      debugPrint(_surveyPT.hhsSeparateFamilies!.length.toString());
       debugPrint("Success");
       loading = false;
       notifyListeners();

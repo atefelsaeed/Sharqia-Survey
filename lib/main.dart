@@ -1,13 +1,10 @@
 import 'dart:async';
 
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Models/HHS_SurvyModels/survey_hhs.dart';
 import 'package:sharqia_household_survey/Providers/survey_hhs.dart';
 import 'package:sharqia_household_survey/UI/Screens/SplashScreen/splashScreen.dart';
@@ -80,14 +77,14 @@ void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     debugPrint("something");
-
-    Firebase.initializeApp().then((value) async {
-      FirebaseMessaging.instance.subscribeToTopic('sync');
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('SystemStatus', 'Online');
-      prefs.setBool('dontsync', false);
-      // FirebaseMessaging.onBackgroundMessage(_messageHandler);
-    });
+    //
+    // Firebase.initializeApp().then((value) async {
+    //   FirebaseMessaging.instance.subscribeToTopic('sync');
+    //   final prefs = await SharedPreferences.getInstance();
+    //   await prefs.setString('SystemStatus', 'Online');
+    //   prefs.setBool('dontsync', false);
+    //   // FirebaseMessaging.onBackgroundMessage(_messageHandler);
+    // });
     debugPrint("second thing");
 
     Intl.defaultLocale = 'ar_EG';

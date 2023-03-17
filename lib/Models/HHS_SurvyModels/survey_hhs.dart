@@ -121,7 +121,7 @@ class SurveyPT extends Survey {
     data['type'] = EnumToString.convertToString(type, camelCase: true);
     data['synced'] = synced.toString();
     data['headerDate'] = header.interviewDate.toString();
-    print(jsonEncode(vehiclesData.toJson()));
+    debugPrint(jsonEncode(vehiclesData.toJson()));
     data['vehiclesData'] = vehiclesData.toJson();
     data['headerEmpNumber'] = header.empNumber;
     data['headerInterviewNumber'] = header.interviewNumber;
@@ -168,8 +168,8 @@ class SurveyPT extends Survey {
     data['hhsESChildrenBikesNumber'] =
         householdQuestions.hhsElectricScooter.childrenBikesNumber;
     data['hhsTotalIncome'] = householdQuestions.hhsTotalIncome ?? '';
-    print('vehiclesDatax');
-    print(hhsSeparateFamilies?.map((e) => e.toJson()).toList());
+    debugPrint('vehiclesDatax');
+    debugPrint(hhsSeparateFamilies?.map((e) => e.toJson()).toList().toString());
     data['hhsSeparateFamilies'] =
         hhsSeparateFamilies?.map((e) => e.toJson()).toList() ??
             jsonDecode([].toString());

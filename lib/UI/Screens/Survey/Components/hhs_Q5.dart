@@ -65,7 +65,7 @@ class HHSQ5 extends StatelessWidget {
                 AppSize.spaceWidth1(context),
                 MyTextForm(
                   onChanged: (d) {
-                    print(d);
+                    debugPrint(d);
                     // SurveyCondition()
                     //     .conditionHHSQ5NumAdults(editingController, context);
                   },

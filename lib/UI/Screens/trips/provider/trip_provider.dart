@@ -131,7 +131,7 @@ class TripProvider extends ChangeNotifier {
         }
       }
 
-      print('chossen');
+      debugPrint('chossen');
       surveyPt.surveyPT.tripsList![i].chosenPerson;
       var chosenPerson = surveyPt.surveyPT.tripsList![i].chosenPerson;
       var reason = surveyPt.surveyPT.tripsList![i].tripReason!
@@ -233,7 +233,7 @@ class TripProvider extends ChangeNotifier {
             x++) {
           if (surveyPt.surveyPT.tripsList![i].chosenFriendPerson[x] !=
               surveyPt.surveyPT.tripsList![i].chosenPerson) {
-            print("jjjjjiiii");
+            debugPrint("jjjjjiiii");
             TripModeList.tripModeList[i].friendPerson["friendPerson"].add({
               "value": surveyPt.surveyPT.tripsList![i].chosenFriendPerson[x]
                   .toString(),
@@ -335,7 +335,7 @@ class TripProvider extends ChangeNotifier {
     await Geolocator.requestPermission().then((value){
     }).onError((error, stackTrace) async {
       await Geolocator.requestPermission();
-      print("ERROR$error");
+      debugPrint("ERROR$error");
     });
     return await Geolocator.getCurrentPosition();
   }

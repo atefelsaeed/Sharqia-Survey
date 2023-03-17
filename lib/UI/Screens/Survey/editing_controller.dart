@@ -81,7 +81,7 @@ c(EditingController editingController, BuildContext context, int id) async {
       surveyPt.surveyPT.header.householdAddress.hhsPhone.text;
 
   ///Q1 hhsDwellingType
-  // print(       surveyPt.surveyPT!.householdQuestions.hhsDwellingType.toString());
+  // debugPrint(       surveyPt.surveyPT!.householdQuestions.hhsDwellingType.toString());
   HhsStatic.householdQuestions.hhsDwellingTypeOther!.text =
       surveyPt.surveyPT.householdQuestions.hhsDwellingType.toString();
   HhsStatic.householdQuestions.hhsDwellingType =
@@ -113,9 +113,9 @@ c(EditingController editingController, BuildContext context, int id) async {
       surveyPt.surveyPT.vehiclesData.nearestBusStop ?? '';
   debugPrint('nearestPublicTransporter');
   debugPrint(surveyPt.surveyPT.vehiclesData.nearestBusStop);
-  print("hhsNumberSeparateFamilies");
+  debugPrint("hhsNumberSeparateFamilies");
 
-  print(surveyPt.surveyPT.householdQuestions.hhsNumberSeparateFamilies);
+  debugPrint(surveyPt.surveyPT.householdQuestions.hhsNumberSeparateFamilies);
   for (int i = 1;
       i < QuestionsData.qh4[QuestionsData.qh4.keys.first]!.toList().length;
       i++) {
@@ -144,8 +144,8 @@ c(EditingController editingController, BuildContext context, int id) async {
       surveyPt.surveyPT.householdQuestions.hhsNumberAdults.toString();
   editingController.peopleUnder18.text =
       surveyPt.surveyPT.householdQuestions.hhsNumberChildren.toString();
-  print("object");
-  print(surveyPt.surveyPT.householdQuestions.hhsNumberSeparateFamilies);
+  debugPrint("object");
+  debugPrint(surveyPt.surveyPT.householdQuestions.hhsNumberSeparateFamilies);
 
   ///hhsNumberSeparateFamilies
   // for (int i = 0;
@@ -308,5 +308,5 @@ c(EditingController editingController, BuildContext context, int id) async {
    surveyPt.hhsDemolishedAreas = editingController.yes.text;
    surveyPt.headerDistrictName = '';
    surveyPt.headerZoneNumber = '';
-   print(HhsStatic.householdQuestions.hhsDwellingType);*/
+   debugPrint(HhsStatic.householdQuestions.hhsDwellingType);*/
 }

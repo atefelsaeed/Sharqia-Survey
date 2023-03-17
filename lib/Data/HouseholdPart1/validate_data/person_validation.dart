@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:sharqia_household_survey/Helper/validator.dart';
 
 import '../PersonData/person_model_list.dart';
@@ -52,7 +53,7 @@ class CheckPersonValidation {
         //   surveys.addNotFilledSurvey(surveyPt.data);
         //   debugPrint('addNotFilledSurvey Person');
         // }
-        print('navigate');
+        debugPrint('navigate');
 
      return true;
       }

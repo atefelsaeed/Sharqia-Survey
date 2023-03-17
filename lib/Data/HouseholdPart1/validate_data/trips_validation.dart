@@ -190,7 +190,7 @@ class CheckTripsValidation {
           return Validator.showSnack(context,
               " يجب إخيار ! كم مرة تقوم بهذە الرحلة؟ $tripNumber رحلة");
           // } else {
-          //   print('sssss');
+          //   debugPrint('sssss');
           //   return true;
           // }
         }
@@ -297,7 +297,7 @@ class CheckTripsValidation {
         // }
         // else {
         //   return true;
-        //   print('kkkkkkkkkk');
+        //   debugPrint('kkkkkkkkkk');
         // }
 
       }
@@ -334,7 +334,7 @@ class CheckTripsValidation {
     )) {
       // return null;
     } else {
-      print('Success');
+      debugPrint('Success');
       if (userSurvey.userSurveyStatus == "not filled") {
         debugPrint(userSurvey.userSurveyStatus.toString());
         await surveys.addSurvey(surveyPt.data);

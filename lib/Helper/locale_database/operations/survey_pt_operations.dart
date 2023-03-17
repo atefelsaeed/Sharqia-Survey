@@ -16,7 +16,7 @@ class SurveyPtOperations {
     SurveyPT list = await getSurveyPtAllItems();
     // await DatabaseHelper().close();
     int? raw;
-    print("${list.id} && ${survey.id}");
+    debugPrint("${list.id} && ${survey.id}");
     if (list.id != survey.id) {
       raw = await myDB!.insert(
         DatabaseHelper.surveyPTTableName,

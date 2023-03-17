@@ -162,7 +162,7 @@ class TripsModel {
     tripReason =
         json['tripReason'] ?? purposeOfBeingThere2["TripReason"][0]["value"];
     isTravelAlone = json['isTravelAlone'];
-    print(json["hhsMembersTraveled"]);
+    debugPrint(json["hhsMembersTraveled"]);
 
     chosenFriendPerson = List.from(json["hhsMembersTraveled"]);
     //  List<String>.from(json["hhsMembersTraveled"].map((x) => x));

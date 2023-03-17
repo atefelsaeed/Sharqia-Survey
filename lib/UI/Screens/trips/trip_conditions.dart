@@ -89,8 +89,8 @@ class TripConditions {
     Provider.of<SurveyPTProvider>(context, listen: false);
 
     var bas = TripModeList.tripModeList[i];
-    print('ssss');
-    print(bas.travelWithOtherModel!.childrenNumber.text);
+    debugPrint('ssss');
+    debugPrint(bas.travelWithOtherModel!.childrenNumber.text);
     int adultsNumber2 = bas.travelWithOtherModel!.childrenNumber.text.isEmpty
         ? 0
         : int.parse(bas.travelWithOtherModel!.childrenNumber.text);
@@ -101,11 +101,11 @@ class TripConditions {
     for (int i = 0; i < length; i++) {
       numAdults = int.parse(surveyPt.hhsSeparateFamilies[i].numberChildren!) +
           numAdults;
-      print(">>$numAdults");
+      debugPrint(">>$numAdults");
     }
 
-    print('checkIsTravelAloneAdultsNumberQ4HHS');
-    print("$adultsNumber2 >>$numAdults");
+    debugPrint('checkIsTravelAloneAdultsNumberQ4HHS');
+    debugPrint("$adultsNumber2 >>$numAdults");
     if (adultsNumber2 > numAdults && bas.isTravelAlone == true) {
       showError(
         context,
@@ -145,8 +145,8 @@ class TripConditions {
       numAdults =
           int.parse(surveyPt.hhsSeparateFamilies[i].numberAdults!) + numAdults;
     }
-    print('checkIsTravelAloneChildrenNumberQ4HHS');
-    print("$adultsNumber2 >>$numAdults");
+    debugPrint('checkIsTravelAloneChildrenNumberQ4HHS');
+    debugPrint("$adultsNumber2 >>$numAdults");
     if (adultsNumber2 > numAdults && bas.isTravelAlone == true) {
       showError(
         context,
@@ -189,22 +189,22 @@ class TripConditions {
       //   tripOwner.add(bas.chosenPerson);
       // }
       tripOwner.add(bas.chosenPerson);
-      print(tripPersons.toString());
-      print(tripOwner.toSet().toString());
+      debugPrint(tripPersons.toString());
+      debugPrint(tripOwner.toSet().toString());
 
       // int tripLength = tripPersons.length;
       // for (int e = 0; e < tripLength; e++) {
-      //   print('trinp person :::');
+      //   debugPrint('trinp person :::');
       //   if (i > 0) {
-      //     print('tripPersons_list');
+      //     debugPrint('tripPersons_list');
       //     if (tripPersons[e] != tripOwner[i]) {
-      //       print('personsWithoutTrip');
+      //       debugPrint('personsWithoutTrip');
       //       personsWithoutTrip.add(tripPersons[e]);
       //     }}
       // }
     }
     // if (personsWithoutTrip.isNotEmpty) {
-    //   print('personsWithoutTrip.isNotEmpty$personsWithoutTrip');
+    //   debugPrint('personsWithoutTrip.isNotEmpty$personsWithoutTrip');
     //   SaveAndFinish.saveAndFinish(context, personsWithoutTrip, function);
     //   return false;
     // } else {
@@ -212,7 +212,7 @@ class TripConditions {
     // }
     List newList = tripOwner.toSet().toList();
     if (tripPersons.length != newList.length) {
-      print('personsWithoutTrip.isNotEmpty$personsWithoutTrip');
+      debugPrint('personsWithoutTrip.isNotEmpty$personsWithoutTrip');
       SaveAndFinish.showSaveAndFinishDialog(context, personsWithoutTrip, function());
       return false;
     } else {

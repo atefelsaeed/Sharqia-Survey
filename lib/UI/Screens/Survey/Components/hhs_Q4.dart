@@ -44,8 +44,8 @@ class _HHSQ4State extends State<HHSQ4> {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    print('total');
-    print(widget.q6peopleAdults18.length.toString());
+    debugPrint('total');
+    debugPrint(widget.q6peopleAdults18.length.toString());
     return Column(
       children: [
         const HeadlineText(

@@ -126,7 +126,7 @@ class PersonProvider extends ChangeNotifier {
       if (surveyPt
               .surveyPT.personData![i].personalHeadData!.hhsHavePastTrip.text ==
           "نعم") {
-        print(surveyPt
+        debugPrint(surveyPt
             .surveyPT.personData![i].personalHeadData!.hhsHavePastTrip.text);
         travelWithOther = {
           'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
@@ -272,12 +272,12 @@ class PersonProvider extends ChangeNotifier {
         groupAgeKey2(
             i, surveyPt.surveyPT.personData![i].personalHeadData!.age.text);
         //List value = PersonData.groupAge[PersonData.groupAge.keys.first].toList();
-        print("2222222");
+        debugPrint("2222222");
 
         //  PersonModelList.personModelList[i].occupationModel!.isEmployee =1.toString();
         /* for (int inr = 0; inr < value.length; inr++) {
           if (surveyPt.surveyPT!.personData![i].personalHeadData!.age.text == value[inr]["value"]) {
-            print("Fffff");
+            debugPrint("Fffff");
             PersonModelList.personModelList[i].occupationModel!.isEmployee =
             value[inr]["type"];
           }
@@ -371,7 +371,7 @@ class PersonProvider extends ChangeNotifier {
   }
 
   /*checkAge(int i, value) {
-    print(value);
+    debugPrint(value);
     PersonModelList.personModelList[i].personalHeadData!.refuseToTellAge =
         value!;
     PersonModelList.personModelList[i].personalHeadData!.checkAge = false;
