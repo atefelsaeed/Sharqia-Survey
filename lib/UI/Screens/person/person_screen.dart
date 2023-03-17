@@ -264,7 +264,12 @@ class _PersonScreenState extends State<PersonScreen> {
                                                           PersonData.groupAge
                                                               .keys.first]!
                                                       .toList(),
-                                                  onChange: (String? p) {},
+                                                  onChange: (String? p) {
+
+                                                    provider.groupAgeKey(
+                                                        i, p.toString());
+
+                                                  },
                                                 )
                                               : Container(),
                                         ]),

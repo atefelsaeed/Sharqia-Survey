@@ -158,7 +158,7 @@ class _TripScreenState extends State<TripScreen> {
                               AppSize.spaceHeight2(context),
                               DepartTime(
                                 tripModel: TripModeList.tripModeList[i],
-                                i: i,
+                                index: i,
                               ),
                             ],
                           ),

@@ -95,6 +95,7 @@ class _MyTextFormState extends State<MyTextForm> {
                 TextEditingController(),
             readOnly: widget.readOnly?.orDefault(false) ?? false,
             onTap: () {
+              widget.onTap();
               if (widget.controller!.text.isNotEmpty &&
                   widget.controller?.text != null) {
                 if (widget.controller!.selection ==
@@ -105,7 +106,7 @@ class _MyTextFormState extends State<MyTextForm> {
                         TextPosition(offset: widget.controller!.text.length));
                   });
                 }
-                widget.onTap();
+
               }
             },
             textAlign: TextAlign.right,
