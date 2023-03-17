@@ -19,7 +19,7 @@ class HHSUserSurveysOperations {
     );
     return raw;
   }
-  Future<int> deleteAuthTable() async {
+  Future<int> deleteSurveysTable() async {
     Database? myDB = await db.db;
     var raw = await myDB!.delete(DatabaseHelper.surveysTableName);
     return raw;

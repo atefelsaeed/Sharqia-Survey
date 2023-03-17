@@ -226,7 +226,7 @@ import '../trips/provider/trip_provider.dart';
 
 class Constants {
   static LatLng location =
-  const LatLng(26.396790, 50.140400); //26.396790, 50.140400
+      const LatLng(26.396790, 50.140400); //26.396790, 50.140400
   LatLng? location2;
 
   static double defaultZoom = 19.151926040649414;
@@ -252,7 +252,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
     final validationService = Provider.of<TripProvider>(context, listen: false);
     var position = await validationService.determinePosition();
     _placeMarks =
-    await placemarkFromCoordinates(position.latitude, position.longitude);
+        await placemarkFromCoordinates(position.latitude, position.longitude);
     Constants.location = LatLng(position.latitude, position.longitude);
   }
 
@@ -338,22 +338,18 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
             apiKey: 'AIzaSyAMIcLjXga58HVN5RkLX5NGf1zh-Qkk4fg',
             onSelected: (Place place) async {
               if (mounted) {
-                Geolocation? geolocation =
-                await place.geolocation;
+                Geolocation? geolocation = await place.geolocation;
 
                 _controller = await _completer.future;
-                await Future.delayed(
-                    const Duration(milliseconds: 500));
+                await Future.delayed(const Duration(milliseconds: 500));
 
-                _controller!.animateCamera(CameraUpdate.newLatLng(
-                    geolocation!.coordinates));
+                _controller!.animateCamera(
+                    CameraUpdate.newLatLng(geolocation!.coordinates));
 
-                await Future.delayed(
-                    const Duration(milliseconds: 500));
+                await Future.delayed(const Duration(milliseconds: 500));
                 if (!_completer.isCompleted) {
                   _controller!.animateCamera(
-                      CameraUpdate.newLatLngBounds(
-                          geolocation.bounds, 0));
+                      CameraUpdate.newLatLngBounds(geolocation.bounds, 0));
                 }
               }
             },
@@ -373,13 +369,15 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
             text: "حفظ",
             function: () async {
               final validationService =
-              Provider.of<TripProvider>(context, listen: false);
+                  Provider.of<TripProvider>(context, listen: false);
 
-              Position position =
-              await validationService.determinePosition();
-              widget.callBack(_value ??
-                  LatLng(position.latitude, position.longitude));
-              Navigator.pop(context);
+              Position position = await validationService.determinePosition();
+              if (_value == null) {
+                widget.callBack(LatLng(position.latitude, position.longitude));
+              } else {
+                widget.callBack(_value);
+              }
+              if (mounted) Navigator.pop(context);
             },
             isWidget: true),
       ),
@@ -402,6 +400,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
       ),
     );
   }
+
   Widget _buildBackButton() {
     return Positioned(
       top: 5,
@@ -423,5 +422,3 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
     );
   }
 }
-
-

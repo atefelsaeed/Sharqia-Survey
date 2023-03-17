@@ -151,7 +151,6 @@ class _SurveyScreenState extends State<SurveyScreen> {
                                     AppSize.spaceHeight3(context),
                                     const HouseHoldMember(),
                                     // ====Question 1====
-                                    const MyDivider(),
 
                                     const HHSQ1(),
                                     const MyDivider(),

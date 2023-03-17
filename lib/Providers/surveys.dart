@@ -29,8 +29,9 @@ class SurveysProvider with ChangeNotifier {
       debugPrint("fetching");
       final surveysList2 =
           await SurveyPtOperations().getSurveyPtOfflineAllItems();
-      // await DatabaseHelper().close();
+
       _surveys = [];
+
       for (var s in surveysList2) {
         switch (s.type) {
           case SurveyType.pt:

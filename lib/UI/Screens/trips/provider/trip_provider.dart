@@ -332,8 +332,9 @@ class TripProvider extends ChangeNotifier {
 
   // created method for getting user current location
   Future<Position> getUserCurrentLocation() async {
-    await Geolocator.requestPermission().then((value){
-    }).onError((error, stackTrace) async {
+    await Geolocator.requestPermission()
+        .then((value) {})
+        .onError((error, stackTrace) async {
       await Geolocator.requestPermission();
       debugPrint("ERROR$error");
     });
@@ -363,7 +364,8 @@ class TripProvider extends ChangeNotifier {
             'Location permissions are permanently denied, we cannot request permissions.');
       }
       Position position = await Geolocator.getCurrentPosition();
-      debugPrint(position.longitude.toString() + position.longitude.toString());
+      debugPrint("${position.longitude.toString()} +"
+          "+ ${position.longitude.toString()}");
       notifyListeners();
 
       return position;
@@ -397,15 +399,6 @@ class TripProvider extends ChangeNotifier {
         for (int x = 0;
             x < TripModeList.tripModeList[index].person.length;
             x++) {
-          // debugPrint('mainPerson');
-          // debugPrint(
-          //     TripModeList.tripModeList[index].mainPerson.length.toString());
-          // debugPrint(TripModeList.tripModeList[index].mainPerson[x].toString());
-          // debugPrint('person');
-          // debugPrint(TripModeList.tripModeList[index].person.length.toString());
-          //
-          // debugPrint(TripModeList.tripModeList[index].person[x].toString());
-
           if (TripModeList.tripModeList[index].person[x].toString() !=
               TripModeList.tripModeList[index].chosenPerson) {
             TripModeList.tripModeList[index].friendPerson["friendPerson"].add({
@@ -493,7 +486,6 @@ class TripProvider extends ChangeNotifier {
       base.taxiTravelTypeOther.text = "أخر";
       base.taxiTravelType != base.taxiTravelTypeOther.text;
     }
-
     // PersonConditions().checkDrivingLicenceTypeOther(i);
     notifyListeners();
   }

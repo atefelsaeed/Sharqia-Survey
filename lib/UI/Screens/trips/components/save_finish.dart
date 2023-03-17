@@ -7,7 +7,7 @@ class SaveAndFinish {
   static Future<void> showSaveAndFinishDialog(
     BuildContext context,
     List<String> list,
-    Function() onConfirm,
+    Function onConfirm,
   ) async {
     return showDialog(
       context: context,
@@ -38,7 +38,7 @@ class SaveAndFinish {
               ),
               AppSize.spaceWidth3(context),
               DefaultButton(
-                function: onConfirm,
+                function: () => onConfirm(),
                 text: 'أوافق',
                 background: ColorManager.grayColor,
                 isWidget: true,

@@ -151,20 +151,19 @@ class UserSurveysProvider with ChangeNotifier {
   Future<bool> fetch(int id) async {
     try {
       loading = true;
-      var response = await APIHelper.getData(
-        url: "${APIRouting.getSurveis}$id",
-      );
+      var url = "${APIRouting.getSurveis}$id";
+      debugPrint(url);
+      Response response = await APIHelper.getData(url: url);
       debugPrint('res');
-      debugPrint(response.toString());
+      debugPrint(response.body.toString());
+
       if (response.statusCode == 200) {
-        var data = json.decode(response.body);
-        debugPrint("kkkkkkkkkkkkkkkk");
-        debugPrint(data);
-        if (!data['status']) return false;
-        _userSurveysSurveysList = (data['data'] as List)
-            .map((e) => UserSurveysModelData.fromJson(e))
-            .toList();
-        await HHSUserSurveysOperations().deleteAuthTable();
+        var model = UserSurveysModel.fromJson(json.decode(response.body));
+        _userSurveysSurveysList = model.data ?? [];
+        if (model.status == false) return false;
+
+        ///
+        await HHSUserSurveysOperations().deleteSurveysTable();
         for (var element in _userSurveysSurveysList) {
           await HHSUserSurveysOperations().addItemToDatabase(element);
         }

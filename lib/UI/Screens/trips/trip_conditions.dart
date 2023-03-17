@@ -187,9 +187,12 @@ class TripConditions {
       debugPrint(tripOwner.toSet().toString());
     }
     List newList = tripOwner.toSet().toList();
+
     if (tripPersons.length != newList.length) {
+
       SaveAndFinish.showSaveAndFinishDialog(
           context, personsWithoutTrip, function());
+
       return false;
     } else {
       return true;
