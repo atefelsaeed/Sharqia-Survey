@@ -29,7 +29,7 @@ class MapSearchScreen extends StatefulWidget {
 }
 
 class _MapSearchScreenState extends State<MapSearchScreen> {
-  Completer<GoogleMapController> completer = Completer();
+  Completer<GoogleMapController> completer = Completer<GoogleMapController>();
 
   late double initZoom = Constants.defaultZoom;
 
@@ -124,16 +124,17 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                                   await place.geolocation;
 
                               controller = await completer.future;
-                              await Future.delayed(
-                                  const Duration(milliseconds: 500));
+                              // await Future.delayed(
+                              //     const Duration(milliseconds: 500));
 
-                              controller!.animateCamera(CameraUpdate.newLatLng(
-                                  geolocation!.coordinates));
+                              await controller!.animateCamera(
+                                  CameraUpdate.newLatLng(
+                                      geolocation!.coordinates));
 
-                              await Future.delayed(
-                                  const Duration(milliseconds: 500));
+                              // await Future.delayed(
+                              //     const Duration(milliseconds: 500));
                               if (!completer.isCompleted) {
-                                controller!.animateCamera(
+                                await controller!.animateCamera(
                                     CameraUpdate.newLatLngBounds(
                                         geolocation.bounds, 0));
                               }
@@ -155,12 +156,16 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
                             final validationService = Provider.of<TripProvider>(
                                 context,
                                 listen: false);
-
-                            Position position =
-                                await validationService.determinePosition();
-                            widget.callBack(value ??
-                                LatLng(position.latitude, position.longitude));
-                            Navigator.pop(context);
+                            try {
+                              Position position =
+                              await validationService.determinePosition();
+                              await widget.callBack(value ??
+                                  LatLng(
+                                      position.latitude, position.longitude));
+                              Navigator.of(context, rootNavigator: true).pop();
+                            } on Exception {
+                              rethrow;
+                            }
                           },
                           isWidget: true),
                     ),

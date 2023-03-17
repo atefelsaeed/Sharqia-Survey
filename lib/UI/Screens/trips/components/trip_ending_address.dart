@@ -89,13 +89,16 @@ class _TripEndingAddressState extends State<TripEndingAddress> {
                               MaterialPageRoute(
                                 builder: (context) => MapSearchScreen(
                                   callBack: (LatLng latLong) {
+
                                     surveyPt.endAddressLatLng = latLong;
+
                                     setState(() {
                                       surveyPt.endingAddressLatLng?.latitude !=
                                           latLong.latitude;
                                       surveyPt.endingAddressLatLng?.longitude !=
                                           latLong.longitude;
                                     });
+
                                     setState(() {
                                       endingAddress?.tripAddressLong = surveyPt
                                           .endingAddressLatLng?.longitude
@@ -104,6 +107,7 @@ class _TripEndingAddressState extends State<TripEndingAddress> {
                                           .endingAddressLatLng?.latitude
                                           .toString();
                                     });
+
                                   },
                                 ),
                               ),

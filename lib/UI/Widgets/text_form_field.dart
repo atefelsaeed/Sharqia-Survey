@@ -95,15 +95,18 @@ class _MyTextFormState extends State<MyTextForm> {
                 TextEditingController(),
             readOnly: widget.readOnly?.orDefault(false) ?? false,
             onTap: () {
-              if (widget.controller!.selection ==
-                  TextSelection.fromPosition(TextPosition(
-                      offset: widget.controller!.text.length - 1))) {
-                setState(() {
-                  widget.controller!.selection = TextSelection.fromPosition(
-                      TextPosition(offset: widget.controller!.text.length));
-                });
+              if (widget.controller!.text.isNotEmpty &&
+                  widget.controller?.text != null) {
+                if (widget.controller!.selection ==
+                    TextSelection.fromPosition(TextPosition(
+                        offset: widget.controller!.text.length - 1))) {
+                  setState(() {
+                    widget.controller!.selection = TextSelection.fromPosition(
+                        TextPosition(offset: widget.controller!.text.length));
+                  });
+                }
+                widget.onTap();
               }
-              widget.onTap();
             },
             textAlign: TextAlign.right,
             textInputAction: TextInputAction.next,

@@ -123,6 +123,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(
+
       LifecycleEventHandler(
         resumeCallBack: () async => setState(
           () {

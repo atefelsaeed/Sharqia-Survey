@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sharqia_household_survey/Helper/validator.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/occupation_model.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/person_model.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/widgets/list_view_check_box_orange.dart';
@@ -305,7 +306,6 @@ class PersonProvider extends ChangeNotifier {
   }
 
   isEmployeeEdit(String d, int i) {
-
     if (d.isNotEmpty) {
       if (int.parse(d.toString()) > 18) {
         PersonModelList.personModelList[i].occupationModel!.isEmployee = "1";
@@ -320,9 +320,10 @@ class PersonProvider extends ChangeNotifier {
 
   isEmployee(String d, int i) {
     if (d.isNotEmpty) {
-      if (int.parse(d.toString()) > 18) {
+      if (Validator.validateNumber(d) > 18) {
         PersonModelList.personModelList[i].occupationModel!.isEmployee = "1";
-      } else if (int.parse(d.toString()) > 0 && int.parse(d.toString()) < 5) {
+      } else if (Validator.validateNumber(d) > 0 &&
+          Validator.validateNumber(d) < 5) {
         PersonModelList.personModelList[i].occupationModel!.isEmployee = "0";
       } else {
         PersonModelList.personModelList[i].occupationModel!.isEmployee = "2";

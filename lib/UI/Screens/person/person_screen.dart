@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Data/HouseholdPart1/validate_data/person_validation.dart';
 import 'package:sharqia_household_survey/Data/app_constants.dart';
+import 'package:sharqia_household_survey/Helper/validator.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/occupation_model.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/person_model.dart';
 import 'package:sharqia_household_survey/Models/Person_SurveyModel/personal_question.dart';
@@ -78,6 +79,7 @@ class _PersonScreenState extends State<PersonScreen> {
               '',
         );
       });
+
   void showError1() => showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -85,7 +87,8 @@ class _PersonScreenState extends State<PersonScreen> {
             int.parse(HhsStatic.peopleUnder18.toString());
         return ShowErrorDialog(
           title: 'يجب تعبئة جميع الافراد !!',
-          content: 'عدد أفراد عائلتك الذين يعيشون فى هذا المنزل هو ( ,, يجب تعبئة جميع الافرادز$x)'
+          content:
+              'عدد أفراد عائلتك الذين يعيشون فى هذا المنزل هو ( ,, يجب تعبئة جميع الافرادز$x)'
               '',
         );
       });
@@ -190,9 +193,11 @@ class _PersonScreenState extends State<PersonScreen> {
                                               ? MyTextForm(
                                                   isNumber: true,
                                                   onTap: () {},
-                                                  onChanged: (d) {
+                                                  onChanged: (String? d) {
                                                     provider.isEmployee(
-                                                        d.toString(), i);
+                                                        Validator.validateText(
+                                                            d.toString()),
+                                                        i);
                                                   },
                                                   keyboardType:
                                                       TextInputType.number,
@@ -259,10 +264,7 @@ class _PersonScreenState extends State<PersonScreen> {
                                                           PersonData.groupAge
                                                               .keys.first]!
                                                       .toList(),
-                                                  onChange: (String? p) {
-                                                    provider.groupAgeKey(
-                                                        i, p.toString());
-                                                  },
+                                                  onChange: (String? p) {},
                                                 )
                                               : Container(),
                                         ]),
@@ -435,36 +437,36 @@ class _PersonScreenState extends State<PersonScreen> {
                                                     debugPrint(p.toString());
                                                   },
                                                 ),
-                                      PersonModelList
+                                      ((PersonModelList
                                                       .personModelList[i]
                                                       .personalQuestion!
                                                       .mainOccupationType ==
-                                                  "عاطلين عن العمل" ||
-                                              PersonModelList
+                                                  "عاطلين عن العمل") ||
+                                              (PersonModelList
                                                       .personModelList[i]
                                                       .personalQuestion!
                                                       .mainOccupationType ==
-                                                  "شخص البيت" ||
-                                              PersonModelList
+                                                  "شخص البيت") ||
+                                              (PersonModelList
                                                       .personModelList[i]
                                                       .personalQuestion!
                                                       .mainOccupationType ==
-                                                  "طفل فى الحضانة" ||
-                                              PersonModelList
+                                                  "طفل فى الحضانة") ||
+                                              (PersonModelList
                                                       .personModelList[i]
                                                       .personalQuestion!
                                                       .mainOccupationType ==
-                                                  "طفل ليس فى الحضانة" ||
-                                              PersonModelList
+                                                  "طفل ليس فى الحضانة") ||
+                                              (PersonModelList
                                                       .personModelList[i]
                                                       .personalQuestion!
                                                       .mainOccupationType ==
-                                                  "رفض" ||
-                                              PersonModelList
+                                                  "رفض") ||
+                                              (PersonModelList
                                                       .personModelList[i]
                                                       .personalQuestion!
                                                       .mainOccupationType ==
-                                                  "معاق / مريض"
+                                                  "معاق / مريض"))
                                           ? Container()
                                           : Column(
                                               children: [
@@ -825,8 +827,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                       builder: (context) => const TripScreen(),
                                     ),
                                   );
-                                }else{
-                                   showError1();
+                                } else {
+                                  showError1();
                                 }
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(

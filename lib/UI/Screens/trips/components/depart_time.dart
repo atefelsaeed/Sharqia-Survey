@@ -82,46 +82,62 @@ class _DepartTimeState extends State<DepartTime> with SelectTimeData {
                     },
                     context: context,
                   );
-                  String arrival = TripModeList
-                      .tripModeList[widget.i].departureTime.text
-                      .orDefault('');
-                  int newFromTimeHour = int.parse(
-                      time12to24Format(arrival.toString()).split(":").first.orDefault(''));
-                  int newFromTimeM = int.parse(
-                      time12to24Format(arrival.toString()).split(":").last.orDefault(''));
+                  if (pickedTime != null) {
+                    String arrival = TripModeList
+                        .tripModeList[widget.i].departureTime.text
+                        .orDefault('');
+                    int newFromTimeHour = int.parse(
+                        time12to24Format(arrival.toString())
+                            .split(":")
+                            .first
+                            .orDefault(''));
+                    int newFromTimeM = int.parse(
+                        time12to24Format(arrival.toString())
+                            .split(":")
+                            .last
+                            .orDefault(''));
 
-                  int pickedHour = int.parse(time12to24Format(
-                          pickedTime!.format(context).toString())
-                      .split(":")
-                      .first.orDefault(''));
-                  int pickedM = int.parse(time12to24Format(
-                          pickedTime.format(context).toString())
-                      .split(":")
-                      .last.orDefault(''));
+                    int pickedHour = int.parse(
+                        time12to24Format(pickedTime!.format(context).toString())
+                            .split(":")
+                            .first
+                            .orDefault(''));
+                    int pickedM = int.parse(
+                        time12to24Format(pickedTime.format(context).toString())
+                            .split(":")
+                            .last
+                            .orDefault(''));
 
-                  if (pickedHour == newFromTimeHour && newFromTimeM < pickedM) {
-                    setState(() {
-                      widget.tripModel.arrivalDepartTime.arriveDestinationTime
-                          .text = pickedTime.format(context).orDefault(''); //s
-                    });
-                  } else if (pickedHour > newFromTimeHour) {
-                    setState(() {
-                      widget.tripModel.arrivalDepartTime.arriveDestinationTime
-                          .text = pickedTime.format(context).orDefault(''); //s
-                    });
+                    if (pickedHour == newFromTimeHour &&
+                        newFromTimeM < pickedM) {
+                      setState(() {
+                        widget.tripModel.arrivalDepartTime.arriveDestinationTime
+                                .text =
+                            pickedTime.format(context).orDefault(''); //s
+                      });
+                    } else if (pickedHour > newFromTimeHour) {
+                      setState(() {
+                        widget.tripModel.arrivalDepartTime.arriveDestinationTime
+                                .text =
+                            pickedTime.format(context).orDefault(''); //s
+                      });
+                    } else {
+                      showDialog<void>(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return const ShowErrorDialog(
+                              title: 'يجب إختيار وقت آخر',
+                              content:
+                                  'وقت المغادرة يجب أن يكون قبل وقت الوصول!',
+                            );
+                          });
+                      setState(() {
+                        widget.tripModel.arrivalDepartTime.arriveDestinationTime
+                            .text = '';
+                      });
+                      debugPrint("Error Time selected");
+                    }
                   } else {
-                    showDialog<void>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const ShowErrorDialog(
-                            title: 'يجب إختيار وقت آخر',
-                            content: 'وقت المغادرة يجب أن يكون قبل وقت الوصول!',
-                          );
-                        });
-                    setState(() {
-                      widget.tripModel.arrivalDepartTime.arriveDestinationTime
-                          .text = '';
-                    });
                     debugPrint("Time is not selected");
                   }
                 }

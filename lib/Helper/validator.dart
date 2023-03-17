@@ -14,6 +14,33 @@ class Validator {
     return null;
   }
 
+  static int validateNumber(String value) {
+    if (value.isNotEmpty) {
+      var newVal = value.trim().replaceAll('.', '').replaceAll('-', '');
+      if (newVal.isNotEmpty) {
+        debugPrint(newVal);
+        return int.parse(newVal);
+      } else {
+        return 0;
+      }
+    } else {
+      return 0;
+    }
+  }
+
+  static String validateText(String value) {
+    if (value.isNotEmpty) {
+      var newVal = value.trim().replaceAll('.', '').replaceAll('-', '');
+      if (newVal.isNotEmpty) {
+        return newVal;
+      } else {
+        return '';
+      }
+    } else {
+      return '';
+    }
+  }
+
   static String? validateEmpty(
       {required String? value, required String message}) {
     if (value == null) {

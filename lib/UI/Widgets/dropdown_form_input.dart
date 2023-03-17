@@ -30,7 +30,7 @@ class DropDownFormInput2<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormField(
       initialValue: initial,
-      validator:validator,
+      validator: validator,
       /* (val) {
         if (val == null) return 'يجب يجب إعطاء إجابة!';
         return null;
@@ -66,10 +66,14 @@ class DropDownFormInput2<T> extends StatelessWidget {
                       value: field.value,
                       icon: const Icon(Icons.keyboard_arrow_down_rounded),
                       onChanged: (T? newValue) {
+
                         field.didChange(newValue);
                         field.save();
                         if (onChange != null) {
+
                           onChange!(newValue);
+                          debugPrint('Value is :: ');
+                          debugPrint(newValue.toString());
                         }
                       },
                       items: options
@@ -128,7 +132,7 @@ class DropDownFormInput<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormField(
       initialValue: initial,
-      validator:validator,
+      validator: validator,
       autovalidateMode: autovalidateMode,
       onSaved: onSaved,
       builder: (FormFieldState<T> field) => Column(
@@ -164,15 +168,17 @@ class DropDownFormInput<T> extends StatelessWidget {
                         field.save();
                         if (onChange != null) {
                           onChange!(newValue);
+                          debugPrint('Value is :: ');
+                          debugPrint(newValue.toString());
                         }
                       },
                       items: options
                           .map(
                             (T v) => DropdownMenuItem<T>(
-                          value: v,
-                          child: Text(v.toString()),
-                        ),
-                      )
+                              value: v,
+                              child: Text(v.toString()),
+                            ),
+                          )
                           .toList(),
                     ),
                   )),
@@ -180,14 +186,14 @@ class DropDownFormInput<T> extends StatelessWidget {
           ),
           field.hasError
               ? Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                field.errorText!,
-                style: TextStyle(color: Colors.red[700], fontSize: 12),
-              ),
-            ],
-          )
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      field.errorText!,
+                      style: TextStyle(color: Colors.red[700], fontSize: 12),
+                    ),
+                  ],
+                )
               : const SizedBox.shrink()
         ],
       ),

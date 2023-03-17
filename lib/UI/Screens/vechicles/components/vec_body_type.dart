@@ -31,8 +31,8 @@ class _BodyTypeVehiclesState extends State<BodyTypeVehicles> {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      margin: const EdgeInsets.all(15.0),
-      padding: const EdgeInsets.all(3.0),
+      margin: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5.0),
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey),
           borderRadius: BorderRadius.circular(10)),
