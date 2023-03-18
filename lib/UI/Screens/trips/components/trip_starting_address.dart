@@ -102,10 +102,12 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
                                 setState(() {
                                   startBeginningModel?.tripAddressLong =
                                       surveyPt.endingAddressLatLng?.longitude
-                                          .toString();
+                                              .toString() ??
+                                          '';
                                   startBeginningModel?.tripAddressLat = surveyPt
-                                      .endingAddressLatLng?.latitude
-                                      .toString();
+                                          .endingAddressLatLng?.latitude
+                                          .toString() ??
+                                      '';
                                 });
                               },
                             ),

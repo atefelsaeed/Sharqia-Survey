@@ -19,9 +19,9 @@ class Geolocation {
   Geolocation(this._coordinates, this._bounds);
 
   Geolocation.fromJSON(geolocationJSON) {
-    this._coordinates = geolocationJSON["results"][0]["geometry"]["location"];
-    this._bounds = geolocationJSON["results"][0]["geometry"]["viewport"];
-    this.fullJSON = geolocationJSON["results"][0];
+    _coordinates = geolocationJSON["results"][0]["geometry"]["location"];
+    _bounds = geolocationJSON["results"][0]["geometry"]["viewport"];
+    fullJSON = geolocationJSON["results"][0];
   }
 
   /// Property that holds the JSON response that contains the location of the place.
@@ -44,7 +44,7 @@ class Geolocation {
     try {
       return LatLng(_coordinates["lat"], _coordinates["lng"]);
     } catch (e) {
-      print(
+      debugPrint(
           "You appear to not have the `google_maps_flutter` package installed. In this case, this method will return an object with the latitude and longitude");
       return _coordinates;
     }
@@ -61,7 +61,7 @@ class Geolocation {
             LatLng(_bounds["northeast"]["lat"], _bounds["northeast"]["lng"]),
       );
     } catch (e) {
-      print(
+      debugPrint(
           "You appear to not have the `google_maps_flutter` package installed. In this case, this method will return an object with southwest and northeast bounds");
       return _bounds;
     }
@@ -84,9 +84,10 @@ class Geocoding {
       return Geolocation.fromJSON(json);
     } else {
       var error = json["error_message"];
-      if (error == "This API project is not authorized to use this API.")
+      if (error == "This API project is not authorized to use this API.") {
         error +=
             " Make sure both the Geolocation and Geocoding APIs are activated on your Google Cloud Platform";
+      }
       throw Exception(error);
     }
   }
@@ -99,19 +100,19 @@ class Place {
     this.placeId,
     this.types,
   }) {
-    this._geocode = geocode;
+    _geocode = geocode;
   }
 
   Place.fromJSON(place, Geocoding? geocode) {
     try {
-      this.description = place["description"];
-      this.placeId = place["place_id"];
-      this.types = place["types"];
+      description = place["description"];
+      placeId = place["place_id"];
+      types = place["types"];
 
-      this._geocode = geocode;
-      this.fullJSON = place;
+      _geocode = geocode;
+      fullJSON = place;
     } catch (e) {
-      print("The argument you passed for Place is not compatible.");
+      debugPrint("The argument you passed for Place is not compatible.");
     }
   }
 
@@ -147,8 +148,8 @@ class Place {
   ///
   /// Learn more at [Geolocation docs](https://developers.google.com/maps/documentation/geolocation/intro)
   Future<Geolocation?> get geolocation async {
-    if (this._geolocation == null) {
-      this._geolocation = await (_geocode!.getGeolocation(description!));
+    if (_geolocation == null) {
+      _geolocation = await (_geocode!.getGeolocation(description!));
       return _geolocation;
     }
     return _geolocation;
@@ -156,7 +157,7 @@ class Place {
 }
 
 class SearchMapPlaceWidget extends StatefulWidget {
-  SearchMapPlaceWidget({
+  const SearchMapPlaceWidget({
     required this.apiKey,
     this.placeholder = 'Search',
     this.icon = Icons.search,
@@ -177,6 +178,7 @@ class SearchMapPlaceWidget extends StatefulWidget {
             (location != null && radius != null)),
         super(key: key);
 
+  @override
   final Key? key;
 
   /// API Key of the Google Maps API.
@@ -238,7 +240,7 @@ class SearchMapPlaceWidget extends StatefulWidget {
 
 class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
     with TickerProviderStateMixin {
-  TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController _textEditingController = TextEditingController();
   late AnimationController _animationController;
 
   // SearchContainer height.
@@ -254,18 +256,18 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   String _tempInput = "";
   String _currentInput = "";
 
-  FocusNode _fn = FocusNode();
+  final FocusNode _fn = FocusNode();
 
   CrossFadeState? _crossFadeState;
 
   @override
   void initState() {
     geocode = Geocoding(apiKey: widget.apiKey, language: widget.language);
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    _animationController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500));
     _containerHeight = Tween<double>(begin: 55, end: 364).animate(
       CurvedAnimation(
-        curve: Interval(0.0, 0.5, curve: Curves.easeInOut),
+        curve: const Interval(0.0, 0.5, curve: Curves.easeInOut),
         parent: _animationController,
       ),
     );
@@ -274,7 +276,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
       end: 1,
     ).animate(
       CurvedAnimation(
-        curve: Interval(0.5, 1.0, curve: Curves.easeInOut),
+        curve: const Interval(0.5, 1.0, curve: Curves.easeInOut),
         parent: _animationController,
       ),
     );
@@ -284,10 +286,11 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
     if (widget.hasClearButton) {
       _fn.addListener(() async {
-        if (_fn.hasFocus)
+        if (_fn.hasFocus) {
           setState(() => _crossFadeState = CrossFadeState.showSecond);
-        else
+        } else {
           setState(() => _crossFadeState = CrossFadeState.showFirst);
+        }
       });
       _crossFadeState = CrossFadeState.showFirst;
     }
@@ -296,7 +299,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   }
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) => SizedBox(
         width: MediaQuery.of(context).size.width * 0.9,
         child: _searchContainer(
           child: _searchInput(context),
@@ -320,7 +323,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
                       const EdgeInsets.only(left: 12.0, right: 12.0, top: 4),
                   child: child,
                 ),
-                if (_placePredictions!.length > 0)
+                if (_placePredictions!.isNotEmpty)
                   Opacity(
                     opacity: _listOpacity.value,
                     child: Column(
@@ -358,13 +361,14 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
           if (widget.hasClearButton)
             GestureDetector(
               onTap: () {
-                if (_crossFadeState == CrossFadeState.showSecond)
+                if (_crossFadeState == CrossFadeState.showSecond) {
                   _textEditingController.clear();
+                }
               },
               // child: Icon(_inputIcon, color: this.widget.iconColor),
               child: AnimatedCrossFade(
                 crossFadeState: _crossFadeState!,
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 firstChild: Icon(widget.icon, color: widget.iconColor),
                 secondChild: Icon(Icons.clear, color: widget.iconColor),
               ),
@@ -379,12 +383,12 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
     String place = prediction.description!;
 
     return MaterialButton(
-      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
       onPressed: () => _selectPlace(prediction: prediction),
       child: ListTile(
         title: Text(
           place.length < 45
-              ? "$place"
+              ? place
               : "${place.replaceRange(45, place.length, "")} ...",
           style: TextStyle(
             fontSize: MediaQuery.of(context).size.width * 0.04,
@@ -392,7 +396,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
           ),
           maxLines: 1,
         ),
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           horizontal: 10,
           vertical: 0,
         ),
@@ -405,9 +409,10 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   */
   InputDecoration _inputStyle() {
     return InputDecoration(
-      hintText: this.widget.placeholder,
+      hintText: widget.placeholder,
       border: InputBorder.none,
-      contentPadding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+      contentPadding:
+          const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
       hintStyle: TextStyle(
         color: widget.textColor,
       ),
@@ -417,8 +422,8 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   BoxDecoration _containerDecoration() {
     return BoxDecoration(
       color: widget.bgColor,
-      borderRadius: BorderRadius.all(Radius.circular(6.0)),
-      boxShadow: [
+      borderRadius: const BorderRadius.all(Radius.circular(6.0)),
+      boxShadow: const [
         BoxShadow(color: Colors.black12, blurRadius: 20, spreadRadius: 10)
       ],
     );
@@ -432,14 +437,16 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
   /// Api and giving the user Place options
   void _autocompletePlace() async {
     if (_fn.hasFocus) {
-      setState(() {
-        _currentInput = _textEditingController.text;
-        _isEditing = true;
-      });
+      if (mounted) {
+        setState(() {
+          _currentInput = _textEditingController.text;
+          _isEditing = true;
+        });
+      }
 
       _textEditingController.removeListener(_autocompletePlace);
 
-      if (_currentInput.length == 0) {
+      if (_currentInput.isEmpty) {
         if (!_containerHeight.isDismissed) _closeSearch();
         _textEditingController.addListener(_autocompletePlace);
         return;
@@ -448,14 +455,14 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
       if (_currentInput == _tempInput) {
         final predictions = await _makeRequest(_currentInput);
         await _animationController.animateTo(0.5);
-        setState(() => _placePredictions = predictions);
+        if (mounted) setState(() => _placePredictions = predictions);
         await _animationController.forward();
 
         _textEditingController.addListener(_autocompletePlace);
         return;
       }
 
-      Future.delayed(Duration(milliseconds: 500), () {
+      Future.delayed(const Duration(milliseconds: 500), () {
         _textEditingController.addListener(_autocompletePlace);
         if (_isEditing == true) _autocompletePlace();
       });
@@ -482,9 +489,10 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
     if (json["error_message"] != null) {
       var error = json["error_message"];
-      if (error == "This API project is not authorized to use this API.")
+      if (error == "This API project is not authorized to use this API.") {
         error +=
             " Make sure the Places API is activated on your Google Cloud Platform";
+      }
       throw Exception(error);
     } else {
       final predictions = json["predictions"];
@@ -502,7 +510,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
         ),
       );
     } else {
-      await Future.delayed(Duration(milliseconds: 500));
+      await Future.delayed(const Duration(milliseconds: 500));
     }
 
     // Makes animation
@@ -514,8 +522,9 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
   /// Closes the expanded search box with predictions
   void _closeSearch() async {
-    if (!_animationController.isDismissed)
+    if (!_animationController.isDismissed) {
       await _animationController.animateTo(0.5);
+    }
     _fn.unfocus();
     setState(() {
       _placePredictions = [];
@@ -527,7 +536,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
   /// Will listen for input changes every 0.5 seconds, allowing us to make API requests only when the user stops typing.
   void customListener() {
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(const Duration(milliseconds: 500), () {
       if (mounted) setState(() => _tempInput = _textEditingController.text);
       customListener();
     });

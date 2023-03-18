@@ -83,7 +83,6 @@ class _HHSQ4State extends State<HHSQ4> {
                   DefaultButton(
                     function: () {
                       setState(() {
-
                         int x = 0;
                         if (HhsStatic.householdQuestions
                             .hhsNumberSeparateFamilies!.isNotEmpty) {
