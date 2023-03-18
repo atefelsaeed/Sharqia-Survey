@@ -428,12 +428,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "search_map_place_updated",
-      "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/search_map_place_updated-0.0.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "sentry",
       "rootUri": "file:///C:/flutter/.pub-cache/hosted/pub.dartlang.org/sentry-7.0.0",
       "packageUri": "lib/",
@@ -644,7 +638,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-03-17T12:45:56.837576Z",
+  "generated": "2023-03-18T08:39:31.562903Z",
   "generator": "pub",
   "generatorVersion": "2.18.4"
 }

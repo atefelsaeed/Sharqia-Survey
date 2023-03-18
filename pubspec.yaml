@@ -28,6 +28,7 @@ dependencies:
 #  fluttertoast: 8.0.8
   url_launcher: ^6.1.6
   intl: any
+
   sqflite: ^2.2.2
 
   #  Google Maps
@@ -35,7 +36,6 @@ dependencies:
   geocoding: ^2.0.5
   google_maps_flutter: 2.2.4
   flutter_google_places: 0.3.0
-  search_map_place_updated: 0.0.4
   permission_handler:
   location: ^4.4.0
   sentry_flutter: ^7.0.0
