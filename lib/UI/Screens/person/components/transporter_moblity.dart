@@ -25,8 +25,8 @@ class TransporterMobilty extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DropDownFormInput(
-              label: PersonModelList.personModelList[index]
-                          .personalQuestion!.haveDisabilityTransportMobility !=
+              label: PersonModelList.personModelList[index].personalQuestion!
+                          .haveDisabilityTransportMobility !=
                       ''
                   ? Text(PersonModelList.personModelList[index]
                           .personalQuestion!.haveDisabilityTransportMobility ??
@@ -40,21 +40,19 @@ class TransporterMobilty extends StatelessWidget {
                 provider.haveDisabilityTransportMobility(index, p);
               },
             ),
-            PersonConditions().checkHaveDisabilityTransportMobilityOther(
-                        index) ==
+            PersonConditions()
+                        .checkHaveDisabilityTransportMobilityOther(index) ==
                     true
                 ? MyTextForm(
                     label: 'إذكر الإعاقة / احتياجات خاصة',
-              onTap: () {  },
+                    onTap: () {},
                     controller: PersonModelList
                         .personModelList[index]
                         .personalQuestion!
                         .haveDisabilityTransportMobilityController,
                     isNumber: false,
                     onChanged: (value) {
-                      PersonModelList
-                          .personModelList[index]
-                          .personalQuestion!
+                      PersonModelList.personModelList[index].personalQuestion!
                           .haveDisabilityTransportMobility = value;
                     },
                   )

@@ -73,13 +73,16 @@ class _TripEndingAddressState extends State<TripEndingAddress> {
                     if (TripModeList.tripModeList[widget.index].isHomeEnding ==
                         true) {
                       endingAddressObj?.tripAddressLong =
-                          surveyPt.hhsAddressLong;
-                      endingAddressObj?.tripAddressLat = surveyPt.hhsAddressLat;
+                          surveyPt.hhsAddressLong ?? '';
+                      endingAddressObj?.tripAddressLat =
+                          surveyPt.hhsAddressLat ?? '';
                     } else {
                       endingAddressObj?.tripAddressLong =
-                          surveyPt.endingAddressLatLng?.longitude.toString();
+                          surveyPt.endingAddressLatLng?.longitude.toString() ??
+                              '0.0';
                       endingAddressObj?.tripAddressLat =
-                          surveyPt.endingAddressLatLng?.latitude.toString();
+                          surveyPt.endingAddressLatLng?.latitude.toString() ??
+                              '0.0';
                     }
                   });
                 },
@@ -113,12 +116,15 @@ class _TripEndingAddressState extends State<TripEndingAddress> {
                                     // Update the ending address coordinates in the trip mode list
                                     setState(() {
                                       endingAddressObj?.tripAddressLong =
-                                          surveyPt
-                                              .endingAddressLatLng?.longitude
-                                              .toString();
+                                          surveyPt.endingAddressLatLng
+                                                  ?.longitude
+                                                  .toString() ??
+                                              '0.0';
+
                                       endingAddressObj?.tripAddressLat =
                                           surveyPt.endingAddressLatLng?.latitude
-                                              .toString();
+                                                  .toString() ??
+                                              '0.0';
                                     });
                                   },
                                 ),

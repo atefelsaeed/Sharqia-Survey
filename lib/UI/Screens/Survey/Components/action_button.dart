@@ -41,7 +41,7 @@ class ActionButton extends StatelessWidget {
       function: () async {
         if (keyVal.currentState!.validate()) {
           keyVal.currentState!.save();
-
+          debugPrint('Save HHS');
           HhsStatic.houseHold.clear();
           for (int i = 0; i < editingController.q6peopleUnder18.length; i++) {
             HhsStatic.houseHold.add(

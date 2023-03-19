@@ -90,7 +90,7 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
                     const Spacer(),
                     IconButton(
                       onPressed: () async {
-                        final latLong = await Navigator.push<LatLng?>(
+                        final latLong = await Navigator.push<LatLng>(
                           context,
                           MaterialPageRoute(
                             builder: (context) => MapSearchScreen(
@@ -103,11 +103,11 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
                                   startBeginningModel?.tripAddressLong =
                                       surveyPt.endingAddressLatLng?.longitude
                                               .toString() ??
-                                          '';
+                                          '0.0';
                                   startBeginningModel?.tripAddressLat = surveyPt
                                           .endingAddressLatLng?.latitude
                                           .toString() ??
-                                      '';
+                                      '0.0';
                                 });
                               },
                             ),

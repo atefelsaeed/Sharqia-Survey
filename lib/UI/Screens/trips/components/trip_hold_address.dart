@@ -29,10 +29,10 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: AppSize.spaceHeight2(context)),
+        AppSize.spaceHeight2(context),
         HeadlineText(text: widget.title),
         const Divider(thickness: 1),
-        SizedBox(height: AppSize.spaceHeight1(context)),
+        AppSize.spaceHeight1(context),
         Row(
           children: [
             TextGlobal(
@@ -42,7 +42,7 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
             ),
           ],
         ),
-        SizedBox(height: AppSize.spaceHeight2(context)),
+        AppSize.spaceHeight2(context),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -54,7 +54,7 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
                 onChanged: (value) {},
               ),
             ),
-            SizedBox(width: AppSize.spaceHeight2(context)),
+            AppSize.spaceWidth2(context),
             Expanded(
               child: TextForm(
                 controller: widget.tripModel.streetNumber,
@@ -67,7 +67,7 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
             ),
           ],
         ),
-        SizedBox(height: AppSize.spaceHeight2(context)),
+        AppSize.spaceHeight2(context),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -79,7 +79,7 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
                 onChanged: (value) {},
               ),
             ),
-            SizedBox(width: AppSize.spaceHeight2(context)),
+            AppSize.spaceWidth2(context),
             Expanded(
               child: TextForm(
                 controller: widget.tripModel.nearestLandMark,
@@ -90,14 +90,14 @@ class _TripHoldAddressState extends State<TripHoldAddress> {
             ),
           ],
         ),
-        SizedBox(height: AppSize.spaceHeight2(context)),
+        AppSize.spaceHeight2(context),
         TextForm(
           controller: widget.tripModel.block,
           label: 'أقرب تقاطع',
           text: 'ادخل اسم أقرب تقاطع',
           onChanged: (value) {},
         ),
-        SizedBox(height: AppSize.spaceHeight2(context)),
+         AppSize.spaceHeight2(context),
       ],
     );
   }

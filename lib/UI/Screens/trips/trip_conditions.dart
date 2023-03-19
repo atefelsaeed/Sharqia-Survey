@@ -190,11 +190,15 @@ class TripConditions {
 
     if (tripPersons.length != newList.length) {
 
+      debugPrint(
+          "tripPersons::${tripPersons.length}  newList::${newList.length}");
+
       SaveAndFinish.showSaveAndFinishDialog(
           context, personsWithoutTrip, function());
 
       return false;
     } else {
+      debugPrint('');
       return true;
     }
   }

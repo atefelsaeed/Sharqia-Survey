@@ -426,7 +426,7 @@ class PersonProvider extends ChangeNotifier {
   }
 
   ///bestWorkspaceLocation
-  bestWorkspaceLocation(int i, p) {
+  bestWorkspaceLocation(int i,String p) {
     var base = PersonModelList.personModelList[i].occupationModel!;
     base.bestWorkspaceLocation = p.toString();
 

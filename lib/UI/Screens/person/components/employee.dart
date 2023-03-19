@@ -60,7 +60,7 @@ class _EmployeeState extends State<Employee> {
                             .workplace[PersonData.workplace.keys.first]!
                             .toList(),
                         onChange: (String? p) {
-                          provider.bestWorkspaceLocation(widget.i, p);
+                          provider.bestWorkspaceLocation(widget.i, p!);
                         },
                       ),
                       AppSize.spaceHeight1(context),
@@ -68,7 +68,7 @@ class _EmployeeState extends State<Employee> {
                                   .checkBestWorkspaceLocationOther(widget.i) ==
                               true
                           ? MyTextForm(
-                        onTap: () {  },
+                              onTap: () {},
                               controller: PersonModelList
                                   .personModelList[widget.i]
                                   .occupationModel!
@@ -126,7 +126,7 @@ class _EmployeeState extends State<Employee> {
                                   .personalQuestion!
                                   .drivingLicenceTypeController,
                               label: " نوع الرخصة",
-                        onTap: () {  },
+                              onTap: () {},
                               onChanged: (val) {
                                 PersonModelList.personModelList[widget.i]
                                     .personalQuestion!.drivingLicenceType = val;

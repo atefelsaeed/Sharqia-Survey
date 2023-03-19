@@ -289,21 +289,21 @@ class UserSurveysProvider with ChangeNotifier {
     }
   }
 
-  saveUpdateOffline() async {
-    final prefs = await SharedPreferences.getInstance();
-
-    prefs.getString("UserSurveysModelData");
-    String? data = prefs.getString("UserSurveysModelData");
-
-    Map<String, dynamic> valueMap = json.decode(data!);
-    UserSurveysModelData userSurveysModelData =
-        UserSurveysModelData.fromJson(valueMap);
-    for (var element in userSurveys) {
-      if (element.id == userSurveysModelData.id) {
-        // userSurvey.userSurveys[userSurvey.index].status = 'filled';
-        element.status = 'filled';
-      }
-      await HHSUserSurveysOperations().addItemToDatabase(element);
-    }
-  }
+  // saveUpdateOffline() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //
+  //   prefs.getString("UserSurveysModelData");
+  //   String? data = prefs.getString("UserSurveysModelData");
+  //
+  //   Map<String, dynamic> valueMap = json.decode(data!);
+  //   UserSurveysModelData userSurveysModelData =
+  //       UserSurveysModelData.fromJson(valueMap);
+  //   for (var element in userSurveys) {
+  //     if (element.id == userSurveysModelData.id) {
+  //       // userSurvey.userSurveys[userSurvey.index].status = 'filled';
+  //       element.status = 'filled';
+  //     }
+  //     await HHSUserSurveysOperations().addItemToDatabase(element);
+  //   }
+  // }
 }

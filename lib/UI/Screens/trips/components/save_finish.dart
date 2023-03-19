@@ -9,6 +9,7 @@ class SaveAndFinish {
     List<String> list,
     Function onConfirm,
   ) async {
+    debugPrint("showSaveAndFinishDialog");
     return showDialog(
       context: context,
       barrierDismissible: false,

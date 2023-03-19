@@ -395,8 +395,10 @@ class _TripScreenState extends State<TripScreen> {
                         children: [
                           DefaultButton(
                             function: () {
+
                               if (_key.currentState!.validate()) {
                                 SaveTripsData.saveData(context);
+                                debugPrint('Save Trip');
                                 // TripConditions().checkIsCarDriver();
 
                                 CheckTripsValidation.validatePerson(context);

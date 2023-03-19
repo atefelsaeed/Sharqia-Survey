@@ -816,9 +816,11 @@ class _PersonScreenState extends State<PersonScreen> {
                               //   surveys.addNotFilledSurvey(surveyPt.data);
                               //   debugPrint('addNotFilledSurvey person');
                               // }
+
                               if (_key.currentState!.validate()) {
                                 _key.currentState!.save();
                                 SavePersonData.saveData(context);
+                                debugPrint('Save Person');
                                 CheckPersonValidation.validatePerson(context);
                                 int x = int.parse(
                                         HhsStatic.peopleAdults18.toString()) +

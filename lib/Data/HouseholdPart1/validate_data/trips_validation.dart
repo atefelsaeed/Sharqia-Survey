@@ -24,11 +24,11 @@ class CheckTripsValidation {
 
   static validatePerson(BuildContext context) async {
     UserSurveysProvider userSurvey =
-    Provider.of<UserSurveysProvider>(context, listen: false);
+        Provider.of<UserSurveysProvider>(context, listen: false);
     SurveyPTProvider surveyPt =
-    Provider.of<SurveyPTProvider>(context, listen: false);
+        Provider.of<SurveyPTProvider>(context, listen: false);
     SurveysProvider surveys =
-    Provider.of<SurveysProvider>(context, listen: false);
+        Provider.of<SurveysProvider>(context, listen: false);
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
@@ -69,7 +69,7 @@ class CheckTripsValidation {
             (base.startBeginningModel!.tripAddressLat == null ||
                 base.startBeginningModel!.tripAddressLat!.isEmpty ||
                 TripModeList
-                    .tripModeList[e].startBeginningModel!.tripAddressLong ==
+                        .tripModeList[e].startBeginningModel!.tripAddressLong ==
                     null ||
                 base.startBeginningModel!.tripAddressLong!.isEmpty)) {
           return Validator.showSnack(
@@ -82,7 +82,7 @@ class CheckTripsValidation {
               ShowErrorDialog(
                   title: 'تنبيه !! $tripNumber رحلة',
                   content:
-                  ' في حاله اختيار المنزل فسوال اين بدات اليوم يجب ان يكون الغرض من التواجد المنزل !!!!"'));
+                      ' في حاله اختيار المنزل فسوال اين بدات اليوم يجب ان يكون الغرض من التواجد المنزل !!!!"'));
           // } else {
           //   return true;
           // }
@@ -94,7 +94,7 @@ class CheckTripsValidation {
             ShowErrorDialog(
                 title: 'تنبيه !!',
                 content:
-                ' لا يمكن أن يكون المنزل هو مكان المغادرة والوصول في نفس الرحلة !!!! $tripNumber رحلة"'),
+                    ' لا يمكن أن يكون المنزل هو مكان المغادرة والوصول في نفس الرحلة !!!! $tripNumber رحلة"'),
           );
           // } else {
           //   return true;
@@ -107,7 +107,7 @@ class CheckTripsValidation {
             ShowErrorDialog(
                 title: 'تنبيه !! $tripNumber رحلة',
                 content:
-                'لا يمكن أن يكون الغرض المنزل لأن المغادرة كانت من المنزل !!!!"'),
+                    'لا يمكن أن يكون الغرض المنزل لأن المغادرة كانت من المنزل !!!!"'),
           );
           // } else {
           //   return true;
@@ -167,7 +167,7 @@ class CheckTripsValidation {
 
         ///travelTypeModel.carParkingPlace
         else if ((base.travelTypeModel.travelType == "سيارة" ||
-            base.travelTypeModel.travelType == "دراجة نارية") &&
+                base.travelTypeModel.travelType == "دراجة نارية") &&
             (base.travelTypeModel.carParkingPlace == null ||
                 base.travelTypeModel.carParkingPlace!.isEmpty)) {
           return Validator.showSnack(
@@ -184,8 +184,8 @@ class CheckTripsValidation {
 
         ///arrivalDepartTime.numberRepeatTrip
         else if (TripModeList
-            .tripModeList[e].arrivalDepartTime.numberRepeatTrip ==
-            null ||
+                    .tripModeList[e].arrivalDepartTime.numberRepeatTrip ==
+                null ||
             base.arrivalDepartTime.numberRepeatTrip == '') {
           return Validator.showSnack(context,
               " يجب إخيار ! كم مرة تقوم بهذە الرحلة؟ $tripNumber رحلة");
@@ -303,51 +303,67 @@ class CheckTripsValidation {
       }
     }
 
-    if (!TripConditions().personWithoutTrip(
-      context: context,
-      function: () async {
-        //=======Add-survey-to-surveys-list================
-
-        if (userSurvey.userSurveyStatus == "not filled") {
-          debugPrint(userSurvey.userSurveyStatus.toString());
-          await surveys.addSurvey(surveyPt.data);
-          //=====Check-If-this-survey-is-exit-or not if not add it to userSurveys list and update this list
-          userSurvey.userSurveys[userSurvey.index].status = 'filled';
-          for (var element in userSurvey.userSurveys) {
-            await HHSUserSurveysOperations().addItemToDatabase(element);
-          }
-          debugPrint('Add User Surveys to local database');
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                  builder: (context) => const ChooseSurveysScreen()),
-                  (Route<dynamic> route) => false);
-        } else if ((userSurvey.userSurveyStatus == "edit")) {
-          debugPrint(userSurvey.userSurveyStatus.toString());
-          userSurvey.updateSurvey(surveyPt.data);
-          debugPrint('updateSurvey');
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                  builder: (context) => const ChooseSurveysScreen()),
-                  (Route<dynamic> route) => false);
-        }
-      },
-    )) {
-      // return null;
-    } else {
+    // if (!TripConditions().personWithoutTrip(
+    //   context: context,
+    //   function: () async {
+    //     //=======Add-survey-to-surveys-list================
+    //
+    //     if (userSurvey.userSurveyStatus == "not filled") {
+    //       debugPrint(userSurvey.userSurveyStatus.toString());
+    //       await surveys.addSurvey(surveyPt.data);
+    //       //=====Check-If-this-survey-is-exit-or not if not add it to userSurveys list and update this list
+    //       userSurvey.userSurveys[userSurvey.index].status = 'filled';
+    //       debugPrint('Update userSurveys');
+    //
+    //       debugPrint(userSurvey.userSurveys[userSurvey.index].id.toString());
+    //
+    //       debugPrint(
+    //           userSurvey.userSurveys[userSurvey.index].status.toString());
+    //
+    //       for (var element in userSurvey.userSurveys) {
+    //
+    //         await HHSUserSurveysOperations().addItemToDatabase(element);
+    //
+    //         debugPrint('userSurveys Updated');
+    //       }
+    //
+    //       debugPrint('Add User Surveys to local database');
+    //       // Navigator.of(context).pushAndRemoveUntil(
+    //       //     MaterialPageRoute(
+    //       //         builder: (context) => const ChooseSurveysScreen()),
+    //       //     (Route<dynamic> route) => false);
+    //     } else if ((userSurvey.userSurveyStatus == "edit")) {
+    //       debugPrint(userSurvey.userSurveyStatus.toString());
+    //       userSurvey.updateSurvey(surveyPt.data);
+    //       debugPrint('updateSurvey');
+    //       // Navigator.of(context).pushAndRemoveUntil(
+    //       //     MaterialPageRoute(
+    //       //         builder: (context) => const ChooseSurveysScreen()),
+    //       //     (Route<dynamic> route) => false);
+    //     }
+    //   },
+    // )) {
+    //   debugPrint('Error personWithoutTrip!!!');
+    //   // return null;
+    // }
+    // else {
       debugPrint('Success');
       if (userSurvey.userSurveyStatus == "not filled") {
         debugPrint(userSurvey.userSurveyStatus.toString());
         await surveys.addSurvey(surveyPt.data);
         //=====Check-If-this-survey-is-exit-or not if not add it to userSurveys list and update this list
         userSurvey.userSurveys[userSurvey.index].status = 'filled';
+        debugPrint('Update userSurveys');
+        await HHSUserSurveysOperations().deleteSurveysTable();
         for (var element in userSurvey.userSurveys) {
           await HHSUserSurveysOperations().addItemToDatabase(element);
+          debugPrint('userSurveys Updated');
         }
         debugPrint('Add User Surveys to local database');
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (context) => const ChooseSurveysScreen()),
-                (Route<dynamic> route) => false);
+            (Route<dynamic> route) => false);
       } else if ((userSurvey.userSurveyStatus == "edit")) {
         debugPrint(userSurvey.userSurveyStatus.toString());
         userSurvey.updateSurvey(surveyPt.data);
@@ -355,10 +371,8 @@ class CheckTripsValidation {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (context) => const ChooseSurveysScreen()),
-                (Route<dynamic> route) => false);
-        // }
-        // }
+            (Route<dynamic> route) => false);
       }
-    }
+    // }
   }
 }
