@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharqia_household_survey/Models/HHS_SurvyModels/survey_hhs.dart';
@@ -232,28 +233,42 @@ class UserSurveysProvider with ChangeNotifier {
   }
 
   //============Get-Survey-By-ID================================
-  Future<bool> getSurveyByID(int id) async {
+  Future<bool> getSurveyByID(int id,context) async {
     loading = true;
-    Response response = await APIHelper.getData(
-      url: "${APIRouting.getSingleSurvay}$id",
-    );
-    debugPrint(response.body.toString());
-    if (response.statusCode == 200) {
-      Map<String, dynamic> data = json.decode(response.body);
-      debugPrint("Success");
-      _surveyPT = SurveyPT.fromJsonAPI(data);
-      debugPrint("_surveyPT.hhsSeparateFamilies!.length");
-      debugPrint(_surveyPT.hhsSeparateFamilies!.length.toString());
-      debugPrint("Success");
+    try {
+      var url = "${APIRouting.getSingleSurvay}$id";
+      debugPrint(url);
+      Response response = await APIHelper.getData(url: url);
+      debugPrint(response.body.toString());
+      if (response.statusCode == 200) {
+        Map<String, dynamic> data = json.decode(response.body);
+        debugPrint("Success");
+        _surveyPT = SurveyPT.fromJsonAPI(data);
+        debugPrint("_surveyPT.hhsSeparateFamilies!.length");
+        debugPrint(_surveyPT.hhsSeparateFamilies!.length.toString());
+        debugPrint("Success");
+        loading = false;
+        notifyListeners();
+        return true;
+      } else {
+        debugPrint('error');
+        loading = false;
+        notifyListeners();
+        return false;
+      }
+    } catch (error, s) {
+      debugPrint('Exception Error getSurveyByID:: $error "++++"  $s');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text("خطأ فى الاتصال!"),
+          duration: Duration(seconds: 3),
+          elevation: 1,
+        ),
+      );
       loading = false;
       notifyListeners();
-      return true;
-    } else {
-      debugPrint('error');
+      rethrow;
     }
-    loading = false;
-    notifyListeners();
-    return false;
   }
 
   saveUpdateUser(UserSurveysModelData userSurveysModelData) async {
@@ -289,21 +304,21 @@ class UserSurveysProvider with ChangeNotifier {
     }
   }
 
-  // saveUpdateOffline() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //
-  //   prefs.getString("UserSurveysModelData");
-  //   String? data = prefs.getString("UserSurveysModelData");
-  //
-  //   Map<String, dynamic> valueMap = json.decode(data!);
-  //   UserSurveysModelData userSurveysModelData =
-  //       UserSurveysModelData.fromJson(valueMap);
-  //   for (var element in userSurveys) {
-  //     if (element.id == userSurveysModelData.id) {
-  //       // userSurvey.userSurveys[userSurvey.index].status = 'filled';
-  //       element.status = 'filled';
-  //     }
-  //     await HHSUserSurveysOperations().addItemToDatabase(element);
-  //   }
-  // }
+// saveUpdateOffline() async {
+//   final prefs = await SharedPreferences.getInstance();
+//
+//   prefs.getString("UserSurveysModelData");
+//   String? data = prefs.getString("UserSurveysModelData");
+//
+//   Map<String, dynamic> valueMap = json.decode(data!);
+//   UserSurveysModelData userSurveysModelData =
+//       UserSurveysModelData.fromJson(valueMap);
+//   for (var element in userSurveys) {
+//     if (element.id == userSurveysModelData.id) {
+//       // userSurvey.userSurveys[userSurvey.index].status = 'filled';
+//       element.status = 'filled';
+//     }
+//     await HHSUserSurveysOperations().addItemToDatabase(element);
+//   }
+// }
 }

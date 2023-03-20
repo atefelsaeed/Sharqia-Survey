@@ -89,10 +89,7 @@ class Auth with ChangeNotifier {
           _isAuth = true;
           _user = u;
           final prefs = await SharedPreferences.getInstance();
-          prefs.setString(
-            "user",
-            json.encode(_user?.toJson()),
-          );
+          prefs.setString("user", json.encode(_user?.toJson()));
           notifyListeners();
           break;
         }

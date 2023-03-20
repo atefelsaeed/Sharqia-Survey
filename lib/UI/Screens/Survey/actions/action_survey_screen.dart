@@ -51,7 +51,9 @@ class ActionSurveyProvider extends ChangeNotifier {
     // } else {
     //   debugPrint('New Survey');
     // }
+    debugPrint('HHS Edit Survey Provider!');
     await c(editingController, context, id);
+
     AppConstants.isResetHHS = false;
     notifyListeners();
   }

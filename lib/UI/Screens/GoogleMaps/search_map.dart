@@ -1,7 +1,8 @@
+import 'dart:convert' as JSON;
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert' as JSON;
 
 class PlaceType {
   final String apiString;
@@ -454,6 +455,7 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
       if (_currentInput == _tempInput) {
         final predictions = await _makeRequest(_currentInput);
+
         await _animationController.animateTo(0.5);
         if (mounted) setState(() => _placePredictions = predictions);
         await _animationController.forward();

@@ -5,6 +5,7 @@ import 'package:sharqia_household_survey/Models/survey.dart';
 import 'package:sharqia_household_survey/Providers/surveys.dart';
 import 'package:sharqia_household_survey/Providers/user_surveys.dart';
 import 'package:sharqia_household_survey/Resources/strings.dart';
+import 'package:sharqia_household_survey/UI/Screens/Login/login_screen.dart';
 import 'package:sharqia_household_survey/UI/Screens/UserSurveys/user_surveys.dart';
 
 import '../../../Providers/auth.dart';
@@ -28,18 +29,21 @@ class _ChooseSurveyBodyState extends State<ChooseSurveyBody> {
     super.initState();
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
+    Auth auth = Provider.of<Auth>(context, listen: false);
 
     subscription = Connectivity().onConnectivityChanged.listen(
-      (ConnectivityResult result) {
+      (ConnectivityResult result) async {
         if (result == ConnectivityResult.mobile ||
             result == ConnectivityResult.wifi) {
-          setState(() {
+          setState(() async {
             debugPrint('connectivity');
-
-            Auth auth = Provider.of<Auth>(context, listen: false);
             debugPrint('Second');
-
-            userSurveysProvider.fetchUserSurveysStatus(auth.user!.id);
+            if (auth.user == null) {
+              await auth.tryAutoLogin();
+              userSurveysProvider.fetchUserSurveysStatus(auth.user?.id ?? 1);
+            } else {
+              userSurveysProvider.fetchUserSurveysStatus(auth.user?.id ?? 1);
+            }
 
             if (userSurveysProvider.userSurveyStatus == "not filled") {
               userSurveysProvider.multiSync();
@@ -58,7 +62,6 @@ class _ChooseSurveyBodyState extends State<ChooseSurveyBody> {
   @override
   dispose() {
     super.dispose();
-
     subscription.cancel();
   }
 
@@ -66,28 +69,9 @@ class _ChooseSurveyBodyState extends State<ChooseSurveyBody> {
   Widget build(BuildContext context) {
     SurveysProvider p = Provider.of<SurveysProvider>(context);
     Auth auth = Provider.of<Auth>(context, listen: false);
+
     List<Survey> surveyList = p.surveys;
     debugPrint("Survey List length: ${surveyList.length}");
-    //
-    // FirebaseMessaging.onMessage.listen((e) async {
-    //   UserSurveysProvider userSurveysProvider =
-    //       Provider.of<UserSurveysProvider>(context, listen: false);
-    //   if (userSurveysProvider.userSurveyStatus == "not filled") {
-    //     userSurveysProvider.multiSync();
-    //   }
-    //   debugPrint('sync message');
-    //   Fluttertoast.showToast(
-    //     msg: "Syncing",
-    //     toastLength: Toast.LENGTH_SHORT,
-    //     gravity: ToastGravity.BOTTOM,
-    //     timeInSecForIosWeb: 1,
-    //     backgroundColor: Colors.green,
-    //     textColor: Colors.white,
-    //     fontSize: 16.0,
-    //   );
-    //   // _messageHandler(e);
-    // });
-
     return Consumer<UserSurveysProvider>(
       builder: (context, model, _) => model.iSSyncing == true
           ? Center(
@@ -109,7 +93,7 @@ class _ChooseSurveyBodyState extends State<ChooseSurveyBody> {
                   children: [
                     AppSize.spaceHeight5(context),
                     Text(
-                      'مرحباً ${auth.user!.name}',
+                      'مرحباً ${auth.user?.name ?? ''}',
                       style: TextStyle(
                         color: ColorManager.wight,
                         fontSize: width(context) * .065,
@@ -117,35 +101,15 @@ class _ChooseSurveyBodyState extends State<ChooseSurveyBody> {
                     ),
                     InkWell(
                       onTap: () async {
-                        /* final prefs = await SharedPreferences.getInstance();
-                        bool? isFilled = prefs.getBool(AppConstants.isFilled);
-
-                        if (isFilled != null && isFilled == true) {
-                          prefs.getString("UserSurveysModelData");
-                          String? data =
-                              prefs.getString("UserSurveysModelData");
-
-                          Map<String, dynamic> valueMap = json.decode(data!);
-                          UserSurveysModelData userSurveysModelData =
-                              UserSurveysModelData.fromJson(valueMap);
-
-                          if (mounted) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SurveyScreen(
-                                  itemSurveyModel: userSurveysModelData,
-                                ),
-                              ),
-                            );
-                          }
-                        } else {*/
+                        if (auth.user == null) {
+                          await auth.tryAutoLogin();
+                        }
                         if (mounted) {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  UserSurveysScreen(id: auth.user!.id),
+                                  UserSurveysScreen(id: auth.user?.id ?? 1),
                             ),
                           );
                         }

@@ -265,6 +265,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
@@ -377,7 +378,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
               } else {
                 widget.callBack(_value);
               }
-              if (mounted) Navigator.pop(context);
+              if (mounted) Navigator.of(context).pop();
             },
             isWidget: true),
       ),

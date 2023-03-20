@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -20,12 +21,20 @@ import 'UI/Screens/Login/login_screen.dart';
 import 'UI/Screens/Splash/splash_screen.dart';
 import 'UI/Screens/vechicles/provider/vechiels_provider.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
 void main() {
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     debugPrint("something");
-    debugPrint("second thing");
     Intl.defaultLocale = 'ar_EG';
+    HttpOverrides.global = MyHttpOverrides();
     await SentryFlutter.init(
       (options) {
         options.dsn =
@@ -40,7 +49,6 @@ void main() {
     await Sentry.captureException(exception, stackTrace: stackTrace);
   });
 }
-
 GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
 class MyApp extends StatefulWidget {

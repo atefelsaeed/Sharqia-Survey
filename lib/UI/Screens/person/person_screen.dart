@@ -265,10 +265,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                                               .keys.first]!
                                                       .toList(),
                                                   onChange: (String? p) {
-
                                                     provider.groupAgeKey(
                                                         i, p.toString());
-
                                                   },
                                                 )
                                               : Container(),
@@ -822,10 +820,17 @@ class _PersonScreenState extends State<PersonScreen> {
                                 SavePersonData.saveData(context);
                                 debugPrint('Save Person');
                                 CheckPersonValidation.validatePerson(context);
-                                int x = int.parse(
-                                        HhsStatic.peopleAdults18.toString()) +
-                                    int.parse(
-                                        HhsStatic.peopleUnder18.toString());
+                                int x=0;
+                                if (HhsStatic.peopleAdults18.isNotEmpty &&
+                                    HhsStatic.peopleUnder18.isNotEmpty) {
+                                  x = int.parse(
+                                          HhsStatic.peopleAdults18.toString()) +
+                                      int.parse(
+                                          HhsStatic.peopleUnder18.toString());
+                                } else {
+                                  x = 0;
+                                }
+
                                 if (x ==
                                     PersonModelList.personModelList.length) {
                                   Navigator.push(

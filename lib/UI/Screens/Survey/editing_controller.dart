@@ -49,15 +49,9 @@ c(EditingController editingController, BuildContext context, int id) async {
 
   final validationService =
       Provider.of<ActionSurveyProvider>(context, listen: false);
-  // final prefs = await SharedPreferences.getInstance();
-  // bool? isFilled = prefs.getBool(AppConstants.isFilled);
-  // if (isFilled != null && isFilled == true) {
-  //   await surveyPt.getNotFilledSurvey();
-  // } else if (surveyPt.userSurveyStatus == 'edit' &&
-  //     AppConstants.isResetHHS == true) {
-  //   await surveyPt.getSurveyByID(id);
-  // }
-  await surveyPt.getSurveyByID(id);
+
+  await surveyPt.getSurveyByID(id,context);
+
   QuestionsData.qh4 = {
     "? How many separate families live at this address": [
       {"value": '1', "isChick": false},
