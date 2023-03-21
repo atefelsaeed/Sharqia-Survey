@@ -35,20 +35,24 @@ class _ChooseSurveyBodyState extends State<ChooseSurveyBody> {
       (ConnectivityResult result) async {
         if (result == ConnectivityResult.mobile ||
             result == ConnectivityResult.wifi) {
-          setState(() async {
-            debugPrint('connectivity');
-            debugPrint('Second');
-            if (auth.user == null) {
-              await auth.tryAutoLogin();
-              userSurveysProvider.fetchUserSurveysStatus(auth.user?.id ?? 1);
-            } else {
-              userSurveysProvider.fetchUserSurveysStatus(auth.user?.id ?? 1);
-            }
 
-            if (userSurveysProvider.userSurveyStatus == "not filled") {
-              userSurveysProvider.multiSync();
-            }
-          });
+          if (auth.user == null) {
+            await auth.tryAutoLogin();
+            await userSurveysProvider
+                .fetchUserSurveysStatus(auth.user?.id ?? 1);
+          } else {
+            await userSurveysProvider
+                .fetchUserSurveysStatus(auth.user?.id ?? 1);
+          }
+
+          if (userSurveysProvider.userSurveyStatus == "not filled") {
+            await userSurveysProvider.multiSync();
+          }
+          if (mounted) {
+            setState(() {
+              debugPrint('connectivity');
+            });
+          }
         }
         // Got a new connectivity status!
       },

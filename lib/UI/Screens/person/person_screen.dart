@@ -859,6 +859,7 @@ class _PersonScreenState extends State<PersonScreen> {
                           AppSize.spaceWidth3(context),
                           DefaultButton(
                             function: () {
+                              debugPrint('Previous Vec Screen');
                               Navigator.pop(context);
                             },
                             isWidget: true,

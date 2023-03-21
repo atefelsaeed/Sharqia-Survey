@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../Helper/validator.dart';
+
 class PlaceType {
   final String apiString;
 
@@ -473,32 +475,41 @@ class _SearchMapPlaceWidgetState extends State<SearchMapPlaceWidget>
 
   /// API request function. Returns the Predictions
   Future<dynamic> _makeRequest(input) async {
-    String url =
-        "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&key=${widget.apiKey}&language=${widget.language}";
-    if (widget.location != null && widget.radius != null) {
-      url +=
-          "&location=${widget.location!.latitude},${widget.location!.longitude}&radius=${widget.radius}";
-      if (widget.strictBounds) {
-        url += "&strictbounds";
+    try {
+      String url =
+          "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$input&key=${widget.apiKey}&language=${widget.language}";
+      if (widget.location != null && widget.radius != null) {
+        url +=
+            "&location=${widget.location!.latitude},${widget.location!.longitude}&radius=${widget.radius}";
+        if (widget.strictBounds) {
+          url += "&strictbounds";
+        }
+        if (widget.placeType != null) {
+          url += "&types=${widget.placeType!.apiString}";
+        }
       }
-      if (widget.placeType != null) {
-        url += "&types=${widget.placeType!.apiString}";
-      }
-    }
 
-    final response = await http.get(Uri.parse(url));
-    final json = JSON.jsonDecode(response.body);
+      final response = await http.get(Uri.parse(url));
+      debugPrint('Search Map response :: ${response.body.toString()}');
 
-    if (json["error_message"] != null) {
-      var error = json["error_message"];
-      if (error == "This API project is not authorized to use this API.") {
-        error +=
-            " Make sure the Places API is activated on your Google Cloud Platform";
+      final json = JSON.jsonDecode(response.body);
+
+      if (json["error_message"] != null) {
+        var error = json["error_message"];
+        if (error == "This API project is not authorized to use this API.") {
+          error +=
+              " Make sure the Places API is activated on your Google Cloud Platform";
+        }
+        throw Exception(error);
+      } else {
+        final predictions = json["predictions"];
+        return predictions;
       }
-      throw Exception(error);
-    } else {
-      final predictions = json["predictions"];
-      return predictions;
+    } catch (error) {
+      debugPrint('Search map Error');
+      debugPrint(error.toString());
+      Validator.showSnack(context, 'خطأ فى الاتصال بالخادم..!');
+      rethrow;
     }
   }
 

@@ -365,7 +365,7 @@ class TripProvider extends ChangeNotifier {
       }
       Position position = await Geolocator.getCurrentPosition();
       debugPrint("${position.longitude.toString()} +"
-          "+ ${position.longitude.toString()}");
+          "+ ${position.latitude.toString()}");
       notifyListeners();
 
       return position;

@@ -419,6 +419,7 @@ class _TripScreenState extends State<TripScreen> {
                           AppSize.spaceWidth3(context),
                           DefaultButton(
                             function: () {
+                              debugPrint('Previous Person Screen');
                               Navigator.pop(context);
                             },
                             isWidget: true,

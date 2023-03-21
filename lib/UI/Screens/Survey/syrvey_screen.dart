@@ -110,6 +110,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return WillPopScope(
       onWillPop: () {
         return OnExitScreen.onWillPop(context);
@@ -127,9 +128,7 @@ class _SurveyScreenState extends State<SurveyScreen> {
                     key: _key,
                     child: Directionality(
                         textDirection: TextDirection.rtl,
-                        child: Consumer<UserSurveysProvider>(
-                            builder: (context, provider, child) {
-                          return Column(
+                        child: Column(
                             children: [
                               const HHSHeader(),
                               provider.loading
@@ -229,8 +228,8 @@ class _SurveyScreenState extends State<SurveyScreen> {
                                       ],
                                     )
                             ],
-                          );
-                        })),
+
+                        )),
                   ),
                 ),
               ));

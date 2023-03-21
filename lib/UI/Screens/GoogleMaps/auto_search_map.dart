@@ -330,6 +330,7 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
           width: width(context) * .9,
           child: SearchMapPlaceWidget(
             strictBounds: true,
+
             hasClearButton: true,
             placeType: PlaceType.address,
             bgColor: ColorManager.grayLiner,

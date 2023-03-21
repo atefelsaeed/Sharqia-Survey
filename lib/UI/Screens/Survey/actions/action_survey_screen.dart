@@ -159,6 +159,7 @@ class ActionSurveyProvider extends ChangeNotifier {
 
   hhsQ81(EditingController3 editingController3, bool val) {
     hasBicycle = val;
+    notifyListeners();
     if (hasBicycle == true) {
       editingController3.peopleAdults18.text = '0';
       editingController3.peopleUnder18.text = '0';
@@ -193,6 +194,7 @@ class ActionSurveyProvider extends ChangeNotifier {
 
   hhsQ83(EditingController3 editingController3, bool val) {
     hasBicycleQ83 = val;
+    notifyListeners();
     if (hasBicycleQ83 == true) {
       editingController3.peopleAdults18.text = '0';
       editingController3.peopleUnder18.text = '0';

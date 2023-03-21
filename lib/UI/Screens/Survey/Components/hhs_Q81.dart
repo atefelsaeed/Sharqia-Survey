@@ -8,11 +8,16 @@ import 'package:sharqia_household_survey/UI/Widgets/text.dart';
 import '../actions/action_survey_screen.dart';
 import '../widgets/editing_controler3.dart';
 
-class HHSQ81 extends StatelessWidget {
+class HHSQ81 extends StatefulWidget {
   EditingController3 editingController3;
 
   HHSQ81({super.key, required this.editingController3});
 
+  @override
+  State<HHSQ81> createState() => _HHSQ81State();
+}
+
+class _HHSQ81State extends State<HHSQ81> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ActionSurveyProvider>(context, listen: false);
@@ -52,17 +57,20 @@ class HHSQ81 extends StatelessWidget {
               activeColor: ColorManager.orangeTxtColor,
               value: provider.hasBicycle,
               onChanged: (bool? value) {
-                provider.hhsQ81(editingController3, value!);
+                setState(() {
+                  provider.hasBicycle = value!;
+                });
+                provider.hhsQ81(widget.editingController3, value!);
               })
         ]),
         AppSize.spaceHeight2(context),
         Field(
           function: () {},
           showDeleteIcon: false,
-          peopleAdults18: editingController3.peopleAdults18,
-          peopleUnder18: editingController3.peopleUnder18,
+          peopleAdults18: widget.editingController3.peopleAdults18,
+          peopleUnder18: widget.editingController3.peopleUnder18,
           totalNumberOfVecText: "إجمالي عدد الدراجات الهوائية",
-          totalNumberOfVec: editingController3.totalNumber,
+          totalNumberOfVec: widget.editingController3.totalNumber,
           peopleAdults18Text: "عدد الدرجات للبالغين + 18 ",
           peopleUnder18Text: "عدد الدرجات للأطفال اقل من 18",
           isHome: provider.hasBicycle,

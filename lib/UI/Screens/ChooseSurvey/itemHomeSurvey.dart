@@ -19,15 +19,22 @@ class _ItemHomeSurveyState extends State<ItemHomeSurvey> {
   @override
   void initState() {
     // TODO: implement initState
+    fetchUserSurveysStatus();
     super.initState();
+  }
 
+  fetchUserSurveysStatus() async {
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
     Auth auth = Provider.of<Auth>(context, listen: false);
 
     debugPrint('first');
-
-    userSurveysProvider.fetchUserSurveysStatus(auth.user!.id);
+    if (auth.user == null) {
+      await auth.tryAutoLogin();
+      await userSurveysProvider.fetchUserSurveysStatus(auth.user?.id ?? 1);
+    } else {
+      await userSurveysProvider.fetchUserSurveysStatus(auth.user?.id ?? 1);
+    }
   }
 
   @override

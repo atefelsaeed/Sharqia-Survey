@@ -127,6 +127,7 @@ class _VehiclesScreenState extends State<VehiclesScreen> {
                         DefaultButton(
                           function: () {
                             _key.currentState!.save();
+                            debugPrint('Previous HHS Screen');
                             Navigator.pop(context);
                           },
                           isWidget: true,
