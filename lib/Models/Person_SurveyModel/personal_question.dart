@@ -37,7 +37,7 @@ class PersonalQuestion {
             "?Do you have any disability/Special Needs for Transport Mobility"][0];
     haveBusPass = json['haveBusPass'] ?? "";
     mainOccupationType = json['mainOccupationType'] ??
-        PersonData.mainOccupation["MainOccupation"][0];
+        PersonData.mainOccupation["MainOccupation"][0]['value'];
     availablePersonalCar = json['availablePersonalCar'] ??
         PersonData.drivingLiences["?What type of driving licence do you have"]
             [0];

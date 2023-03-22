@@ -44,9 +44,11 @@ class PersonProvider extends ChangeNotifier {
         Provider.of<UserSurveysProvider>(context, listen: false);
 
     PersonModelList.personModelList = [];
-    for (int i = 0; i < surveyPt.surveyPT.personData!.length; i++) {
-      //for (int ii = 1; ii < QuestionsData.hhsHavePastTrip[QuestionsData.hhsHavePastTrip.keys.first]!.toList().length; ii++) {
-      /*  if (surveyPt.surveyPT!.personData![i].personalHeadData!.hhsHavePastTrip.text =="نعم"
+    int personListLength = surveyPt.surveyPT.personData?.length ?? 0;
+    if (personListLength != 0) {
+      for (int i = 0; i < personListLength; i++) {
+        //for (int ii = 1; ii < QuestionsData.hhsHavePastTrip[QuestionsData.hhsHavePastTrip.keys.first]!.toList().length; ii++) {
+        /*  if (surveyPt.surveyPT!.personData![i].personalHeadData!.hhsHavePastTrip.text =="نعم"
           ) {
         QuestionsData.hhsHavePastTrip[QuestionsData.hhsHavePastTrip.keys.first]
             [0]["isChick"] = true;
@@ -57,38 +59,40 @@ class PersonProvider extends ChangeNotifier {
         surveyPt.surveyPT!.personData![i].personalHeadData!.hasPasTrip=true;
       }*/
 
-      Map<String, dynamic> nationality = {
-        "QPurposeOfBeingThere": [
-          {"value": 'سعودي', "isChick": false},
-          {"value": 'وافد عربي', "isChick": false},
-          {"value": 'وافد اجنبي', "isChick": false},
-        ],
-        "title": "nationality",
-        "subTitle":
-            " A separate family is defined as who share the kitchen expenses and meals",
-        "index": 0,
-      };
-      //Map<String, dynamic>    nationalityu={};
-      List value2 = nationality[nationality.keys.first].toList();
+        Map<String, dynamic> nationality = {
+          "QPurposeOfBeingThere": [
+            {"value": 'سعودي', "isChick": false},
+            {"value": 'وافد عربي', "isChick": false},
+            {"value": 'وافد اجنبي', "isChick": false},
+          ],
+          "title": "nationality",
+          "subTitle":
+              " A separate family is defined as who share the kitchen expenses and meals",
+          "index": 0,
+        };
+        //Map<String, dynamic>    nationalityu={};
+        List value2 = nationality[nationality.keys.first].toList();
 
-      for (int inr = 0; inr < value2.length; inr++) {
-        if (surveyPt
-                .surveyPT.personData![i].personalHeadData!.nationalityType ==
-            value2[inr]["value"]) {
-          nationality[nationality.keys.first].toList()[inr]["isChick"] = true;
+        for (int inr = 0; inr < value2.length; inr++) {
           if (surveyPt
-                  .surveyPT.personData![i].personalHeadData!.nationalityType !=
-              "سعودي") {
-            surveyPt.surveyPT.personData![i].personalHeadData!.showText = true;
+                  .surveyPT.personData![i].personalHeadData!.nationalityType ==
+              value2[inr]["value"]) {
+            nationality[nationality.keys.first].toList()[inr]["isChick"] = true;
+            if (surveyPt.surveyPT.personData![i].personalHeadData!
+                    .nationalityType !=
+                "سعودي") {
+              surveyPt.surveyPT.personData![i].personalHeadData!.showText =
+                  true;
+            }
+            //  nationalityu.addAll(  {"value":  value2[inr]["value"], "isChick": true});
+          } else {
+            nationality[nationality.keys.first].toList()[inr]["isChick"] =
+                false;
           }
-          //  nationalityu.addAll(  {"value":  value2[inr]["value"], "isChick": true});
-        } else {
-          nationality[nationality.keys.first].toList()[inr]["isChick"] = false;
+          //  notifyListeners();
         }
-        //  notifyListeners();
-      }
 
-      /*for (int ii = 0;
+        /*for (int ii = 0;
           ii <
               PersonModelList
                   .personModelList[ii]
@@ -112,179 +116,182 @@ class PersonProvider extends ChangeNotifier {
         }
       }*/
 
-      Map<String, dynamic> travelWithOther = {
-        'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
-            [
-          {"value": 'نعم', "isChick": false},
-          {"value": 'لا', "isChick": false},
-        ],
-        "index": 0
-      };
-
-      List value = travelWithOther[travelWithOther.keys.first].toList();
-
-      if (surveyPt
-              .surveyPT.personData![i].personalHeadData!.hhsHavePastTrip.text ==
-          "نعم") {
-        debugPrint(surveyPt
-            .surveyPT.personData![i].personalHeadData!.hhsHavePastTrip.text);
-        travelWithOther = {
+        Map<String, dynamic> travelWithOther = {
           'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
               [
-            {"value": 'نعم', "isChick": true},
+            {"value": 'نعم', "isChick": false},
             {"value": 'لا', "isChick": false},
           ],
           "index": 0
         };
-        surveyPt.surveyPT.personData![i].personalHeadData!.hasPasTrip = false;
-      } else {
-        travelWithOther = {
-          'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
-              [
-            {"value": 'نعم', "isChick": false},
-            {"value": 'لا', "isChick": true},
-          ],
-          "index": 0
-        };
 
-        surveyPt.surveyPT.personData![i].personalHeadData!.hasPasTrip = true;
+        List value = travelWithOther[travelWithOther.keys.first].toList();
 
-        //PersonModelList.personModelList[i].personalHeadData!.hhsHavePastTrip=surveyPt.surveyPT.personData![i].personalHeadData!.hhsHavePastTrip;
+        if (surveyPt.surveyPT.personData![i].personalHeadData!.hhsHavePastTrip
+                .text ==
+            "نعم") {
+          debugPrint(surveyPt
+              .surveyPT.personData![i].personalHeadData!.hhsHavePastTrip.text);
+          travelWithOther = {
+            'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
+                [
+              {"value": 'نعم', "isChick": true},
+              {"value": 'لا', "isChick": false},
+            ],
+            "index": 0
+          };
+          surveyPt.surveyPT.personData![i].personalHeadData!.hasPasTrip = false;
+        } else {
+          travelWithOther = {
+            'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
+                [
+              {"value": 'نعم', "isChick": false},
+              {"value": 'لا', "isChick": true},
+            ],
+            "index": 0
+          };
 
-      }
+          surveyPt.surveyPT.personData![i].personalHeadData!.hasPasTrip = true;
 
-      PersonModelList.personModelList.add(PersonModel(
-        personName: TextEditingController(
-            text: surveyPt.surveyPT.personData![i].personName.text),
-        //==personalHeadData==
+          //PersonModelList.personModelList[i].personalHeadData!.hhsHavePastTrip=surveyPt.surveyPT.personData![i].personalHeadData!.hhsHavePastTrip;
 
-        personalHeadData: PersonalHeadData(
-          age: surveyPt.surveyPT.personData![i].personalHeadData!
-                      .refuseToTellAge ==
-                  false
-              ? TextEditingController(
-                  text: surveyPt
-                      .surveyPT.personData![i].personalHeadData!.age.text)
-              : TextEditingController(),
-          nationality: TextEditingController(
-              text: surveyPt
-                  .surveyPT.personData![i].personalHeadData!.nationality.text),
+        }
 
-          relationshipHeadHHSController: TextEditingController(
-              text: surveyPt.surveyPT.personData![i].personalHeadData!
-                  .relationshipHeadHHS),
-          hhsHavePastTrip: TextEditingController(
-              text: surveyPt.surveyPT.personData![i].personalHeadData!
-                  .hhsHavePastTrip.text),
-          nationalityType: surveyPt
-              .surveyPT.personData![i].personalHeadData!.nationalityType,
-          showText: surveyPt.surveyPT.personData![i].personalHeadData!.showText,
-          gender: surveyPt.surveyPT.personData![i].personalHeadData!.gender,
-          checkAge: true,
-          //surveyPt.surveyAllData!.first.personData![i].personalHeadData!.checkAge,
-          hasPasTrip:
-              surveyPt.surveyPT.personData![i].personalHeadData!.hasPasTrip,
-          refuseToTellAge: surveyPt
-              .surveyPT.personData![i].personalHeadData!.refuseToTellAge,
-          relationshipHeadHHS: surveyPt
-              .surveyPT.personData![i].personalHeadData!.relationshipHeadHHS,
-        ),
-        //==personalQuestion==
-        personalQuestion: PersonalQuestion(
-          mainOccupationType: surveyPt
-              .surveyPT.personData![i].personalQuestion!.mainOccupationType,
-          asPassenger:
-              surveyPt.surveyPT.personData![i].personalQuestion!.asPassenger,
-          availablePersonalCar: surveyPt
-              .surveyPT.personData![i].personalQuestion!.availablePersonalCar,
-          drivingLicenceType: surveyPt
-              .surveyPT.personData![i].personalQuestion!.drivingLicenceType,
-          haveBusPass:
-              surveyPt.surveyPT.personData![i].personalQuestion!.haveBusPass,
-          haveDisabilityTransportMobility: surveyPt.surveyPT.personData![i]
-              .personalQuestion!.haveDisabilityTransportMobility,
-          haveCarSharing:
-              surveyPt.surveyPT.personData![i].personalQuestion!.haveCarSharing,
-          educationAddress: EducationAddress(
-            fullAddress: TextEditingController(),
-            geocodes: TextEditingController(),
+        PersonModelList.personModelList.add(PersonModel(
+          personName: TextEditingController(
+              text: surveyPt.surveyPT.personData![i].personName.text),
+          //==personalHeadData==
+
+          personalHeadData: PersonalHeadData(
+            age: surveyPt.surveyPT.personData![i].personalHeadData!
+                        .refuseToTellAge ==
+                    false
+                ? TextEditingController(
+                    text: surveyPt
+                        .surveyPT.personData![i].personalHeadData!.age.text)
+                : TextEditingController(),
+            nationality: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].personalHeadData!
+                    .nationality.text),
+
+            relationshipHeadHHSController: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].personalHeadData!
+                    .relationshipHeadHHS),
+            hhsHavePastTrip: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].personalHeadData!
+                    .hhsHavePastTrip.text),
+            nationalityType: surveyPt
+                .surveyPT.personData![i].personalHeadData!.nationalityType,
+            showText:
+                surveyPt.surveyPT.personData![i].personalHeadData!.showText,
+            gender: surveyPt.surveyPT.personData![i].personalHeadData!.gender,
+            checkAge: true,
+            //surveyPt.surveyAllData!.first.personData![i].personalHeadData!.checkAge,
+            hasPasTrip:
+                surveyPt.surveyPT.personData![i].personalHeadData!.hasPasTrip,
+            refuseToTellAge: surveyPt
+                .surveyPT.personData![i].personalHeadData!.refuseToTellAge,
+            relationshipHeadHHS: surveyPt
+                .surveyPT.personData![i].personalHeadData!.relationshipHeadHHS,
           ),
-          drivingLicenceTypeController: TextEditingController(
-              text: surveyPt.surveyPT.personData![i].personalQuestion!
-                  .drivingLicenceType),
-          haveDisabilityTransportMobilityController: TextEditingController(
-              text: surveyPt.surveyPT.personData![i].personalQuestion!
-                  .haveDisabilityTransportMobility),
-        ),
-        //==occupationModel==================
-        occupationModel: OccupationModel(
-          earliestTimeFinishingWork: TextEditingController(
-              text: surveyPt.surveyPT.personData![i].occupationModel!
-                  .earliestTimeFinishingWork.text),
-          occupationSectorController: TextEditingController(
-              text: surveyPt
-                  .surveyPT.personData![i].occupationModel!.occupationSector),
-          earliestTimeStartingWork: TextEditingController(
-              text: surveyPt.surveyPT.personData![i].occupationModel!
-                  .earliestTimeStartingWork.text),
-          endingWoke: TextEditingController(
-              text: surveyPt
-                  .surveyPT.personData![i].occupationModel!.endingWoke.text),
-          startingWoke: TextEditingController(
-              text: surveyPt
-                  .surveyPT.personData![i].occupationModel!.startingWoke.text),
-          address: TextEditingController(
-              text: surveyPt
-                  .surveyPT.personData![i].occupationModel!.address.text),
-          geoCodes: TextEditingController(
-              text: surveyPt
-                  .surveyPT.personData![i].occupationModel!.geoCodes.text),
-          mainOccupationAddress: TextEditingController(
-              text: surveyPt.surveyPT.personData![i].occupationModel!
-                  .mainOccupationAddress.text),
-          bestWorkspaceLocation: surveyPt
-              .surveyPT.personData![i].occupationModel!.bestWorkspaceLocation,
-          bikeWorkDays:
-              surveyPt.surveyPT.personData![i].occupationModel!.bikeWorkDays,
-          commuteWorkDays:
-              surveyPt.surveyPT.personData![i].occupationModel!.commuteWorkDays,
-          flexibleWorkingHours: surveyPt
-              .surveyPT.personData![i].occupationModel!.flexibleWorkingHours,
-          isEmployee:
-              surveyPt.surveyPT.personData![i].occupationModel!.isEmployee,
-          isWorkFromHome: false,
-          numberWorkFromHome: surveyPt
-              .surveyPT.personData![i].occupationModel!.numberWorkFromHome,
-          occupationLevelSector: surveyPt
-              .surveyPT.personData![i].occupationModel!.occupationLevelSector,
-          occupationSector: surveyPt
-              .surveyPT.personData![i].occupationModel!.occupationSector,
-          bestWorkspaceLocationController: TextEditingController(
-              text: surveyPt.surveyPT.personData![i].occupationModel!
-                  .bestWorkspaceLocation),
-        ),
-        nationality: nationality,
-        travelWithOther: travelWithOther,
-      ));
+          //==personalQuestion==
+          personalQuestion: PersonalQuestion(
+            mainOccupationType: surveyPt
+                .surveyPT.personData![i].personalQuestion!.mainOccupationType,
+            asPassenger:
+                surveyPt.surveyPT.personData![i].personalQuestion!.asPassenger,
+            availablePersonalCar: surveyPt
+                .surveyPT.personData![i].personalQuestion!.availablePersonalCar,
+            drivingLicenceType: surveyPt
+                .surveyPT.personData![i].personalQuestion!.drivingLicenceType,
+            haveBusPass:
+                surveyPt.surveyPT.personData![i].personalQuestion!.haveBusPass,
+            haveDisabilityTransportMobility: surveyPt.surveyPT.personData![i]
+                .personalQuestion!.haveDisabilityTransportMobility,
+            haveCarSharing: surveyPt
+                .surveyPT.personData![i].personalQuestion!.haveCarSharing,
+            educationAddress: EducationAddress(
+              fullAddress: TextEditingController(),
+              geocodes: TextEditingController(),
+            ),
+            drivingLicenceTypeController: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].personalQuestion!
+                    .drivingLicenceType),
+            haveDisabilityTransportMobilityController: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].personalQuestion!
+                    .haveDisabilityTransportMobility),
+          ),
+          //==occupationModel==================
+          occupationModel: OccupationModel(
+            earliestTimeFinishingWork: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].occupationModel!
+                    .earliestTimeFinishingWork.text),
+            occupationSectorController: TextEditingController(
+                text: surveyPt
+                    .surveyPT.personData![i].occupationModel!.occupationSector),
+            earliestTimeStartingWork: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].occupationModel!
+                    .earliestTimeStartingWork.text),
+            endingWoke: TextEditingController(
+                text: surveyPt
+                    .surveyPT.personData![i].occupationModel!.endingWoke.text),
+            startingWoke: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].occupationModel!
+                    .startingWoke.text),
+            address: TextEditingController(
+                text: surveyPt
+                    .surveyPT.personData![i].occupationModel!.address.text),
+            geoCodes: TextEditingController(
+                text: surveyPt
+                    .surveyPT.personData![i].occupationModel!.geoCodes.text),
+            mainOccupationAddress: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].occupationModel!
+                    .mainOccupationAddress.text),
+            bestWorkspaceLocation: surveyPt
+                .surveyPT.personData![i].occupationModel!.bestWorkspaceLocation,
+            bikeWorkDays:
+                surveyPt.surveyPT.personData![i].occupationModel!.bikeWorkDays,
+            commuteWorkDays: surveyPt
+                .surveyPT.personData![i].occupationModel!.commuteWorkDays,
+            flexibleWorkingHours: surveyPt
+                .surveyPT.personData![i].occupationModel!.flexibleWorkingHours,
+            isEmployee:
+                surveyPt.surveyPT.personData![i].occupationModel!.isEmployee,
+            isWorkFromHome: false,
+            numberWorkFromHome: surveyPt
+                .surveyPT.personData![i].occupationModel!.numberWorkFromHome,
+            occupationLevelSector: surveyPt
+                .surveyPT.personData![i].occupationModel!.occupationLevelSector,
+            occupationSector: surveyPt
+                .surveyPT.personData![i].occupationModel!.occupationSector,
+            bestWorkspaceLocationController: TextEditingController(
+                text: surveyPt.surveyPT.personData![i].occupationModel!
+                    .bestWorkspaceLocation),
+          ),
+          nationality: nationality,
+          travelWithOther: travelWithOther,
+        ));
 
-      if (surveyPt.surveyPT.personData![i].personalHeadData!.refuseToTellAge ==
-          true) {
-        groupAgeKey2(
-            i, surveyPt.surveyPT.personData![i].personalHeadData!.age.text);
-        //List value = PersonData.groupAge[PersonData.groupAge.keys.first].toList();
-        debugPrint("2222222");
+        if (surveyPt
+                .surveyPT.personData![i].personalHeadData!.refuseToTellAge ==
+            true) {
+          groupAgeKey2(
+              i, surveyPt.surveyPT.personData![i].personalHeadData!.age.text);
+          //List value = PersonData.groupAge[PersonData.groupAge.keys.first].toList();
+          debugPrint("2222222");
 
-        //  PersonModelList.personModelList[i].occupationModel!.isEmployee =1.toString();
-        /* for (int inr = 0; inr < value.length; inr++) {
+          //  PersonModelList.personModelList[i].occupationModel!.isEmployee =1.toString();
+          /* for (int inr = 0; inr < value.length; inr++) {
           if (surveyPt.surveyPT!.personData![i].personalHeadData!.age.text == value[inr]["value"]) {
             debugPrint("Fffff");
             PersonModelList.personModelList[i].occupationModel!.isEmployee =
             value[inr]["type"];
           }
         }*/
-      } else {
-        isEmployeeEdit(
-            surveyPt.surveyPT.personData![i].personalHeadData!.age.text, i);
+        } else {
+          isEmployeeEdit(
+              surveyPt.surveyPT.personData![i].personalHeadData!.age.text, i);
+        }
       }
     }
 
@@ -426,7 +433,7 @@ class PersonProvider extends ChangeNotifier {
   }
 
   ///bestWorkspaceLocation
-  bestWorkspaceLocation(int i,String p) {
+  bestWorkspaceLocation(int i, String p) {
     var base = PersonModelList.personModelList[i].occupationModel!;
     base.bestWorkspaceLocation = p.toString();
 

@@ -33,7 +33,6 @@ class SurveyCondition {
   }
 
   bool conditionHHSQ5NumUnder18(EditingController editingController, context) {
-
     int houseHoldLength = editingController.peopleUnder18.text.isEmpty
         ? 0
         : int.parse(editingController.peopleUnder18.text);
@@ -59,26 +58,56 @@ class SurveyCondition {
   }
 
   bool numberParcelsDeliveries(context) {
-    int numberParcels = VehModel.vehiclesModel.numberParcels.text.isEmpty
-        ? 0
-        : int.parse(VehModel.vehiclesModel.numberParcels.text);
+    ///numberParcels
+    int numberParcels = 0;
 
-    int numberFood = VehModel.vehiclesModel.numberFood.text.isEmpty
-        ? 0
-        : int.parse(VehModel.vehiclesModel.numberFood.text);
+    if (VehModel.vehiclesModel.numberParcels.text.isEmpty) {
+      numberParcels = 0;
+    } else {
+      numberParcels = int.parse(
+          VehModel.vehiclesModel.numberParcels.text.replaceAll('.', ''));
+    }
 
-    int numberGrocery = VehModel.vehiclesModel.numberGrocery.text.isEmpty
-        ? 0
-        : int.parse(VehModel.vehiclesModel.numberGrocery.text);
+    ///numberFood
+    int numberFood = 0;
 
-    int numberOtherParcels = VehModel.vehiclesModel.numberParcels.text.isEmpty
-        ? 0
-        : int.parse(VehModel.vehiclesModel.numberOtherParcels.text);
+    if (VehModel.vehiclesModel.numberFood.text.isEmpty) {
+      numberFood = 0;
+    } else {
+      numberFood =
+          int.parse(VehModel.vehiclesModel.numberFood.text.replaceAll('.', ''));
+    }
 
-    int numberParcelsDeliveries =
-        VehModel.vehiclesModel.numberParcelsDeliveries.text.isEmpty
-            ? 0
-            : int.parse(VehModel.vehiclesModel.numberParcelsDeliveries.text);
+    ///numberGrocery
+    int numberGrocery = 0;
+
+    if (VehModel.vehiclesModel.numberGrocery.text.isEmpty) {
+      numberGrocery = 0;
+    } else {
+      numberGrocery = int.parse(
+          VehModel.vehiclesModel.numberGrocery.text.replaceAll('.', ''));
+    }
+
+    ///numberOtherParcels
+    int numberOtherParcels = 0;
+
+    if (VehModel.vehiclesModel.numberOtherParcels.text.isEmpty) {
+      numberOtherParcels = 0;
+    } else {
+      numberOtherParcels = int.parse(
+          VehModel.vehiclesModel.numberOtherParcels.text.replaceAll('.', ''));
+    }
+
+    ///numberParcelsDeliveries
+    int numberParcelsDeliveries = 0;
+
+    if (VehModel.vehiclesModel.numberParcelsDeliveries.text.isEmpty) {
+      numberParcelsDeliveries = 0;
+    } else {
+      numberParcelsDeliveries = int.parse(VehModel
+          .vehiclesModel.numberParcelsDeliveries.text
+          .replaceAll('.', ''));
+    }
 
     int total = numberParcels + numberGrocery + numberFood + numberOtherParcels;
 

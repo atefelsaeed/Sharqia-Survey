@@ -42,203 +42,208 @@ class TripProvider extends ChangeNotifier {
         Provider.of<UserSurveysProvider>(context, listen: false);
 
     TripModeList.tripModeList = [];
+    int tripsLength = surveyPt.surveyPT.tripsList?.length ?? 0;
+    if (tripsLength != 0) {
+      for (int i = 0; i < tripsLength; i++) {
+        Map<String, dynamic> travelWithOther = {
+          'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
+              [
+            {"value": 'مع الأخرين', "isChick": false},
+            {"value": 'بمفردك', "isChick": false},
+          ],
+          "index": 0
+        };
 
-    for (int i = 0; i < surveyPt.surveyPT.tripsList!.length; i++) {
-      Map<String, dynamic> travelWithOther = {
-        'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
-            [
-          {"value": 'مع الأخرين', "isChick": false},
-          {"value": 'بمفردك', "isChick": false},
-        ],
-        "index": 0
-      };
+        Map<String, dynamic> purposeOfBeingThere2 = {
+          "TripReason": [
+            {"value": 'في المنزل', "isChick": false},
+            {"value": 'فى بيت العطلات / الفندق', "isChick": false},
+            {"value": 'العمل - فى مكتب / مقر العمل', "isChick": false},
+            {"value": 'العمل - خارج مكتب / مقر العمل', "isChick": false},
+            {"value": 'مكان تعليمى', "isChick": false},
+            {"value": 'التسوق', "isChick": false},
+            {"value": 'عمل شخصي', "isChick": false},
+            {"value": 'طبى / مستشفى', "isChick": false},
+            {"value": 'زیارة الأصدقاء / الأقارب', "isChick": false},
+            {"value": 'ترفيه / وقت الفراغ', "isChick": false},
+            {"value": 'توصيل الى المدرسة / التعليم', "isChick": false},
+            {"value": 'توصيل الى مكان آخر', "isChick": false},
+            {"value": 'آخرى', "isChick": false},
+          ],
+          "title": "?What was the purpose of being there",
+          "subTitle":
+              " A separate family is defined as who share the kitchen expenses and meals",
+          "chosenIndex": 0,
+        };
+        Map<String, dynamic> purposeOfBeingThere = {
+          "QPurposeOfBeingThere": [
+            {"value": 'في المنزل', "isChick": false},
+            {"value": 'فى بيت العطلات / الفندق', "isChick": false},
+            {"value": 'العمل - فى مكتب / مقر العمل', "isChick": false},
+            {"value": 'العمل - خارج مكتب / مقر العمل', "isChick": false},
+            {"value": 'مكان تعليمى', "isChick": false},
+            {"value": 'التسوق', "isChick": false},
+            {"value": 'عمل شخصي', "isChick": false},
+            {"value": 'طبى / مستشفى', "isChick": false},
+            {"value": 'زیارة الأصدقاء / الأقارب', "isChick": false},
+            {"value": 'ترفيه / وقت الفراغ', "isChick": false},
+            {"value": 'توصيل الى المدرسة / التعليم', "isChick": false},
+            {"value": 'توصيل الى مكان آخر', "isChick": false},
+            {"value": 'آخرى', "isChick": false},
+          ],
+          "title": "?What was the purpose of being there",
+          "subTitle":
+              " A separate family is defined as who share the kitchen expenses and meals",
+          "chosenIndex": 0,
+        };
 
-      Map<String, dynamic> purposeOfBeingThere2 = {
-        "TripReason": [
-          {"value": 'في المنزل', "isChick": false},
-          {"value": 'فى بيت العطلات / الفندق', "isChick": false},
-          {"value": 'العمل - فى مكتب / مقر العمل', "isChick": false},
-          {"value": 'العمل - خارج مكتب / مقر العمل', "isChick": false},
-          {"value": 'مكان تعليمى', "isChick": false},
-          {"value": 'التسوق', "isChick": false},
-          {"value": 'عمل شخصي', "isChick": false},
-          {"value": 'طبى / مستشفى', "isChick": false},
-          {"value": 'زیارة الأصدقاء / الأقارب', "isChick": false},
-          {"value": 'ترفيه / وقت الفراغ', "isChick": false},
-          {"value": 'توصيل الى المدرسة / التعليم', "isChick": false},
-          {"value": 'توصيل الى مكان آخر', "isChick": false},
-          {"value": 'آخرى', "isChick": false},
-        ],
-        "title": "?What was the purpose of being there",
-        "subTitle":
-            " A separate family is defined as who share the kitchen expenses and meals",
-        "chosenIndex": 0,
-      };
-      Map<String, dynamic> purposeOfBeingThere = {
-        "QPurposeOfBeingThere": [
-          {"value": 'في المنزل', "isChick": false},
-          {"value": 'فى بيت العطلات / الفندق', "isChick": false},
-          {"value": 'العمل - فى مكتب / مقر العمل', "isChick": false},
-          {"value": 'العمل - خارج مكتب / مقر العمل', "isChick": false},
-          {"value": 'مكان تعليمى', "isChick": false},
-          {"value": 'التسوق', "isChick": false},
-          {"value": 'عمل شخصي', "isChick": false},
-          {"value": 'طبى / مستشفى', "isChick": false},
-          {"value": 'زیارة الأصدقاء / الأقارب', "isChick": false},
-          {"value": 'ترفيه / وقت الفراغ', "isChick": false},
-          {"value": 'توصيل الى المدرسة / التعليم', "isChick": false},
-          {"value": 'توصيل الى مكان آخر', "isChick": false},
-          {"value": 'آخرى', "isChick": false},
-        ],
-        "title": "?What was the purpose of being there",
-        "subTitle":
-            " A separate family is defined as who share the kitchen expenses and meals",
-        "chosenIndex": 0,
-      };
+        List value2 =
+            purposeOfBeingThere[purposeOfBeingThere.keys.first].toList();
 
-      List value2 =
-          purposeOfBeingThere[purposeOfBeingThere.keys.first].toList();
+        surveyPt.surveyPT.tripsList![i].tripReason!.replaceAll('توص', 'توصيل');
 
-      surveyPt.surveyPT.tripsList![i].tripReason!.replaceAll('توص', 'توصيل');
-
-      for (int inr = 0; inr < value2.length; inr++) {
-        if (surveyPt.surveyPT.tripsList![i].tripReason!
-                .replaceAll('توص', 'توصيل') ==
-            value2[inr]["value"]) {
-          purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[inr]
-              ["isChick"] = true;
-        } else {
-          purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[inr]
-              ["isChick"] = false;
+        for (int inr = 0; inr < value2.length; inr++) {
+          if (surveyPt.surveyPT.tripsList![i].tripReason!
+                  .replaceAll('توص', 'توصيل') ==
+              value2[inr]["value"]) {
+            purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[inr]
+                ["isChick"] = true;
+          } else {
+            purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[inr]
+                ["isChick"] = false;
+          }
+          //  notifyListeners();
         }
-        //  notifyListeners();
-      }
 
-      List value3 =
-          purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList();
+        List value3 =
+            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList();
 
-      surveyPt.surveyPT.tripsList![i].purposeTravel!.replaceAll('توص', 'توصيل');
+        surveyPt.surveyPT.tripsList![i].purposeTravel!
+            .replaceAll('توص', 'توصيل');
 
-      for (int ir = 0; ir < value3.length; ir++) {
-        if (surveyPt.surveyPT.tripsList![i].purposeTravel!
-                .replaceAll('توص', 'توصيل') ==
-            value3[ir]["value"]) {
-          purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[ir]
-              ["isChick"] = true;
-        } else {
-          purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[ir]
-              ["isChick"] = false;
+        for (int ir = 0; ir < value3.length; ir++) {
+          if (surveyPt.surveyPT.tripsList![i].purposeTravel!
+                  .replaceAll('توص', 'توصيل') ==
+              value3[ir]["value"]) {
+            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[ir]
+                ["isChick"] = true;
+          } else {
+            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[ir]
+                ["isChick"] = false;
+          }
         }
-      }
 
-      debugPrint('chossen');
-      surveyPt.surveyPT.tripsList![i].chosenPerson;
-      var chosenPerson = surveyPt.surveyPT.tripsList![i].chosenPerson;
-      var reason = surveyPt.surveyPT.tripsList![i].tripReason!
-          .replaceAll('توص', 'توصيل');
+        debugPrint('chossen');
+        surveyPt.surveyPT.tripsList![i].chosenPerson;
+        var chosenPerson = surveyPt.surveyPT.tripsList![i].chosenPerson;
+        var reason = surveyPt.surveyPT.tripsList![i].tripReason!
+            .replaceAll('توص', 'توصيل');
 
-      TripModeList.tripModeList.add(TripsModel(
-          person: list,
-          mainPerson: mainPersonList,
-          isHome: surveyPt.surveyPT.tripsList![i].isHome,
-          isHomeEnding: surveyPt.surveyPT.tripsList![i].isHomeEnding,
-          chosenFriendPerson:
-              surveyPt.surveyPT.tripsList![i].chosenFriendPerson,
-          chosenPerson: chosenPerson,
-          purposeOfBeingThere: purposeOfBeingThere,
-          purposeTravel: surveyPt.surveyPT.tripsList![i].purposeTravel!
-              .replaceAll('توص', 'توصيل'),
-          tripReason: reason,
-          startBeginningModel:
-              surveyPt.surveyPT.tripsList![i].startBeginningModel,
-          hhsMembersTraveled:
-              surveyPt.surveyPT.tripsList![i].chosenFriendPerson,
-          travelAloneHouseHold:
-              surveyPt.surveyPT.tripsList![i].travelAloneHouseHold,
-          travelWay: surveyPt.surveyPT.tripsList![i].travelWay,
-          type: surveyPt.surveyPT.tripsList![i].type,
-          endingAddress: surveyPt.surveyPT.tripsList![i].endingAddress,
-          travelWithOtherModel:
-              surveyPt.surveyPT.tripsList![i].travelWithOtherModel,
-          typeTravel: surveyPt.surveyPT.tripsList![i].typeTravel,
-          typeTravelCondition:
-              surveyPt.surveyPT.tripsList![i].typeTravelCondition,
-          isTravelAlone: surveyPt.surveyPT.tripsList![i].isTravelAlone,
-          travelWithOther: surveyPt.surveyPT.tripsList![i].isTravelAlone == true
-              ? {
-                  'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
-                      [
-                    {"value": 'مع الأخرين', "isChick": true},
-                    {"value": 'بمفردك', "isChick": false},
-                  ],
-                  "index": 0
-                }
-              : {
-                  'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
-                      [
-                    {"value": 'مع الأخرين', "isChick": false},
-                    {"value": 'بمفردك', "isChick": true},
-                  ],
-                  "index": 0
-                },
-          travelTypeModel: TravelTypeModel(
-            taxiTravelTypeOther: TextEditingController(
-                text: surveyPt
-                    .surveyPT.tripsList![i].travelTypeModel.taxiTravelType),
-            otherWhereDidYouParking: TextEditingController(
-                text: surveyPt
-                    .surveyPT.tripsList![i].travelTypeModel.carParkingPlace),
-            taxiFare: TextEditingController(
-                text:
-                    surveyPt.surveyPT.tripsList![i].travelTypeModel.travelType),
-            ticketSub: TextEditingController(
-                text: surveyPt
-                    .surveyPT.tripsList![i].travelTypeModel.taxiTravelType),
-            carParkingPlace:
-                surveyPt.surveyPT.tripsList![i].travelTypeModel.carParkingPlace,
-            passTravelType:
-                surveyPt.surveyPT.tripsList![i].travelTypeModel.passTravelType,
-            travelType:
-                surveyPt.surveyPT.tripsList![i].travelTypeModel.travelType,
-            publicTransportFare: surveyPt
-                .surveyPT.tripsList![i].travelTypeModel.publicTransportFare,
-            taxiTravelType:
-                surveyPt.surveyPT.tripsList![i].travelTypeModel.taxiTravelType,
-          ),
-          otherWhereDidYouParkEditingControl: surveyPt
-              .surveyPT.tripsList![i].otherWhereDidYouParkEditingControl,
-          taxiTravelTypeEditingControl:
-              surveyPt.surveyPT.tripsList![i].taxiTravelTypeEditingControl,
-          arrivalDepartTime: surveyPt.surveyPT.tripsList![i].arrivalDepartTime,
-          purposeOfBeingThere2: purposeOfBeingThere2,
-          departureTime: surveyPt.surveyPT.tripsList![i].departureTime));
+        TripModeList.tripModeList.add(TripsModel(
+            person: list,
+            mainPerson: mainPersonList,
+            isHome: surveyPt.surveyPT.tripsList![i].isHome,
+            isHomeEnding: surveyPt.surveyPT.tripsList![i].isHomeEnding,
+            chosenFriendPerson:
+                surveyPt.surveyPT.tripsList![i].chosenFriendPerson,
+            chosenPerson: chosenPerson,
+            purposeOfBeingThere: purposeOfBeingThere,
+            purposeTravel: surveyPt.surveyPT.tripsList![i].purposeTravel!
+                .replaceAll('توص', 'توصيل'),
+            tripReason: reason,
+            startBeginningModel:
+                surveyPt.surveyPT.tripsList![i].startBeginningModel,
+            hhsMembersTraveled:
+                surveyPt.surveyPT.tripsList![i].chosenFriendPerson,
+            travelAloneHouseHold:
+                surveyPt.surveyPT.tripsList![i].travelAloneHouseHold,
+            travelWay: surveyPt.surveyPT.tripsList![i].travelWay,
+            type: surveyPt.surveyPT.tripsList![i].type,
+            endingAddress: surveyPt.surveyPT.tripsList![i].endingAddress,
+            travelWithOtherModel:
+                surveyPt.surveyPT.tripsList![i].travelWithOtherModel,
+            typeTravel: surveyPt.surveyPT.tripsList![i].typeTravel,
+            typeTravelCondition:
+                surveyPt.surveyPT.tripsList![i].typeTravelCondition,
+            isTravelAlone: surveyPt.surveyPT.tripsList![i].isTravelAlone,
+            travelWithOther:
+                surveyPt.surveyPT.tripsList![i].isTravelAlone == true
+                    ? {
+                        'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
+                            [
+                          {"value": 'مع الأخرين', "isChick": true},
+                          {"value": 'بمفردك', "isChick": false},
+                        ],
+                        "index": 0
+                      }
+                    : {
+                        'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
+                            [
+                          {"value": 'مع الأخرين', "isChick": false},
+                          {"value": 'بمفردك', "isChick": true},
+                        ],
+                        "index": 0
+                      },
+            travelTypeModel: TravelTypeModel(
+              taxiTravelTypeOther: TextEditingController(
+                  text: surveyPt
+                      .surveyPT.tripsList![i].travelTypeModel.taxiTravelType),
+              otherWhereDidYouParking: TextEditingController(
+                  text: surveyPt
+                      .surveyPT.tripsList![i].travelTypeModel.carParkingPlace),
+              taxiFare: TextEditingController(
+                  text: surveyPt
+                      .surveyPT.tripsList![i].travelTypeModel.travelType),
+              ticketSub: TextEditingController(
+                  text: surveyPt
+                      .surveyPT.tripsList![i].travelTypeModel.taxiTravelType),
+              carParkingPlace: surveyPt
+                  .surveyPT.tripsList![i].travelTypeModel.carParkingPlace,
+              passTravelType: surveyPt
+                  .surveyPT.tripsList![i].travelTypeModel.passTravelType,
+              travelType:
+                  surveyPt.surveyPT.tripsList![i].travelTypeModel.travelType,
+              publicTransportFare: surveyPt
+                  .surveyPT.tripsList![i].travelTypeModel.publicTransportFare,
+              taxiTravelType: surveyPt
+                  .surveyPT.tripsList![i].travelTypeModel.taxiTravelType,
+            ),
+            otherWhereDidYouParkEditingControl: surveyPt
+                .surveyPT.tripsList![i].otherWhereDidYouParkEditingControl,
+            taxiTravelTypeEditingControl:
+                surveyPt.surveyPT.tripsList![i].taxiTravelTypeEditingControl,
+            arrivalDepartTime:
+                surveyPt.surveyPT.tripsList![i].arrivalDepartTime,
+            purposeOfBeingThere2: purposeOfBeingThere2,
+            departureTime: surveyPt.surveyPT.tripsList![i].departureTime));
 
-      // TripModeList.tripModeList[0].person.clear();
+        // TripModeList.tripModeList[0].person.clear();
 
-      /* for (int i = 0; i < PersonModelList.personModelList.length; i++) {
+        /* for (int i = 0; i < PersonModelList.personModelList.length; i++) {
         TripModeList.tripModeList[0].person
             .add(PersonModelList.personModelList[i].personName.text);
       }*/
 
-      TripModeList.tripModeList[i].friendPerson = {
-        "friendPerson": [],
-        "title": "friendPerson",
-        "subTitle":
-            " A separate family is defined as who share the kitchen expenses and meals",
-        "index": 0,
-      };
-      if (surveyPt.surveyPT.tripsList![i].isTravelAlone = true) {
-        for (int x = 0;
-            x < surveyPt.surveyPT.tripsList![i].chosenFriendPerson.length;
-            x++) {
-          if (surveyPt.surveyPT.tripsList![i].chosenFriendPerson[x] !=
-              surveyPt.surveyPT.tripsList![i].chosenPerson) {
-            debugPrint("jjjjjiiii");
-            TripModeList.tripModeList[i].friendPerson["friendPerson"].add({
-              "value": surveyPt.surveyPT.tripsList![i].chosenFriendPerson[x]
-                  .toString(),
-              "isChick": true
-            });
+        TripModeList.tripModeList[i].friendPerson = {
+          "friendPerson": [],
+          "title": "friendPerson",
+          "subTitle":
+              " A separate family is defined as who share the kitchen expenses and meals",
+          "index": 0,
+        };
+        if (surveyPt.surveyPT.tripsList![i].isTravelAlone = true) {
+          for (int x = 0;
+              x < surveyPt.surveyPT.tripsList![i].chosenFriendPerson.length;
+              x++) {
+            if (surveyPt.surveyPT.tripsList![i].chosenFriendPerson[x] !=
+                surveyPt.surveyPT.tripsList![i].chosenPerson) {
+              debugPrint("jjjjjiiii");
+              TripModeList.tripModeList[i].friendPerson["friendPerson"].add({
+                "value": surveyPt.surveyPT.tripsList![i].chosenFriendPerson[x]
+                    .toString(),
+                "isChick": true
+              });
+            }
           }
         }
       }
@@ -256,23 +261,45 @@ class TripProvider extends ChangeNotifier {
   List<String> mainPersonList = [];
 
   initTrip() {
+    debugPrint('InitTrip');
     TripModeList.tripModeList[0].person.clear();
+    debugPrint('Clear person list');
     TripModeList.tripModeList[0].mainPerson.clear();
-
+    debugPrint('Clear mainPerson list');
     list.clear();
+    debugPrint('Clear list list');
     mainPersonList.clear();
-
+    debugPrint('Clear mainPersonList list');
     var personlist = PersonModelList.personModelList.length;
-
-    for (int i = 0; i < personlist; i++) {
-      if (PersonModelList.personModelList[i].personalHeadData!.hasPasTrip ==
-          false) {
-        if (PersonModelList
-                .personModelList[i].personalHeadData?.refuseToTellAge ==
+    if (personlist != 0) {
+      for (int i = 0; i < personlist; i++) {
+        if (PersonModelList.personModelList[i].personalHeadData!.hasPasTrip ==
             false) {
-          int age = int.parse(
-              PersonModelList.personModelList[i].personalHeadData!.age.text);
-          if (age >= 5) {
+          if (PersonModelList
+                  .personModelList[i].personalHeadData?.refuseToTellAge ==
+              false) {
+            int age = int.parse(
+                PersonModelList.personModelList[i].personalHeadData!.age.text);
+            if (age >= 5) {
+              TripModeList.tripModeList[0].person
+                  .add(PersonModelList.personModelList[i].personName.text);
+              mainPersonList
+                  .add(PersonModelList.personModelList[i].personName.text);
+              // TripModeList.tripModeList[0].mainPerson
+              //     .add(PersonModelList.personModelList[i].personName.text);
+              // notifyListeners();
+            } else if ((age <= 5)) {
+              // TripModeList.tripModeList[0].person
+              //     .add(PersonModelList.personModelList[i].personName.text);
+              // TripModeList.tripModeList[0].mainPerson
+              //     .add(PersonModelList.personModelList[i].personName.text);
+              mainPersonList
+                  .add(PersonModelList.personModelList[i].personName.text);
+              // notifyListeners();
+            }
+          } else if (PersonModelList
+                  .personModelList[i].personalHeadData!.age.text !=
+              '< 6') {
             TripModeList.tripModeList[0].person
                 .add(PersonModelList.personModelList[i].personName.text);
             mainPersonList
@@ -280,31 +307,13 @@ class TripProvider extends ChangeNotifier {
             // TripModeList.tripModeList[0].mainPerson
             //     .add(PersonModelList.personModelList[i].personName.text);
             // notifyListeners();
-          } else if ((age <= 5)) {
-            // TripModeList.tripModeList[0].person
-            //     .add(PersonModelList.personModelList[i].personName.text);
-            // TripModeList.tripModeList[0].mainPerson
-            //     .add(PersonModelList.personModelList[i].personName.text);
-            mainPersonList
-                .add(PersonModelList.personModelList[i].personName.text);
-            // notifyListeners();
           }
-        } else if (PersonModelList
-                .personModelList[i].personalHeadData!.age.text !=
-            '< 6') {
-          TripModeList.tripModeList[0].person
-              .add(PersonModelList.personModelList[i].personName.text);
-          mainPersonList
-              .add(PersonModelList.personModelList[i].personName.text);
-          // TripModeList.tripModeList[0].mainPerson
-          //     .add(PersonModelList.personModelList[i].personName.text);
-          // notifyListeners();
         }
       }
     }
 
     list = TripModeList.tripModeList[0].person;
-
+    debugPrint('Set data to list');
     // notifyListeners();
   }
 

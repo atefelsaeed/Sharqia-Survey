@@ -93,7 +93,7 @@ class PersonalHeadData {
     refuseToTellAge = json['refuseToTellAge'];
     age.text = json['age'] ?? "";
     nationalityType = json['nationalityType'] ?? "";
-    nationality.text = json['nationality'];
+    nationality.text = json['nationality']??"";
     hhsHavePastTrip.text = json['hhsHavePastTrip'] ?? "";
   }
 

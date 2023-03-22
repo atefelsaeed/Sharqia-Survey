@@ -1,4 +1,5 @@
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/Models/Vehicles_SurveyModel/vehicles_body_type.dart';
 
 import '../../../Data/HouseholdPart1/VechelisData/vechelis_data.dart';
 import '../../../Data/HouseholdPart1/VechelisData/veh_model.dart';
@@ -10,8 +11,9 @@ class ResetVechilesValues {
         Provider.of<UserSurveysProvider>(context, listen: false);
 
     ///vecCar
-    VehModel.vecCar = surveyPt.surveyPT.vehiclesBodyType![0]
-        .vehicleTypeDetails!; //vehiclesData.    vehiclesBodyType![0].vehicleTypeDetails!;
+    VehModel.vecCar = surveyPt
+            .surveyPT.vehiclesBodyType?[0].vehicleTypeDetails ??
+        <VehicleBodyDetails>[]; //vehiclesData.    vehiclesBodyType![0].vehicleTypeDetails!;
     if (VehModel.vecCar.isNotEmpty) {
       VehiclesData.vecModel[0].number = VehModel.vecCar.length;
       VehiclesData.vecModel[0].textEditingController.text =
@@ -34,7 +36,8 @@ class ResetVechilesValues {
 
     ///vecVan
     VehModel.vecVan =
-        surveyPt.surveyPT.vehiclesBodyType![1].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[1].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.vecVan.isNotEmpty) {
       VehiclesData.vecModel[3].number = VehModel.vecVan.length;
       VehiclesData.vecModel[3].textEditingController.text =
@@ -52,7 +55,8 @@ class ResetVechilesValues {
 
     ///largeCar
     VehModel.largeCar =
-        surveyPt.surveyPT.vehiclesBodyType![2].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[2].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.largeCar.isNotEmpty) {
       VehiclesData.vecModel[1].number = VehModel.largeCar.length;
       VehiclesData.vecModel[1].textEditingController.text =
@@ -70,7 +74,8 @@ class ResetVechilesValues {
 
     ///eScooter
     VehModel.eScooter =
-        surveyPt.surveyPT.vehiclesBodyType![3].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[3].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.eScooter.isNotEmpty) {
       VehiclesData.vecModel[6].number = VehModel.eScooter.length;
       VehiclesData.vecModel[6].textEditingController.text =
@@ -88,7 +93,8 @@ class ResetVechilesValues {
 
     ///pickUp
     VehModel.pickUp =
-        surveyPt.surveyPT.vehiclesBodyType![4].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[4].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.pickUp.isNotEmpty) {
       VehiclesData.vecModel[4].number = VehModel.pickUp.length;
       VehiclesData.vecModel[4].textEditingController.text =
@@ -106,7 +112,8 @@ class ResetVechilesValues {
 
     ///bicycle
     VehModel.bicycle =
-        surveyPt.surveyPT.vehiclesBodyType![5].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[5].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.bicycle.isNotEmpty) {
       VehiclesData.vecModel[5].number = VehModel.bicycle.length;
       VehiclesData.vecModel[5].textEditingController.text =
@@ -122,7 +129,8 @@ class ResetVechilesValues {
 
     ///vecWanet
     VehModel.vecWanet =
-        surveyPt.surveyPT.vehiclesBodyType![6].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[6].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.vecWanet.isNotEmpty) {
       VehiclesData.vecModel[2].number = VehModel.vecWanet.length;
       VehiclesData.vecModel[2].textEditingController.text =
@@ -140,7 +148,8 @@ class ResetVechilesValues {
 
     ///vecLightCargo
     VehModel.vecLightCargo =
-        surveyPt.surveyPT.vehiclesBodyType![7].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[7].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.vecLightCargo.isNotEmpty) {
       VehiclesData.vecModel[7].number = VehModel.vecLightCargo.length;
       VehiclesData.vecModel[7].textEditingController.text =
@@ -158,7 +167,8 @@ class ResetVechilesValues {
 
     ///vecWanet
     VehModel.vecHeavyCargo =
-        surveyPt.surveyPT.vehiclesBodyType![8].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[8].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.vecHeavyCargo.isNotEmpty) {
       VehiclesData.vecModel[8].number = VehModel.vecHeavyCargo.length;
       VehiclesData.vecModel[8].textEditingController.text =
@@ -176,7 +186,8 @@ class ResetVechilesValues {
 
     ///vecMinibus
     VehModel.vecMinibus =
-        surveyPt.surveyPT.vehiclesBodyType![9].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[9].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.vecMinibus.isNotEmpty) {
       VehiclesData.vecModel[9].number = VehModel.vecMinibus.length;
       VehiclesData.vecModel[9].textEditingController.text =
@@ -194,7 +205,8 @@ class ResetVechilesValues {
 
     ///vecCoaster
     VehModel.vecCoaster =
-        surveyPt.surveyPT.vehiclesBodyType![10].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[10].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.vecCoaster.isNotEmpty) {
       VehiclesData.vecModel[10].number = VehModel.vecCoaster.length;
       VehiclesData.vecModel[10].textEditingController.text =
@@ -212,7 +224,8 @@ class ResetVechilesValues {
 
     ///vecBus
     VehModel.vecBus =
-        surveyPt.surveyPT.vehiclesBodyType![11].vehicleTypeDetails!;
+        surveyPt.surveyPT.vehiclesBodyType?[11].vehicleTypeDetails ??
+            <VehicleBodyDetails>[];
     if (VehModel.vecBus.isNotEmpty) {
       VehiclesData.vecModel[11].number = VehModel.vecBus.length;
       VehiclesData.vecModel[11].textEditingController.text =

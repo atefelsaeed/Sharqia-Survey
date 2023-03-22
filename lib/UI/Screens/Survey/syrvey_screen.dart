@@ -101,13 +101,10 @@ class _SurveyScreenState extends State<SurveyScreen> {
     widget.itemSurveyModel = UserSurveysModelData.fromJson(valueMap);
     debugPrint(UserSurveysModelData.fromJson(valueMap).toString());
     debugPrint(widget.itemSurveyModel.id.toString());
-    final validationService =
-        Provider.of<ActionSurveyProvider>(context, listen: false);
     int? id = widget.itemSurveyModel.id;
     debugPrint(id.toString());
-    //validationService.resetHHSValues(editingController, context, id!);
   }
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
 

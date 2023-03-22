@@ -32,7 +32,7 @@ class ShowErrorDialog extends StatelessWidget {
           width: width(context) * .45,
           child: DefaultButton(
             function: () {
-              Navigator.pop(context);
+              Navigator.of(context,rootNavigator: true).pop();
             },
             // textColor: ColorManager.yellowLiner,
             isWidget: true,

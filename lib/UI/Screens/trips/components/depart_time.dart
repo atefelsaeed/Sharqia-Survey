@@ -152,9 +152,8 @@ class _DepartTimeState extends State<DepartTime> with SelectTimeData {
                           .orDefault('') !=
                       ''
                   ? Text(TripModeList.tripModeList[widget.i].arrivalDepartTime
-                          .numberRepeatTrip!
-                          .orDefault('') ??
-                      '')
+                      .numberRepeatTrip!
+                      .orDefault(''))
                   : const Text('إختار'),
               hint: "كم مرة تقوم بهذە الرحلة؟",
               options: TripData.howOftenDoYouMakeThisTrip[
