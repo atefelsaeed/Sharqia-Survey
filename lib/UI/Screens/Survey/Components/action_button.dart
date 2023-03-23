@@ -183,8 +183,8 @@ class ActionButton extends StatelessWidget {
               },
             );
 
-              CheckHHSValidation.validate(context);
-
+            CheckHHSValidation.validate(context);
+            debugPrint('HHS Valid');
           }
         } else {
           ScaffoldMessenger.of(context).showSnackBar(

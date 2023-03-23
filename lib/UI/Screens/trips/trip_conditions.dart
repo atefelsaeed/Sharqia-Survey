@@ -90,9 +90,14 @@ class TripConditions {
     var bas = TripModeList.tripModeList[i];
     debugPrint('ssss');
     debugPrint(bas.travelWithOtherModel!.childrenNumber.text);
-    int adultsNumber2 = bas.travelWithOtherModel!.childrenNumber.text.isEmpty
-        ? 0
-        : int.parse(bas.travelWithOtherModel!.childrenNumber.text);
+
+    int adultsNumber2 =0;
+    if (bas.travelWithOtherModel!.childrenNumber.text.isEmpty) {
+      adultsNumber2 = 0;
+    } else {
+      adultsNumber2 = int.parse(
+          bas.travelWithOtherModel!.childrenNumber.text.replaceAll('.', ''));
+    }
 
     int numAdults = 0;
     int length = surveyPt.hhsSeparateFamilies.length;
@@ -132,10 +137,14 @@ class TripConditions {
         Provider.of<SurveyPTProvider>(context, listen: false);
 
     var bas = TripModeList.tripModeList[i];
+    int adultsNumber2 = 0;
 
-    int adultsNumber2 = bas.travelWithOtherModel!.adultsNumber.text.isEmpty
-        ? 0
-        : int.parse(bas.travelWithOtherModel!.adultsNumber.text);
+    if (bas.travelWithOtherModel!.adultsNumber.text.isEmpty) {
+      adultsNumber2 = 0;
+    } else {
+      adultsNumber2 = int.parse(
+          bas.travelWithOtherModel!.adultsNumber.text.replaceAll('.', ''));
+    }
 
     int numAdults = 0;
     int length = surveyPt.hhsSeparateFamilies.length;
@@ -189,7 +198,6 @@ class TripConditions {
     List newList = tripOwner.toSet().toList();
 
     if (tripPersons.length != newList.length) {
-
       debugPrint(
           "tripPersons::${tripPersons.length}  newList::${newList.length}");
 

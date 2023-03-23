@@ -5,7 +5,6 @@ import 'package:sharqia_household_survey/Models/survey.dart';
 import 'package:sharqia_household_survey/Providers/surveys.dart';
 import 'package:sharqia_household_survey/Providers/user_surveys.dart';
 import 'package:sharqia_household_survey/Resources/strings.dart';
-import 'package:sharqia_household_survey/UI/Screens/Login/login_screen.dart';
 import 'package:sharqia_household_survey/UI/Screens/UserSurveys/user_surveys.dart';
 
 import '../../../Providers/auth.dart';
