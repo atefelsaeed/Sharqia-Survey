@@ -24,18 +24,12 @@ class VehiclesScreen extends StatefulWidget {
 
 class _VehiclesScreenState extends State<VehiclesScreen> {
   final GlobalKey<FormState> _key = GlobalKey();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    // final validationService = Provider.of<VecProvider>(context, listen: false);
-    //
-    // validationService.resetVechValues(context);
-
-    // if ((userSurveysProvider.userSurveyStatus == 'edit' &&
-    //     AppConstants.isResetVec == true)) {
-    // }
     final validationService = Provider.of<VecProvider>(context, listen: false);
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
@@ -48,6 +42,7 @@ class _VehiclesScreenState extends State<VehiclesScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      key: _scaffoldKey,
       child: Scaffold(
         body: SingleChildScrollView(
             child: Padding(
@@ -128,7 +123,7 @@ class _VehiclesScreenState extends State<VehiclesScreen> {
                           function: () {
                             _key.currentState!.save();
                             debugPrint('Previous HHS Screen');
-                            Navigator.pop(context);
+                            Navigator.of(context).pop();
                           },
                           isWidget: true,
                           background: ColorManager.grayColor,

@@ -31,80 +31,80 @@ class _EmployeeState extends State<Employee> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            PersonModelList.personModelList[widget.i].personalQuestion!
-                            .mainOccupationType ==
-                        "عاطلين عن العمل" ||
-                    PersonModelList.personModelList[widget.i].personalQuestion!
-                            .mainOccupationType ==
-                        "طالب - جامعي: دوام كامل (لا يعمل) " ||
-                    PersonModelList.personModelList[widget.i].personalQuestion!
-                            .mainOccupationType ==
-                        "شخص البيت" ||
-                    PersonModelList.personModelList[widget.i].personalQuestion!
-                            .mainOccupationType ==
-                        "معاق / مريض"
+            ((PersonModelList.personModelList[widget.i].personalQuestion
+                            ?.mainOccupationType ==
+                        "عاطلين عن العمل") ||
+                    (PersonModelList.personModelList[widget.i].personalQuestion
+                            ?.mainOccupationType ==
+                        "طالب - جامعي: دوام كامل (لا يعمل) ") ||
+                    (PersonModelList.personModelList[widget.i].personalQuestion
+                            ?.mainOccupationType ==
+                        "شخص البيت") ||
+                    (PersonModelList.personModelList[widget.i].personalQuestion
+                            ?.mainOccupationType ==
+                        "معاق / مريض"))
                 ? Container()
                 : Column(
                     children: [
                       DropDownFormInput(
                         label: PersonModelList.personModelList[widget.i]
-                                    .occupationModel!.bestWorkspaceLocation !=
+                                    .occupationModel?.bestWorkspaceLocation !=
                                 ''
                             ? Text(PersonModelList.personModelList[widget.i]
-                                    .occupationModel!.bestWorkspaceLocation ??
+                                    .occupationModel?.bestWorkspaceLocation ??
                                 '')
                             : const Text('إختار'),
                         hint:
                             "إذا كنت موظفًا أو طالبًا ، ما هو وضعك المعتاد للذهاب إلى العمل / المدرسة؟ سؤال موجه - قائمة منسدلة للأنماط",
                         options: PersonData
-                            .workplace[PersonData.workplace.keys.first]!
+                            .workplace[PersonData.workplace.keys.first]
                             .toList(),
                         onChange: (String? p) {
                           provider.bestWorkspaceLocation(widget.i, p!);
                         },
                       ),
                       AppSize.spaceHeight1(context),
-                      PersonConditions()
+                      (PersonConditions()
                                   .checkBestWorkspaceLocationOther(widget.i) ==
-                              true
+                              true)
                           ? MyTextForm(
                               onTap: () {},
                               controller: PersonModelList
                                   .personModelList[widget.i]
-                                  .occupationModel!
-                                  .bestWorkspaceLocationController,
+                                  .occupationModel
+                                  ?.bestWorkspaceLocationController,
                               label: 'وضعك المعتاد للذهاب إلى العمل / المدرسة',
                               onChanged: (val) {
                                 PersonModelList
                                     .personModelList[widget.i]
-                                    .occupationModel!
-                                    .bestWorkspaceLocation = val!;
+                                    .occupationModel
+                                    ?.bestWorkspaceLocation = val!;
                               },
                             )
                           : Container(),
                     ],
                   ),
-            ((PersonModelList.personModelList[widget.i].personalQuestion!
-                            .mainOccupationType ==
+            ((PersonModelList.personModelList[widget.i].personalQuestion
+                            ?.mainOccupationType ==
                         "طالب - مدرسة ابتدائية") ||
-                    (PersonModelList.personModelList[widget.i].personalQuestion!
-                            .mainOccupationType ==
+                    (PersonModelList.personModelList[widget.i].personalQuestion
+                            ?.mainOccupationType ==
                         "طالب - مدرسة متوسطة") ||
-                    (PersonModelList.personModelList[widget.i].personalQuestion!
-                            .mainOccupationType ==
+                    (PersonModelList.personModelList[widget.i].personalQuestion
+                            ?.mainOccupationType ==
                         "طالب - مدرسة ثانوية") ||
-                    (PersonModelList.personModelList[widget.i].personalQuestion!
-                            .mainOccupationType ==
+                    (PersonModelList.personModelList[widget.i].personalQuestion
+                            ?.mainOccupationType ==
                         " الطالب - الكلية: بدوام كامل - يعمل بدوام جزئي"))
                 ? Container()
                 : Column(
                     children: [
                       DropDownFormInput(
                         label: PersonModelList.personModelList[widget.i]
-                                    .personalQuestion!.drivingLicenceType !=
+                                    .personalQuestion?.drivingLicenceType !=
                                 ''
                             ? Text(PersonModelList.personModelList[widget.i]
-                                    .personalQuestion!.drivingLicenceType ??
+                                    .personalQuestion?.drivingLicenceType ??
                                 '')
                             : const Text('إختار'),
                         hint:
@@ -117,19 +117,19 @@ class _EmployeeState extends State<Employee> {
                         },
                       ),
                       AppSize.spaceHeight1(context),
-                      PersonConditions()
+                      (PersonConditions()
                                   .checkDrivingLicenceTypeOther(widget.i) ==
-                              true
+                              true)
                           ? MyTextForm(
                               controller: PersonModelList
                                   .personModelList[widget.i]
-                                  .personalQuestion!
-                                  .drivingLicenceTypeController,
+                                  .personalQuestion
+                                  ?.drivingLicenceTypeController,
                               label: " نوع الرخصة",
                               onTap: () {},
                               onChanged: (val) {
                                 PersonModelList.personModelList[widget.i]
-                                    .personalQuestion!.drivingLicenceType = val;
+                                    .personalQuestion?.drivingLicenceType = val;
                               },
                             )
                           : Container(),
@@ -141,41 +141,39 @@ class _EmployeeState extends State<Employee> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            PersonModelList.personModelList[widget.i].personalQuestion!
-                        .drivingLicenceType ==
-                    "بدون ترخيص"
+            (PersonModelList.personModelList[widget.i].personalQuestion
+                        ?.drivingLicenceType ==
+                    "بدون ترخيص")
                 ? Container()
                 : DropDownFormInput(
                     label: PersonModelList.personModelList[widget.i]
-                                .personalQuestion!.availablePersonalCar !=
+                                .personalQuestion?.availablePersonalCar !=
                             ''
                         ? Text(PersonModelList.personModelList[widget.i]
-                                .personalQuestion!.availablePersonalCar ??
+                                .personalQuestion?.availablePersonalCar ??
                             '')
                         : const Text('إختار'),
                     hint:
                         " مدى توفر سيارة متاحة لك لاستخدامك الشخصي؟(سؤال موجه اسأل فقط إذا كان لديك رخصة قيادة)",
                     options: PersonData
-                        .drivingLiences[PersonData.drivingLiences.keys.first]!
+                        .drivingLiences[PersonData.drivingLiences.keys.first]
                         .toList(),
                     onChange: (String? p) {
-                      PersonModelList
-                          .personModelList[widget.i]
-                          .personalQuestion!
-                          .availablePersonalCar = p.toString();
+                      PersonModelList.personModelList[widget.i].personalQuestion
+                          ?.availablePersonalCar = p.toString();
                     },
                   ),
             DropDownFormInput(
-              label: PersonModelList.personModelList[widget.i].personalQuestion!
-                          .haveBusPass !=
-                      ''
+              label: (PersonModelList.personModelList[widget.i].personalQuestion
+                          ?.haveBusPass !=
+                      '')
                   ? Text(PersonModelList.personModelList[widget.i]
-                          .personalQuestion!.haveBusPass ??
+                          .personalQuestion?.haveBusPass ??
                       '')
                   : const Text('إختار'),
               hint: "هل لديك تذكرة حافلة",
               options:
-                  PersonData.busBuss[PersonData.busBuss.keys.first]!.toList(),
+                  PersonData.busBuss[PersonData.busBuss.keys.first].toList(),
               onChange: (String? p) {
                 PersonModelList.personModelList[widget.i].personalQuestion!
                     .haveBusPass = p.toString();

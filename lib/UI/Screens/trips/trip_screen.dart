@@ -51,61 +51,66 @@ class _TripScreenState extends State<TripScreen> {
   }
 
   // this variable determnines whether the back-to-top button is shown or not
-  bool _showBackToTopButton = false;
+  final bool _showBackToTopButton = false;
 
   // scroll controller
-  late ScrollController _scrollController;
+  // late ScrollController _scrollController;
 
   @override
   void initState() {
     // TODO: implement initState
-    _scrollController = ScrollController()
-      ..addListener(() {
-        setState(() {
-          if (_scrollController.offset >= 400) {
-            _showBackToTopButton = true; // show the back-to-top button
-          } else {
-            _showBackToTopButton = false; // hide the back-to-top button
-          }
-        });
-      });
+    // _scrollController = ScrollController()
+    //   ..addListener(() {
+    //     setState(() {
+    //       if (_scrollController.offset >= 600) {
+    //         _showBackToTopButton = true; // show the back-to-top button
+    //       } else {
+    //         _showBackToTopButton = false; // hide the back-to-top button
+    //       }
+    //     });
+    //   });
 
     super.initState();
 
     getSystemStatus();
 
-       final validationService = Provider.of<TripProvider>(context, listen: false);
+    final validationService = Provider.of<TripProvider>(context, listen: false);
     validationService.initTrip();
     UserSurveysProvider userSurveysProvider =
         Provider.of<UserSurveysProvider>(context, listen: false);
     // validationService.getTripsDataUpdated(context);
     if ((userSurveysProvider.userSurveyStatus == 'edit' &&
         AppConstants.isResetTrip == true)) {
-      validationService.getAllTripUpdated(context);
+      if (mounted) {
+        validationService.getAllTripUpdated(context);
+      }
       AppConstants.isResetTrip = false;
     }
   }
 
   // This function is triggered when the user presses the back-to-top button
-  void _scrollToTop() {
-    _scrollController.animateTo(0,
-        duration: const Duration(seconds: 1), curve: Curves.linear);
-  }
+  // void _scrollToTop() {
+  //   _scrollController.animateTo(0,
+  //       duration: const Duration(seconds: 1), curve: Curves.linear);
+  // }
 
   @override
   void dispose() {
     // TODO: implement dispose
-    _scrollController.dispose(); // dispose the controller
+    // _scrollController.dispose(); // dispose the controller
     // TripDisposeControllers.dispose();
     super.dispose();
   }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      key: _scaffoldKey,
       body: SingleChildScrollView(
-          controller: _scrollController,
+          // controller: _scrollController,
           child: Consumer<TripProvider>(builder: (context, provider, child) {
             return Padding(
               padding: const EdgeInsets.all(12.0),
@@ -395,7 +400,6 @@ class _TripScreenState extends State<TripScreen> {
                         children: [
                           DefaultButton(
                             function: () {
-
                               if (_key.currentState!.validate()) {
                                 SaveTripsData.saveData(context);
                                 debugPrint('Save Trip');
@@ -420,7 +424,7 @@ class _TripScreenState extends State<TripScreen> {
                           DefaultButton(
                             function: () {
                               debugPrint('Previous Person Screen');
-                              Navigator.pop(context);
+                              Navigator.of(context).pop();
                             },
                             isWidget: true,
                             background: ColorManager.grayColor,
@@ -437,16 +441,16 @@ class _TripScreenState extends State<TripScreen> {
             );
           })),
       // This is our back-to-top button
-      floatingActionButton: _showBackToTopButton == false
-          ? null
-          : FloatingActionButton(
-              onPressed: _scrollToTop,
-              backgroundColor: ColorManager.primaryColor,
-              child: Icon(
-                Icons.arrow_upward,
-                color: ColorManager.wight,
-              ),
-            ),
+      // floatingActionButton: _showBackToTopButton == false
+      //     ? null
+      //     : FloatingActionButton(
+      //         onPressed: _scrollToTop,
+      //         backgroundColor: ColorManager.primaryColor,
+      //         child: Icon(
+      //           Icons.arrow_upward,
+      //           color: ColorManager.wight,
+      //         ),
+      //       ),
     ));
   }
 }

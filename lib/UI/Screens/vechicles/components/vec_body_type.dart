@@ -82,7 +82,6 @@ class _BodyTypeVehiclesState extends State<BodyTypeVehicles> {
                 textEditingController: widget.vecBodyType.vehicleParking,
               ),
               AppSize.spaceWidth2(context),
-
             ],
           ),
           AppSize.spaceHeight1(context),

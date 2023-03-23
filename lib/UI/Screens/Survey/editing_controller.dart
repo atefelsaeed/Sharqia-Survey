@@ -10,6 +10,7 @@ import '../../../Providers/user_surveys.dart';
 import 'actions/action_survey_screen.dart';
 
 class EditingController {
+
   final TextEditingController yes = TextEditingController();
 
   final TextEditingController peopleAdults18 = TextEditingController();
@@ -50,7 +51,7 @@ c(EditingController editingController, BuildContext context, int id) async {
   final validationService =
       Provider.of<ActionSurveyProvider>(context, listen: false);
 
-  await surveyPt.getSurveyByID(id,context);
+  await surveyPt.getSurveyByID(id, context);
 
   QuestionsData.qh4 = {
     "? How many separate families live at this address": [
@@ -141,16 +142,6 @@ c(EditingController editingController, BuildContext context, int id) async {
   debugPrint("object");
   debugPrint(surveyPt.surveyPT.householdQuestions.hhsNumberSeparateFamilies);
 
-  ///hhsNumberSeparateFamilies
-  // for (int i = 0;
-  //     i < QuestionsData.qh4[QuestionsData.qh4.keys.first]!.toList().length;
-  //     i++) {
-  //   if (int.parse(surveyPt.surveyPT.householdQuestions.hhsNumberSeparateFamilies
-  //           .toString()) ==
-  //       QuestionsData.qh4[QuestionsData.qh4.keys.first][i]["value"]) {
-  //     QuestionsData.qh4[QuestionsData.qh4.keys.first][i]["isChick"] = true;
-  //   }
-  // }
 
   ///hhsNumberYearsInAddress
   for (int i = 0;
@@ -162,24 +153,6 @@ c(EditingController editingController, BuildContext context, int id) async {
       QuestionsData.qh7[QuestionsData.qh7.keys.first][i]["isChick"] = true;
     }
   }
-
-  ///hhsDemolishedAreas
-
-  // if (surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas
-  //     .toString()
-  //     .isNotEmpty) {
-  //   if (surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas.toString() ==
-  //       'لا') {
-  //     QuestionsData.qh7_2[QuestionsData.qh7_2.keys.first][1]["isChick"] = true;
-  //     HhsStatic.householdQuestions.hhsIsDemolishedAreas = false;
-  //   } else if (surveyPt
-  //       .surveyPT.householdQuestions.hhsDemolishedAreas!.isNotEmpty) {
-  //     QuestionsData.qh7_2[QuestionsData.qh7_2.keys.first][0]["isChick"] = true;
-  //     HhsStatic.householdQuestions.hhsIsDemolishedAreas = true;
-  //   }
-  //   HhsStatic.householdQuestions.hhsDemolishedAreas =
-  //       surveyPt.surveyPT.householdQuestions.hhsDemolishedAreas.toString();
-  // }
 
   ///Q7_1 hhsPedalCycles
   editingController.editingController3Q81 = EditingController3(
@@ -234,22 +207,6 @@ c(EditingController editingController, BuildContext context, int id) async {
   HhsStatic.householdQuestions.hhsTotalIncome =
       surveyPt.surveyPT.householdQuestions.hhsTotalIncome;
 
-  ///Q9 nearestBusStop
-  //await validationService.resetValueQ9(surveyPt.surveyAllData!);
-
-  // for (int i = 0;
-  //     i <
-  //         VehiclesData.q3VecData[VehiclesData.q3VecData.keys.first]!
-  //             .toList()
-  //             .length;
-  //     i++) {
-  //   if (surveyPt.surveyAllData!.first.vehiclesData.nearestBusStop ==
-  //       VehiclesData.q3VecData[VehiclesData.q3VecData.keys.first][i]["value"]) {
-  //     VehiclesData.q3VecData[VehiclesData.q3VecData.keys.first][i]["isChick"] =
-  //         true;
-  //     validationService.cc();
-  //   }
-  // }
   ///Q10
   VehModel.vehiclesModel.numberParcelsDeliveries.text =
       surveyPt.surveyPT.vehiclesData.numberParcelsDeliveries.text;
@@ -272,35 +229,4 @@ c(EditingController editingController, BuildContext context, int id) async {
 
   ///
   validationService.cc();
-  // HhsStatic.houseHold.first.numberAdults=surveyPt.surveyAllData!.first.hhsSeparateFamilies!.first.numberAdults.toString();
-  //HhsStatic.householdQuestions.hhsNumberSeparateFamilies=surveyPt.surveyAllData!.first.hhsSeparateFamilies!.length.toString();
-  ///editingController.peopleAdults18.text =surveyPt.surveyAllData!.;
-  /* surveyPt.hhsNumberChildren =
-       editingController.peopleUnder18.text; //solve
-   surveyPt.hhsSeparateFamilies = HhsStatic.houseHold;
-   surveyPt.hhsTotalIncome = HhsStatic.householdQuestions.hhsTotalIncome;
-   surveyPt.hhsPCChildrenBikesNumber =
-       editingController.editingController3Q81.peopleUnder18.text;
-   surveyPt.hhsPCTotalBikesNumber =
-       editingController.editingController3Q81.totalNumber.text;
-   surveyPt.hhsPCAdultsBikesNumber =
-       editingController.editingController3Q81.peopleAdults18.text;
-   HhsStatic.peopleUnder18 = editingController.peopleUnder18.text;
-   HhsStatic.peopleAdults18 = editingController.peopleAdults18.text;
-   surveyPt.hhsECChildrenBikesNumber =
-       editingController.editingController3Q82.peopleUnder18.text;
-   surveyPt.hhsECTotalBikesNumber =
-       editingController.editingController3Q82.totalNumber.text;
-   surveyPt.hhsECAdultsBikesNumber =
-       editingController.editingController3Q82.peopleAdults18.text;
-   surveyPt.hhsESChildrenBikesNumber =
-       editingController.editingController3Q83.peopleUnder18.text;
-   surveyPt.hhsESTotalBikesNumber =
-       editingController.editingController3Q83.totalNumber.text;
-   surveyPt.hhsESAdultsBikesNumber =
-       editingController.editingController3Q83.peopleAdults18.text;
-   surveyPt.hhsDemolishedAreas = editingController.yes.text;
-   surveyPt.headerDistrictName = '';
-   surveyPt.headerZoneNumber = '';
-   debugPrint(HhsStatic.householdQuestions.hhsDwellingType);*/
 }

@@ -21,20 +21,18 @@ class EducationLevel extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             DropDownFormInput(
-              label: Text(PersonData.busBuss[PersonData.busBuss.keys.first]!
+              label: Text(PersonData.busBuss[PersonData.busBuss.keys.first]
                   .toList()
                   .first
                   .toString()),
               hint: PersonData.busBuss.keys.first.toString(),
               options:
-                  PersonData.busBuss[PersonData.busBuss.keys.first]!.toList(),
+                  PersonData.busBuss[PersonData.busBuss.keys.first].toList(),
               onChange: (String? p) {},
             ),
             TextForm(
               controller: base.occupationModel!.earliestTimeStartingWork,
-              onChanged: (value){
-
-              },
+              onChanged: (value) {},
               text: "Education address -full details and get geocode",
               label: "Education address -full details and get geocode",
             )
@@ -45,18 +43,18 @@ class EducationLevel extends StatelessWidget {
           children: [
             DropDownFormInput(
               label: PersonModelList
-                          .personModelList[i].personalQuestion!.haveBusPass !=
+                          .personModelList[i].personalQuestion?.haveBusPass !=
                       ''
                   ? Text(PersonModelList
-                          .personModelList[i].personalQuestion!.haveBusPass ??
+                          .personModelList[i].personalQuestion?.haveBusPass ??
                       '')
                   : const Text('إختار'),
               hint: "هل لديك تذكرة حافلة",
               options:
-                  PersonData.busBuss[PersonData.busBuss.keys.first]!.toList(),
+                  PersonData.busBuss[PersonData.busBuss.keys.first].toList(),
               onChange: (String? p) {
-                PersonModelList.personModelList[i].personalQuestion!
-                    .haveBusPass = p.toString();
+                PersonModelList.personModelList[i].personalQuestion
+                    ?.haveBusPass = p.toString();
               },
             ),
           ],

@@ -25,35 +25,35 @@ class TransporterMobilty extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             DropDownFormInput(
-              label: PersonModelList.personModelList[index].personalQuestion!
-                          .haveDisabilityTransportMobility !=
-                      ''
-                  ? Text(PersonModelList.personModelList[index]
-                          .personalQuestion!.haveDisabilityTransportMobility ??
+              label: (PersonModelList.personModelList[index].personalQuestion
+                          ?.haveDisabilityTransportMobility !=
+                      '')
+                  ? Text(PersonModelList.personModelList[index].personalQuestion
+                          ?.haveDisabilityTransportMobility ??
                       '')
                   : const Text('إختار'),
               hint: "هل لديك أي إعاقة / احتياجات خاصة لحركة النقل؟",
               options: PersonData
-                  .transporterMoblity[PersonData.transporterMoblity.keys.first]!
+                  .transporterMoblity[PersonData.transporterMoblity.keys.first]
                   .toList(),
               onChange: (String? p) {
                 provider.haveDisabilityTransportMobility(index, p);
               },
             ),
-            PersonConditions()
+            (PersonConditions()
                         .checkHaveDisabilityTransportMobilityOther(index) ==
-                    true
+                    true)
                 ? MyTextForm(
                     label: 'إذكر الإعاقة / احتياجات خاصة',
                     onTap: () {},
                     controller: PersonModelList
                         .personModelList[index]
-                        .personalQuestion!
-                        .haveDisabilityTransportMobilityController,
+                        .personalQuestion
+                        ?.haveDisabilityTransportMobilityController,
                     isNumber: false,
                     onChanged: (value) {
-                      PersonModelList.personModelList[index].personalQuestion!
-                          .haveDisabilityTransportMobility = value;
+                      PersonModelList.personModelList[index].personalQuestion
+                          ?.haveDisabilityTransportMobility = value;
                     },
                   )
                 : Container()

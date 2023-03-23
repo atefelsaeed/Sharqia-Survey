@@ -28,7 +28,7 @@ class TripProvider extends ChangeNotifier {
       debugPrint('Not Filled Survey');
     } else if ((userSurveysProvider.userSurveyStatus == 'edit' &&
         AppConstants.isResetTrip == true)) {
-      getAllTripUpdated(context);
+      // getAllTripUpdated(context);
       AppConstants.isResetTrip = false;
       debugPrint('Edit Survey');
     } else {
@@ -100,10 +100,10 @@ class TripProvider extends ChangeNotifier {
         List value2 =
             purposeOfBeingThere[purposeOfBeingThere.keys.first].toList();
 
-        surveyPt.surveyPT.tripsList![i].tripReason!.replaceAll('توص', 'توصيل');
+        surveyPt.surveyPT.tripsList?[i].tripReason?.replaceAll('توص', 'توصيل');
 
         for (int inr = 0; inr < value2.length; inr++) {
-          if (surveyPt.surveyPT.tripsList![i].tripReason!
+          if (surveyPt.surveyPT.tripsList?[i].tripReason!
                   .replaceAll('توص', 'توصيل') ==
               value2[inr]["value"]) {
             purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[inr]
@@ -118,12 +118,12 @@ class TripProvider extends ChangeNotifier {
         List value3 =
             purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList();
 
-        surveyPt.surveyPT.tripsList![i].purposeTravel!
-            .replaceAll('توص', 'توصيل');
+        surveyPt.surveyPT.tripsList![i].purposeTravel
+            ?.replaceAll('توص', 'توصيل');
 
         for (int ir = 0; ir < value3.length; ir++) {
-          if (surveyPt.surveyPT.tripsList![i].purposeTravel!
-                  .replaceAll('توص', 'توصيل') ==
+          if (surveyPt.surveyPT.tripsList![i].purposeTravel
+                  ?.replaceAll('توص', 'توصيل') ==
               value3[ir]["value"]) {
             purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[ir]
                 ["isChick"] = true;
@@ -134,9 +134,9 @@ class TripProvider extends ChangeNotifier {
         }
 
         debugPrint('chossen');
-        surveyPt.surveyPT.tripsList![i].chosenPerson;
-        var chosenPerson = surveyPt.surveyPT.tripsList![i].chosenPerson;
-        var reason = surveyPt.surveyPT.tripsList![i].tripReason!
+        surveyPt.surveyPT.tripsList?[i].chosenPerson;
+        var chosenPerson = surveyPt.surveyPT.tripsList?[i].chosenPerson;
+        var reason = surveyPt.surveyPT.tripsList?[i].tripReason!
             .replaceAll('توص', 'توصيل');
 
         TripModeList.tripModeList.add(TripsModel(
@@ -146,28 +146,28 @@ class TripProvider extends ChangeNotifier {
             isHomeEnding: surveyPt.surveyPT.tripsList![i].isHomeEnding,
             chosenFriendPerson:
                 surveyPt.surveyPT.tripsList![i].chosenFriendPerson,
-            chosenPerson: chosenPerson,
+            chosenPerson: chosenPerson!,
             purposeOfBeingThere: purposeOfBeingThere,
-            purposeTravel: surveyPt.surveyPT.tripsList![i].purposeTravel!
+            purposeTravel: surveyPt.surveyPT.tripsList?[i].purposeTravel!
                 .replaceAll('توص', 'توصيل'),
             tripReason: reason,
             startBeginningModel:
-                surveyPt.surveyPT.tripsList![i].startBeginningModel,
+                surveyPt.surveyPT.tripsList?[i].startBeginningModel,
             hhsMembersTraveled:
-                surveyPt.surveyPT.tripsList![i].chosenFriendPerson,
+                surveyPt.surveyPT.tripsList?[i].chosenFriendPerson,
             travelAloneHouseHold:
-                surveyPt.surveyPT.tripsList![i].travelAloneHouseHold,
-            travelWay: surveyPt.surveyPT.tripsList![i].travelWay,
-            type: surveyPt.surveyPT.tripsList![i].type,
-            endingAddress: surveyPt.surveyPT.tripsList![i].endingAddress,
+                surveyPt.surveyPT.tripsList?[i].travelAloneHouseHold,
+            travelWay: surveyPt.surveyPT.tripsList?[i].travelWay,
+            type: surveyPt.surveyPT.tripsList?[i].type,
+            endingAddress: surveyPt.surveyPT.tripsList?[i].endingAddress,
             travelWithOtherModel:
-                surveyPt.surveyPT.tripsList![i].travelWithOtherModel,
-            typeTravel: surveyPt.surveyPT.tripsList![i].typeTravel,
+                surveyPt.surveyPT.tripsList?[i].travelWithOtherModel,
+            typeTravel: surveyPt.surveyPT.tripsList?[i].typeTravel,
             typeTravelCondition:
-                surveyPt.surveyPT.tripsList![i].typeTravelCondition,
-            isTravelAlone: surveyPt.surveyPT.tripsList![i].isTravelAlone,
+                surveyPt.surveyPT.tripsList?[i].typeTravelCondition,
+            isTravelAlone: surveyPt.surveyPT.tripsList?[i].isTravelAlone,
             travelWithOther:
-                surveyPt.surveyPT.tripsList![i].isTravelAlone == true
+                surveyPt.surveyPT.tripsList?[i].isTravelAlone == true
                     ? {
                         'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
                             [
@@ -187,26 +187,26 @@ class TripProvider extends ChangeNotifier {
             travelTypeModel: TravelTypeModel(
               taxiTravelTypeOther: TextEditingController(
                   text: surveyPt
-                      .surveyPT.tripsList![i].travelTypeModel.taxiTravelType),
+                      .surveyPT.tripsList?[i].travelTypeModel.taxiTravelType),
               otherWhereDidYouParking: TextEditingController(
                   text: surveyPt
-                      .surveyPT.tripsList![i].travelTypeModel.carParkingPlace),
+                      .surveyPT.tripsList?[i].travelTypeModel.carParkingPlace),
               taxiFare: TextEditingController(
                   text: surveyPt
-                      .surveyPT.tripsList![i].travelTypeModel.travelType),
+                      .surveyPT.tripsList?[i].travelTypeModel.travelType),
               ticketSub: TextEditingController(
                   text: surveyPt
-                      .surveyPT.tripsList![i].travelTypeModel.taxiTravelType),
+                      .surveyPT.tripsList?[i].travelTypeModel.taxiTravelType),
               carParkingPlace: surveyPt
-                  .surveyPT.tripsList![i].travelTypeModel.carParkingPlace,
+                  .surveyPT.tripsList?[i].travelTypeModel.carParkingPlace,
               passTravelType: surveyPt
-                  .surveyPT.tripsList![i].travelTypeModel.passTravelType,
+                  .surveyPT.tripsList?[i].travelTypeModel.passTravelType,
               travelType:
-                  surveyPt.surveyPT.tripsList![i].travelTypeModel.travelType,
+                  surveyPt.surveyPT.tripsList?[i].travelTypeModel.travelType,
               publicTransportFare: surveyPt
-                  .surveyPT.tripsList![i].travelTypeModel.publicTransportFare,
+                  .surveyPT.tripsList?[i].travelTypeModel.publicTransportFare,
               taxiTravelType: surveyPt
-                  .surveyPT.tripsList![i].travelTypeModel.taxiTravelType,
+                  .surveyPT.tripsList?[i].travelTypeModel.taxiTravelType,
             ),
             otherWhereDidYouParkEditingControl: surveyPt
                 .surveyPT.tripsList![i].otherWhereDidYouParkEditingControl,
@@ -216,13 +216,6 @@ class TripProvider extends ChangeNotifier {
                 surveyPt.surveyPT.tripsList![i].arrivalDepartTime,
             purposeOfBeingThere2: purposeOfBeingThere2,
             departureTime: surveyPt.surveyPT.tripsList![i].departureTime));
-
-        // TripModeList.tripModeList[0].person.clear();
-
-        /* for (int i = 0; i < PersonModelList.personModelList.length; i++) {
-        TripModeList.tripModeList[0].person
-            .add(PersonModelList.personModelList[i].personName.text);
-      }*/
 
         TripModeList.tripModeList[i].friendPerson = {
           "friendPerson": [],
@@ -239,7 +232,7 @@ class TripProvider extends ChangeNotifier {
                 surveyPt.surveyPT.tripsList![i].chosenPerson) {
               debugPrint("jjjjjiiii");
               TripModeList.tripModeList[i].friendPerson["friendPerson"].add({
-                "value": surveyPt.surveyPT.tripsList![i].chosenFriendPerson[x]
+                "value": surveyPt.surveyPT.tripsList?[i].chosenFriendPerson[x]
                     .toString(),
                 "isChick": true
               });
@@ -249,7 +242,7 @@ class TripProvider extends ChangeNotifier {
       }
     }
 
-    notifyListeners();
+    // notifyListeners();
   }
 
   removeTrip(int i) {
@@ -273,7 +266,7 @@ class TripProvider extends ChangeNotifier {
     var personlist = PersonModelList.personModelList.length;
     if (personlist != 0) {
       for (int i = 0; i < personlist; i++) {
-        if (PersonModelList.personModelList[i].personalHeadData!.hasPasTrip ==
+        if (PersonModelList.personModelList[i].personalHeadData?.hasPasTrip ==
             false) {
           if (PersonModelList
                   .personModelList[i].personalHeadData?.refuseToTellAge ==
@@ -285,17 +278,9 @@ class TripProvider extends ChangeNotifier {
                   .add(PersonModelList.personModelList[i].personName.text);
               mainPersonList
                   .add(PersonModelList.personModelList[i].personName.text);
-              // TripModeList.tripModeList[0].mainPerson
-              //     .add(PersonModelList.personModelList[i].personName.text);
-              // notifyListeners();
             } else if ((age <= 5)) {
-              // TripModeList.tripModeList[0].person
-              //     .add(PersonModelList.personModelList[i].personName.text);
-              // TripModeList.tripModeList[0].mainPerson
-              //     .add(PersonModelList.personModelList[i].personName.text);
               mainPersonList
                   .add(PersonModelList.personModelList[i].personName.text);
-              // notifyListeners();
             }
           } else if (PersonModelList
                   .personModelList[i].personalHeadData!.age.text !=
@@ -304,9 +289,6 @@ class TripProvider extends ChangeNotifier {
                 .add(PersonModelList.personModelList[i].personName.text);
             mainPersonList
                 .add(PersonModelList.personModelList[i].personName.text);
-            // TripModeList.tripModeList[0].mainPerson
-            //     .add(PersonModelList.personModelList[i].personName.text);
-            // notifyListeners();
           }
         }
       }
@@ -448,13 +430,13 @@ class TripProvider extends ChangeNotifier {
   TextEditingController mainModeController = TextEditingController();
 
   setMainMode(String? p, int index) {
-    TripModeList.tripModeList[index].travelWay!.mainMode = p.toString();
-    if (TripModeList.tripModeList[index].travelWay!.mainMode == "أخر") {
+    TripModeList.tripModeList[index].travelWay?.mainMode = p.toString();
+    if (TripModeList.tripModeList[index].travelWay?.mainMode == "أخر") {
       mainModeController.text = "أخر";
-      TripModeList.tripModeList[index].travelWay!.mainMode =
+      TripModeList.tripModeList[index].travelWay?.mainMode =
           mainModeController.text;
     } else {
-      TripModeList.tripModeList[index].travelWay!.mainMode = p;
+      TripModeList.tripModeList[index].travelWay?.mainMode = p;
       mainModeController.text =
           TripModeList.tripModeList[index].travelWay!.mainMode!;
     }
@@ -471,10 +453,10 @@ class TripProvider extends ChangeNotifier {
     TripModeList.tripModeList[index].travelWay!.accessMode = p.toString();
     if (TripModeList.tripModeList[index].travelWay!.accessMode == "أخر") {
       acModeController.text = "أخر";
-      TripModeList.tripModeList[index].travelWay!.accessMode =
+      TripModeList.tripModeList[index].travelWay?.accessMode =
           acModeController.text;
     } else {
-      TripModeList.tripModeList[index].travelWay!.accessMode = p;
+      TripModeList.tripModeList[index].travelWay?.accessMode = p;
       acModeController.text =
           TripModeList.tripModeList[index].travelWay!.accessMode!;
     }

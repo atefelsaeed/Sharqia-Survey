@@ -7,7 +7,7 @@ class PersonConditions {
   bool checkOccupationSectorOther(int i) {
     var occupationSectorKey = PersonData.occupationSector.keys.first;
     var occupationSector =
-        PersonModelList.personModelList[i].occupationModel!.occupationSector;
+        PersonModelList.personModelList[i].occupationModel?.occupationSector;
     PersonModelList.personModelList[i].occupationModel!
         .occupationSectorController.text = occupationSector!;
     if (((occupationSector == " حدد أخرى") ||
@@ -23,7 +23,7 @@ class PersonConditions {
   ///check-Best-Workspace-Location-Other
   bool checkBestWorkspaceLocationOther(int i) {
     var bestWorkspaceLocation = PersonModelList
-        .personModelList[i].occupationModel!.bestWorkspaceLocation;
+        .personModelList[i].occupationModel?.bestWorkspaceLocation;
 
     if (((bestWorkspaceLocation == 'أخرى') ||
         (bestWorkspaceLocation!.isNotEmpty &&
@@ -38,7 +38,7 @@ class PersonConditions {
   ///check-Driving-Licence-Type-Other
   bool checkDrivingLicenceTypeOther(int i) {
     var drivingLicenceType =
-        PersonModelList.personModelList[i].personalQuestion!.drivingLicenceType;
+        PersonModelList.personModelList[i].personalQuestion?.drivingLicenceType;
     if (((drivingLicenceType == "آخر") ||
         (drivingLicenceType!.isNotEmpty &&
             !(PersonData.licence[PersonData.licence.keys.first]!
@@ -51,9 +51,8 @@ class PersonConditions {
 
   ///check-Have-Disability-Transport-Mobility-Other
   bool checkHaveDisabilityTransportMobilityOther(int i) {
-
     var haveDisabilityTransportMobility = PersonModelList
-        .personModelList[i].personalQuestion!.haveDisabilityTransportMobility;
+        .personModelList[i].personalQuestion?.haveDisabilityTransportMobility;
 
     if (((haveDisabilityTransportMobility == 'أخرى .. حدد') ||
         (haveDisabilityTransportMobility!.isNotEmpty &&

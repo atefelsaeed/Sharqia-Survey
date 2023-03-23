@@ -16,6 +16,7 @@ import 'package:sharqia_household_survey/UI/Screens/Survey/components/action_but
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/house_hold_member.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/components/qh9.dart';
 import 'package:sharqia_household_survey/UI/Screens/Survey/editing_controller.dart';
+import 'package:sharqia_household_survey/UI/Screens/Survey/hhs_dispose_controllers.dart';
 
 import '../../../Models/user_serveys_model.dart';
 import '../../../Providers/user_surveys.dart';
@@ -53,22 +54,6 @@ class _SurveyScreenState extends State<SurveyScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    //  //Reset-to-empty-data
-    //  EmptyHHS.resetHHS(context);
-    //
-    //  ///reset-values-for-editing
-    //  //init();
-    //
-    //  final validationService =
-    //  Provider.of<ActionSurveyProvider>(context, listen: false);
-    //
-    //  int id = widget.itemSurveyModel.id!;
-    //  validationService.resetHHSValues(editingController, context, id);
-    // // check-if-edit-or-new-survey
-    //  if ((widget.itemSurveyModel.status == 'edit' &&
-    //      AppConstants.isResetHHS == true)) {
-    //    debugPrint('first edit');
-    //  }
     //Reset-to-empty-data
     EmptyHHS.resetHHS(context);
 
@@ -104,15 +89,24 @@ class _SurveyScreenState extends State<SurveyScreen> {
     int? id = widget.itemSurveyModel.id;
     debugPrint(id.toString());
   }
+
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    HHSDisposeControllers().dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return WillPopScope(
       onWillPop: () {
         return OnExitScreen.onWillPop(context);
       },
       child: Scaffold(
+        key: _scaffoldKey,
         body: SafeArea(
           child: Consumer<UserSurveysProvider>(
             builder: (context, provider, child) {
@@ -126,106 +120,94 @@ class _SurveyScreenState extends State<SurveyScreen> {
                     child: Directionality(
                         textDirection: TextDirection.rtl,
                         child: Column(
-                            children: [
-                              const HHSHeader(),
-                              provider.loading
-                                  ? SizedBox(
-                                      height: height(context) * .5,
-                                      child: Center(
-                                        child: CircularProgressIndicator(
-                                          color: ColorManager.primaryColor,
-                                        ),
+                          children: [
+                            const HHSHeader(),
+                            provider.loading
+                                ? SizedBox(
+                                    height: height(context) * .5,
+                                    child: Center(
+                                      child: CircularProgressIndicator(
+                                        color: ColorManager.primaryColor,
                                       ),
-                                    )
-                                  : Column(
-                                      children: [
-                                        // ===== HouseHoldAddress ===
-                                        HouseHoldAddress(
-                                          itemSurveyModel:
-                                              widget.itemSurveyModel,
-                                        ),
-                                        AppSize.spaceHeight3(context),
-                                        const HouseHoldMember(),
-                                        // ====Question 1====
+                                    ),
+                                  )
+                                : Column(
+                                    children: [
+                                      // ===== HouseHoldAddress ===
+                                      HouseHoldAddress(
+                                        itemSurveyModel: widget.itemSurveyModel,
+                                      ),
+                                      AppSize.spaceHeight3(context),
+                                      const HouseHoldMember(),
+                                      // ====Question 1====
+                                      const HHSQ1(),
+                                      const MyDivider(),
+                                      // ====Question 2====
+                                      const HHSQ2(),
+                                      // ====Question 3====
+                                      AppSize.spaceHeight3(context),
+                                      HHsQh4(
+                                          editingController: editingController),
+                                      // ====Question 4====
+                                      HHSQ4(
+                                        q6peopleAdults18:
+                                            editingController.q6peopleAdults18,
+                                        q6peopleUnder18:
+                                            editingController.q6peopleUnder18,
+                                        q6totalNumberOfVec: editingController
+                                            .q6totalNumberOfVec,
+                                      ),
+                                      AppSize.spaceHeight2(context),
+                                      // ====Question 5====
+                                      HHSQ5(
+                                        editingController: editingController,
+                                        peopleAdults18:
+                                            editingController.peopleAdults18,
+                                        peopleUnder18:
+                                            editingController.peopleUnder18,
+                                      ),
+                                      AppSize.spaceHeight3(context),
+                                      // ====Question 6====
+                                      const HHsQ6(),
+                                      // ====Question 7====
+                                      HHSQ81(
+                                          editingController3: editingController
+                                              .editingController3Q81),
+                                      AppSize.spaceHeight3(context),
+                                      HHSQ82(
+                                          editingController3: editingController
+                                              .editingController3Q82),
+                                      AppSize.spaceHeight3(context),
+                                      HHSQ83(
+                                          editingController3: editingController
+                                              .editingController3Q83),
+                                      AppSize.spaceHeight2(context),
+                                      const MyDivider(),
 
-                                        const HHSQ1(),
-                                        const MyDivider(),
-
-                                        // ====Question 2====
-                                        const HHSQ2(),
-                                        // ====Question 3====
-                                        AppSize.spaceHeight3(context),
-                                        HHsQh4(
-                                          editingController: editingController,
-                                        ),
-                                        // ====Question 4====
-                                        HHSQ4(
-                                          q6peopleAdults18: editingController
-                                              .q6peopleAdults18,
-                                          q6peopleUnder18:
-                                              editingController.q6peopleUnder18,
-                                          q6totalNumberOfVec: editingController
-                                              .q6totalNumberOfVec,
-                                        ),
-                                        AppSize.spaceHeight2(context),
-
-                                        // ====Question 5====
-                                        HHSQ5(
-                                          editingController: editingController,
-                                          peopleAdults18:
-                                              editingController.peopleAdults18,
-                                          peopleUnder18:
-                                              editingController.peopleUnder18,
-                                        ),
-                                        AppSize.spaceHeight3(context),
-                                        // ====Question 6====
-                                        const HHsQ6(),
-                                        // ====Question 7====
-                                        // HHSQH62(editingController),
-                                        // DemolishedArea(editingController),
-                                        // AppSize.spaceHeight5(context),
-                                        HHSQ81(
-                                            editingController3:
-                                                editingController
-                                                    .editingController3Q81),
-                                        AppSize.spaceHeight3(context),
-                                        HHSQ82(
-                                            editingController3:
-                                                editingController
-                                                    .editingController3Q82),
-                                        AppSize.spaceHeight3(context),
-                                        HHSQ83(
-                                            editingController3:
-                                                editingController
-                                                    .editingController3Q83),
-                                        AppSize.spaceHeight2(context),
-                                        const MyDivider(),
-
-                                        const QH9(),
-                                        AppSize.spaceHeight3(context),
-                                        //========HHSQ9=================
-                                        const NearestTransporter(),
-                                        //========HHSQ10=================
-                                        const HHSQ10(),
-                                        const Divider(
-                                          thickness: 2,
-                                        ),
-                                        AppSize.spaceHeight2(context),
-                                        //========HHSQ11=================
-                                        const HhsQH11(),
-                                        AppSize.spaceHeight6(context),
-                                        //===========ActionButton==============
-                                        ActionButton(
-                                          editingController: editingController,
-                                          keyVal: _key,
-                                          id: widget.itemSurveyModel.id
-                                                  ?.toString() ??
-                                              '1',
-                                        ),
-                                      ],
-                                    )
-                            ],
-
+                                      const QH9(),
+                                      AppSize.spaceHeight3(context),
+                                      //========HHSQ9=================
+                                      const NearestTransporter(),
+                                      //========HHSQ10=================
+                                      const HHSQ10(),
+                                      const Divider(
+                                        thickness: 2,
+                                      ),
+                                      AppSize.spaceHeight2(context),
+                                      //========HHSQ11=================
+                                      const HhsQH11(),
+                                      AppSize.spaceHeight6(context),
+                                      //===========ActionButton==============
+                                      ActionButton(
+                                        editingController: editingController,
+                                        keyVal: _key,
+                                        id: widget.itemSurveyModel.id
+                                                ?.toString() ??
+                                            '1',
+                                      ),
+                                    ],
+                                  )
+                          ],
                         )),
                   ),
                 ),

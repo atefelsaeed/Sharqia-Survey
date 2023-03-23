@@ -92,7 +92,7 @@ class _DefaultEntryState extends State<DefaultEntry> {
           children: [
             DropDownFormInput(
               label: PersonModelList
-                          .personModelList[widget.i].personalHeadData!.gender !=
+                          .personModelList[widget.i].personalHeadData?.gender !=
                       ''
                   ? Text(PersonModelList
                           .personModelList[widget.i].personalHeadData?.gender ??
@@ -100,7 +100,7 @@ class _DefaultEntryState extends State<DefaultEntry> {
                   : const Text('إختار'),
               hint: " نوع الجنس",
               options:
-                  PersonData.gender[PersonData.gender.keys.first]!.toList(),
+                  PersonData.gender[PersonData.gender.keys.first]?.toList(),
               onChange: (String? p) {
                 setState(() {
                   debugPrint(p);
@@ -123,16 +123,16 @@ class _DefaultEntryState extends State<DefaultEntry> {
                     children: [
                       DropDownFormInput(
                         label: PersonModelList.personModelList[widget.i]
-                                    .personalHeadData!.relationshipHeadHHS !=
+                                    .personalHeadData?.relationshipHeadHHS !=
                                 ''
                             ? Text(PersonModelList.personModelList[widget.i]
-                                    .personalHeadData!.relationshipHeadHHS ??
+                                    .personalHeadData?.relationshipHeadHHS ??
                                 '')
                             : const Text('إختار'),
                         hint: "القرابة برب الأسرة ",
                         options: PersonData.relationshipToTheHeadOfHouseholdMan[
                                 PersonData.relationshipToTheHeadOfHouseholdMan
-                                    .keys.first]!
+                                    .keys.first]
                             .toList(),
                         onChange: (var p) {
                           provider.relationshipHeadHHS(widget.i, p);
@@ -142,20 +142,20 @@ class _DefaultEntryState extends State<DefaultEntry> {
                       Row(
                         children: [
                           (PersonModelList.personModelList[widget.i]
-                                      .personalHeadData!.relationshipHeadHHS ==
+                                      .personalHeadData?.relationshipHeadHHS ==
                                   'أخرى')
                               ? MyTextForm(
                                   onTap: () {},
                                   controller: PersonModelList
                                       .personModelList[widget.i]
-                                      .personalHeadData!
-                                      .relationshipHeadHHSController,
+                                      .personalHeadData
+                                      ?.relationshipHeadHHSController,
                                   label: 'القرابة برب الأسرة ',
                                   onChanged: (val) {
                                     PersonModelList
                                         .personModelList[widget.i]
-                                        .personalHeadData!
-                                        .relationshipHeadHHS = val!;
+                                        .personalHeadData
+                                        ?.relationshipHeadHHS = val!;
                                   },
                                 )
                               : Container()
@@ -169,10 +169,10 @@ class _DefaultEntryState extends State<DefaultEntry> {
                     children: [
                       DropDownFormInput(
                         label: PersonModelList.personModelList[widget.i]
-                                    .personalHeadData!.relationshipHeadHHS !=
+                                    .personalHeadData?.relationshipHeadHHS !=
                                 ''
                             ? Text(PersonModelList.personModelList[widget.i]
-                                    .personalHeadData!.relationshipHeadHHS ??
+                                    .personalHeadData?.relationshipHeadHHS ??
                                 '')
                             : const Text('إختار'),
                         hint: "القرابة برب الأسرة ",
@@ -180,14 +180,14 @@ class _DefaultEntryState extends State<DefaultEntry> {
                             .relationshipToTheHeadOfHouseholdWoman[PersonData
                                 .relationshipToTheHeadOfHouseholdWoman
                                 .keys
-                                .first]!
+                                .first]
                             .toList(),
                         onChange: (var p) {
                           setState(() {
                             PersonModelList
                                 .personModelList[widget.i]
-                                .personalHeadData!
-                                .relationshipHeadHHS = p.toString();
+                                .personalHeadData
+                                ?.relationshipHeadHHS = p.toString();
                           });
                         },
                       ),
@@ -195,7 +195,7 @@ class _DefaultEntryState extends State<DefaultEntry> {
                       Row(
                         children: [
                           (PersonModelList.personModelList[widget.i]
-                                      .personalHeadData!.relationshipHeadHHS ==
+                                      .personalHeadData?.relationshipHeadHHS ==
                                   'أخرى')
                               ? MyTextForm(
                                   label: 'القرابة برب الأسرة ',
@@ -203,8 +203,8 @@ class _DefaultEntryState extends State<DefaultEntry> {
                                   onChanged: (val) {
                                     PersonModelList
                                         .personModelList[widget.i]
-                                        .personalHeadData!
-                                        .relationshipHeadHHS = val!;
+                                        .personalHeadData
+                                        ?.relationshipHeadHHS = val!;
                                   },
                                 )
                               : Container()

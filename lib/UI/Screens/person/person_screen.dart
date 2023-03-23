@@ -92,11 +92,13 @@ class _PersonScreenState extends State<PersonScreen> {
               '',
         );
       });
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: _scaffoldKey,
         body: SingleChildScrollView(child:
             Consumer<PersonProvider>(builder: (context, provider, child) {
           return Directionality(
@@ -278,7 +280,7 @@ class _PersonScreenState extends State<PersonScreen> {
                                   AppSize.spaceHeight1(context),
                                   //=============HHS-HavePastTrip==================
                                   PersonModelList.personModelList[i]
-                                              .occupationModel!.isEmployee !=
+                                              .occupationModel?.isEmployee !=
                                           "0"
                                       ? ListViewCheckBoxOrange(
                                           map: PersonModelList
@@ -304,13 +306,13 @@ class _PersonScreenState extends State<PersonScreen> {
                                       : Container(),
                                   ((PersonModelList
                                                   .personModelList[i]
-                                                  .personalHeadData!
-                                                  .hasPasTrip ==
+                                                  .personalHeadData
+                                                  ?.hasPasTrip ==
                                               true) &&
                                           (PersonModelList
                                                   .personModelList[i]
-                                                  .occupationModel!
-                                                  .isEmployee !=
+                                                  .occupationModel
+                                                  ?.isEmployee !=
                                               "0"))
                                       ? TextForm(
                                           label: 'إذكر السبب',
@@ -331,29 +333,29 @@ class _PersonScreenState extends State<PersonScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      PersonModelList
+                                      (PersonModelList
                                                   .personModelList[i]
-                                                  .occupationModel!
-                                                  .isEmployee ==
-                                              ""
+                                                  .occupationModel
+                                                  ?.isEmployee ==
+                                              "")
                                           ? Container()
-                                          : PersonModelList
+                                          : (PersonModelList
                                                       .personModelList[i]
-                                                      .occupationModel!
-                                                      .isEmployee ==
-                                                  "0"
+                                                      .occupationModel
+                                                      ?.isEmployee ==
+                                                  "0")
                                               ? DropDownFormInput2(
-                                                  label: PersonModelList
+                                                  label: (PersonModelList
                                                               .personModelList[
                                                                   i]
-                                                              .personalQuestion!
-                                                              .mainOccupationType !=
-                                                          ''
+                                                              .personalQuestion
+                                                              ?.mainOccupationType !=
+                                                          '')
                                                       ? Text(PersonModelList
                                                               .personModelList[
                                                                   i]
-                                                              .personalQuestion!
-                                                              .mainOccupationType ??
+                                                              .personalQuestion
+                                                              ?.mainOccupationType ??
                                                           '')
                                                       : const Text('إختار'),
                                                   hint: "الوظيفة الأساسية",
@@ -374,8 +376,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                                           value[inr]["value"]) {
                                                         PersonModelList
                                                                 .personModelList[i]
-                                                                .personalQuestion!
-                                                                .mainOccupationType =
+                                                                .personalQuestion
+                                                                ?.mainOccupationType =
                                                             value[inr]["value"];
                                                       }
                                                     }
@@ -383,8 +385,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                                       PersonModelList
                                                               .personModelList[
                                                                   i]
-                                                              .personalQuestion!
-                                                              .mainOccupationType ==
+                                                              .personalQuestion
+                                                              ?.mainOccupationType ==
                                                           p.toString();
                                                     });
 
@@ -395,14 +397,14 @@ class _PersonScreenState extends State<PersonScreen> {
                                                   label: PersonModelList
                                                               .personModelList[
                                                                   i]
-                                                              .personalQuestion!
-                                                              .mainOccupationType !=
+                                                              .personalQuestion
+                                                              ?.mainOccupationType !=
                                                           ''
                                                       ? Text(PersonModelList
                                                               .personModelList[
                                                                   i]
-                                                              .personalQuestion!
-                                                              .mainOccupationType ??
+                                                              .personalQuestion
+                                                              ?.mainOccupationType ??
                                                           '')
                                                       : const Text('إختار'),
                                                   hint: "الوظيفة الأساسية",
@@ -423,8 +425,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                                           value[inr]["value"]) {
                                                         PersonModelList
                                                                 .personModelList[i]
-                                                                .personalQuestion!
-                                                                .mainOccupationType =
+                                                                .personalQuestion
+                                                                ?.mainOccupationType =
                                                             value[inr]["value"];
                                                       }
                                                     }
@@ -432,8 +434,8 @@ class _PersonScreenState extends State<PersonScreen> {
                                                       PersonModelList
                                                               .personModelList[
                                                                   i]
-                                                              .personalQuestion!
-                                                              .mainOccupationType ==
+                                                              .personalQuestion
+                                                              ?.mainOccupationType ==
                                                           p.toString();
                                                     });
 
@@ -442,33 +444,33 @@ class _PersonScreenState extends State<PersonScreen> {
                                                 ),
                                       ((PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
                                                   "عاطلين عن العمل") ||
                                               (PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
                                                   "شخص البيت") ||
                                               (PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
                                                   "طفل فى الحضانة") ||
                                               (PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
                                                   "طفل ليس فى الحضانة") ||
                                               (PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
                                                   "رفض") ||
                                               (PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
                                                   "معاق / مريض"))
                                           ? Container()
                                           : Column(
@@ -476,33 +478,33 @@ class _PersonScreenState extends State<PersonScreen> {
                                                 PersonModelList
                                                                 .personModelList[
                                                                     i]
-                                                                .personalQuestion!
-                                                                .mainOccupationType ==
+                                                                .personalQuestion
+                                                                ?.mainOccupationType ==
                                                             "طالب - مدرسة ابتدائية" ||
                                                         PersonModelList
                                                                 .personModelList[
                                                                     i]
-                                                                .personalQuestion!
-                                                                .mainOccupationType ==
+                                                                .personalQuestion
+                                                                ?.mainOccupationType ==
                                                             "طالب - مدرسة متوسطة" ||
                                                         PersonModelList
                                                                 .personModelList[
                                                                     i]
-                                                                .personalQuestion!
-                                                                .mainOccupationType ==
+                                                                .personalQuestion
+                                                                ?.mainOccupationType ==
                                                             "طالب - مدرسة ثانوية"
                                                     ? DropDownFormInput(
                                                         label: PersonModelList
                                                                     .personModelList[
                                                                         i]
-                                                                    .occupationModel!
-                                                                    .occupationSector !=
+                                                                    .occupationModel
+                                                                    ?.occupationSector !=
                                                                 ''
                                                             ? Text(PersonModelList
                                                                     .personModelList[
                                                                         i]
-                                                                    .occupationModel!
-                                                                    .occupationSector ??
+                                                                    .occupationModel
+                                                                    ?.occupationSector ??
                                                                 '')
                                                             : const Text(
                                                                 'إختار'),
@@ -521,27 +523,27 @@ class _PersonScreenState extends State<PersonScreen> {
                                                     : PersonModelList
                                                                     .personModelList[
                                                                         i]
-                                                                    .personalQuestion!
-                                                                    .mainOccupationType ==
+                                                                    .personalQuestion
+                                                                    ?.mainOccupationType ==
                                                                 " طالب - الكلية: بدوام كامل (لا يعمل)" ||
                                                             PersonModelList
                                                                     .personModelList[
                                                                         i]
-                                                                    .personalQuestion!
-                                                                    .mainOccupationType ==
+                                                                    .personalQuestion
+                                                                    ?.mainOccupationType ==
                                                                 "طالب - جامعي: دوام كامل (لا يعمل) "
                                                         ? DropDownFormInput(
-                                                            label: PersonModelList
+                                                            label: (PersonModelList
                                                                         .personModelList[
                                                                             i]
-                                                                        .occupationModel!
-                                                                        .occupationSector !=
-                                                                    ''
+                                                                        .occupationModel
+                                                                        ?.occupationSector !=
+                                                                    '')
                                                                 ? Text(PersonModelList
                                                                         .personModelList[
                                                                             i]
-                                                                        .occupationModel!
-                                                                        .occupationSector ??
+                                                                        .occupationModel
+                                                                        ?.occupationSector ??
                                                                     '')
                                                                 : const Text(
                                                                     'إختار'),
@@ -562,14 +564,14 @@ class _PersonScreenState extends State<PersonScreen> {
                                                             label: PersonModelList
                                                                         .personModelList[
                                                                             i]
-                                                                        .occupationModel!
-                                                                        .occupationSector !=
+                                                                        .occupationModel
+                                                                        ?.occupationSector !=
                                                                     ''
                                                                 ? Text(PersonModelList
                                                                         .personModelList[
                                                                             i]
-                                                                        .occupationModel!
-                                                                        .occupationSector ??
+                                                                        .occupationModel
+                                                                        ?.occupationSector ??
                                                                     '')
                                                                 : const Text(
                                                                     'إختار'),
@@ -595,15 +597,15 @@ class _PersonScreenState extends State<PersonScreen> {
                                                         onTap: () {},
                                                         controller: PersonModelList
                                                             .personModelList[i]
-                                                            .occupationModel!
-                                                            .occupationSectorController,
+                                                            .occupationModel
+                                                            ?.occupationSectorController,
                                                         label: " قطاع العمل",
                                                         onChanged: (val) {
                                                           PersonModelList
                                                               .personModelList[
                                                                   i]
-                                                              .occupationModel!
-                                                              .occupationSector = val;
+                                                              .occupationModel
+                                                              ?.occupationSector = val;
                                                         },
                                                       )
                                                     : Container(),
@@ -612,24 +614,24 @@ class _PersonScreenState extends State<PersonScreen> {
                                     ],
                                   ),
 
-                                  PersonModelList.personModelList[i]
-                                              .occupationModel!.isEmployee ==
-                                          "1"
-                                      ? PersonModelList
+                                  (PersonModelList.personModelList[i]
+                                              .occupationModel?.isEmployee ==
+                                          "1")
+                                      ? ((PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
-                                                  "طفل ليس فى الحضانة" ||
-                                              PersonModelList
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
+                                                  "طفل ليس فى الحضانة") ||
+                                              (PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
-                                                  "طفل فى الحضانة" ||
-                                              PersonModelList
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
+                                                  "طفل فى الحضانة") ||
+                                              (PersonModelList
                                                       .personModelList[i]
-                                                      .personalQuestion!
-                                                      .mainOccupationType ==
-                                                  "رفض"
+                                                      .personalQuestion
+                                                      ?.mainOccupationType ==
+                                                  "رفض"))
                                           ? Container()
                                           : Employee(i: i)
                                       : Container(),
@@ -765,25 +767,6 @@ class _PersonScreenState extends State<PersonScreen> {
                                   showError();
                                 }
                               });
-                              // UserSurveysProvider userSurveysProvider =
-                              //     Provider.of<UserSurveysProvider>(context,
-                              //         listen: false);
-                              // SurveyPTProvider surveyPt =
-                              //     Provider.of<SurveyPTProvider>(context,
-                              //         listen: false);
-                              // SurveysProvider surveys =
-                              //     Provider.of<SurveysProvider>(context,
-                              //         listen: false);
-                              //
-                              // final prefs =
-                              //     await SharedPreferences.getInstance();
-                              // bool? isFilled =
-                              //     prefs.getBool(AppConstants.isFilled);
-                              //
-                              // if (isFilled != null && isFilled == true) {
-                              //   surveys.addNotFilledSurvey(surveyPt.data);
-                              //   debugPrint('addNotFilledSurvey Person');
-                              // }
                             },
                             isWidget: true,
                             btnWidth: width(context) * .35,
@@ -799,28 +782,12 @@ class _PersonScreenState extends State<PersonScreen> {
                         children: [
                           DefaultButton(
                             function: () {
-                              // UserSurveysProvider userSurveysProvider =
-                              //     Provider.of<UserSurveysProvider>(context,
-                              //         listen: false);
-                              // SurveyPTProvider surveyPt =
-                              //     Provider.of<SurveyPTProvider>(context,
-                              //         listen: false);
-                              // SurveysProvider surveys =
-                              //     Provider.of<SurveysProvider>(context,
-                              //         listen: false);
-                              //
-                              // if (userSurveysProvider.userSurveyStatus ==
-                              //     'not filled') {
-                              //   surveys.addNotFilledSurvey(surveyPt.data);
-                              //   debugPrint('addNotFilledSurvey person');
-                              // }
-
                               if (_key.currentState!.validate()) {
-                                _key.currentState!.save();
+                                _key.currentState?.save();
                                 SavePersonData.saveData(context);
                                 debugPrint('Save Person');
                                 CheckPersonValidation.validatePerson(context);
-                                int x=0;
+                                int x = 0;
                                 if (HhsStatic.peopleAdults18.isNotEmpty &&
                                     HhsStatic.peopleUnder18.isNotEmpty) {
                                   x = int.parse(
@@ -860,7 +827,7 @@ class _PersonScreenState extends State<PersonScreen> {
                           DefaultButton(
                             function: () {
                               debugPrint('Previous Vec Screen');
-                              Navigator.pop(context);
+                              Navigator.of(context).pop();
                             },
                             isWidget: true,
                             background: ColorManager.grayColor,

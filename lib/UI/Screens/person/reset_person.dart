@@ -39,26 +39,12 @@ class PersonProvider extends ChangeNotifier {
     UserSurveysProvider surveyPt =
         Provider.of<UserSurveysProvider>(context, listen: false);
 
-    // await surveyPt.getAllLocalData();
-    UserSurveysProvider userSurveysProvider =
-        Provider.of<UserSurveysProvider>(context, listen: false);
-
     PersonModelList.personModelList = [];
-    int personListLength = surveyPt.surveyPT.personData?.length ?? 0;
-    if (personListLength != 0) {
-      for (int i = 0; i < personListLength; i++) {
-        //for (int ii = 1; ii < QuestionsData.hhsHavePastTrip[QuestionsData.hhsHavePastTrip.keys.first]!.toList().length; ii++) {
-        /*  if (surveyPt.surveyPT!.personData![i].personalHeadData!.hhsHavePastTrip.text =="نعم"
-          ) {
-        QuestionsData.hhsHavePastTrip[QuestionsData.hhsHavePastTrip.keys.first]
-            [0]["isChick"] = true;
-        surveyPt.surveyPT!.personData![i].personalHeadData!.hasPasTrip=false;
-      } else {
-        QuestionsData.hhsHavePastTrip[QuestionsData.hhsHavePastTrip.keys.first]
-            [1]["isChick"] = true;
-        surveyPt.surveyPT!.personData![i].personalHeadData!.hasPasTrip=true;
-      }*/
 
+    int personListLength = surveyPt.surveyPT.personData?.length ?? 0;
+
+    if (personListLength > 0) {
+      for (int i = 0; i < personListLength; i++) {
         Map<String, dynamic> nationality = {
           "QPurposeOfBeingThere": [
             {"value": 'سعودي', "isChick": false},
@@ -70,51 +56,24 @@ class PersonProvider extends ChangeNotifier {
               " A separate family is defined as who share the kitchen expenses and meals",
           "index": 0,
         };
-        //Map<String, dynamic>    nationalityu={};
         List value2 = nationality[nationality.keys.first].toList();
 
         for (int inr = 0; inr < value2.length; inr++) {
           if (surveyPt
-                  .surveyPT.personData![i].personalHeadData!.nationalityType ==
+                  .surveyPT.personData?[i].personalHeadData?.nationalityType ==
               value2[inr]["value"]) {
             nationality[nationality.keys.first].toList()[inr]["isChick"] = true;
-            if (surveyPt.surveyPT.personData![i].personalHeadData!
-                    .nationalityType !=
+            if (surveyPt.surveyPT.personData?[i].personalHeadData
+                    ?.nationalityType !=
                 "سعودي") {
-              surveyPt.surveyPT.personData![i].personalHeadData!.showText =
+              surveyPt.surveyPT.personData?[i].personalHeadData?.showText =
                   true;
             }
-            //  nationalityu.addAll(  {"value":  value2[inr]["value"], "isChick": true});
           } else {
             nationality[nationality.keys.first].toList()[inr]["isChick"] =
                 false;
           }
-          //  notifyListeners();
         }
-
-        /*for (int ii = 0;
-          ii <
-              PersonModelList
-                  .personModelList[ii]
-                  .nationality[PersonModelList
-                      .personModelList[ii].nationality.keys.first]!
-                  .toList()
-                  .length;
-          ii++) {
-        if (PersonModelList
-                .personModelList[ii]
-                .nationality[
-                    PersonModelList.personModelList[ii].nationality.keys.first]!
-                .toList()[ii]["value"] ==
-            surveyPt.surveyAllData!.first.personData![i].personalHeadData!
-                .nationalityType) {
-          PersonModelList.personModelList[ii].nationality[PersonModelList
-              .personModelList[ii]
-              .nationality
-              .keys
-              .first][ii]["isChick"] = true;
-        }
-      }*/
 
         Map<String, dynamic> travelWithOther = {
           'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
@@ -125,13 +84,11 @@ class PersonProvider extends ChangeNotifier {
           "index": 0
         };
 
-        List value = travelWithOther[travelWithOther.keys.first].toList();
-
-        if (surveyPt.surveyPT.personData![i].personalHeadData!.hhsHavePastTrip
+        if (surveyPt.surveyPT.personData?[i].personalHeadData?.hhsHavePastTrip
                 .text ==
             "نعم") {
           debugPrint(surveyPt
-              .surveyPT.personData![i].personalHeadData!.hhsHavePastTrip.text);
+              .surveyPT.personData?[i].personalHeadData?.hhsHavePastTrip.text);
           travelWithOther = {
             'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
                 [
@@ -140,7 +97,7 @@ class PersonProvider extends ChangeNotifier {
             ],
             "index": 0
           };
-          surveyPt.surveyPT.personData![i].personalHeadData!.hasPasTrip = false;
+          surveyPt.surveyPT.personData?[i].personalHeadData?.hasPasTrip = false;
         } else {
           travelWithOther = {
             'Did you move here from any of the Demolished areas of Jeddah, if yes which one':
@@ -151,7 +108,7 @@ class PersonProvider extends ChangeNotifier {
             "index": 0
           };
 
-          surveyPt.surveyPT.personData![i].personalHeadData!.hasPasTrip = true;
+          surveyPt.surveyPT.personData?[i].personalHeadData?.hasPasTrip = true;
 
           //PersonModelList.personModelList[i].personalHeadData!.hhsHavePastTrip=surveyPt.surveyPT.personData![i].personalHeadData!.hhsHavePastTrip;
 
@@ -273,21 +230,11 @@ class PersonProvider extends ChangeNotifier {
         ));
 
         if (surveyPt
-                .surveyPT.personData![i].personalHeadData!.refuseToTellAge ==
+                .surveyPT.personData![i].personalHeadData?.refuseToTellAge ==
             true) {
           groupAgeKey2(
               i, surveyPt.surveyPT.personData![i].personalHeadData!.age.text);
-          //List value = PersonData.groupAge[PersonData.groupAge.keys.first].toList();
           debugPrint("2222222");
-
-          //  PersonModelList.personModelList[i].occupationModel!.isEmployee =1.toString();
-          /* for (int inr = 0; inr < value.length; inr++) {
-          if (surveyPt.surveyPT!.personData![i].personalHeadData!.age.text == value[inr]["value"]) {
-            debugPrint("Fffff");
-            PersonModelList.personModelList[i].occupationModel!.isEmployee =
-            value[inr]["type"];
-          }
-        }*/
         } else {
           isEmployeeEdit(
               surveyPt.surveyPT.personData![i].personalHeadData!.age.text, i);
@@ -300,14 +247,14 @@ class PersonProvider extends ChangeNotifier {
 
   nationality(ChangeBoxResponse r, int i) {
     if (r.val == "لا" && r.check == true) {
-      PersonModelList.personModelList[i].personalHeadData!.hasPasTrip = true;
+      PersonModelList.personModelList[i].personalHeadData?.hasPasTrip = true;
       PersonModelList
-          .personModelList[i].personalHeadData!.hhsHavePastTrip.text = '';
+          .personModelList[i].personalHeadData?.hhsHavePastTrip.text = '';
     } else {
-      PersonModelList.personModelList[i].personalHeadData!.hasPasTrip = false;
+      PersonModelList.personModelList[i].personalHeadData?.hasPasTrip = false;
 
       PersonModelList
-          .personModelList[i].personalHeadData!.hhsHavePastTrip.text = 'نعم';
+          .personModelList[i].personalHeadData?.hhsHavePastTrip.text = 'نعم';
     }
     notifyListeners();
   }
@@ -315,12 +262,12 @@ class PersonProvider extends ChangeNotifier {
   isEmployeeEdit(String d, int i) {
     if (d.isNotEmpty) {
       if (int.parse(d.toString()) > 18) {
-        PersonModelList.personModelList[i].occupationModel!.isEmployee = "1";
+        PersonModelList.personModelList[i].occupationModel?.isEmployee = "1";
       } else {
-        PersonModelList.personModelList[i].occupationModel!.isEmployee = "0";
+        PersonModelList.personModelList[i].occupationModel?.isEmployee = "0";
       }
     } else {
-      PersonModelList.personModelList[i].occupationModel!.isEmployee = "";
+      PersonModelList.personModelList[i].occupationModel?.isEmployee = "";
     }
     //  notifyListeners();
   }
@@ -328,30 +275,30 @@ class PersonProvider extends ChangeNotifier {
   isEmployee(String d, int i) {
     if (d.isNotEmpty) {
       if (Validator.validateNumber(d) > 18) {
-        PersonModelList.personModelList[i].occupationModel!.isEmployee = "1";
+        PersonModelList.personModelList[i].occupationModel?.isEmployee = "1";
       } else if (Validator.validateNumber(d) > 0 &&
           Validator.validateNumber(d) < 5) {
-        PersonModelList.personModelList[i].occupationModel!.isEmployee = "0";
+        PersonModelList.personModelList[i].occupationModel?.isEmployee = "0";
       } else {
-        PersonModelList.personModelList[i].occupationModel!.isEmployee = "2";
+        PersonModelList.personModelList[i].occupationModel?.isEmployee = "2";
       }
     } else {
-      PersonModelList.personModelList[i].occupationModel!.isEmployee = "";
+      PersonModelList.personModelList[i].occupationModel?.isEmployee = "";
     }
     notifyListeners();
   }
 
   groupAgeKey2(int i, String p) {
-    PersonModelList.personModelList[i].personalHeadData!.checkAge = false;
+    PersonModelList.personModelList[i].personalHeadData?.checkAge = false;
 
-    PersonModelList.personModelList[i].personalHeadData!.age.text =
+    PersonModelList.personModelList[i].personalHeadData?.age.text =
         p.toString();
 
     List value = PersonData.groupAge[PersonData.groupAge.keys.first].toList();
 
     for (int inr = 0; inr < value.length; inr++) {
       if (p == value[inr]["value"]) {
-        PersonModelList.personModelList[i].occupationModel!.isEmployee =
+        PersonModelList.personModelList[i].occupationModel?.isEmployee =
             value[inr]["type"];
       }
       // notifyListeners();
@@ -360,16 +307,16 @@ class PersonProvider extends ChangeNotifier {
   }
 
   groupAgeKey(int i, String p) {
-    PersonModelList.personModelList[i].personalHeadData!.checkAge = false;
+    PersonModelList.personModelList[i].personalHeadData?.checkAge = false;
 
-    PersonModelList.personModelList[i].personalHeadData!.age.text =
+    PersonModelList.personModelList[i].personalHeadData?.age.text =
         p.toString();
 
     List value = PersonData.groupAge[PersonData.groupAge.keys.first].toList();
 
     for (int inr = 0; inr < value.length; inr++) {
       if (p == value[inr]["value"]) {
-        PersonModelList.personModelList[i].occupationModel!.isEmployee =
+        PersonModelList.personModelList[i].occupationModel?.isEmployee =
             value[inr]["type"];
       }
       notifyListeners();
@@ -377,41 +324,32 @@ class PersonProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /*checkAge(int i, value) {
-    debugPrint(value);
-    PersonModelList.personModelList[i].personalHeadData!.refuseToTellAge =
-        value!;
-    PersonModelList.personModelList[i].personalHeadData!.checkAge = false;
-
-
-    notifyListeners();
-  }*/
   travelWithOther(int i, ChangeBoxResponse r) {
     if (r.val == "لا" && r.check == true) {
-      PersonModelList.personModelList[i].personalHeadData!.hasPasTrip = true;
+      PersonModelList.personModelList[i].personalHeadData?.hasPasTrip = true;
       PersonModelList
-          .personModelList[i].personalHeadData!.hhsHavePastTrip.text = '';
+          .personModelList[i].personalHeadData?.hhsHavePastTrip.text = '';
     } else {
-      PersonModelList.personModelList[i].personalHeadData!.hasPasTrip = false;
+      PersonModelList.personModelList[i].personalHeadData?.hasPasTrip = false;
 
       PersonModelList
-          .personModelList[i].personalHeadData!.hhsHavePastTrip.text = 'نعم';
+          .personModelList[i].personalHeadData?.hhsHavePastTrip.text = 'نعم';
     }
     notifyListeners();
   }
 
   checkAge(int i, value) {
-    PersonModelList.personModelList[i].personalHeadData!.checkAge = value!;
-    PersonModelList.personModelList[i].personalHeadData!.age.text = '';
-    PersonModelList.personModelList[i].personalHeadData!.refuseToTellAge =
+    PersonModelList.personModelList[i].personalHeadData?.checkAge = value!;
+    PersonModelList.personModelList[i].personalHeadData?.age.text = '';
+    PersonModelList.personModelList[i].personalHeadData?.refuseToTellAge =
         false;
     notifyListeners();
   }
 
   checkNo(int i, value) {
-    PersonModelList.personModelList[i].personalHeadData!.refuseToTellAge =
+    PersonModelList.personModelList[i].personalHeadData?.refuseToTellAge =
         value!;
-    PersonModelList.personModelList[i].personalHeadData!.checkAge = false;
+    PersonModelList.personModelList[i].personalHeadData?.checkAge = false;
     notifyListeners();
   }
 
@@ -498,7 +436,6 @@ class PersonProvider extends ChangeNotifier {
       base.relationshipHeadHHS != base.relationshipHeadHHSController.text;
     }
 
-    // PersonConditions().checkDrivingLicenceTypeOther(i);
     notifyListeners();
   }
 }

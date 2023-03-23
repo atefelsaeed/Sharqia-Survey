@@ -34,6 +34,15 @@ class _UserSurveysScreenState extends State<UserSurveysScreen> {
   TextEditingController blocController = TextEditingController();
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    hayController.dispose();
+    qtaController.dispose();
+    blocController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final userSurveysProvider = Provider.of<UserSurveysProvider>(context);
     List<UserSurveysModelData> list;

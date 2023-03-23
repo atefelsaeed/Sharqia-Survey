@@ -16,8 +16,8 @@ class TripConditions {
   ///
   bool checkIsCarDriver(int i, context) {
     var bas = TripModeList.tripModeList[i].travelTypeModel;
-    if (((TripModeList.tripModeList[i].travelWay!.mainMode == 'سائق سيارة') ||
-            (TripModeList.tripModeList[i].travelWay!.accessMode ==
+    if (((TripModeList.tripModeList[i].travelWay?.mainMode == 'سائق سيارة') ||
+            (TripModeList.tripModeList[i].travelWay?.accessMode ==
                 'سائق سيارة')) &&
         (bas.travelType != 'سيارة')) {
       showError(
@@ -89,7 +89,7 @@ class TripConditions {
 
     var bas = TripModeList.tripModeList[i];
     debugPrint('ssss');
-    debugPrint(bas.travelWithOtherModel!.childrenNumber.text);
+    debugPrint(bas.travelWithOtherModel?.childrenNumber.text);
 
     int adultsNumber2 =0;
     if (bas.travelWithOtherModel!.childrenNumber.text.isEmpty) {
