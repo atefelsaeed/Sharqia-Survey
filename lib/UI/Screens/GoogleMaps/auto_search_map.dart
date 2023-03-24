@@ -233,8 +233,13 @@ class Constants {
 }
 
 class MapSearchScreen extends StatefulWidget {
-  const MapSearchScreen({Key? key, required this.callBack}) : super(key: key);
+  const MapSearchScreen({
+    Key? key,
+    required this.callBack,
+    required this.latLng,
+  }) : super(key: key);
   final Function callBack;
+  final LatLng latLng;
 
   @override
   State<MapSearchScreen> createState() => _MapSearchScreenState();
@@ -243,7 +248,8 @@ class MapSearchScreen extends StatefulWidget {
 class _MapSearchScreenState extends State<MapSearchScreen> {
   Completer<GoogleMapController> _completer = Completer();
   late final double _initZoom = Constants.defaultZoom;
-  late final LatLng _initCoordinates = Constants.location;
+  late final LatLng _initCoordinates =
+      widget.latLng.latitude == 0.0 ? Constants.location : widget.latLng;
   List<Placemark> _placeMarks = [];
   LatLng? _value;
   GoogleMapController? _controller;
@@ -265,7 +271,6 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: FutureBuilder(
@@ -330,7 +335,6 @@ class _MapSearchScreenState extends State<MapSearchScreen> {
           width: width(context) * .9,
           child: SearchMapPlaceWidget(
             strictBounds: true,
-
             hasClearButton: true,
             placeType: PlaceType.address,
             bgColor: ColorManager.grayLiner,

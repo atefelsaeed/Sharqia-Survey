@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sharqia_household_survey/UI/Screens/Login/login_screen.dart';
 import 'package:sharqia_household_survey/UI/Screens/Settings/settings_screen.dart';
 
 import '../../../Providers/auth.dart';
@@ -24,6 +25,8 @@ class _ChooseSurveysScreenState extends State<ChooseSurveysScreen> {
     super.initState();
   }
 
+  bool? isLogout;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +43,13 @@ class _ChooseSurveysScreenState extends State<ChooseSurveysScreen> {
           ),
           const SizedBox(width: 30),
           IconButton(
-            onPressed: Provider.of<Auth>(context).logout,
+            onPressed: () {
+              isLogout = Provider.of<Auth>(context,listen: false).logout();
+              if (isLogout == true) {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (ctx) => const LoginScreen()));
+              }
+            },
             icon: const Icon(Icons.logout),
           ),
           const SizedBox(width: 30),

@@ -98,7 +98,7 @@ class TripProvider extends ChangeNotifier {
         };
 
         List value2 =
-            purposeOfBeingThere[purposeOfBeingThere.keys.first].toList();
+        purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList();
 
         surveyPt.surveyPT.tripsList?[i].tripReason?.replaceAll('توص', 'توصيل');
 
@@ -106,17 +106,17 @@ class TripProvider extends ChangeNotifier {
           if (surveyPt.surveyPT.tripsList?[i].tripReason!
                   .replaceAll('توص', 'توصيل') ==
               value2[inr]["value"]) {
-            purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[inr]
+            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[inr]
                 ["isChick"] = true;
           } else {
-            purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[inr]
+            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[inr]
                 ["isChick"] = false;
           }
           //  notifyListeners();
         }
 
         List value3 =
-            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList();
+        purposeOfBeingThere[purposeOfBeingThere.keys.first].toList();//purposeOfBeingThere2
 
         surveyPt.surveyPT.tripsList![i].purposeTravel
             ?.replaceAll('توص', 'توصيل');
@@ -125,10 +125,10 @@ class TripProvider extends ChangeNotifier {
           if (surveyPt.surveyPT.tripsList![i].purposeTravel
                   ?.replaceAll('توص', 'توصيل') ==
               value3[ir]["value"]) {
-            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[ir]
+            purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[ir]
                 ["isChick"] = true;
           } else {
-            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList()[ir]
+            purposeOfBeingThere[purposeOfBeingThere.keys.first].toList()[ir]
                 ["isChick"] = false;
           }
         }

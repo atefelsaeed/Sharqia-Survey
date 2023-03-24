@@ -90,6 +90,25 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
                     const Spacer(),
                     IconButton(
                       onPressed: () async {
+                        double lat;
+                        double long;
+
+                        if (startBeginningModel!.tripAddressLat == null ||
+                            startBeginningModel.tripAddressLat!.isEmpty) {
+                          lat = 0.0;
+                        } else {
+                          lat =
+                              double.parse(startBeginningModel.tripAddressLat!);
+                        }
+
+                        if (startBeginningModel.tripAddressLong == null ||
+                            startBeginningModel.tripAddressLong!.isEmpty) {
+                          long = 0.0;
+                        } else {
+                          long = double.parse(
+                              startBeginningModel.tripAddressLong!);
+                        }
+
                         final latLong = await Navigator.push<LatLng>(
                           context,
                           MaterialPageRoute(
@@ -110,6 +129,7 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
                                       '0.0';
                                 });
                               },
+                              latLng: LatLng(lat, long),
                             ),
                           ),
                         );

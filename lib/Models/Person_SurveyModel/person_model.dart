@@ -86,8 +86,7 @@ class PersonalHeadData {
 
   PersonalHeadData.fromJson(Map<String, dynamic> json) {
     relationshipHeadHHS = json['relationshipHeadHHS'] ??
-        PersonData.relationshipToTheHeadOfHouseholdMan[
-            " Relationship to the Head of Household"][0];
+        PersonData.relationshipToTheHeadOfHouseholdMan[" Relationship2 to the Head of Household"][0];
     gender = json['gender'] ?? "";
     // checkAge = json['checkAge'];
     refuseToTellAge = json['refuseToTellAge'];

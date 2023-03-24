@@ -104,6 +104,26 @@ class _TripEndingAddressState extends State<TripEndingAddress> {
                         const Spacer(),
                         IconButton(
                           onPressed: () {
+                            double lat;
+                            double long;
+
+                            if (endingAddressObj!.tripAddressLat == null ||
+                                endingAddressObj.tripAddressLat!.isEmpty) {
+                              lat = 0.0;
+                            } else {
+                              debugPrint(
+                                  "lat ::${endingAddressObj.tripAddressLat}");
+                              lat = double.parse(
+                                  endingAddressObj.tripAddressLat!);
+                            }
+                            if (endingAddressObj.tripAddressLong == null ||
+                                endingAddressObj.tripAddressLong!.isEmpty) {
+                              long = 0.0;
+                            } else {
+                              long = double.parse(
+                                  endingAddressObj.tripAddressLong!);
+                            }
+
                             // Navigate to the MapSearchScreen to search for the address
                             Navigator.push(
                               context,
@@ -127,6 +147,7 @@ class _TripEndingAddressState extends State<TripEndingAddress> {
                                               '0.0';
                                     });
                                   },
+                                  latLng: LatLng(lat, long),
                                 ),
                               ),
                             );
