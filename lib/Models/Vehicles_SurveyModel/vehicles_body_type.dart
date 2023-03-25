@@ -15,7 +15,13 @@ class VehiclesBodyType {
 
   VehiclesBodyType.fromJson(Map<String, dynamic> json) {
     vehicleTypeName = json['vehicleTypeName'] ?? '';
-    vehicleTypeQuantity = json['vehicleTypeQuantity'] ?? '';
+    if (json['vehicleTypeQuantity'].isNotEmpty &&
+        json['vehicleTypeQuantity'] != null) {
+      vehicleTypeQuantity = int.parse(json['vehicleTypeQuantity'].toString());
+    } else {
+      vehicleTypeQuantity = 0;
+    }
+
     vehicleTypeDetails = List.from(json['vehicleTypeDetails'])
         .map((e) => VehicleBodyDetails.fromJson(e))
         .toList();
