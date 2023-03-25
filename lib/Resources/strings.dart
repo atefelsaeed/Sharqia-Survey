@@ -1,5 +1,5 @@
 class AppStrings {
-  static const appVersion = 'V1.0.1+12';
+  static const appVersion = 'V1.0.1+13';
   static const hhsQ1 = 'What best describes this dwelling type?';
   static const hhsQ2 = 'Is this dwelling...';
   static const hhsQ3 =

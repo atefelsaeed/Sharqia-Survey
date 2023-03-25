@@ -9,6 +9,7 @@ import '../../../../Providers/auth.dart';
 import '../../../../Resources/colors.dart';
 
 class LoginForm extends StatefulWidget {
+
   const LoginForm({Key? key}) : super(key: key);
 
   @override
