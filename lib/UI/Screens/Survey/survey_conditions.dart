@@ -8,15 +8,20 @@ import '../../../Providers/survey_hhs.dart';
 
 class SurveyCondition {
   bool conditionHHSQ5NumAdults(EditingController editingController, context) {
-    int houseHoldLength = editingController.peopleAdults18.text.isEmpty
-        ? 0
-        : int.parse(editingController.peopleAdults18.text);
+    int houseHoldLength = 0;
+    if (editingController.peopleAdults18.text.isEmpty) {
+      houseHoldLength = 0;
+    } else {
+      houseHoldLength = int.parse(editingController.peopleAdults18.text);
+    }
 
     int numAdults = 0;
+
     for (int i = 0; i < editingController.q6peopleAdults18.length; i++) {
       numAdults =
           int.parse(editingController.q6peopleAdults18[i].text) + numAdults;
     }
+
     if (houseHoldLength > numAdults) {
       showError(
         context,
@@ -33,10 +38,13 @@ class SurveyCondition {
   }
 
   bool conditionHHSQ5NumUnder18(EditingController editingController, context) {
-    int houseHoldLength = editingController.peopleUnder18.text.isEmpty
-        ? 0
-        : int.parse(editingController.peopleUnder18.text);
 
+    int houseHoldLength = 0;
+    if (editingController.peopleUnder18.text.isEmpty) {
+      houseHoldLength = 0;
+    } else {
+      houseHoldLength = int.parse(editingController.peopleUnder18.text);
+    }
     int numAdults = 0;
     for (int i = 0; i < editingController.q6peopleUnder18.length; i++) {
       numAdults =

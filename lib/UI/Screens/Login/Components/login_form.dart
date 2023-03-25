@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sharqia_household_survey/Resources/sizes.dart';
+import 'package:sharqia_household_survey/UI/Screens/Home/home_screen.dart';
 
 import '../../../../Helper/validator.dart';
 import '../../../../Providers/auth.dart';
@@ -177,8 +178,8 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     );
                   } else {
-                    // Navigator.of(context)
-                    //     .pushReplacementNamed(SurveysScreen.routeName);
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (ctx) => const HomeScreen()));
                   }
                 } catch (e) {
                   debugPrint(e.toString());

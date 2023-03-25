@@ -135,13 +135,13 @@ class _TripEndingAddressState extends State<TripEndingAddress> {
 
                                     // Update the ending address coordinates in the trip mode list
                                     setState(() {
-                                      endingAddressObj?.tripAddressLong =
+                                      endingAddressObj.tripAddressLong =
                                           surveyPt.endingAddressLatLng
                                                   ?.longitude
                                                   .toString() ??
                                               '0.0';
 
-                                      endingAddressObj?.tripAddressLat =
+                                      endingAddressObj.tripAddressLat =
                                           surveyPt.endingAddressLatLng?.latitude
                                                   .toString() ??
                                               '0.0';

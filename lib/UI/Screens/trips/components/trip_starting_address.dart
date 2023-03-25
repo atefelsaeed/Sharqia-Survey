@@ -119,11 +119,11 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
 
                                 // Update the ending address coordinates in the trip mode list
                                 setState(() {
-                                  startBeginningModel?.tripAddressLong =
+                                  startBeginningModel.tripAddressLong =
                                       surveyPt.endingAddressLatLng?.longitude
                                               .toString() ??
                                           '0.0';
-                                  startBeginningModel?.tripAddressLat = surveyPt
+                                  startBeginningModel.tripAddressLat = surveyPt
                                           .endingAddressLatLng?.latitude
                                           .toString() ??
                                       '0.0';
@@ -136,9 +136,9 @@ class _TripStartingAddressState extends State<TripStartingAddress> {
                         if (latLong != null) {
                           surveyPt.startingAddressLatLng = latLong;
                           setState(() {
-                            startBeginningModel?.tripAddressLong =
+                            startBeginningModel.tripAddressLong =
                                 latLong.longitude.toString();
-                            startBeginningModel?.tripAddressLat =
+                            startBeginningModel.tripAddressLat =
                                 latLong.latitude.toString();
                           });
                         }

@@ -98,7 +98,7 @@ class TripProvider extends ChangeNotifier {
         };
 
         List value2 =
-        purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList();
+            purposeOfBeingThere2[purposeOfBeingThere2.keys.first].toList();
 
         surveyPt.surveyPT.tripsList?[i].tripReason?.replaceAll('توص', 'توصيل');
 
@@ -115,8 +115,8 @@ class TripProvider extends ChangeNotifier {
           //  notifyListeners();
         }
 
-        List value3 =
-        purposeOfBeingThere[purposeOfBeingThere.keys.first].toList();//purposeOfBeingThere2
+        List value3 = purposeOfBeingThere[purposeOfBeingThere.keys.first]
+            .toList(); //purposeOfBeingThere2
 
         surveyPt.surveyPT.tripsList![i].purposeTravel
             ?.replaceAll('توص', 'توصيل');
@@ -255,10 +255,12 @@ class TripProvider extends ChangeNotifier {
 
   initTrip() {
     debugPrint('InitTrip');
-    TripModeList.tripModeList[0].person.clear();
-    debugPrint('Clear person list');
-    TripModeList.tripModeList[0].mainPerson.clear();
-    debugPrint('Clear mainPerson list');
+    if (TripModeList.tripModeList.isNotEmpty) {
+      TripModeList.tripModeList[0].person.clear();
+      debugPrint('Clear person list');
+      TripModeList.tripModeList[0].mainPerson.clear();
+      debugPrint('Clear mainPerson list');
+    }
     list.clear();
     debugPrint('Clear list list');
     mainPersonList.clear();
@@ -301,6 +303,7 @@ class TripProvider extends ChangeNotifier {
 
   ///
   addOwnerTrip(int i, String p) {
+
     List xc = TripModeList.tripModeList[i].friendPerson["friendPerson"] ?? [];
     TripModeList.tripModeList[i].friendPerson["friendPerson"] = [];
 

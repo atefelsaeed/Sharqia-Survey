@@ -25,7 +25,6 @@ import '../../Widgets/text_form_field.dart';
 import '../Survey/widgets/editing_controler3.dart';
 import '../Survey/widgets/list_view_check_box_orange.dart';
 import '../Survey/widgets/text_form_row.dart';
-import '../trips/trip_screen.dart';
 import 'components/employee.dart';
 import 'components/nationality.dart';
 import 'components/transporter_moblity.dart';
@@ -786,8 +785,9 @@ class _PersonScreenState extends State<PersonScreen> {
                                 _key.currentState?.save();
                                 SavePersonData.saveData(context);
                                 debugPrint('Save Person');
-                                CheckPersonValidation.validatePerson(context);
+
                                 int x = 0;
+
                                 if (HhsStatic.peopleAdults18.isNotEmpty &&
                                     HhsStatic.peopleUnder18.isNotEmpty) {
                                   x = int.parse(
@@ -800,12 +800,8 @@ class _PersonScreenState extends State<PersonScreen> {
 
                                 if (x ==
                                     PersonModelList.personModelList.length) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const TripScreen(),
-                                    ),
-                                  );
+                                  CheckPersonValidation.validatePerson(context);
+
                                 } else {
                                   showError1();
                                 }
